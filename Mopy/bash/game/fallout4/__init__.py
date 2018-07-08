@@ -120,7 +120,7 @@ class Fallout4GameInfo(GameInfo):
 
     allTags = {u'Delev', u'Relev'}
 
-    patchers = (u'ListsMerger',)
+    patchers = (u'ListsMerger', u'PatchMerger',)
 
     # ---------------------------------------------------------------------
     # --Imported - MreGlob is special import, not in records.py
