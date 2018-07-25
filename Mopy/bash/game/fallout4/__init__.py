@@ -131,6 +131,7 @@ class Fallout4GameInfo(GameInfo):
 
     @classmethod
     def init(cls):
+        # First import from fallout4.records file, so MelModel is set correctly
         from .records import MreHeader, MreLvli, MreLvln
         # ---------------------------------------------------------------------
         # These Are normally not mergable but added to brec.MreRecord.type_class
