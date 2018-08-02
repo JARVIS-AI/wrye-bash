@@ -1589,7 +1589,7 @@ class INIInfos(TableFileInfos):
         bass.settings['bash.ini.choices'] = collections.OrderedDict(
             [(u'%s' % k, bass.settings['bash.ini.choices'][k]) for k in keys])
 
-    def _refresh_infos(self):
+    def _refresh_ini_tweaks(self):
         """Refresh from file directory."""
         oldNames=set(n for n, v in self.iteritems() if not v.is_default_tweak)
         _added = set()
@@ -1600,7 +1600,12 @@ class INIInfos(TableFileInfos):
             if oldInfo is not None and not oldInfo.is_default_tweak:
                 if oldInfo.do_update(): _updated.add(name)
             else: # added
-                oldInfo = self.factory(self.store_dir.join(name))
+                tweak_path = self.store_dir.join(name)
+                try:
+                    oldInfo = self.factory(tweak_path)
+                except UnicodeDecodeError:
+                    deprint(u'Failed to read %s' % tweak_path, traceback=True)
+                    continue
                 _added.add(name)
             self[name] = oldInfo
         _deleted = oldNames - newNames
@@ -1623,7 +1628,7 @@ class INIInfos(TableFileInfos):
     def refresh(self, refresh_infos=True, refresh_target=True):
         _added = _deleted = _updated = set()
         if refresh_infos:
-            _added, _deleted, _updated = self._refresh_infos()
+            _added, _deleted, _updated = self._refresh_ini_tweaks()
         changed = refresh_target and (
             self.ini.updated or self.ini.do_update())
         if changed: # reset the status of all infos and let RefreshUI set it
