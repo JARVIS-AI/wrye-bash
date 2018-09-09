@@ -401,12 +401,10 @@ class CellImporter(_ACellImporter, ImportPatcher):
             for world_block in modFile.WRLD.worldBlocks:
                 for cell_block in world_block.cellBlocks:
                     if cell_block.cell.fid in cell_data:
-                        patch_worlds.setWorld(world_block.world)
+                        patch_worlds.setWorld(
+                            world_block.world, world_block.worldCellBlock)
                         patch_worlds.id_worldBlocks[
                             world_block.world.fid].setCell(cell_block.cell)
-     #           if world_block.worldCellBlock.cell.fid in cell_data:
-     #               patch_worlds.id_worldBlocks[]
-
 
     def buildPatch(self, log, progress):  # buildPatch0
         """Adds merged lists to patchfile."""
@@ -473,6 +471,11 @@ class CellImporter(_ACellImporter, ImportPatcher):
                 if cell_block.cell.fid in cell_data:
                     if has_been_modified(cell_block):
                         count[cell_block.cell.fid[0]] += 1
+                        keep_world = True
+            if world_block.worldCellBlock:
+                if world_block.worldCellBlock.cell.fid in cell_data:
+                    if has_been_modified(world_block.worldCellBlock):
+                        count[world_block.worldCellBlock.cell.fid[0]] += 1
                         keep_world = True
             if keep_world:
                 keep(world_block.world.fid)
