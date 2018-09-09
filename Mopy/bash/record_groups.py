@@ -818,7 +818,7 @@ class MobWorld(MobCells):
         insTell = ins.tell
         selfLoadFactory = self.loadFactory
         cellBlocksAppend = cellBlocks.append
-        isFallout = bush.game.fsName.lower() in (u'fallout3', u'falloutnv')
+        isFallout = bush.game.fsName.lower() in (u'fallout3', u'falloutnv', u'skyrim', u'skyrim special edition')
         cells = {}
         while not insAtEnd(endPos,errLabel):
             curPos = insTell()
@@ -849,11 +849,17 @@ class MobWorld(MobCells):
                 cell = recClass(header,ins,True)
                 if isFallout: cells[cell.fid] = cell
                 if block:
-                    if insTell() > endBlockPos or insTell() > endSubblockPos:
-                        raise ModError(self.inName,
-                                       u'Exterior cell <%s> %s after block or'
-                                       u' subblock.' % (
-                                           hex(cell.fid),cell.eid))
+                    if cell:
+                        cellBlock = MobCell(header, selfLoadFactory, cell)
+                        if block:
+                            cellBlocksAppend(cellBlock)
+                        else:
+                            if self.worldCellBlock:
+                                raise ModError(self.inName,
+                                               u'Extra exterior cell <%s> %s '
+                                               u'before block group.' % (
+                                                   hex(cell.fid), cell.eid))
+                            self.worldCellBlock = cellBlock
             elif recType == 'GRUP':
                 groupFid,groupType = header.label,header.groupType
                 if groupType == 4: # Exterior Cell Block
@@ -1024,7 +1030,7 @@ class MobWorlds(MobBase):
         insSeek = ins.seek
         selfLoadFactory = self.loadFactory
         worldBlocksAppend = worldBlocks.append
-        isFallout = bush.game.fsName.lower() in (u'fallout3', u'falloutnv')
+        isFallout = bush.game.fsName.lower() in (u'fallout3', u'falloutnv', u'skyrim', u'skyrim special edition')
         worlds = {}
         while not insAtEnd(endPos,errLabel):
             #--Get record info and handle it
