@@ -411,6 +411,17 @@ class CellImporter(_ACellImporter, ImportPatcher):
     def buildPatch(self, log, progress):  # buildPatch0
         """Adds merged lists to patchfile."""
 
+        def regions_differ(patch_value, value_):
+            """
+            Required for regions because comparing using `==` or `!=`
+            results in false positives.
+            """
+            sorted_patch_value = sorted(patch_value)
+            sorted_value = sorted(value_)
+            regions_compare = set(sorted_value).difference(
+                sorted_patch_value)
+            return (bool(regions_compare))
+
         def has_been_modified(patch_cell_block):
             #@formatter:off
             """
@@ -431,7 +442,11 @@ class CellImporter(_ACellImporter, ImportPatcher):
 
             for attribute, src_value in src_values:
                 patch_value = patch_cell_block.cell.__getattribute__(attribute)
-                if patch_value != src_value:
+                if attribute == 'regions':
+                    if regions_differ(patch_value, src_value):
+                        patch_cell_block.cell.__setattr__(attribute, src_value)
+                        modified = True
+                elif patch_value != src_value:
                     patch_cell_block.cell.__setattr__(attribute, src_value)
                     modified = True
             for flag, src_value in src_flags:
