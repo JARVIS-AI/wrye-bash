@@ -4809,10 +4809,10 @@ plugins:
   - name: 'DLCBattlehornCastle.esp'
     dirty:
       - crc: 0x7048c609
-        util: '[TES4Edit](http://www.nexusmods.com/oblivion/mods/11536/)'
+        util: 'TES4Edit v3.2.2'
         info: 'A cleaning guide is available [here](http://cs.elderscrolls.com/index.php?title=TES4Edit_Cleaning_Guide).'
-        itm: 13
-        udr: 74
+        itm: 3
+        udr: 72
       - crc: 0xcadd3fd0
         util: '[TES4Edit](http://www.nexusmods.com/oblivion/mods/11536/)'
         info: 'A cleaning guide is available [here](http://cs.elderscrolls.com/index.php?title=TES4Edit_Cleaning_Guide).'
@@ -4903,6 +4903,8 @@ plugins:
       - Graphics
   - name: 'DLCHorseArmor.esp'
     tag:
+      - Actors.ACBS
+      - Actors.AIPackages
       - Scripts
     dirty:
       - crc: 0x2a0ff245
@@ -4910,7 +4912,7 @@ plugins:
         info: 'A cleaning guide is available [here](http://cs.elderscrolls.com/index.php?title=TES4Edit_Cleaning_Guide).'
         itm: 3
       - crc: 0xbad48e5d
-        util: '[TES4Edit](http://www.nexusmods.com/oblivion/mods/11536/)'
+        util: 'TES4Edit 3.2.2'
         info: 'A cleaning guide is available [here](http://cs.elderscrolls.com/index.php?title=TES4Edit_Cleaning_Guide).'
         itm: 3
   - name: 'DLCHorseArmor_SlofBase.esp'
@@ -4967,9 +4969,9 @@ plugins:
         itm: 21
         udr: 15
       - crc: 0xcb413740
-        util: '[TES4Edit](http://www.nexusmods.com/oblivion/mods/11536/)'
+        util: 'TES4Edit 3.2.2'
         info: 'A cleaning guide is available [here](http://cs.elderscrolls.com/index.php?title=TES4Edit_Cleaning_Guide).'
-        itm: 21
+        itm: 14
         udr: 15
   - name: 'DLCOrrery Rwalk.esp'
     tag:
@@ -4988,7 +4990,7 @@ plugins:
       - Actors.AIPackages
     dirty:
       - crc: 0x5bc59db4
-        util: '[TES4Edit](http://www.nexusmods.com/oblivion/mods/11536/)'
+        util: 'Tes4Edit 3.2.2'
         info: 'A cleaning guide is available [here](http://cs.elderscrolls.com/index.php?title=TES4Edit_Cleaning_Guide).'
         itm: 11
         udr: 2
@@ -5038,8 +5040,6 @@ plugins:
         info: 'A cleaning guide is available [here](http://cs.elderscrolls.com/index.php?title=TES4Edit_Cleaning_Guide).'
         itm: 2
   - name: 'DLCSpellTomes.esp'
-    tag:
-      - Relev
     dirty:
       - crc: 0x312156f8
         util: '[TES4Edit](http://www.nexusmods.com/oblivion/mods/11536/)'
@@ -5092,7 +5092,7 @@ plugins:
       - C.Name
     dirty:
       - crc: 0x5db8ccc
-        util: '[TES4Edit](http://www.nexusmods.com/oblivion/mods/11536/)'
+        util: 'TES4Edit 3.2.2'
         info: 'A cleaning guide is available [here](http://cs.elderscrolls.com/index.php?title=TES4Edit_Cleaning_Guide).'
         itm: 5
         udr: 135
@@ -5105,6 +5105,8 @@ plugins:
     tag:
       - Graphics
   - name: 'DLCVileLair.esp'
+    tag:
+      - Sound
     dirty:
       - crc: 0x2c59f2f0
         util: '[TES4Edit](http://www.nexusmods.com/oblivion/mods/11536/)'
@@ -5117,9 +5119,9 @@ plugins:
         itm: 16
         udr: 1
       - crc: 0x74d2ca6f
-        util: '[TES4Edit](http://www.nexusmods.com/oblivion/mods/11536/)'
+        util: 'TES4Edit 3.2.2'
         info: 'A cleaning guide is available [here](http://cs.elderscrolls.com/index.php?title=TES4Edit_Cleaning_Guide).'
-        itm: 26
+        itm: 16
         udr: 1
   - name: 'DMAC Armor.esp'
     tag:
@@ -7861,9 +7863,11 @@ plugins:
       - NoMerge
   - name: 'Knights.esp'
     tag:
+      - Actors.ACBS
       - Actors.AIPackages
+      - Actors.Stats
       - Factions
-      - Relations
+      - Graphics
     dirty:
       - crc: 0x71480b94
         util: '[TES4Edit](http://www.nexusmods.com/oblivion/mods/11536/)'
@@ -7871,10 +7875,10 @@ plugins:
         itm: 113
         udr: 255
       - crc: 0xf1f478fa
-        util: '[TES4Edit](http://www.nexusmods.com/oblivion/mods/11536/)'
+        util: 'TES4Edit 3.2.2'
         info: 'A cleaning guide is available [here](http://cs.elderscrolls.com/index.php?title=TES4Edit_Cleaning_Guide).'
-        itm: 121
-        udr: 257
+        itm: 83
+        udr: 255
   - name: 'Knights_DMRA.esp'
     tag:
       - Graphics
@@ -11164,6 +11168,11 @@ plugins:
   - name: 'Quest Award Leveller - Knights of the Nine.esp'
     tag:
       - Scripts
+    dirty:
+      - crc: 0xa80cd1a4
+        util: '[TES4Edit](http://www.nexusmods.com/oblivion/mods/11536/)'
+        info: 'A cleaning guide is available [here](http://cs.elderscrolls.com/index.php?title=TES4Edit_Cleaning_Guide).'
+        itm: 7
   - name: 'Quest For The Elements.esp'
     dirty:
       - crc: 0xd2e0b570
