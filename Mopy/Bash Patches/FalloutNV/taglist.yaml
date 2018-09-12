@@ -138,7 +138,7 @@ plugins:
       - Scripts
     dirty:
       - crc: 0xcc32f754
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 10
   - name: 'avangraffscorned.esp'
@@ -146,7 +146,7 @@ plugins:
       - Actors.AIPackages
     dirty:
       - crc: 0x26ab27d
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 1
   - name: 'awilderwasteland.esp'
@@ -155,7 +155,7 @@ plugins:
       - Stats
     dirty:
       - crc: 0xed3d7bb3
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 9
   - name: 'AWOP-AhztekWeaponPatch.esp'
@@ -378,7 +378,7 @@ plugins:
       - Stats
     dirty:
       - crc: 0x38c75b04
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 7
   - name: 'CaliberXgunrunners.esm'
@@ -467,7 +467,7 @@ plugins:
       - Stats
     dirty:
       - crc: 0xd70f165b
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 403
         udr: 51
@@ -566,7 +566,7 @@ plugins:
   - name: 'ExplosivesImmunityFix.esp'
     dirty:
       - crc: 0xec0f1920
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 1
   - name: 'EZ_VanillaFollowers.esp'
@@ -615,7 +615,7 @@ plugins:
       - Scripts
     dirty:
       - crc: 0xe746e1d
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 1
   - name: 'FCO - NPC Changes.esp'
@@ -632,7 +632,7 @@ plugins:
       - NpcFaces
     dirty:
       - crc: 0x15a3bcc8
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 18
   - name: 'FCO - Playable Races + Roberts Patch.esp'
@@ -644,7 +644,7 @@ plugins:
       - Body-M
     dirty:
       - crc: 0xa03db8ae
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 1
   - name: 'FCO - The New Bison Steve.esp'
@@ -681,7 +681,7 @@ plugins:
   - name: 'Fix the lights and Crap be gone.esp'
     dirty:
       - crc: 0xb5671ca9
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 8
         udr: 54166
@@ -765,7 +765,7 @@ plugins:
       - Invent
     dirty:
       - crc: 0xaac938d
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 97
   - name: 'Hanlon the badass 4.esp'
@@ -799,7 +799,7 @@ plugins:
       - Sound
     dirty:
       - crc: 0x2352b189
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 121
         udr: 10
@@ -837,7 +837,7 @@ plugins:
       - C.LTemplate
     dirty:
       - crc: 0x8e8f65e5
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 7
         udr: 1
@@ -848,7 +848,7 @@ plugins:
       - C.LTemplate
     dirty:
       - crc: 0xd7d915c3
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 1
   - name: 'ILO - NVInteriors Project - AWOP.esp'
@@ -862,7 +862,7 @@ plugins:
       - C.Owner
     dirty:
       - crc: 0xe5b86a01
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 7
   - name: 'ILO - Old World Blues.esp'
@@ -1062,13 +1062,13 @@ plugins:
   - name: 'lexx_brahmin-betsy.esp'
     dirty:
       - crc: 0xba26c46
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 13
   - name: 'lexx_brahmin-variant.esp'
     dirty:
       - crc: 0xb596767c
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 16
         udr: 1
@@ -1112,7 +1112,7 @@ plugins:
       - Stats
     dirty:
       - crc: 0x30073d50
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 240
         udr: 6
@@ -1357,13 +1357,13 @@ plugins:
       - Stats
     dirty:
       - crc: 0xbddf839b
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 6
   - name: 'Nevada Skies - Ultimate DLC Edition.esp'
     dirty:
       - crc: 0xd6b9e659
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 4
   - name: 'Nevada Skies - URWLHH.esp'
@@ -1437,7 +1437,7 @@ plugins:
       - Relev
     dirty:
       - crc: 0xeb023707
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 93
         udr: 73
@@ -1454,7 +1454,7 @@ plugins:
       - Relev
     dirty:
       - crc: 0xfaf9f22e
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 1018
         udr: 74
@@ -1481,7 +1481,7 @@ plugins:
       - Relations
     dirty:
       - crc: 0x11d6afea
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         nav: 2
   - name: 'NewVegasUncut.esm'
@@ -1646,7 +1646,7 @@ plugins:
       - Stats
     dirty:
       - crc: 0x7f8f8225
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 124
   - name: 'originalintro.esp'
@@ -1655,7 +1655,7 @@ plugins:
       - Invent
     dirty:
       - crc: 0xb0a1b1bb
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 6
   - name: 'originalintroExtended.esp'
@@ -1664,7 +1664,7 @@ plugins:
       - Invent
     dirty:
       - crc: 0x3abe494e
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 4
   - name: 'OWB Big Empty Overhaul.esp'
@@ -1681,7 +1681,7 @@ plugins:
       - Scripts
     dirty:
       - crc: 0x793d7342
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 1
   - name: 'PlasmaRifleAwesomefied.esp'
@@ -1730,7 +1730,7 @@ plugins:
       - AI.Packages
     dirty:
       - crc: 0xc7507f30
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 46
         udr: 16
@@ -1739,7 +1739,7 @@ plugins:
       - AI.Packages
     dirty:
       - crc: 0x39574e5a
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 47
         udr: 8
@@ -1748,7 +1748,7 @@ plugins:
       - AI.Packages
     dirty:
       - crc: 0x9eae96ff
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 48
         udr: 2
@@ -1848,7 +1848,7 @@ plugins:
       - Relev
     dirty:
       - crc: 0xe0e2c3c0
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 22
   - name: 'Project Nevada - Rebalance.esp'
@@ -1879,7 +1879,7 @@ plugins:
   - name: 'Project Nevada Rebalance Complete.esp'
     dirty:
       - crc: 0xe0e2c3c0
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 22
   - name: 'Project Westland vision-ZionHH.esp'
@@ -1913,7 +1913,7 @@ plugins:
       - Actors.Skeleton
     dirty:
       - crc: 0x8ab4f125
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 15
   - name: 'Raul - Danny Trejo.esp'
@@ -2005,7 +2005,7 @@ plugins:
       - Graphics
     dirty:
       - crc: 0x8162c3ba
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 1
   - name: 'rotfacetoriches.esp'
@@ -2064,7 +2064,7 @@ plugins:
   - name: 'SupahWeapons.esp'
     dirty:
       - crc: 0xec7f4960
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 15
         udr: 8226
@@ -2122,7 +2122,7 @@ plugins:
       - Scripts
     dirty:
       - crc: 0x35f7bae7
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 17
   - name: 'TheInheritance.esp'
@@ -2130,7 +2130,7 @@ plugins:
       - Relations
     dirty:
       - crc: 0x71715d56
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         udr: 2
         nav: 4
@@ -2152,7 +2152,7 @@ plugins:
       - Stats
     dirty:
       - crc: 0x40b5e4bc
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 4
   - name: 'TTW - Realistic Interior Lighting.esp'
@@ -2232,7 +2232,7 @@ plugins:
   - name: 'Tutorial Killer - Alternate Start.esp'
     dirty:
       - crc: 0xd1257bc7
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 1
   - name: 'Type 6.esp'
@@ -2269,11 +2269,11 @@ plugins:
   - name: 'Vurt''s WFO.esp'
     dirty:
       - crc: 0x31b1b874
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 377
       - crc: 0x71755f08
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 356
   - name: 'VyntageCass02.esp'
@@ -2316,13 +2316,13 @@ plugins:
       - Stats
     dirty:
       - crc: 0xe0d9629c
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 1
   - name: 'Weapons.of.the.New.Millenia.esm'
     dirty:
       - crc: 0x1e04d898
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 10
   - name: 'Weapons.of.the.New.Millenia.Store.LITE.esp'
@@ -2330,7 +2330,7 @@ plugins:
       - C.Light
     dirty:
       - crc: 0xb5824c7a
-        util: '[FNVEdit](http://www.nexusmods.com/newvegas/mods/34703)'
+        util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
         info: ''
         itm: 8
   - name: 'Weight_Balance.esp'
