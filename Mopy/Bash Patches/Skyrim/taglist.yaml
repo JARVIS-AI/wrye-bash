@@ -642,6 +642,8 @@ plugins:
         itm: 8
         udr: 11
   - name: 'AOS.esp'
+    tag:
+      - Sound
     dirty:
       - crc: 0xd88afe72
         util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
@@ -1744,6 +1746,10 @@ plugins:
         util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
         info: 'A cleaning guide is available [here](http://www.creationkit.com/index.php?title=TES5Edit_Cleaning_Guide_-_TES5Edit).'
         itm: 42
+  - name: 'Book Covers Skyrim.esp'
+    tag:
+      - Graphics
+      - Names
   - name: 'Books+.esp'
     dirty:
       - crc: 0x8095bb6
@@ -2522,7 +2528,9 @@ plugins:
   - name: 'Clothing & Clutter Fixes.esp'
     tag:
       - Delev
+      - Graphics
       - Relev
+      - Sound
       - Stats
   - name: 'Clothing Jewelry & Clutter Fixes.esp'
     tag:
@@ -2603,6 +2611,9 @@ plugins:
         util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
         info: 'A cleaning guide is available [here](http://www.creationkit.com/index.php?title=TES5Edit_Cleaning_Guide_-_TES5Edit).'
         itm: 6
+  - name: 'Complete Crafting Overhaul_Remade.esp'
+    tag:
+      - Graphics
   - name: 'Conjure_Armored_Husky.esp'
     dirty:
       - crc: 0xf3a51e21
@@ -3074,10 +3085,15 @@ plugins:
         util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
         info: 'A cleaning guide is available [here](http://www.creationkit.com/index.php?title=TES5Edit_Cleaning_Guide_-_TES5Edit).'
         itm: 6
+      - crc: 0x6391c6dc
+        util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
+        info: 'A cleaning guide is available [here](http://www.creationkit.com/index.php?title=TES5Edit_Cleaning_Guide_-_TES5Edit).'
+        itm: 6
+        nav: 57
       - crc: 0xbd72ccf3
         util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
         info: 'A cleaning guide is available [here](http://www.creationkit.com/index.php?title=TES5Edit_Cleaning_Guide_-_TES5Edit).'
-        itm: 619
+        itm: 630
         udr: 82
         nav: 57
   - name: 'dawnguard_realistic.esp'
@@ -3286,6 +3302,9 @@ plugins:
         util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
         info: 'A cleaning guide is available [here](http://www.creationkit.com/index.php?title=TES5Edit_Cleaning_Guide_-_TES5Edit).'
         itm: 4
+  - name: 'DesyncBirdsOfPrey.esp'
+    tag:
+      - NoMerge
   - name: 'Detect Spells with Duration.esp'
     dirty:
       - crc: 0xb7697359
@@ -4040,6 +4059,19 @@ plugins:
         util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
         info: 'A cleaning guide is available [here](http://www.creationkit.com/index.php?title=TES5Edit_Cleaning_Guide_-_TES5Edit).'
         itm: 5
+  - name: 'ELE_.+_Lite\.esp'
+    tag:
+      - C.ImageSpace
+      - C.Light
+  - name: 'ELE_Legendary_Lite.esp'
+    tag:
+      - C.ImageSpace
+      - C.Light
+    dirty:
+      - crc: 0x5176eb29
+        util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
+        info: 'A cleaning guide is available [here](http://www.creationkit.com/index.php?title=TES5Edit_Cleaning_Guide_-_TES5Edit).'
+        itm: 197
   - name: 'elemental fury.esp'
     dirty:
       - crc: 0x6b3370e8
@@ -6130,6 +6162,9 @@ plugins:
         itm: 8
         udr: 409
         nav: 7
+  - name: 'IHSS.esp'
+    tag:
+      - Sound
   - name: 'IMAGINATOR - Visual Control for Skyrim.esp'
     dirty:
       - crc: 0x7dfc69e3
@@ -6148,6 +6183,9 @@ plugins:
         util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
         info: 'A cleaning guide is available [here](http://www.creationkit.com/index.php?title=TES5Edit_Cleaning_Guide_-_TES5Edit).'
         itm: 12
+  - name: 'Immersive Citizens - AI Overhaul.esp'
+    tag:
+      - C.Owner
   - name: 'Immersive Darkwater crossing.esp'
     dirty:
       - crc: 0x7f5941a8
@@ -6320,6 +6358,9 @@ plugins:
         util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
         info: 'A cleaning guide is available [here](http://www.creationkit.com/index.php?title=TES5Edit_Cleaning_Guide_-_TES5Edit).'
         itm: 3
+  - name: 'imp_helm_legend.esp'
+    tag:
+      - Graphics
   - name: 'Imperial Rangers Corps.esp'
     dirty:
       - crc: 0xea73566b
@@ -9454,6 +9495,9 @@ plugins:
         util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
         info: 'A cleaning guide is available [here](http://www.creationkit.com/index.php?title=TES5Edit_Cleaning_Guide_-_TES5Edit).'
         itm: 2
+  - name: 'Radiant and Unique Potions Poisons and BOOZE.esp'
+    tag:
+      - Graphics
   - name: 'Rageofthespirits.esp'
     dirty:
       - crc: 0xbc4ba4f4
@@ -9694,7 +9738,16 @@ plugins:
   - name: 'RealisticNeedsandDiseases.esp'
     tag:
       - Delev
+      - Graphics
+      - Invent
+      - Names
       - Relev
+      - Stats
+    dirty:
+      - crc: 0x8b0c212f
+        util: '[TES5Edit  v3.2.1](http://www.nexusmods.com/skyrim/mods/25859)'
+        info: 'A cleaning guide is available [here](http://www.creationkit.com/index.php?title=TES5Edit_Cleaning_Guide_-_TES5Edit).'
+        itm: 1
   - name: 'RealisticRoomRental.esp'
     dirty:
       - crc: 0x484ef81f
@@ -10129,6 +10182,9 @@ plugins:
         info: 'A cleaning guide is available [here](http://www.creationkit.com/index.php?title=TES5Edit_Cleaning_Guide_-_TES5Edit).'
         itm: 13
         udr: 59
+  - name: 'RUSTIC SOULGEMS - (Uns|S)orted\.esp'
+    tag:
+      - Names
   - name: 'RWB - Realistic Wolf Behavior.esp'
     dirty:
       - crc: 0x652fd3f8
@@ -10375,6 +10431,9 @@ plugins:
         info: 'A cleaning guide is available [here](http://www.creationkit.com/index.php?title=TES5Edit_Cleaning_Guide_-_TES5Edit).'
         itm: 3
         udr: 2
+  - name: 'SGR Enhanced Trees Activator.esp'
+    tag:
+      - NoMerge
   - name: 'sh_HF_goat_fix.esp'
     tag:
       - Relev
@@ -11700,6 +11759,7 @@ plugins:
   - name: 'Stealth Skills Rebalanced_COMPLETE.esp'
     tag:
       - Delev
+      - Stat
   - name: 'Stealth Skills Rebalanced_LOCKPICKING.esp'
     tag:
       - Delev
@@ -12494,6 +12554,8 @@ plugins:
         itm: 30
         udr: 2
   - name: 'TheChoiceIsYours.esp'
+    tag:
+      - Names
     dirty:
       - crc: 0xdd345cc
         util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
@@ -12629,6 +12691,9 @@ plugins:
         util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
         info: 'A cleaning guide is available [here](http://www.creationkit.com/index.php?title=TES5Edit_Cleaning_Guide_-_TES5Edit).'
         itm: 4
+  - name: 'Thieves Guild Requirements.esp'
+    tag:
+      - Names
   - name: 'ThievesGreyFoxSummon.esp'
     dirty:
       - crc: 0x1595af04
@@ -13312,7 +13377,7 @@ plugins:
       - crc: 0xe5b67bda
         util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
         info: 'A cleaning guide is available [here](http://www.creationkit.com/index.php?title=TES5Edit_Cleaning_Guide_-_TES5Edit).'
-        itm: 92
+        itm: 96
         udr: 3
   - name: 'UpkeptUnderkeep.esp'
     dirty:
@@ -13682,6 +13747,7 @@ plugins:
   - name: 'Weapons & Armor Fixes_Remade.esp'
     tag:
       - Delev
+      - Graphics
       - Relev
       - Stats
   - name: 'Weapons & Armor_TrueDaedricWeapons.esp'
