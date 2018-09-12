@@ -17189,8 +17189,10 @@ stringSoundsRecs = ()
 # CellImporter
 #------------------------------------------------------------------------------
 cellAutoKeys = {u'C.Acoustic', u'C.Climate', u'C.Light', u'C.Location',
-                u'C.Music', u'C.Name', u'C.Owner', u'C.RecordFlags',
-                u'C.Regions', u'C.SkyLighting', u'C.Water'}
+                u'C.LockList', u'C.Music', u'C.Name', u'C.Owner',
+                u'C.RecordFlags', u'C.Regions', u'C.SkyLighting',
+                u'C.Water'
+            }
 
 cellRecAttrs = {
     u'C.Acoustic': ('acousticSpace',),
@@ -17213,6 +17215,7 @@ cellRecAttrs = {
          'fogColorFarRed','fogColorFarGreen','fogColorFarBlue','unused4',
          'fogMax','lightFadeBegin','lightFadeEnd','inherits','lightTemplate',),
     u'C.Location': ('location',),
+    u'C.LockList': ('lockList',),
     u'C.Music': ('music',),
     u'C.Name': ('full',),
     u'C.Owner': ('ownership',),
@@ -17227,6 +17230,7 @@ cellRecFlags = {
     u'C.ImageSpace': '',
     u'C.Light': '',
     u'C.Location': '',
+    u'C.LockList': '',
     u'C.Music': '',
     u'C.Name': '',
     u'C.Owner': 'publicPlace',
