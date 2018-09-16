@@ -17188,16 +17188,17 @@ stringSoundsRecs = ()
 #------------------------------------------------------------------------------
 # CellImporter
 #------------------------------------------------------------------------------
-cellAutoKeys = {u'C.Acoustic', u'C.Climate', u'C.Light', u'C.Location',
-                u'C.LockList', u'C.Music', u'C.Name', u'C.Owner',
-                u'C.RecordFlags', u'C.Regions', u'C.SkyLighting',
-                u'C.Water'
-            }
+cellAutoKeys = {u'C.Acoustic', u'C.Climate', u'C.Encounter', u'C.GridFlags',
+                u'C.ImageSpace', u'C.Light', u'C.Location', u'C.LockList',
+                u'C.MaxHeight', u'C.Music', u'C.Name', u'C.Owner',
+                u'C.RecordFlags', u'C.Regions', u'C.SkyLighting', u'C.Water',
+                }
 
 cellRecAttrs = {
     u'C.Acoustic': ('acousticSpace',),
     u'C.Climate': ('climate',),
     u'C.Encounter': ('encounterZone',),
+    u'C.GridFlags': ('gridFlags',),
     u'C.ImageSpace': ('imageSpace',),
     u'C.Light': ('ambientRed','ambientGreen','ambientBlue','unused1',
          'directionalRed','directionalGreen','directionalBlue','unused2',
@@ -17216,6 +17217,7 @@ cellRecAttrs = {
          'fogMax','lightFadeBegin','lightFadeEnd','inherits','lightTemplate',),
     u'C.Location': ('location',),
     u'C.LockList': ('lockList',),
+    u'C.MaxHeight': ('unknown_MHDT',),
     u'C.Music': ('music',),
     u'C.Name': ('full',),
     u'C.Owner': ('ownership',),
@@ -17227,10 +17229,12 @@ cellRecFlags = {
     u'C.Acoustic': '',
     u'C.Climate': 'showSky',
     u'C.Encounter': '',
+    u'C.GridFlags': '',
     u'C.ImageSpace': '',
     u'C.Light': '',
     u'C.Location': '',
     u'C.LockList': '',
+    u'C.MaxHeight': '',
     u'C.Music': '',
     u'C.Name': '',
     u'C.Owner': 'publicPlace',
