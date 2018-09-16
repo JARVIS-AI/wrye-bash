@@ -147,7 +147,7 @@ class SkyrimGameInfo(GameInfo):
                u'C.Music', u'C.Name', u'C.Owner', u'C.RecordFlags',
                u'C.Regions', u'C.SkyLighting', u'C.Water', u'Deactivate',
                u'Delev', u'Filter', u'Graphics', u'Invent', u'Names',
-               u'NoMerge', u'Relev', u'Sound', u'Stats'}
+               u'NoMerge', u'Relev', u'Sound', u'Stats', u'C.MaxHeight'}
 
     patchers = (
         u'CellImporter', u'GmstTweaker', u'GraphicsPatcher',
