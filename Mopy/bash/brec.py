@@ -185,10 +185,9 @@ class RecordHeader(object):
             pack_args = [RecordHeader.rec_pack_format, self.recType, self.size,
                          self.flags1, self.fid, self.flags2]
             if RecordHeader.plugin_form_version:
-                extra1, extra2 = struct_unpack('=2h',
-                                               struct_pack('=I', self.extra))
-                if extra1 == 0:
-                    extra1 = RecordHeader.plugin_form_version
+                extra1, extra2 = \
+                    struct_unpack('=2h', struct_pack('=I', self.extra))
+                extra1 = RecordHeader.plugin_form_version
                 self.extra = \
                     struct_unpack('=I', struct_pack('=2h', extra1, extra2))[0]
                 pack_args.append(self.extra)
