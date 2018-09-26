@@ -96,6 +96,8 @@ reTESA = re.compile(ur'(.*?)(?:-(\d{1,6})(?:\.tessource)?(?:-bain)?)?'
     + __exts, re.I | re.U)
 del __exts
 imageExts = {u'.gif', u'.jpg', u'.png', u'.jpeg', u'.bmp', u'.tif'}
+#--Mod Extensions
+toolExts = {u'.modgroups',}
 
 #------------------------------------------------------------------------------
 class CoSaves:

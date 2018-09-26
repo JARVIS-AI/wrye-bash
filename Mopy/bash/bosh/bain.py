@@ -36,7 +36,7 @@ from itertools import groupby, imap
 from operator import itemgetter, attrgetter
 
 from . import imageExts, DataStore, BestIniFile, InstallerConverter, AFile, \
-    ModInfos
+    ModInfos, toolExts
 from .. import balt # YAK!
 from .. import bush, bass, bolt, env, archives
 from ..archives import readExts, defaultExt, list_archive, compress7z, \
