@@ -272,8 +272,16 @@ class _ModsUIList(balt.UIList):
         settings[self.keyPrefix + '.selectedFirst'] = val
 
     def _sortEsmsFirst(self, items):
+        """revised: ESM affects load order, and .esm and .esl files are always
+        implicitly ESM flagged, even when not on disk. ESL only affects whether
+        or not a module takes a full or light slot, and .esl are always
+        implicitly ESL flagged, even when not on disk.
+        """
+        # checking for ESM or ESL, investigate
+        # This makes Skyrim.esm and DLC load first
         if self.esmsFirst:
-            items.sort(key=lambda a: not self.data_store[a].is_esml())
+            # checking for ESM or ESL, investigate
+            items.sort(key=lambda a: not self.data_store[a].isEsm())
 
     def _activeModsFirst(self, items):
         if self.selectedFirst: items.sort(key=lambda x: x not in
@@ -407,6 +415,10 @@ class MasterList(_ModsUIList):
         if masterInfo.isEsm():
             item_format.text_key = 'mods.text.esm'
             mouseText += _(u"Master file. ")
+        # Returnig ESL flag for masters even when file not ESL flagged
+        if masterInfo.is_esl():
+            item_format.text_key = 'mods.text.esl'
+            mouseText += _(u"ESL Flagged file. ")
         elif masters_name in bosh.modInfos.mergeable:
             if u'NoMerge' in fileBashTags:
                 item_format.text_key = 'mods.text.noMerge'
@@ -785,6 +797,7 @@ class ModList(_ModsUIList):
             msg = _(u'Reordering mods is only allowed when they are sorted '
                     u'by Load Order.')
         else:
+            # This keeps you from reordering DLC, investigate
             pinned = load_order.filter_pinned(self.GetSelected())
             if pinned:
                 msg = _(u"You can't reorder the following mods:\n" +
@@ -824,6 +837,9 @@ class ModList(_ModsUIList):
         if mod_info.isEsm():
             item_format.text_key = 'mods.text.esm'
             mouseText += _(u"Master file. ")
+        if mod_info.is_esl():
+            item_format.text_key = 'mods.text.esl'
+            mouseText += _(u"ESL Flagged file. ")
         elif mod_name in bosh.modInfos.bashed_patches:
             item_format.text_key = 'mods.text.bashedPatch'
         elif mod_name in bosh.modInfos.mergeable:

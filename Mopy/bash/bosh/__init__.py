@@ -333,12 +333,35 @@ class MasterInfo:
         return self.name != self.oldName
 
     def isEsm(self):
+        """Check if the ModInfo returns an ESM flagged file. ESM affects
+        load order, and .esl are always implicitly ESM flagged, 
+        even when not on disk."""
         if self.modInfo:
             return self.modInfo.isEsm()
         else:
             return self.name.cext == u'.esm'
 
+    def is_esl(self):
+        """Check if the ModInfo returns an ESL flagged file. ESL only affects
+        whether or not a module takes a full or light slot, and .esl are
+        always implicitly ESL flagged, even when not on disk.
+
+        Note: When checking for extension .esp this will cause the master to
+        receive the ESL Flagged property and color the plugin. This is odd when
+        the file doesn't exist in the Data folder at all. Currently is_esl only
+        checks for the flag or extension when applying the ESL property for
+        color and the ESL message to the master in the master index.
+        """
+        if self.modInfo:
+            return self.modInfo.is_esl()
+        else:
+            return self.name.cext == u'.esl'
+
+    # checking for ESM and ESL flagged file, investigate
     def is_esml(self):
+        """Check if the ModInfo returns an ESL and ESM flagged file which 
+        means it is a Creation Club File. This is not needed. Because ESL flag
+        does not affect load order."""
         if self.modInfo:
             return self.modInfo.is_esml()
         else:
@@ -562,15 +585,21 @@ class ModInfo(FileInfo):
     def getFileInfos(self): return modInfos
 
     def isEsm(self):
-        """Check if the mod info is a master file based on master flag -
-        header must be set"""
-        return int(self.header.flags1) & 1 == 1
+        """Check if the ModInfo is a master file based on ESM flag -
+        header must be set. ESM affects load order, and .esm and .esl
+        files are always implicitly ESM flagged, even when not on disk."""
+        return self.header.flags1.esm or self.name.cext == u'.esl'
 
     def is_esl(self):
-        # game seems not to care about the flag, at least for load order
-        return self.name.cext == u'.esl'
+        """Check if the ModInfo returns an ESL flagged file. ESL only affects
+        whether or not a module takes a full or light slot, and .esl are
+        always implicitly ESL flagged, even when not on disk."""
+        return self.header.flags1.eslFile and self.name.cext in (u'.esl', u'.esp')
 
     def is_esml(self):
+        """Check if the ModInfo returns an ESL and ESM flagged file which 
+        means it is a Creation Club File. This is not needed. Because ESL flag
+        does not affect load order."""
         return self.is_esl() or self.isEsm()
 
     def isInvertedMod(self):
@@ -1869,7 +1898,8 @@ class ModInfos(FileInfos):
     def cached_lo_last_esm(self):
         last_esm = self.masterName
         for mod in self._lo_wip[1:]:
-            if not self[mod].is_esml(): return last_esm
+            # checking for ESM or ESL, investigate
+            if not self[mod].isEsm(): return last_esm
             last_esm = mod
         return last_esm
 
@@ -1887,7 +1917,8 @@ class ModInfos(FileInfos):
     def cached_lo_append_if_missing(self, mods):
         new = mods - set(self._lo_wip)
         if not new: return
-        esms = set(x for x in new if self[x].is_esml())
+        # checking for ESM or ESL, investigate
+        esms = set(x for x in new if self[x].isEsm())
         if esms:
             last = self.cached_lo_last_esm()
             for esm in esms:
@@ -2291,13 +2322,19 @@ class ModInfos(FileInfos):
     #--Active mods management -------------------------------------------------
     def lo_activate(self, fileName, doSave=True, _modSet=None, _children=None,
                     _activated=None):
-        """Mutate _active_wip cache then save if needed."""
+        """Mutate _active_wip cache then save if needed.
+
+        revised: ESM affects load order, and .esm and .esl files are always
+        implicitly ESM flagged, even when not on disk. ESL only affects whether
+        or not a module takes a full or light slot, and .esl are always
+        implicitly ESL flagged, even when not on disk.
+        """
         if _activated is None: _activated = set()
         try:
             minfo = self[fileName]
-            if not minfo.is_esl(): # don't check limit if activating an esl
-                acti_filtered_espm = [x for x in self._active_wip if
-                                      x.cext != u'.esl']
+            # checking for ESL flaged file, investigate
+            if not minfo.is_esl():
+                acti_filtered_espm = [x for x in self._active_wip if not self[x].header.flags1.eslFile]
                 if len(acti_filtered_espm) == load_order.max_espms:
                     raise PluginsFullError(u'%s: Trying to activate more than '
                         u'%d espms' % (fileName,load_order.max_espms))
@@ -2384,7 +2421,13 @@ class ModInfos(FileInfos):
             if toActivate: self.cached_lo_save_active(active=toActivate)
 
     def lo_activate_exact(self, modNames):
-        """Activate exactly the specified set of mods."""
+        """Activate exactly the specified set of mods.
+
+        revised: ESM affects load order, and .esm and .esl files are always
+        implicitly ESM flagged, even when not on disk. ESL only affects whether
+        or not a module takes a full or light slot, and .esl are always
+        implicitly ESL flagged, even when not on disk.
+        """
         modsSet, all_mods = set(modNames), set(self.keys())
         #--Ensure plugins that cannot be deselected stay selected
         modsSet.update(load_order.must_be_active_if_present() & all_mods)
@@ -2392,7 +2435,7 @@ class ModInfos(FileInfos):
         missingSet = modsSet - all_mods
         toSelect = modsSet - missingSet
         listToSelect = load_order.get_ordered(toSelect)
-        acti_filtered_espm = [x for x in listToSelect if x.cext != u'.esl']
+        acti_filtered_espm = [x for x in listToSelect if not self[x].header.flags1.eslFile]
         skipped = acti_filtered_espm[load_order.max_espms:]
         #--Save
         if skipped:

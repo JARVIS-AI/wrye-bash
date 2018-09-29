@@ -155,6 +155,11 @@ class Mod_OrderByName(EnabledLink):
 
     @balt.conversation
     def Execute(self):
+        """revised: ESM affects load order, and .esm and .esl files are always
+        implicitly ESM flagged, even when not on disk. ESL only affects whether
+        or not a module takes a full or light slot, and .esl are always
+        implicitly ESL flagged, even when not on disk.
+        """
         message = _(u'Reorder selected mods in alphabetical order?  The first '
             u'file will be given the date/time of the current earliest file '
             u'in the group, with consecutive files following at 1 minute '
@@ -168,8 +173,10 @@ class Mod_OrderByName(EnabledLink):
                                  _(u'Sort Mods')): return
         #--Do it
         self.selected.sort()
+        # checking for ESM or ESL, investigate
+        # originally: sort esmls first, revised: see docstring
         self.selected.sort(
-            key=lambda m: not bosh.modInfos[m].is_esml()) # sort esmls first
+            key=lambda m: not bosh.modInfos[m].isEsm())
         if not load_order.using_txt_file():
             #--Get first time from first selected file.
             newTime = min(x.mtime for x in self.iselected_infos())
@@ -1449,6 +1456,7 @@ class Mod_CopyToEsmp(EnabledLink):
     def _enable(self):
         """Disable if selected are mixed esm/p's or inverted mods."""
         for minfo in self.iselected_infos():
+            # checking for ESL flagged file, investigate
             if minfo.is_esl() or minfo.isInvertedMod() or minfo.isEsm() != \
                     self._is_esm:
                 return False
@@ -1575,6 +1583,7 @@ class Mod_FlipSelf(_Esm_Flip):
 
     def _enable(self):
         for m, minfo in self.iselected_pairs():
+            # checking for ESL flagged file, investigate
             if minfo.is_esl() or \
                     minfo.isEsm() != self._is_esm or not m.cext[-1] == u'p':
                 return False
@@ -1613,6 +1622,7 @@ class Mod_FlipMasters(OneItemLink, _Esm_Flip):
         if not self.enable: return
         for mastername in self.espMasters:
             masterInfo = bosh.modInfos.get(mastername, None)
+            # checking to see if the file has wrong flag
             if masterInfo and masterInfo.isInvertedMod():
                 self._text = _(u'Espify Masters')
                 self.toEsm = False
