@@ -199,6 +199,7 @@ def cached_lo_index_or_max(mod):
 
 def cached_active_index(mod): return cached_lord.activeIndex(mod)
 
+# checking for ESL Flagged file, investigate
 def cached_lower_loading_espms(mod, mod_infos):
     return [x for x in cached_lord.loadOrder[:cached_lo_index(mod)] if
             not mod_infos[x].is_esl()]
@@ -217,6 +218,7 @@ def get_ordered(mod_names):
     mod_names.sort(key=cached_lo_index_or_max)
     return mod_names
 
+# makes DLC pinned
 def filter_pinned(imods):
     return filter(_game_handle.pinned_mods.__contains__, imods)
 

@@ -288,6 +288,7 @@ class Game(object):
         return lord, active # return what was set or was previously set
 
     @property
+    # makes DLC pinned
     def pinned_mods(self): return {self.master_path}
 
     # Conflicts - only for timestamp games
@@ -380,6 +381,11 @@ class Game(object):
         rethinking as save load and active should be an atomic operation -
         leads to hacks (like the _selected parameter).
         :type lord: list[bolt.Path]
+
+        revised: ESM affects load order, and .esm and .esl files are always
+        implicitly ESM flagged, even when not on disk. ESL only affects whether
+        or not a module takes a full or light slot, and .esl are always
+        implicitly ESL flagged, even when not on disk.
         """
         if fix_lo is None: fix_lo = FixInfo() # discard fix info
         old_lord = lord[:]
@@ -410,12 +416,14 @@ class Game(object):
         lord[:] = [x for x in lord if x not in fix_lo.lo_removed]
         # See if any esm files are loaded below an esp and reorder as necessary
         ol = lord[:]
-        lord.sort(key=lambda m: not self.mod_infos[m].is_esml())
+        # checking for ESM or ESL, investigate
+        lord.sort(key=lambda m: not self.mod_infos[m].isEsm())
         fix_lo.lo_reordered |= ol != lord
         # Append new plugins to load order
         index_first_esp = self._index_of_first_esp(lord)
         for mod in fix_lo.lo_added:
-            if self.mod_infos[mod].is_esml():
+            # checking for ESM or ESL, investigate
+            if self.mod_infos[mod].isEsm():
                 if not mod == master_name:
                     lord.insert(index_first_esp, mod)
                 else:
@@ -484,9 +492,15 @@ class Game(object):
 
     # HELPERS -----------------------------------------------------------------
     def _index_of_first_esp(self, lord):
+        """revised: ESM affects load order, and .esm and .esl files are always
+        implicitly ESM flagged, even when not on disk. ESL only affects whether
+        or not a module takes a full or light slot, and .esl are always
+        implicitly ESL flagged, even when not on disk.
+        """
         index_of_first_esp = 0
+        # checking for ESM or ESL, investigate
         while index_of_first_esp < len(lord) and self.mod_infos[
-            lord[index_of_first_esp]].is_esml():
+            lord[index_of_first_esp]].isEsm():
             index_of_first_esp += 1
         return index_of_first_esp
 
@@ -541,10 +555,16 @@ class TimestampGame(Game):
 
     # Abstract overrides ------------------------------------------------------
     def __calculate_mtime_order(self, mods=None): # excludes corrupt mods
+        """revised: ESM affects load order, and .esm and .esl files are always
+        implicitly ESM flagged, even when not on disk. ESL only affects whether
+        or not a module takes a full or light slot, and .esl are always
+        implicitly ESL flagged, even when not on disk.
+        """
         if mods is None: mods = self.mod_infos.keys()
         mods = sorted(mods) # sort case insensitive (for time conflicts)
         mods.sort(key=lambda x: self.mod_infos[x].mtime)
-        mods.sort(key=lambda x: not self.mod_infos[x].isEsm()) # no esls here
+        # originally: no esls here, revised: see docstring
+        mods.sort(key=lambda x: not self.mod_infos[x].isEsm())
         return mods
 
     def _fetch_load_order(self, cached_load_order, cached_active):
@@ -733,6 +753,7 @@ class AsteriskGame(Game):
     _ccc_filename = u''
 
     @property
+    # makes DLC pinned
     def remove_from_plugins_txt(self): return set()
 
     @property
@@ -806,7 +827,12 @@ class AsteriskGame(Game):
 
     # esls
     def _check_active_limit(self, acti, acti_filtered, fix_active):
-        acti_filtered_espm = [x for x in acti_filtered if x.cext != u'.esl']
+        """revised: ESM affects load order, and .esm and .esl files are always
+        implicitly ESM flagged, even when not on disk. ESL only affects whether
+        or not a module takes a full or light slot, and .esl are always
+        implicitly ESL flagged, even when not on disk.
+        """
+        acti_filtered_espm = [x for x in acti_filtered if not self.mod_infos[x].is_esl()]
         if len(acti_filtered_espm) > max_espms:
             self.mod_infos.selectedExtra = fix_active.selectedExtra = \
                 acti_filtered_espm[max_espms:]
