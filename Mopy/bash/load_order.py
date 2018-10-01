@@ -200,9 +200,10 @@ def cached_lo_index_or_max(mod):
 def cached_active_index(mod): return cached_lord.activeIndex(mod)
 
 # checking for ESL Flagged file, investigate
-def cached_lower_loading_espms(mod, mod_infos):
-    return [x for x in cached_lord.loadOrder[:cached_lo_index(mod)] if
-            not mod_infos[x].is_esl()]
+def cached_lower_loading_espms(mod):
+    """revised: Removed modinfo check for esl flag since we want to include
+    them"""
+    return [x for x in cached_lord.loadOrder[:cached_lo_index(mod)]]
 
 def get_ordered(mod_names):
     """Return a list containing modNames' elements sorted into load order.
