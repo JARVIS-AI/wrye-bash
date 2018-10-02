@@ -334,7 +334,7 @@ class MasterInfo:
 
     def isEsm(self):
         """Check if the ModInfo returns an ESM flagged file. ESM affects
-        load order, and .esl are always implicitly ESM flagged, 
+        load order, and .esl are always implicitly ESM flagged,
         even when not on disk."""
         if self.modInfo:
             return self.modInfo.isEsm()
@@ -359,7 +359,7 @@ class MasterInfo:
 
     # checking for ESM and ESL flagged file, investigate
     def is_esml(self):
-        """Check if the ModInfo returns an ESL and ESM flagged file which 
+        """Check if the ModInfo returns an ESL and ESM flagged file which
         means it is a Creation Club File. This is not needed. Because ESL flag
         does not affect load order."""
         if self.modInfo:
@@ -597,10 +597,30 @@ class ModInfo(FileInfo):
         return self.header.flags1.eslFile and self.name.cext in (u'.esl', u'.esp')
 
     def is_esml(self):
-        """Check if the ModInfo returns an ESL and ESM flagged file which 
+        """Check if the ModInfo returns an ESL and ESM flagged file which
         means it is a Creation Club File. This is not needed. Because ESL flag
         does not affect load order."""
         return self.is_esl() or self.isEsm()
+
+    def isInverted_esm_Mod(self):
+        """Extension indicates esm, but byte setting indicates ESL Flag
+
+        A file with the .esm extension cannot be missing the ESM flag
+        """
+        if self.name.cext not in (u'.esm',):
+            raise ArgumentError(
+                u'isInverted_esm_Mod: %s - is missing ESM flag' % self.name.ext)
+        return self.name.cext in (u'.esm',) and not self.header.flags1.esm
+
+    def isInverted_esl_Mod(self):
+        """Extension indicates esm, but byte setting indicates ESL Flag
+
+        A file with the .esm extension cannot have the ESL flag
+        """
+        if self.name.cext not in (u'.esm',):
+            raise ArgumentError(
+                u'isInverted_esl_Mod: %s - cannot have ESL flag' % self.name.ext)
+        return self.name.cext in (u'.esm',) and self.header.flags1.eslFile
 
     def isInvertedMod(self):
         """Extension indicates esp/esm, but byte setting indicates opposite."""
