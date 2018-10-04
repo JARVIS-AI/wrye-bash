@@ -42,7 +42,7 @@ from collections import OrderedDict
 from functools import wraps, partial
 from itertools import imap
 #--Local
-from ._mergeability import isPBashMergeable, isCBashMergeable
+from ._mergeability import isPBashMergeable, isCBashMergeable, hasHighForms
 from .mods_metadata import ConfigHelpers
 from .. import bass, bolt, balt, bush, env, load_order, archives, \
     initialization
@@ -2134,7 +2134,12 @@ class ModInfos(FileInfos):
             doCBash = CBashApi.Enabled
         elif doCBash and not CBashApi.Enabled:
             doCBash = False
-        is_mergeable = isCBashMergeable if doCBash else isPBashMergeable
+        if doCBash:
+            is_mergeable = isCBashMergeable
+        elif bush.game.esp.hasEsl:
+            is_mergeable = hasHighForms
+        else:
+            is_mergeable = isPBashMergeable
         mod_mergeInfo = self.table.getColumn('mergeInfo')
         progress.setFull(max(len(names),1))
         result, tagged_no_merge = OrderedDict(), set()

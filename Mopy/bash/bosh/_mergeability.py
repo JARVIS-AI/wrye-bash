@@ -113,6 +113,30 @@ def isPBashMergeable(modInfo, minfos, verbose):
     if reasons: return reasons
     return True
 
+def hasHighForms(modInfo, minfos, verbose):
+    """Returns True or error message indicating whether specified mod is mergeable."""
+    #--Load test
+    mergeTypes = set(recClass.classType for recClass in bush.game.mergeClasses)
+    modFile = ModFile(modInfo, LoadFactory(False, *mergeTypes))
+    try:
+        modFile.load(True,loadStrings=False)
+    except ModError as error:
+        if not verbose: return False
+    #--Form greater then 0xFFF
+    lenMasters = len(modFile.tes4.masters)
+    eslCapable = True
+    for type,block in modFile.tops.iteritems():
+        for record in block.getActiveRecords():
+            if record.fid >> 24 >= lenMasters:
+                if (record.fid & 0xFFFFFF) > 0xFFF:
+                    eslCapable = False
+                    if not eslCapable:
+                        break
+        if not eslCapable:
+            break
+    if not eslCapable: return u'\n.    ' + u'New Forms greater than 0xFFF.'
+    return eslCapable
+
 def _modIsMergeableLoad(modInfo, minfos, verbose):
     """Check if mod is mergeable, loading it and taking into account the
     rest of mods."""

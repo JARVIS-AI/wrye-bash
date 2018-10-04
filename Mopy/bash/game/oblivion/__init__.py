@@ -117,6 +117,7 @@ class OblivionGameInfo(GameInfo):
     }
 
     class esp(GameInfo.esp):
+        hasEsl = False
         canBash = True
         canCBash = True
         canEditHeader = True
