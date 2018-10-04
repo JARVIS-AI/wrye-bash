@@ -94,6 +94,7 @@ class FalloutNVGameInfo(GameInfo):
     ignoreDataDirs = {ur'LSData'} #    ur'NVSE\Plugins\ComponentDLLs\CSE',
 
     class esp(GameInfo.esp):
+        hasEsl = False
         canBash = True
         canCBash = False
         canEditHeader = True

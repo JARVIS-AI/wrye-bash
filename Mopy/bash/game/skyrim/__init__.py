@@ -128,6 +128,7 @@ class SkyrimGameInfo(GameInfo):
     ignoreDataDirs = {u'LSData'}
 
     class esp(GameInfo.esp):
+        hasEsl = False
         canBash = True
         canEditHeader = True
         validHeaderVersions = (0.94, 1.70,)
