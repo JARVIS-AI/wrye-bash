@@ -57,6 +57,9 @@ class SkyrimSEGameInfo(SkyrimGameInfo):
     espm_extensions = {u'.esp', u'.esm', u'.esl'}
     has_achlist = True
 
+    class esp(SkyrimGameInfo.esp):
+        hasEsl = True
+
     allTags = {u'C.Acoustic', u'C.Climate', u'C.Encounter', u'C.GridFlags',
                u'C.ImageSpace', u'C.Light', u'C.Location', u'C.LockList',
                u'C.MaxHeight', u'C.Music', u'C.Name', u'C.Owner',

@@ -1632,6 +1632,8 @@ class Mod_FlipEsl(_Esm_Esl_Flip):
         """
         for m, minfo in self.iselected_pairs():
             # checking for ESL flagged file, investigate
+            if not m in bosh.modInfos.mergeable:
+                return False
             if minfo.header.flags1.esm or minfo.header.flags1.eslFile != self._is_esl or not m.cext[-1] == u'p':
                 return False
         return True

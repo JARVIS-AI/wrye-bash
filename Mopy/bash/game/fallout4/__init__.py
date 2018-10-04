@@ -113,6 +113,7 @@ class Fallout4GameInfo(GameInfo):
     SkipBAINRefresh = {u'fo4edit backups'}
 
     class esp(GameInfo.esp):
+        hasEsl = True
         canBash = True
         canEditHeader = True
         validHeaderVersions = (0.95,)
