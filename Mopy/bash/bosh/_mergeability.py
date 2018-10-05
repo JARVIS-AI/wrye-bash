@@ -113,8 +113,41 @@ def isPBashMergeable(modInfo, minfos, verbose):
     if reasons: return reasons
     return True
 
+def _is_eslCapable_no_load(modInfo, verbose):
+    reasons = []
+    if modInfo.header.flags1.esm:
+        if not verbose: return False
+        reasons.append(u'\n.    '+_(u'Is esm.'))
+    if modInfo.abs_path.cext == u'.esl':
+        if not verbose: return False
+        reasons.append(u'\n.    ' + _(u'Is .esl file.'))
+    #--Bashed Patch
+    if modInfo.isBP():
+        if not verbose: return False
+        reasons.append(u'\n.    '+_(u'Is Bashed Patch.'))
+    if reasons: return reasons
+    return True
+
+def check_eslCapable_no_load(modInfo, verbose):
+    reasons = _is_eslCapable_no_load(modInfo, verbose)
+    if isinstance(reasons, list):
+        reasons = u''.join(reasons)
+    elif not reasons:
+        return False # non verbose mode
+    else: # True
+        reasons = u''
+    if reasons: return reasons
+    return True
+
 def hasHighForms(modInfo, minfos, verbose):
     """Returns True or error message indicating whether specified mod is mergeable."""
+    reasons = check_eslCapable_no_load(modInfo, verbose)
+    if isinstance(reasons, unicode):
+        pass
+    elif not reasons:
+        return False # non verbose mode
+    else: # True
+        reasons = u''
     #--Load test
     mergeTypes = set(recClass.classType for recClass in bush.game.mergeClasses)
     modFile = ModFile(modInfo, LoadFactory(False, *mergeTypes))
@@ -129,12 +162,13 @@ def hasHighForms(modInfo, minfos, verbose):
         for record in block.getActiveRecords():
             if record.fid >> 24 >= lenMasters:
                 if (record.fid & 0xFFFFFF) > 0xFFF:
+                    reasons += u'\n.    ' + u'New Forms greater than 0xFFF.'
                     eslCapable = False
                     if not eslCapable:
                         break
         if not eslCapable:
             break
-    if not eslCapable: return u'\n.    ' + u'New Forms greater than 0xFFF.'
+    if reasons: return reasons
     return eslCapable
 
 def _modIsMergeableLoad(modInfo, minfos, verbose):
