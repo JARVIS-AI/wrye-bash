@@ -65,12 +65,12 @@ class SkyrimSEGameInfo(SkyrimGameInfo):
                u'C.MaxHeight', u'C.Music', u'C.Name', u'C.Owner',
                u'C.RecordFlags', u'C.Regions', u'C.SkyLighting', u'C.Water',
                u'Deactivate', u'Delev', u'Filter', u'Graphics', u'Invent',
-               u'Names', u'NoMerge', u'Relev', u'Sound', u'Stats',
+               u'Names', u'Relev', u'Sound', u'Stats',
                }
 
     patchers = (
         u'AliasesPatcher', u'CellImporter', u'GmstTweaker', u'GraphicsPatcher',
-        u'ImportInventory', u'ListsMerger', u'PatchMerger', u'SoundPatcher',
+        u'ImportInventory', u'ListsMerger', u'SoundPatcher',
         u'StatsPatcher', u'NamesPatcher',
         )
 
