@@ -787,6 +787,9 @@ class ModInfo(FileInfo):
                                                               ins, True)
             except struct.error as rex:
                 raise ModError(self.name,u'Struct.error: %s' % rex)
+        if bush.game.fsName in (u'Fallout4', u'Skyrim Special Edition'):
+            if self.header.flags1.eslFile:
+                modInfos.esl_flagged.add(self.name)
         if bush.game.fsName == u'Skyrim Special Edition':
             if tes4_rec_header.form_version != ModReader.recHeader.plugin_form_version:
                 modInfos.sse_form43.add(self.name)
@@ -1814,6 +1817,7 @@ class ModInfos(FileInfos):
         self.new_missing_strings = set() #--Set of new mods with missing .STRINGS files
         self.activeBad = set() #--Set of all mods with bad names that are active
         self.sse_form43 = set()
+        self.esl_flagged = set()
         # sentinel for calculating info sets when needed in gui and patcher
         # code, **after** self is refreshed
         self.__calculate = object()
@@ -2125,7 +2129,11 @@ class ModInfos(FileInfos):
         return newMods
 
     def rescanMergeable(self, names, prog=None, doCBash=None, verbose=False):
-        with prog or balt.Progress(_(u"Mark Mergeable") + u' ' * 30) as prog:
+        if bush.game.esp.hasEsl:
+            messagetext = u"Check for ObjectIDs >0xFFF"
+        else:
+            messagetext = u"Mark Mergeable"
+        with prog or balt.Progress(_(messagetext) + u' ' * 30) as prog:
             return self._rescanMergeable(names, prog, doCBash, verbose)
 
     def _rescanMergeable(self, names, progress, doCBash, verbose):
