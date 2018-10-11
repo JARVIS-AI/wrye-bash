@@ -30,9 +30,10 @@ from ...bass import null1, null2, null3, null4
 from ...bolt import Flags, struct_pack, encode
 from ...brec import MelBase, MelGroup, MreHeaderBase, MelSet, MelString, \
     MelStruct, MelUnicode, MelNull, MelFidList, MreLeveledListBase, \
-    MelGroups, MelFid, FID, MelOptStruct, MelLString, MelStructA
+    MelGroups, MelFid, FID, MelOptStruct, MelLString, MelStructA, MelRecord, \
+    MelCountedFidList, MelStructs
 from ...exception import ModSizeError
-# Set brec.MelModel to the Fallout 4 one - do not import from skyrim.records yet
+# Set brec.MelModel to the skyrimse one - do not import from skyrim.records yet
 
 class MelMODS(MelBase): # copy pasted from game.skyrim.records.MelMODS
     """MODS/MO2S/etc/DMDS subrecord"""
@@ -119,7 +120,7 @@ if brec.MelModel is None:
     brec.MelModel = _MelModel
 from ...brec import MelModel
 # Now we can import from parent game records file
-from ..skyrim.records import MelBounds
+from ..skyrim.records import MelBounds, MelDestructible, MelConditions
 # Those are unused here, but need be in this file as are accessed via it
 from ..skyrim.records import MreGmst
 
@@ -157,6 +158,43 @@ class MreHeader(MreHeaderBase):
         MelBase('INCC', 'incc_p'),
         )
     __slots__ = MreHeaderBase.__slots__ + melSet.getSlotsUsed()
+#------------------------------------------------------------------------------
+class MreActi(MelRecord):
+    """Activator."""
+    classType = 'ACTI'
+
+    ActivatorFlags = Flags(0L,Flags.getNames(
+        (0, 'noDisplacement'),
+        (1, 'ignoredBySandbox'),
+    ))
+
+    melSet = MelSet(
+        MelString('EDID','eid'),
+        MelBase('VMAD', 'vmad_p'),
+        MelBounds(),
+		MelFid('PTRN', 'previewTransform'),
+		MelFid('STCP', 'animationSound'),
+        MelLString('FULL','full'),
+        MelModel(),
+        MelDestructible(),
+        MelCountedFidList('KWDA', 'keywords', 'KSIZ', '<I'),
+		MelStructs('PRPS', 'If', 'properties', (FID,'actorValue'), 'value'),
+        MelFid('NTRM', 'nativeTerminal'),
+        MelFid('FTYP', 'forcedLocRefType'),
+        MelStruct('PNAM','=4B','red','green','blue','unused'),
+        MelOptStruct('SNAM','I',(FID,'dropSound')),
+        MelOptStruct('VNAM','I',(FID,'pickupSound')),
+        MelOptStruct('WNAM','I',(FID,'water')),
+        MelLString('ATTX', 'activateTextOverride',),
+        MelLString('RNAM','rnam_p'),
+        MelOptStruct('FNAM','H',(ActivatorFlags,'flags',0L),),
+        MelOptStruct('KNAM','I',(FID,'keyword')),
+        MelOptStruct('RADR', 'I2f2b', 'soundModel', 'frequency','volume',
+                  'startsActive','noSignalStatic',),
+        MelConditions(),
+        MelBase('NVNM','navMeshGeometry'),
+        )
+    __slots__ = melSet.getSlotsUsed()
 
 #------------------------------------------------------------------------------
 # Marker for organization please don't remove ---------------------------------
