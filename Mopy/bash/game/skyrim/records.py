@@ -656,31 +656,59 @@ class MelVmad(MelBase):
     """Virtual Machine data (VMAD)"""
     # Maybe use this later for better access to Fid,Aid pairs?
     ##ObjectRef = collections.namedtuple('ObjectRef',['fid','aid'])
-    class FragmentInfo(object):
+
+    # DONE with wbScriptFlags
+    vmadScriptFlags =  Flags(0L,Flags.getNames(
+        (0,'local'), # {0x00}
+        (1,'inherited'), # {0x01}
+        (2,'removed'), # {0x02}
+        (3,'inheritedAndRemoved'), # {0x04}
+        ))
+
+    vmadInfoScriptFlags =  Flags(0L,Flags.getNames(
+        (0,'onBegin'), # {0x00}
+        (1,'onEnd'), # {0x01}
+        ))
+
+    vmadPackScriptFlags =  Flags(0L,Flags.getNames(
+        (0,'onBegin'), # {0x00}
+        (1,'onEnd'), # {0x01}
+        (2,'onChange'), # {0x02}
+        ))
+
+    # FOUND with wbScriptFragments
+    class scriptFragments(object):
         __slots__ = ('unk','fileName',)
+        # def __init__ Verified
         def __init__(self):
+            # BEGIN: wbScriptFragments; wbStruct('Script Fragments', [
             self.unk = 2
             self.fileName = u''
+            # BEGIN: wbScriptFragments; wbStruct('Script Fragments', [
 
         def loadData(self,ins,Type,readId):
-            if Type == 'INFO':
-                # INFO record fragment scripts are by default stored in a TIF file,
-                # i.e., a file named "TIF_<editorID>_<formID>". Since most INFO records
-                # do not have an editorID, this actually ends up being "TIF__<formID>"
-                # (with two underscores, not one).
-                raise Exception(u"Fragment Scripts for 'INFO' records are not implemented.")
-            elif Type == 'PACK':
-                self.unk,count = ins.unpack('=bB',2,readId)
-                self.fileName = ins.readString16(readId)
-                count = bin(count).count('1')
-            elif Type == 'PERK':
+            """Structure:
+            Unknown: Byte
+            String: 16bit Length
+            Count: 16bit Int
+            Array of fragments of Count
+            """
+            if Type == 'PERK': # Not Decoded
                 self.unk, = ins.unpack('=b',1,readId)
                 self.fileName = ins.readString16(readId)
                 count, = ins.unpack('=H',2,readId)
+            elif Type == 'INFO':
+                self.unk,count = ins.unpack('=bB',2,readId)
+                self.fileName = ins.readString16(readId)
+                count = bin(count).count('1')
+            elif Type == 'PACK': # Not Decoded
+                self.unk,count = ins.unpack('=bB',2,readId)
+                self.fileName = ins.readString16(readId)
+                count = bin(count).count('1')
             elif Type == 'QUST':
                 self.unk,count = ins.unpack('=bH',3,readId)
                 self.fileName = ins.readString16(readId)
-            elif Type == 'SCEN':
+            elif Type == 'SCEN': # Not Decoded
                 # SCEN record fragment scripts are by default stored in a SF file,
                 # i.e., a file named "SF_<editorID>_<formID>".
                 raise Exception(u"Fragment Scripts for 'SCEN' records are not implemented.")
@@ -690,29 +718,105 @@ class MelVmad(MelBase):
 
         def dumpData(self,Type,count):
             fileName = encode(self.fileName)
-            if Type == 'INFO':
-                raise Exception(u"Fragment Scripts for 'INFO' records are not implemented.")
+            if Type == 'PERK':
+                data = struct_pack('=bH', self.unk, len(fileName)) + fileName
+                data += struct_pack('=H', count)
+            elif Type == 'INFO':
+                # TODO: check if this is right!
+                count = int(count*'1',2)
+                data = struct_pack('=bBH', self.unk, count, len(fileName)) + fileName
             elif Type == 'PACK':
                 # TODO: check if this is right!
                 count = int(count*'1',2)
-                data = struct_pack('=bBH', self.unk, count,
-                                   len(fileName)) + fileName
-            elif Type == 'PERK':
-                data = struct_pack('=bH', self.unk, len(fileName)) + fileName
-                data += struct_pack('=H', count)
+                data = struct_pack('=bBH', self.unk, count, len(fileName)) + fileName
             elif Type == 'QUST':
-                data = struct_pack('=bHH', self.unk, count,
-                                   len(fileName)) + fileName
+                data = struct_pack('=bHH', self.unk, count, len(fileName)) + fileName
             elif Type == 'SCEN':
                 raise Exception(u"Fragment Scripts for 'SCEN' records are not implemented.")
             else:
                 raise Exception(u"Unexpected Fragment Scripts for record type '%s'." % Type)
             return data
 
-    class INFOFragment(object):
-        pass
+    # Verified
+    class PERKFragment(object): # Record Not Decoded
+        """Structure: class scriptFragments reads first
 
-    class PACKFragment(object):
+        Unknown: itU8
+        String: itU16 Length
+        Count: itU16
+        Array of fragments of Count
+
+        Structure: class PERKFragment
+        fragmentIndex: itU16
+        unknown: itS16
+        unknown: itS8
+        scriptName: String: itU16 Length
+        fragmentName: String: itU16 Length
+        """
+        __slots__ = ('index','unk1','unk2','scriptName','fragmentName',)
+        def __init__(self):
+            # BEGIN: wbScriptFragments; wbStructSK([0], 'Fragment'
+            self.index = -1
+            self.unk1 = 0
+            self.unk2 = 0
+            self.scriptName = u''
+            self.fragmentName= u''
+            # END: wbScriptFragments; wbStructSK([0], 'Fragment'
+
+        def loadData(self,ins,readId):
+            # BEGIN: wbScriptFragments; wbStructSK([0], 'Fragment'
+            self.index,self.unk1,self.unk2 = ins.unpack('=Hhb',4,readId)
+            self.scriptName = ins.readString16(readId)
+            self.fragmentName = ins.readString16(readId)
+            # END: wbScriptFragments; wbStructSK([0], 'Fragment'
+
+        def dumpData(self):
+            # BEGIN: wbScriptFragments; wbStructSK([0], 'Fragment'
+            scriptName = encode(self.scriptName)
+            fragmentName = encode(self.fragmentName)
+            data = struct_pack('=HhbH', self.index, self.unk1, self.unk2,
+                               len(scriptName)) + scriptName
+            data += struct_pack('=H', len(fragmentName)) + fragmentName
+            return data
+            # END: wbScriptFragments; wbStructSK([0], 'Fragment'
+
+    class INFOFragment(object):
+        """Structure: class scriptFragments reads first
+
+        Unknown: itU8
+        String: itU16 Length
+        Count: itU16
+        Array of fragments of Count
+
+        Structure: class INFOFragment
+        unknown: itS8
+        flags: itU8
+        scriptName: String: itU16 Length
+        fragmentName: String: itU16 Length
+        """
+        __slots__ = ('unk','vmadFlags','scriptName','fragmentName',)
+        def __init__(self):
+            self.unk = 0
+            self.vmadFlags = 0
+            self.scriptName = u''
+            self.fragmentName = u''
+
+        def loadData(self,ins,readId):
+            self.unk, = ins.unpack('=b',1,readId)
+            self.vmadFlags, = ins.unpack('=B',1,readId)
+            self.scriptName = ins.readString16(readId)
+            self.fragmentName = ins.readString16(readId)
+
+        def dumpData(self):
+            scriptName = encode(self.scriptName)
+            fragmentName = encode(self.fragmentName)
+            data = struct_pack('=b', self.unk)
+            data += struct_pack('=B', self.vmadFlags)
+            data += struct_pack('=H', len(scriptName)) + scriptName
+            data += struct_pack('=H', len(fragmentName)) + fragmentName
+            return data
+
+    class PACKFragment(object): # Record Not Decoded
         __slots__ = ('unk','scriptName','fragmentName',)
         def __init__(self):
             self.unk = 0
@@ -731,36 +835,14 @@ class MelVmad(MelBase):
             data += struct_pack('=H', len(fragmentName)) + fragmentName
             return data
 
-    class PERKFragment(object):
-        __slots__ = ('index','unk1','unk2','scriptName','fragmentName',)
-        def __init__(self):
-            self.index = -1
-            self.unk1 = 0
-            self.unk2 = 0
-            self.scriptName = u''
-            self.fragmentName= u''
-
-        def loadData(self,ins,readId):
-            self.index,self.unk1,self.unk2 = ins.unpack('=Hhb',4,readId)
-            self.scriptName = ins.readString16(readId)
-            self.fragmentName = ins.readString16(readId)
-
-        def dumpData(self):
-            scriptName = encode(self.scriptName)
-            fragmentName = encode(self.fragmentName)
-            data = struct_pack('=HhbH', self.index, self.unk1, self.unk2,
-                               len(scriptName)) + scriptName
-            data += struct_pack('=H', len(fragmentName)) + fragmentName
-            return data
-
     class QUSTFragment(object):
         __slots__ = ('index','unk1','logentry','unk2','scriptName','fragmentName',)
         def __init__(self):
-            self.index = -1
-            self.unk1 = 0
-            self.logentry = 0
+            self.index = -1 # count of fragments
+            self.unk1 = 0 # wbInteger('Unknown', itS8),
+            self.logentry = 0 # wbInteger('fragmentCount', itU16, nil, cpBenign),
             self.unk2 = 1
-            self.scriptName = u''
+            self.scriptName = u'' # wbLenString('fileName', 2),
             self.fragmentName = u''
 
         def loadData(self,ins,readId):
@@ -776,17 +858,19 @@ class MelVmad(MelBase):
             data += struct_pack('=H', len(fragmentName)) + fragmentName
             return data
 
-    class SCENFragment(object):
+    class SCENFragment(object): # Record Not Decoded
         pass
 
-    FragmentMap = {'INFO': INFOFragment,
+    FragmentMap = {'PERK': PERKFragment,
+                   'INFO': INFOFragment,
                    'PACK': PACKFragment,
-                   'PERK': PERKFragment,
                    'QUST': QUSTFragment,
                    'SCEN': SCENFragment,
                    }
 
-    class Property(object):
+
+    # FOUND wbScriptProperties
+    class scriptProperties(object):
         __slots__ = ('name','status','value',)
         def __init__(self):
             self.name = u''
@@ -796,11 +880,11 @@ class MelVmad(MelBase):
         def loadData(self,ins,version,objFormat,readId):
             insUnpack = ins.unpack
             # Script Property
-            self.name = ins.readString16(readId)
+            self.name = ins.readString16(readId) # wbLenString('propertyName', 2),
             if version >= 4:
-                Type,self.status = insUnpack('=2B',2,readId)
+                Type,self.status = insUnpack('=2B',2,readId) # wbInteger('Type', itU8
             else:
-                Type, = insUnpack('=B',1,readId)
+                Type, = insUnpack('=B',1,readId) # wbInteger('Type', itU8
                 self.status = 1
             # Data
             if Type == 1:
@@ -919,7 +1003,8 @@ class MelVmad(MelBase):
                 raise Exception(u'Unrecognized VMAD property type: %s' % type(value))
             return data
 
-    class Script(object):
+    # DONE with wbScriptEntry
+    class scriptEntry(object):
         __slots__ = ('name','status','properties',)
         def __init__(self):
             self.name = u''
@@ -927,7 +1012,7 @@ class MelVmad(MelBase):
             self.properties = []
 
         def loadData(self,ins,version,objFormat,readId):
-            Property = MelVmad.Property
+            script_property = MelVmad.scriptProperties
             self.properties = []
             propAppend = self.properties.append
             # Script Entry
@@ -939,7 +1024,7 @@ class MelVmad(MelBase):
                 propCount, = ins.unpack('=H',2,readId)
             # Properties
             for x in xrange(propCount):
-                prop = Property()
+                prop = script_property()
                 prop.loadData(ins,version,objFormat,readId)
                 propAppend(prop)
 
@@ -985,7 +1070,7 @@ class MelVmad(MelBase):
             # _version - always the same as the primary script's version.
             # _objFormat - always the same as the primary script's objFormat.
             _version,_objFormat,count = insUnpack('=hhH',6,readId)
-            Script = MelVmad.Script
+            Script = MelVmad.scriptEntry
             self.scripts = []
             scriptAppend = self.scripts.append
             for x in xrange(count):
@@ -1023,8 +1108,8 @@ class MelVmad(MelBase):
             endOfField = insTell() + size
             self.scripts = []
             scriptsAppend = self.scripts.append
-            Script = MelVmad.Script
-            # VMAD Header
+            Script = MelVmad.scriptEntry
+            # VMAD Header wbVMAD
             version,objFormat,scriptCount = ins.unpack('=3H',6,readId)
             # Primary Scripts
             for x in xrange(scriptCount):
@@ -1033,7 +1118,7 @@ class MelVmad(MelBase):
                 scriptsAppend(script)
             # Script Fragments
             if insTell() < endOfField:
-                self.fragmentInfo = MelVmad.FragmentInfo()
+                self.fragmentInfo = MelVmad.scriptFragments()
                 Type = record.recType
                 fragCount = self.fragmentInfo.loadData(ins,Type,readId)
                 self.fragments = []
