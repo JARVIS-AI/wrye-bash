@@ -572,7 +572,7 @@ def InitModLinks():
             cleanMenu.links.append(Mod_FogFixer())
             cleanMenu.links.append(Mod_UndeleteRefs())
             ModList.itemMenu.append(cleanMenu)
-        ModList.itemMenu.append(Mod_AddMaster())
+        # ModList.itemMenu.append(Mod_AddMaster())
         ModList.itemMenu.append(Mod_CopyToEsmp())
         if bush.game.fsName == u'Oblivion':
             ModList.itemMenu.append(Mod_DecompileAll())
