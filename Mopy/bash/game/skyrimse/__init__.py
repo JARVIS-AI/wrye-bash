@@ -69,7 +69,7 @@ class SkyrimSEGameInfo(SkyrimGameInfo):
                }
 
     patchers = (
-        u'AliasesPatcher', u'CellImporter', u'GmstTweaker', u'GraphicsPatcher',
+        u'CellImporter', u'GmstTweaker', u'GraphicsPatcher',
         u'ImportInventory', u'ListsMerger', u'SoundPatcher',
         u'StatsPatcher', u'NamesPatcher',
         )
