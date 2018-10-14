@@ -128,7 +128,7 @@ class Fallout4GameInfo(GameInfo):
     @classmethod
     def init(cls):
         # First import from fallout4.records file, so MelModel is set correctly
-        from .records import MreHeader, MreLvli, MreLvln, MreActi
+        from .records import MreHeader, MreLvli, MreLvln, MreActi, MreAlch
         # ---------------------------------------------------------------------
         # These Are normally not mergable but added to brec.MreRecord.type_class
         #
@@ -147,7 +147,7 @@ class Fallout4GameInfo(GameInfo):
             MreLvli, MreLvln,
             # -- Imported from Skyrim/SkyrimSE
             # Added to records.py
-            MreActi
+            MreActi, MreAlch
         )
         # Setting RecordHeader class variables --------------------------------
         brec.RecordHeader.topTypes = [
@@ -177,7 +177,7 @@ class Fallout4GameInfo(GameInfo):
             MreHeader, MreLvli, MreLvln,
             # Imported from Skyrim or SkyrimSE
             # Added to records.py
-            MreActi
+            MreActi, MreAlch
             ))
         brec.MreRecord.simpleTypes = (
             set(brec.MreRecord.type_class) - {'TES4',})

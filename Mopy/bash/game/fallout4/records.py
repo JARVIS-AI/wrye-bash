@@ -24,10 +24,12 @@
 """This module contains the skyrim SE record classes. The great majority are
 imported from skyrim, but only after setting MelModel to the SSE format."""
 import itertools
+import re
 
 from ... import brec
+from ... import bush
 from ...bass import null1, null2, null3, null4
-from ...bolt import Flags, struct_pack, encode
+from ...bolt import Flags, sio, struct_pack, encode
 from ...brec import MelBase, MelGroup, MreHeaderBase, MelSet, MelString, \
     MelStruct, MelUnicode, MelNull, MelFidList, MreLeveledListBase, \
     MelGroups, MelFid, FID, MelOptStruct, MelLString, MelStructA, MelRecord, \
@@ -136,6 +138,74 @@ class MelCoed(MelOptStruct):
     def __init__(self):
         MelOptStruct.__init__(self,'COED','=IIf',(FID,'owner'),(FID,'glob'),
                               'itemCondition')
+
+#------------------------------------------------------------------------------
+class MelEffects(MelGroups):
+    """Represents ingredient/potion/enchantment/spell effects."""
+
+    def __init__(self,attr='effects'):
+        """Initialize elements."""
+        MelGroups.__init__(self,attr,
+            MelFid('EFID','name'), # baseEffect, name
+            MelStruct('EFIT','f2I','magnitude','area','duration',),
+            MelConditions(),
+            )
+
+#------------------------------------------------------------------------------
+class MreHasEffects:
+    """Mixin class for magic items."""
+    def getEffects(self):
+        """Returns a summary of effects. Useful for alchemical catalog."""
+        effects = []
+        avEffects = bush.genericAVEffects
+        effectsAppend = effects.append
+        for effect in self.effects:
+            mgef, actorValue = effect.name, effect.actorValue
+            if mgef not in avEffects:
+                actorValue = 0
+            effectsAppend((mgef,actorValue))
+        return effects
+
+    def getSpellSchool(self,mgef_school=bush.mgef_school):
+        """Returns the school based on the highest cost spell effect."""
+        spellSchool = [0,0]
+        for effect in self.effects:
+            school = mgef_school[effect.name]
+            effectValue = bush.mgef_basevalue[effect.name]
+            if effect.magnitude:
+                effectValue *=  effect.magnitude
+            if effect.area:
+                effectValue *=  (effect.area/10)
+            if effect.duration:
+                effectValue *=  effect.duration
+            if spellSchool[0] < effectValue:
+                spellSchool = [effectValue,school]
+        return spellSchool[1]
+
+    def getEffectsSummary(self,mgef_school=None,mgef_name=None):
+        """Return a text description of magic effects."""
+        mgef_school = mgef_school or bush.mgef_school
+        mgef_name = mgef_name or bush.mgef_name
+        with sio() as buff:
+            avEffects = bush.genericAVEffects
+            aValues = bush.actorValues
+            buffWrite = buff.write
+            if self.effects:
+                school = self.getSpellSchool(mgef_school)
+                buffWrite(bush.actorValues[20+school] + u'\n')
+        for index,effect in enumerate(self.effects):
+            if effect.scriptEffect:
+                effectName = effect.scriptEffect.full or u'Script Effect'
+            else:
+                effectName = mgef_name[effect.name]
+                if effect.name in avEffects:
+                    effectName = re.sub(_(u'(Attribute|Skill)'),aValues[effect.actorValue],effectName)
+                buffWrite(u'o+*'[effect.recipient]+u' '+effectName)
+                if effect.magnitude: buffWrite(u' %sm'%effect.magnitude)
+                if effect.area: buffWrite(u' %sa'%effect.area)
+                if effect.duration > 1: buffWrite(u' %sd'%effect.duration)
+                buffWrite(u'\n')
+        return buff.getvalue()
 
 #------------------------------------------------------------------------------
 class MelVmad(MelBase):
@@ -879,6 +949,59 @@ class MreActi(MelRecord):
                   'startsActive','noSignalStatic',),
         MelConditions(),
         MelBase('NVNM','navMeshGeometry'),
+        )
+    __slots__ = melSet.getSlotsUsed()
+
+#------------------------------------------------------------------------------
+class MreAlch(MelRecord,MreHasEffects):
+    """Ingestible"""
+    classType = 'ALCH'
+
+    # {0x00000001} 'No Auto-Calc (Unused)',
+    # {0x00000002} 'Food Item',
+    # {0x00000004} 'Unknown 3',
+    # {0x00000008} 'Unknown 4',
+    # {0x00000010} 'Unknown 5',
+    # {0x00000020} 'Unknown 6',
+    # {0x00000040} 'Unknown 7',
+    # {0x00000080} 'Unknown 8',
+    # {0x00000100} 'Unknown 9',
+    # {0x00000200} 'Unknown 10',
+    # {0x00000400} 'Unknown 11',
+    # {0x00000800} 'Unknown 12',
+    # {0x00001000} 'Unknown 13',
+    # {0x00002000} 'Unknown 14',
+    # {0x00004000} 'Unknown 15',
+    # {0x00008000} 'Unknown 16',
+    # {0x00010000} 'Medicine',
+    # {0x00020000} 'Poison'
+    IngestibleFlags = Flags(0L,Flags.getNames(
+        (0, 'autoCalc'),
+        (1, 'isFood'),
+        (16, 'medicine'),
+        (17, 'poison'),
+    ))
+
+    melSet = MelSet(
+        MelString('EDID','eid'),
+        MelBounds(),
+        MelFid('PTRN', 'previewTransform'),
+        MelLString('FULL','full'),
+        MelCountedFidList('KWDA', 'keywords', 'KSIZ', '<I'),
+        MelModel(),
+        MelString('ICON', 'iconPath'),
+        MelString('MICO', 'smallIconPath'),
+        MelOptStruct('YNAM', 'I', (FID, 'pickupSound')),
+        MelOptStruct('ZNAM', 'I', (FID, 'dropSound')),
+        MelOptStruct('ETYP', 'I', (FID, 'equipType')),
+        MelFid('CUSD', 'soundCrafting'),
+        MelDestructible(),
+        MelLString('DESC','description'),
+        MelStruct('DATA','f','weight'),
+        MelStruct('ENIT','i2IfI','value',(IngestibleFlags,'flags',0L),
+                  'addiction','addictionChance','soundConsume',),
+        MelLString('DNAM', 'addictionName'),
+        MelEffects(),
         )
     __slots__ = melSet.getSlotsUsed()
 
