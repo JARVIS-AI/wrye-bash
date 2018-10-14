@@ -1006,6 +1006,37 @@ class MreAlch(MelRecord,MreHasEffects):
     __slots__ = melSet.getSlotsUsed()
 
 #------------------------------------------------------------------------------
+class MreAmmo(MelRecord):
+    """Ammo record (arrows)"""
+    classType = 'AMMO'
+
+    AmmoTypeFlags = Flags(0L,Flags.getNames(
+        (0, 'notNormalWeapon'),
+        (1, 'nonPlayable'),
+        (2, 'nonBolt'),
+    ))
+
+    melSet = MelSet(
+        MelString('EDID','eid'),
+        MelBounds(),
+        MelFid('PTRN', 'previewTransform'),
+        MelLString('FULL','full'),
+        MelModel(),
+        MelDestructible(),
+        MelFid('YNAM','pickupSound'),
+        MelFid('ZNAM','dropSound'),
+        MelLString('DESC','description'),
+        MelCountedFidList('KWDA', 'keywords', 'KSIZ', '<I'),
+        MelStruct('DATA','If','value','weight'),
+        MelStruct('DNAM','IB3sfI',(FID,'projectile'),(AmmoTypeFlags,'flags',0L),
+                  'unused_ammo','damage','health'),
+        MelLString('ONAM','onam_n'),
+        MelString('NAM1', 'casingModel'),
+        MelBase('NAM2', 'nam2_p',),
+        )
+    __slots__ = melSet.getSlotsUsed()
+
+#------------------------------------------------------------------------------
 # Marker for organization please don't remove ---------------------------------
 # GLOB ------------------------------------------------------------------------
 # Defined in brec.py as class MreGlob(MelRecord) ------------------------------
