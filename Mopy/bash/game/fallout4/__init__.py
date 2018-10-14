@@ -130,6 +130,7 @@ class Fallout4GameInfo(GameInfo):
         # First import from fallout4.records file, so MelModel is set correctly
         from .records import MreHeader, MreLvli, MreLvln, MreActi, MreAlch, \
             MreAmmo
+        from ..skyrim.records import MreAnio
         # ---------------------------------------------------------------------
         # These Are normally not mergable but added to brec.MreRecord.type_class
         #
@@ -146,9 +147,10 @@ class Fallout4GameInfo(GameInfo):
         cls.mergeClasses = (
             #--Always present
             MreLvli, MreLvln,
-            # -- Imported from Skyrim/SkyrimSE
             # Added to records.py
-            MreActi, MreAlch, MreAmmo
+            MreActi, MreAlch, MreAmmo,
+            # -- Imported from Skyrim/SkyrimSE
+            MreAnio
         )
         # Setting RecordHeader class variables --------------------------------
         brec.RecordHeader.topTypes = [
@@ -177,6 +179,7 @@ class Fallout4GameInfo(GameInfo):
             #--Always present
             MreHeader, MreLvli, MreLvln,
             # Imported from Skyrim or SkyrimSE
+            MreAnio,
             # Added to records.py
             MreActi, MreAlch, MreAmmo
             ))
