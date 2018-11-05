@@ -40,6 +40,7 @@ from collections import defaultdict
 
 from . import settingDefaults, Installers_Link, BashFrame, INIList
 from .frames import InstallerProject_OmodConfigDialog
+from .gui_fomod import InstallerFomod
 from .. import bass, bolt, bosh, bush, balt, archives
 from ..balt import EnabledLink, CheckLink, AppendableLink, OneItemLink, \
     UIList_Rename, UIList_Hide
@@ -66,7 +67,7 @@ __all__ = ['Installer_Open', 'Installer_Duplicate', 'InstallerOpenAt_MainMenu',
            'Installer_Espm_ResetAll', 'Installer_Subs_SelectAll',
            'Installer_Subs_DeselectAll', 'Installer_Subs_ToggleSelection',
            'Installer_Subs_ListSubPackages', 'Installer_OpenNexus',
-           'Installer_ExportAchlist']
+           'Installer_ExportAchlist', 'Installer_Fomod']
 
 #------------------------------------------------------------------------------
 # Installer Links -------------------------------------------------------------
@@ -167,6 +168,81 @@ class _InstallLink(_InstallerLink):
         return bool(self._installables)
 
 #------------------------------------------------------------------------------
+
+
+class Installer_Fomod(OneItemLink, _InstallerLink):
+    """Runs the fomod installer"""
+    parentWindow = ''
+    help = _(u"Run the fomod installer.")
+
+    def __init__(self):
+        super(Installer_Fomod, self).__init__()
+        self._text = _(u'Fomod')
+
+    def _enable(self):
+        isSingle = super(Installer_Fomod, self)._enable()
+        return isSingle and bool(self._selected_info.hasFomodConf)
+
+    @balt.conversation
+    def Execute(self):
+        with balt.BusyCursor():
+            installer = self._selected_info
+            default, pageSize, pos = self._get_size_and_pos()
+            try:
+                wizard = InstallerFomod(self.window, installer, pageSize, pos)
+            except CancelError:
+                return
+            balt.ensureDisplayed(wizard)
+        ret = wizard.Run()
+        self._save_size_pos(default, ret)
+        if ret.cancelled:
+            return
+        # Install
+        ui_refresh = [False, False]
+        installer.fomodFilesDict = ret.installFiles
+        try:
+            with balt.Progress(_(u'Installing...'), u'\n'+u' '*60) as progress:
+                self.idata.bain_install(self.selected, ui_refresh, progress)
+        finally:
+            self.iPanel.RefreshUIMods(*ui_refresh)
+
+    # XXX: shares pos and size with Wizard
+    @staticmethod
+    def _save_size_pos(default, ret):
+        # Sanity checks on returned size/position
+        if not isinstance(ret.pos, balt.wxPoint):
+            deprint(_(
+                u'Returned Wizard position (%s) was not a wx.Point (%s), '
+                u'reverting to default position.') % (ret.pos, type(ret.pos)))
+            ret.pos = balt.defPos
+        if not isinstance(ret.pageSize, balt.wxSize):
+            deprint(_(u'Returned Wizard size (%s) was not a wx.Size (%s), '
+                      u'reverting to default size.') % (
+                        ret.pageSize, type(ret.pageSize)))
+            ret.pageSize = tuple(default)
+        bass.settings['bash.wizard.size'] = (ret.pageSize[0], ret.pageSize[1])
+        bass.settings['bash.wizard.pos'] = (ret.pos[0], ret.pos[1])
+
+    # XXX: shares pos and size with Wizard
+    @staticmethod
+    def _get_size_and_pos():
+        saved = bass.settings['bash.wizard.size']
+        default = settingDefaults['bash.wizard.size']
+        pos = bass.settings['bash.wizard.pos']
+        # Sanity checks on saved size/position
+        if not isinstance(pos, tuple) or len(pos) != 2:
+            deprint(_(u'Saved Wizard position (%s) was not a tuple (%s), '
+                      u'reverting to default position.') % (pos, type(pos)))
+            pos = tuple(balt.defPos)
+        if not isinstance(saved, tuple) or len(saved) != 2:
+            deprint(_(u'Saved Wizard size (%s) was not a tuple (%s), '
+                      u'reverting to default size.') % (saved, type(saved)))
+            pageSize = tuple(default)
+        else:
+            pageSize = (max(saved[0], default[0]), max(saved[1], default[1]))
+        return default, pageSize, pos
+
+
 class Installer_EditWizard(_SingleInstallable):
     """Edit the wizard.txt associated with this project"""
     help = _(u"Edit the wizard.txt associated with this project.")

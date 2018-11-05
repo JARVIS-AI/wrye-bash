@@ -299,6 +299,8 @@ def InitInstallerLinks():
     InstallersList.itemMenu.append(Installer_Install('MISSING'))
     InstallersList.itemMenu.append(Installer_Uninstall())
     InstallersList.itemMenu.append(SeparatorLink())
+    InstallersList.itemMenu.append(Installer_Fomod())
+    InstallersList.itemMenu.append(SeparatorLink())
     InstallersList.itemMenu.append(
         Installer_Refresh(calculate_projects_crc=False))
     if True:  #--Package Menu

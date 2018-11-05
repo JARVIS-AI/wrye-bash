@@ -177,6 +177,7 @@ class Installer(object):
         self.dirty_sizeCrc = bolt.LowerDict()
         self.packageDoc = self.packagePic = None
         #--User Only
+        self.fomodFilesDict = LowerDict()
         self.skipVoices = False
         self.hasExtraData = False
         self.overrideSkips = False
@@ -195,6 +196,8 @@ class Installer(object):
         # LowerDict mapping destinations (relative to Data/ directory) of files
         # in this installer to their size and crc - built in refreshDataSizeCrc
         self.ci_dest_sizeCrc = bolt.LowerDict()
+        self.hasFomodInfo = False
+        self.hasFomodConf = False
         self.hasWizard = False
         self.hasBCF = False
         self.espmMap = bolt.DefaultLowerDict(list)
@@ -599,6 +602,7 @@ class Installer(object):
         """
         type_    = self.type
         #--Init to empty
+        self.hasFomodInfo = self.hasFomodConf = False
         self.hasWizard = self.hasBCF = self.hasReadme = False
         self.packageDoc = self.packagePic = None # = self.extras_dict['readMe']
         for attr in {'skipExtFiles','skipDirFiles','espms'}:
@@ -650,6 +654,10 @@ class Installer(object):
                 if not full.startswith(root_path): continue
             file_relative = full[rootIdex:]
             fileLower = file_relative.lower()
+            if fileLower == "fomod" + os.sep + "info.xml":
+                self.hasFomodInfo = full
+            elif fileLower == "fomod" + os.sep + "moduleconfig.xml":
+                self.hasFomodConf = full
             if fileLower.startswith( # skip top level '--', 'fomod' etc
                     Installer._silentSkipsStart) or fileLower.endswith(
                     Installer._silentSkipsEnd): continue
@@ -981,6 +989,7 @@ class Installer(object):
     def open_wizard(self): self._open_txt_file(self.hasWizard)
     def _open_txt_file(self, rel_path): raise AbstractError
     def wizard_file(self): raise AbstractError
+    def fomod_files(self): raise AbstractError
 
     def __repr__(self):
         return self.__class__.__name__ + u"<" + repr(self.archive) + u">"
@@ -1013,6 +1022,9 @@ class Installer(object):
                     subprogressPlus, unpackDir):
         """Filesystem install, if unpackDir is not None we are installing
          an archive."""
+        if self.fomodFilesDict:  # XXX: HACK, bypassing bain install
+            dest_src = self._processFomodDict(self.fomodFilesDict, srcDirJoin)
+            print dest_src
         norm_ghost = Installer.getGhosted() # some.espm -> some.espm.ghost
         norm_ghostGet = norm_ghost.get
         data_sizeCrcDate_update = bolt.LowerDict()
@@ -1052,6 +1064,28 @@ class Installer(object):
             self._list_package(apath, log)
             log(u'[/xml][/spoiler]')
             return bolt.winNewLines(log.out.getvalue())
+
+    # self._fs_install expects a "relative dest file" -> "relative src file"
+    # mapping to install. Fomod only provides relative dest folders and some
+    # sources are folders too, requiring this little hack
+    @staticmethod
+    def _processFomodDict(filesDict, srcDirJoin):
+        finalDict = LowerDict()
+        srcDir = srcDirJoin.__self__.s
+        for dest, src in filesDict.iteritems():
+            dest = Path(dest)
+            srcFull = srcDirJoin(src)
+            srcFulls = srcFull.s
+            if srcFull.isdir():
+                for (dirpath, _, fnames) in os.walk(srcFulls):
+                    for fname in fnames:
+                        srcFull_ = os.path.join(dirpath, fname)
+                        src_ = os.path.relpath(srcFull_, srcDir)
+                        dest_ = dest.join(os.path.relpath(srcFull_, srcFulls))
+                        finalDict[dest_.s] = src_
+            else:
+                finalDict[dest.join(src).s] = src
+        return finalDict
 
     @staticmethod
     def _list_package(apath, log): raise AbstractError
@@ -1277,6 +1311,23 @@ class InstallerArchive(Installer):
                 bolt.SubProgress(progress,0,0.9), recurse=True)
         return unpack_dir.join(self.hasWizard)
 
+    def fomod_files(self):
+        with balt.Progress(_(u'Extracting fomod files...'), u'\n' + u' ' * 60,
+                           abort=True) as progress:
+            # Extract the fomod and any images as well
+            files_to_extract = [self.hasFomodInfo, self.hasFomodConf]
+            files_to_extract.extend(x for (x, _s, _c) in self.fileSizeCrcs if
+                                    x.lower().endswith((
+                                        u'bmp', u'jpg', u'jpeg', u'png',
+                                        u'gif', u'pcx', u'pnm', u'tif',
+                                        u'tiff', u'tga', u'iff', u'xpm',
+                                        u'ico', u'cur', u'ani',)))
+            unpack_dir = self.unpackToTemp(files_to_extract,
+                                           bolt.SubProgress(progress, 0, 0.9),
+                                           recurse=True)
+        return (unpack_dir.join(self.hasFomodInfo),
+                unpack_dir.join(self.hasFomodConf))
+
 #------------------------------------------------------------------------------
 class InstallerProject(Installer):
     """Represents a directory/build installer entry."""
@@ -1478,6 +1529,11 @@ class InstallerProject(Installer):
 
     def wizard_file(self):
         return bass.dirs['installers'].join(self.archive, self.hasWizard)
+
+    def fomod_files(self):
+        info = bass.dirs['installers'].join(self.archive, self.hasFomodInfo)
+        conf = bass.dirs['installers'].join(self.archive, self.hasFomodConf)
+        return (info, conf)
 
 def projects_walk_cache(func): ##: HACK ! Profile
     """Decorator to make sure I dont leak self._dir_dirs_files project cache.
