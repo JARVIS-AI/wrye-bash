@@ -35,24 +35,24 @@ from ..boop import Installer, MissingDependency
 
 
 class WizardReturn(object):
-    __slots__ = ('cancelled', 'installFiles', 'pageSize', 'pos')
+    __slots__ = ('cancelled', 'install_files', 'page_size', 'pos')
 
     def __init__(self):
         # cancelled: true if the user canceled or if an error occurred
         self.cancelled = False
-        # installFiles: file->dest mapping of files to install
-        self.installFiles = bolt.LowerDict()
-        # pageSize: Tuple/wxSize of the saved size of the Wizard
-        self.pageSize = balt.defSize
+        # install_files: file->dest mapping of files to install
+        self.install_files = bolt.LowerDict()
+        # page_size: Tuple/wxSize of the saved size of the Wizard
+        self.page_size = balt.defSize
         # pos: Tuple/wxPoint of the saved position of the Wizard
         self.pos = balt.defPos
 
 
 class InstallerFomod(wiz.Wizard):
-    def __init__(self, parentWindow, installer, pageSize, pos):
-        wizStyle = wx.DEFAULT_DIALOG_STYLE | wx.RESIZE_BORDER | wx.MAXIMIZE_BOX
-        wiz.Wizard.__init__(self, parentWindow, title=_(u'Fomod Installer'),
-                            pos=pos, style=wizStyle)
+    def __init__(self, parent_window, installer, page_size, pos):
+        style = wx.DEFAULT_DIALOG_STYLE | wx.RESIZE_BORDER | wx.MAXIMIZE_BOX
+        wiz.Wizard.__init__(self, parent_window, title=_(u'Fomod Installer'),
+                            pos=pos, style=style)
 
         # 'dummy' page tricks the wizard into always showing the "Next" button
         self.dummy = wiz.PyWizardPage(self)
@@ -61,16 +61,16 @@ class InstallerFomod(wiz.Wizard):
         # True prevents actually moving to the 'next' page.
         # We use this after the "Next" button is pressed,
         # while the parser is running to return the _actual_ next page
-        self.blockChange = True
+        self.block_change = True
         # 'finishing' is to allow the "Next" button to be used
         # when it's name is changed to 'Finish' on the last page of the wizard
         self.finishing = False
 
-        self.isArchive = isinstance(installer, bosh.InstallerArchive)
-        if self.isArchive:
-            self.archivePath = bass.getTempDir().join(installer.archive)
+        self.is_archive = isinstance(installer, bosh.InstallerArchive)
+        if self.is_archive:
+            self.archive_path = bass.getTempDir().join(installer.archive)
         else:
-            self.archivePath = bass.dirs['installers'].join(installer.archive)
+            self.archive_path = bass.dirs['installers'].join(installer.archive)
 
         fomod_files = installer.fomod_files()
         fomod_files = (fomod_files[0].s, fomod_files[1].s)
@@ -80,56 +80,56 @@ class InstallerFomod(wiz.Wizard):
         self.parser = Installer(fomod_files, dest=data_path,
                                 game_version=game_ver)
 
-        # Intercept the changing event so we can implement 'blockChange'
-        self.Bind(wiz.EVT_WIZARD_PAGE_CHANGING, self.OnChange)
+        # Intercept the changing event so we can implement 'block_change'
+        self.Bind(wiz.EVT_WIZARD_PAGE_CHANGING, self.on_change)
         self.ret = WizardReturn()
-        self.ret.pageSize = pageSize
+        self.ret.page_size = page_size
 
         # So we can save window size
-        self.Bind(wx.EVT_SIZE, self.OnSize)
-        self.Bind(wx.EVT_CLOSE, self.OnClose)
-        self.Bind(wiz.EVT_WIZARD_CANCEL, self.OnClose)
-        self.Bind(wiz.EVT_WIZARD_FINISHED, self.OnClose)
+        self.Bind(wx.EVT_SIZE, self.on_size)
+        self.Bind(wx.EVT_CLOSE, self.on_close)
+        self.Bind(wiz.EVT_WIZARD_CANCEL, self.on_close)
+        self.Bind(wiz.EVT_WIZARD_FINISHED, self.on_close)
 
-        # Set the minimum size for pages, and setup OnSize to resize the
+        # Set the minimum size for pages, and setup on_size to resize the
         # First page to the saved size
         self.SetPageSize((600, 500))
-        self.firstPage = True
+        self.first_page = True
 
-    def OnClose(self, event):
+    def on_close(self, event):
         if not self.IsMaximized():
             # Only save the current size if the page isn't maximized
-            self.ret.pageSize = self.GetSize()
+            self.ret.page_size = self.GetSize()
             self.ret.pos = self.GetPosition()
         event.Skip()
 
-    def OnSize(self, event):
-        if self.firstPage:
+    def on_size(self, event):
+        if self.first_page:
             # On the first page, resize it to the saved size
-            self.firstPage = False
-            self.SetSize(self.ret.pageSize)
+            self.first_page = False
+            self.SetSize(self.ret.page_size)
         else:
             # Otherwise, regular resize, save the size if we're not
             # maximized
             if not self.IsMaximized():
-                self.ret.pageSize = self.GetSize()
+                self.ret.page_size = self.GetSize()
                 self.pos = self.GetPosition()
             event.Skip()
 
-    def OnChange(self, event):
+    def on_change(self, event):
         if event.GetDirection():
             if not self.finishing:
                 # Next, continue script execution
-                if self.blockChange:
+                if self.block_change:
                     # Tell the current page that next was pressed,
                     # So the parser can continue parsing,
                     # Then show the page that the parser returns,
                     # rather than the dummy page
-                    event.GetPage().OnNext()
+                    event.GetPage().on_next()
                     event.Veto()
-                    self.blockChange = False
+                    self.block_change = False
                 else:
-                    self.blockChange = True
+                    self.block_change = True
                     return
         else:
             # Previous, pop back to the last state,
@@ -138,7 +138,7 @@ class InstallerFomod(wiz.Wizard):
             event.Veto()
             answer = {'previous_step': True}
             self.parser.send(answer)
-            self.blockChange = False
+            self.block_change = False
         try:
             step = next(self.parser)
             self.next = PageSelect(self, step['name'], step['groups'])
@@ -146,7 +146,7 @@ class InstallerFomod(wiz.Wizard):
             self.next = None
         self.ShowPage(self.next)
 
-    def Run(self):
+    def run(self):
         try:
             self.parser.send(None)
         except MissingDependency as exc:
@@ -155,10 +155,10 @@ class InstallerFomod(wiz.Wizard):
             step = next(self.parser)
             page = PageSelect(self, step['name'], step['groups'])
         self.ret.cancelled = not self.RunWizard(page)
-        fileIter = ((y, x) for x, y in self.parser.collected_files.iteritems())
-        self.ret.installFiles = bolt.LowerDict(fileIter)
+        f_iter = [(y, x) for x, y in self.parser.collected_files.iteritems()]
+        self.ret.install_files = bolt.LowerDict(f_iter)
         # Clean up temp files
-        if self.isArchive:
+        if self.is_archive:
             try:
                 bass.rmTempDir()
             except Exception:
@@ -185,7 +185,7 @@ class PageInstaller(wiz.PyWizardPage):
     def GetPrev(self):
         return self.parent.dummy
 
-    def OnNext(self):
+    def on_next(self):
         # This is what needs to be implemented by sub-classes,
         # this is where flow control objects etc should be
         # created
@@ -197,20 +197,20 @@ class PageInstaller(wiz.PyWizardPage):
 #  button enabled, and cancels any changes made
 # -------------------------------------------------------------
 class PageError(PageInstaller):
-    def __init__(self, parent, title, errorMsg):
+    def __init__(self, parent, title, error_msg):
         PageInstaller.__init__(self, parent)
 
         # Disable the "Finish"/"Next" button
         self._enableForward(False)
 
         # Layout stuff
-        sizerMain = wx.FlexGridSizer(2, 1, 5, 5)
-        textError = balt.RoTextCtrl(self, errorMsg, autotooltip=False)
-        sizerMain.Add(balt.StaticText(parent, label=title))
-        sizerMain.Add(textError, 0, wx.ALL | wx.CENTER | wx.EXPAND)
-        sizerMain.AddGrowableCol(0)
-        sizerMain.AddGrowableRow(1)
-        self.SetSizer(sizerMain)
+        sizer_main = wx.FlexGridSizer(2, 1, 5, 5)
+        text_error = balt.RoTextCtrl(self, error_msg, autotooltip=False)
+        sizer_main.Add(balt.StaticText(parent, label=title))
+        sizer_main.Add(text_error, 0, wx.ALL | wx.CENTER | wx.EXPAND)
+        sizer_main.AddGrowableCol(0)
+        sizer_main.AddGrowableRow(1)
+        self.SetSizer(sizer_main)
         self.Layout()
 
     def GetNext(self):
@@ -227,81 +227,81 @@ class PageError(PageInstaller):
 #  that item is selected
 # ------------------------------------------------------------
 class PageSelect(PageInstaller):
-    def __init__(self, parent, stepName, listGroups):
+    def __init__(self, parent, step_name, list_groups):
         PageInstaller.__init__(self, parent)
 
         # ListBox -> (group_id, group_type)
-        self.boxGroupMap = {}
+        self.box_group_map = {}
         # ListBox -> [(option_id, option_type, option_desc, option_img), ...]
-        self.boxOptionMap = {}
+        self.box_option_map = {}
 
-        sizerMain = wx.FlexGridSizer(2, 1, 0, 0)
-        sizerMain.Add(balt.StaticText(self, stepName))
-        sizerContent = wx.GridSizer(1, 2, 0, 0)
+        sizer_main = wx.FlexGridSizer(2, 1, 0, 0)
+        sizer_main.Add(balt.StaticText(self, step_name))
+        sizer_content = wx.GridSizer(1, 2, 0, 0)
 
-        sizerExtra = wx.GridSizer(2, 1, 0, 0)
-        self.bmpItem = balt.Picture(self, 0, 0, background=None)
-        self.textItem = balt.RoTextCtrl(self, autotooltip=False)
-        sizerExtra.Add(self.bmpItem, 1, wx.ALL | wx.EXPAND)
-        sizerExtra.Add(self.textItem, 1, wx.EXPAND | wx.ALL)
+        sizer_extra = wx.GridSizer(2, 1, 0, 0)
+        self.bmp_item = balt.Picture(self, 0, 0, background=None)
+        self.text_item = balt.RoTextCtrl(self, autotooltip=False)
+        sizer_extra.Add(self.bmp_item, 1, wx.ALL | wx.EXPAND)
+        sizer_extra.Add(self.text_item, 1, wx.EXPAND | wx.ALL)
 
-        sizerGroups = wx.GridSizer(len(listGroups), 1, 0, 0)
-        for group in listGroups:
-            sizerGroup = wx.FlexGridSizer(2, 1, 0, 0)
-            sizerGroup.Add(balt.StaticText(self, group['name']))
+        sizer_groups = wx.GridSizer(len(list_groups), 1, 0, 0)
+        for group in list_groups:
+            sizer_group = wx.FlexGridSizer(2, 1, 0, 0)
+            sizer_group.Add(balt.StaticText(self, group['name']))
 
             if group['type'] == 'SelectExactlyOne':
-                listType = 'list'
+                list_type = 'list'
             else:
-                listType = 'checklist'
-            listBox = balt.listBox(self, kind=listType, isHScroll=True,
-                                   onSelect=self.OnSelect,
-                                   onCheck=self.OnCheck)
-            self.boxGroupMap[listBox] = (group['id'], group['type'])
-            self.boxOptionMap[listBox] = []
+                list_type = 'checklist'
+            list_box = balt.listBox(self, kind=list_type, isHScroll=True,
+                                    onSelect=self.on_select,
+                                    onCheck=self.on_check)
+            self.box_group_map[list_box] = (group['id'], group['type'])
+            self.box_option_map[list_box] = []
 
             for option in group['plugins']:
-                idx = listBox.Append(option['name'])
+                idx = list_box.Append(option['name'])
                 if option['type'] in ('Recommended', 'Required'):
                     if group['type'] == 'SelectExactlyOne':
-                        listBox.SetSelection(idx)
+                        list_box.SetSelection(idx)
                     else:
-                        listBox.Check(idx, True)
-                        self.Check(listBox, idx)
-                self.boxOptionMap[listBox].append((option['id'],
-                                                   option['type'],
-                                                   option['description'],
-                                                   option['image']))
+                        list_box.Check(idx, True)
+                        self.check(list_box, idx)
+                self.box_option_map[list_box].append((option['id'],
+                                                      option['type'],
+                                                      option['description'],
+                                                      option['image']))
 
             if group['type'] == 'SelectExactlyOne':
-                listBox.SetSelection(listBox.GetSelection() or 0)
+                list_box.SetSelection(list_box.GetSelection() or 0)
             elif group['type'] == 'SelectAtLeastOne':
-                if not listBox.GetChecked():
-                    listBox.Check(0, True)
+                if not list_box.GetChecked():
+                    list_box.Check(0, True)
             elif group['type'] == 'SelectAll':
-                for idx in xrange(0, listBox.GetCount()):
-                    listBox.Check(idx, True)
+                for idx in xrange(0, list_box.GetCount()):
+                    list_box.Check(idx, True)
 
-            if listGroups.index(group) == 0:
-                self.Select(listBox, listBox.GetSelection() or 0)
+            if list_groups.index(group) == 0:
+                self.select(list_box, list_box.GetSelection() or 0)
 
-            sizerGroup.Add(listBox, 1, wx.EXPAND | wx.ALL)
-            sizerGroup.AddGrowableRow(1)
-            sizerGroup.AddGrowableCol(0)
-            sizerGroups.Add(sizerGroup, wx.ID_ANY, wx.EXPAND)
+            sizer_group.Add(list_box, 1, wx.EXPAND | wx.ALL)
+            sizer_group.AddGrowableRow(1)
+            sizer_group.AddGrowableCol(0)
+            sizer_groups.Add(sizer_group, wx.ID_ANY, wx.EXPAND)
 
-        sizerContent.Add(sizerGroups, wx.ID_ANY, wx.EXPAND)
-        sizerContent.Add(sizerExtra, wx.ID_ANY, wx.EXPAND)
-        sizerMain.Add(sizerContent, wx.ID_ANY, wx.EXPAND)
-        sizerMain.AddGrowableRow(1)
-        sizerMain.AddGrowableCol(0)
+        sizer_content.Add(sizer_groups, wx.ID_ANY, wx.EXPAND)
+        sizer_content.Add(sizer_extra, wx.ID_ANY, wx.EXPAND)
+        sizer_main.Add(sizer_content, wx.ID_ANY, wx.EXPAND)
+        sizer_main.AddGrowableRow(1)
+        sizer_main.AddGrowableCol(0)
 
-        self.SetSizer(sizerMain)
+        self.SetSizer(sizer_main)
         self.Layout()
 
     # Handles option type
-    def CheckOption(self, box, idx, check=True):
-        option_type = self.boxOptionMap[box][idx][1]
+    def check_option(self, box, idx, check=True):
+        option_type = self.box_option_map[box][idx][1]
         if check and option_type == 'NotUsable':
             box.Check(idx, False)
         elif not check and option_type == 'Required':
@@ -310,9 +310,9 @@ class PageSelect(PageInstaller):
             box.Check(idx, check)
 
     # Handles group type
-    def Check(self, box, idx):
-        group_type = self.boxGroupMap[box][1]
-        self.CheckOption(box, idx, box.IsChecked(idx))
+    def check(self, box, idx):
+        group_type = self.box_group_map[box][1]
+        self.check_option(box, idx, box.IsChecked(idx))
 
         if group_type == 'SelectAtLeastOne':
             if not box.IsChecked(idx) and len(box.GetChecked()) == 0:
@@ -322,60 +322,60 @@ class PageSelect(PageInstaller):
             if box.IsChecked(idx) and len(checked) > 1:
                 checked = (a for a in checked if a != idx)
                 for i in checked:
-                    self.CheckOption(box, i, False)
+                    self.check_option(box, i, False)
         elif group_type == 'SelectAll':
             box.Check(idx, True)
 
-    def OnCheck(self, event):
+    def on_check(self, event):
         idx = event.GetInt()
         box = event.GetEventObject()
-        self.Check(box, idx)
+        self.check(box, idx)
 
-    def Select(self, box, idx):
+    def select(self, box, idx):
         box.SetSelection(idx)
-        option = self.boxOptionMap[box][idx]
+        option = self.box_option_map[box][idx]
         self._enableForward(True)
-        self.textItem.SetValue(option[2])
+        self.text_item.SetValue(option[2])
         # Don't want the bitmap to resize until we call self.Layout()
-        self.bmpItem.Freeze()
-        img = self.parent.archivePath.join(option[3])
+        self.bmp_item.Freeze()
+        img = self.parent.archive_path.join(option[3])
         if img.isfile():
             image = wx.Bitmap(img.s)
-            self.bmpItem.SetBitmap(image)
-            self.bmpItem.SetCursor(wx.StockCursor(wx.CURSOR_MAGNIFIER))
+            self.bmp_item.SetBitmap(image)
+            self.bmp_item.SetCursor(wx.StockCursor(wx.CURSOR_MAGNIFIER))
         else:
-            self.bmpItem.SetBitmap(None)
-            self.bmpItem.SetCursor(wx.StockCursor(wx.CURSOR_ARROW))
-        self.bmpItem.Thaw()
+            self.bmp_item.SetBitmap(None)
+            self.bmp_item.SetCursor(wx.StockCursor(wx.CURSOR_ARROW))
+        self.bmp_item.Thaw()
 
-    def OnSelect(self, event):
+    def on_select(self, event):
         idx = event.GetInt()
         box = event.GetEventObject()
-        self.Select(box, idx)
+        self.select(box, idx)
 
-    def OnNext(self):
+    def on_next(self):
         answer = {}
 
-        for box, group in self.boxGroupMap.iteritems():
+        for box, group in self.box_group_map.iteritems():
             group_id = group[0]
             group_type = group[1]
             answer[group_id] = []
             if group_type == 'SelectExactlyOne':
                 idx = box.GetSelection()
-                answer[group_id] = [self.boxOptionMap[box][idx][0]]
+                answer[group_id] = [self.box_option_map[box][idx][0]]
             else:
                 for idx in box.GetChecked():
-                    answer[group_id].append(self.boxOptionMap[box][idx][0])
+                    answer[group_id].append(self.box_option_map[box][idx][0])
 
-            idxNum = len(answer[group_id])
-            if group_type == 'SelectExactlyOne' and idxNum != 1:
+            idx_num = len(answer[group_id])
+            if group_type == 'SelectExactlyOne' and idx_num != 1:
                 raise ValueError("Must select exatly one.")
-            elif group_type == 'SelectAtMostOne' and idxNum > 1:
+            elif group_type == 'SelectAtMostOne' and idx_num > 1:
                 raise ValueError("Must select at most one.")
-            elif group_type == 'SelectAtLeast' and idxNum < 1:
+            elif group_type == 'SelectAtLeast' and idx_num < 1:
                 raise ValueError("Must select at most one.")
             elif (group_type == 'SelectAll'
-                    and idxNum != len(self.boxOptionMap[box])):
+                    and idx_num != len(self.box_option_map[box])):
                 raise ValueError("Must select at most one.")
 
         self.parent.parser.send(answer)

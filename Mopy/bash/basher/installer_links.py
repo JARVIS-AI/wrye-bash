@@ -180,26 +180,26 @@ class Installer_Fomod(OneItemLink, _InstallerLink):
         self._text = _(u'Fomod')
 
     def _enable(self):
-        isSingle = super(Installer_Fomod, self)._enable()
-        return isSingle and bool(self._selected_info.hasFomodConf)
+        is_single = super(Installer_Fomod, self)._enable()
+        return is_single and bool(self._selected_info.has_fomod_conf)
 
     @balt.conversation
     def Execute(self):
         with balt.BusyCursor():
             installer = self._selected_info
-            default, pageSize, pos = self._get_size_and_pos()
+            default, page_size, pos = self._get_size_and_pos()
             try:
-                wizard = InstallerFomod(self.window, installer, pageSize, pos)
+                wizard = InstallerFomod(self.window, installer, page_size, pos)
             except CancelError:
                 return
             balt.ensureDisplayed(wizard)
-        ret = wizard.Run()
+        ret = wizard.run()
         self._save_size_pos(default, ret)
         if ret.cancelled:
             return
         # Install
         ui_refresh = [False, False]
-        installer.fomodFilesDict = ret.installFiles
+        installer.fomod_files_dict = ret.install_files
         try:
             with balt.Progress(_(u'Installing...'), u'\n'+u' '*60) as progress:
                 self.idata.bain_install(self.selected, ui_refresh, progress)
@@ -215,12 +215,13 @@ class Installer_Fomod(OneItemLink, _InstallerLink):
                 u'Returned Wizard position (%s) was not a wx.Point (%s), '
                 u'reverting to default position.') % (ret.pos, type(ret.pos)))
             ret.pos = balt.defPos
-        if not isinstance(ret.pageSize, balt.wxSize):
+        if not isinstance(ret.page_size, balt.wxSize):
             deprint(_(u'Returned Wizard size (%s) was not a wx.Size (%s), '
                       u'reverting to default size.') % (
-                        ret.pageSize, type(ret.pageSize)))
-            ret.pageSize = tuple(default)
-        bass.settings['bash.wizard.size'] = (ret.pageSize[0], ret.pageSize[1])
+                        ret.page_size, type(ret.page_size)))
+            ret.page_size = tuple(default)
+        bass.settings['bash.wizard.size'] = (ret.page_size[0],
+                                             ret.page_size[1])
         bass.settings['bash.wizard.pos'] = (ret.pos[0], ret.pos[1])
 
     # XXX: shares pos and size with Wizard
@@ -237,10 +238,10 @@ class Installer_Fomod(OneItemLink, _InstallerLink):
         if not isinstance(saved, tuple) or len(saved) != 2:
             deprint(_(u'Saved Wizard size (%s) was not a tuple (%s), '
                       u'reverting to default size.') % (saved, type(saved)))
-            pageSize = tuple(default)
+            page_size = tuple(default)
         else:
-            pageSize = (max(saved[0], default[0]), max(saved[1], default[1]))
-        return default, pageSize, pos
+            page_size = (max(saved[0], default[0]), max(saved[1], default[1]))
+        return default, page_size, pos
 
 
 class Installer_EditWizard(_SingleInstallable):
