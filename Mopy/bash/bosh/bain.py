@@ -650,14 +650,20 @@ class Installer(object):
         root_path = self.extras_dict.get('root_path', u'')
         rootIdex = len(root_path)
         for full,size,crc in self.fileSizeCrcs:
+            if full.lower() == "fomod" + os.sep + "info.xml":
+                self.has_fomod_info = full
+            elif full.lower() == "fomod" + os.sep + "moduleconfig.xml":
+                self.has_fomod_conf = full
+            if full in self.fomod_files_dict.values():
+                idx = self.fomod_files_dict.values().index(full)
+                dest = self.fomod_files_dict.keys()[idx]
+                data_sizeCrc[dest] = (size, crc)
+                unSize += size
+                continue
             if rootIdex: # exclude all files that are not under root_dir
                 if not full.startswith(root_path): continue
             file_relative = full[rootIdex:]
             fileLower = file_relative.lower()
-            if fileLower == "fomod" + os.sep + "info.xml":
-                self.has_fomod_info = full
-            elif fileLower == "fomod" + os.sep + "moduleconfig.xml":
-                self.has_fomod_conf = full
             if fileLower.startswith( # skip top level '--', 'fomod' etc
                     Installer._silentSkipsStart) or fileLower.endswith(
                     Installer._silentSkipsEnd): continue
@@ -786,6 +792,8 @@ class Installer(object):
                 if filename not in dirty_sizeCrc and sizeCrc != data_sizeCrc.get(filename):
                     dirty_sizeCrc[filename] = sizeCrc
         #--Done (return dest_src for install operation)
+        if self.fomod_files_dict:
+            dest_src = self.fomod_files_dict
         return dest_src
 
     def _find_root_index(self, _os_sep=os_sep, skips_start=_silentSkipsStart):
@@ -1022,9 +1030,6 @@ class Installer(object):
                     subprogressPlus, unpackDir):
         """Filesystem install, if unpackDir is not None we are installing
          an archive."""
-        if self.fomod_files_dict:  # XXX: HACK, bypassing bain install
-            dest_src = self._process_fomod_dict(self.fomod_files_dict,
-                                                srcDirJoin)
         norm_ghost = Installer.getGhosted() # some.espm -> some.espm.ghost
         norm_ghostGet = norm_ghost.get
         data_sizeCrcDate_update = bolt.LowerDict()
@@ -1064,29 +1069,6 @@ class Installer(object):
             self._list_package(apath, log)
             log(u'[/xml][/spoiler]')
             return bolt.winNewLines(log.out.getvalue())
-
-    # self._fs_install expects a "relative dest file" -> "relative src file"
-    # mapping to install. Fomod only provides relative dest folders and some
-    # sources are folders too, requiring this little hack
-    @staticmethod
-    def _process_fomod_dict(files_dict, src_dir_join):
-        final_dict = LowerDict()
-        src_dir_path = src_dir_join.__self__.s
-        for dest, src in files_dict.iteritems():
-            dest = Path(dest)
-            src_full = src_dir_join(src)
-            src_full_path = src_full.s
-            if src_full.isdir():
-                for (dirpath, _, fnames) in os.walk(src_full_path):
-                    for fname in fnames:
-                        file_src_full = os.path.join(dirpath, fname)
-                        file_src = os.path.relpath(file_src_full, src_dir_path)
-                        file_dest = dest.join(os.path.relpath(file_src_full,
-                                                              src_full_path))
-                        final_dict[file_dest.s] = file_src
-            else:
-                final_dict[dest.join(src).s] = src
-        return final_dict
 
     @staticmethod
     def _list_package(apath, log): raise AbstractError
@@ -1315,14 +1297,8 @@ class InstallerArchive(Installer):
     def fomod_files(self):
         with balt.Progress(_(u'Extracting fomod files...'), u'\n' + u' ' * 60,
                            abort=True) as progress:
-            # Extract the fomod and any images as well
-            files_to_extract = [self.has_fomod_info, self.has_fomod_conf]
-            files_to_extract.extend(x for (x, _s, _c) in self.fileSizeCrcs if
-                                    x.lower().endswith((
-                                        u'bmp', u'jpg', u'jpeg', u'png',
-                                        u'gif', u'pcx', u'pnm', u'tif',
-                                        u'tiff', u'tga', u'iff', u'xpm',
-                                        u'ico', u'cur', u'ani',)))
+            # Extract everything - this needs to change
+            files_to_extract = [x for (x, _s, _c) in self.fileSizeCrcs]
             unpack_dir = self.unpackToTemp(files_to_extract,
                                            bolt.SubProgress(progress, 0, 0.9),
                                            recurse=True)

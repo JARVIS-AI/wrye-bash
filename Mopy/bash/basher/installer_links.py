@@ -201,6 +201,7 @@ class Installer_Fomod(OneItemLink, _InstallerLink):
         ui_refresh = [False, False]
         installer.fomod_files_dict = ret.install_files
         try:
+            installer.refreshDataSizeCrc(True)
             with balt.Progress(_(u'Installing...'), u'\n'+u' '*60) as progress:
                 self.idata.bain_install(self.selected, ui_refresh, progress)
         finally:
@@ -782,6 +783,11 @@ class Installer_Uninstall(_InstallLink):
             with balt.Progress(_(u"Uninstalling..."),u'\n'+u' '*60) as progress:
                 self.idata.bain_uninstall(self._installables, ui_refresh,
                                           progress)
+            data_store = self.window.data_store
+            for selected in self._installables:
+                if data_store[selected].fomod_files_dict:
+                    data_store[selected].fomod_files_dict = bolt.LowerDict()
+                    data_store[selected].refreshDataSizeCrc(True)
         except (CancelError,SkipError): # now where could this be raised from ?
             pass
         finally:

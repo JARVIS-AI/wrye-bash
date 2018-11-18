@@ -22,6 +22,8 @@
 #
 # =============================================================================
 
+import os
+
 from .. import balt
 from .. import bass
 from .. import bolt
@@ -66,12 +68,6 @@ class InstallerFomod(wiz.Wizard):
         # when it's name is changed to 'Finish' on the last page of the wizard
         self.finishing = False
 
-        self.is_archive = isinstance(installer, bosh.InstallerArchive)
-        if self.is_archive:
-            self.archive_path = bass.getTempDir().join(installer.archive)
-        else:
-            self.archive_path = bass.dirs['installers'].join(installer.archive)
-
         fomod_files = installer.fomod_files()
         fomod_files = (fomod_files[0].s, fomod_files[1].s)
         data_path = bass.dirs['mods']
@@ -79,6 +75,12 @@ class InstallerFomod(wiz.Wizard):
         game_ver = u'.'.join([unicode(i) for i in ver])
         self.parser = Installer(fomod_files, dest=data_path,
                                 game_version=game_ver)
+
+        self.is_archive = isinstance(installer, bosh.InstallerArchive)
+        if self.is_archive:
+            self.archive_path = bass.getTempDir()
+        else:
+            self.archive_path = bass.dirs['installers'].join(installer.archive)
 
         # Intercept the changing event so we can implement 'block_change'
         self.Bind(wiz.EVT_WIZARD_PAGE_CHANGING, self.on_change)
@@ -95,6 +97,29 @@ class InstallerFomod(wiz.Wizard):
         # First page to the saved size
         self.SetPageSize((600, 500))
         self.first_page = True
+
+    # bain expects a "relative dest file" -> "relative src file"
+    # mapping to install. Fomod only provides relative dest folders and some
+    # sources are folders too, requiring this little hack
+    @staticmethod
+    def _process_fomod_dict(files_dict, src_dir):
+        final_dict = bolt.LowerDict()
+        src_dir_path = src_dir.s
+        for src, dest in files_dict.iteritems():
+            dest = bolt.Path(dest)
+            src_full = src_dir.join(src)
+            src_full_path = src_full.s
+            if src_full.isdir():
+                for (dirpath, _, fnames) in os.walk(src_full_path):
+                    for fname in fnames:
+                        file_src_full = os.path.join(dirpath, fname)
+                        file_src = os.path.relpath(file_src_full, src_dir_path)
+                        file_dest = dest.join(os.path.relpath(file_src_full,
+                                                              src_full_path))
+                        final_dict[file_dest.s] = file_src
+            else:
+                final_dict[dest.join(src).s] = src
+        return final_dict
 
     def on_close(self, event):
         if not self.IsMaximized():
@@ -155,8 +180,9 @@ class InstallerFomod(wiz.Wizard):
             step = next(self.parser)
             page = PageSelect(self, step['name'], step['groups'])
         self.ret.cancelled = not self.RunWizard(page)
-        f_iter = [(y, x) for x, y in self.parser.collected_files.iteritems()]
-        self.ret.install_files = bolt.LowerDict(f_iter)
+        install_files = bolt.LowerDict(self.parser.collected_files)
+        self.ret.install_files = self._process_fomod_dict(install_files,
+                                                          self.archive_path)
         # Clean up temp files
         if self.is_archive:
             try:
