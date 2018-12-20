@@ -290,6 +290,7 @@ def InitInstallerLinks():
     #--Install, uninstall, etc.
     InstallersList.itemMenu.append(Installer_Anneal())
     InstallersList.itemMenu.append(Installer_Install())
+    InstallersList.itemMenu.append(Installer_Fomod())
     if bEnableWizard:
         wizardMenu = MenuLink(_(u"Wizard Installer.."))
         wizardMenu.links.append(Installer_Wizard(False))
@@ -298,8 +299,6 @@ def InitInstallerLinks():
         InstallersList.itemMenu.append(wizardMenu)
     InstallersList.itemMenu.append(Installer_Install('MISSING'))
     InstallersList.itemMenu.append(Installer_Uninstall())
-    InstallersList.itemMenu.append(SeparatorLink())
-    InstallersList.itemMenu.append(Installer_Fomod())
     InstallersList.itemMenu.append(SeparatorLink())
     InstallersList.itemMenu.append(
         Installer_Refresh(calculate_projects_crc=False))
