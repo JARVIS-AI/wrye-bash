@@ -118,7 +118,10 @@ class InstallerFomod(wiz.Wizard):
                                                               src_full_path))
                         final_dict[file_dest.s] = file_src
             else:
-                final_dict[dest.join(src).s] = src
+                if not dest.tail:  # has a trailing slash
+                    final_dict[dest.join(src_full.tail).s] = src
+                else:
+                    final_dict[dest.s] = src
         return final_dict
 
     def on_close(self, event):
