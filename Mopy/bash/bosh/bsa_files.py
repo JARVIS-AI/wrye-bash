@@ -379,7 +379,7 @@ class ABsa(AFile):
         """
         if self._assets is self.__class__._assets:
             self.__load(names_only=True)
-            self._assets = frozenset(imap(unicode.lower, self._filenames))
+            self._assets = frozenset(imap(os.path.normcase, self._filenames))
             del self._filenames
         return self._assets
 
