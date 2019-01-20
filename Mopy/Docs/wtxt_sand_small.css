@@ -1,15 +1,36 @@
-H1 { margin-top: 0in; margin-bottom: 0in; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: none; border-right: none; padding: 0.02in 0in; background: #c6c63c; font-family: "Arial", serif; font-size: 11pt; page-break-before: auto; page-break-after: auto }
-H2 { margin-top: 0in; margin-bottom: 0in; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: none; border-right: none; padding: 0.02in 0in; background: #e6e64c; font-family: "Arial", serif; font-size: 9pt; page-break-before: auto; page-break-after: auto }
-H3 { margin-top: 0in; margin-bottom: 0in; font-family: "Arial", serif; font-size: 9pt; font-style: normal; page-break-before: auto; page-break-after: auto }
-H4 { margin-top: 0in; margin-bottom: 0in; font-family: "Arial", serif; font-style: italic; page-break-before: auto; page-break-after: auto }
-P { margin-top: 0.01in; margin-bottom: 0.01in; font-family: "Arial", serif; font-size: 9pt; page-break-before: auto; page-break-after: auto }
-P.empty {}
-P.list-1 { margin-left: 0.15in; text-indent: -0.15in }
-P.list-2 { margin-left: 0.3in; text-indent: -0.15in }
-P.list-3 { margin-left: 0.45in; text-indent: -0.15in }
-P.list-4 { margin-left: 0.6in; text-indent: -0.15in }
-P.list-5 { margin-left: 0.75in; text-indent: -0.15in }
-P.list-6 { margin-left: 1.00in; text-indent: -0.15in }
-PRE { border: 1px solid; background: #FDF5E6; padding: 0.5em; margin-top: 0in; margin-bottom: 0in; margin-left: 0.25in}
-CODE { background-color: #FDF5E6;}
-BODY { background-color: #ffffcc; }
+h1, h2, h3, h4, pre { margin-top: 0; margin-bottom: 0; }
+
+h1, h2 { border-top: 1px solid black; border-bottom: 1px solid black; border-left: none; border-right: none; padding: 0.02in 0; }
+
+h1, h2, h3, h4, p { font-family: "Arial", "serif"; }
+
+h1, h2, h3, h4, p { page-break-before: auto; page-break-after: auto; }
+
+h1 { background: #c6c63c; font-size: 11pt; }
+
+h2 { background: #e6e64c; font-size: 9pt; }
+
+h3 { font-size: 9pt; font-style: normal; }
+
+h4 { font-style: italic; }
+
+p { margin-top: 0.01in; margin-bottom: 0.01in; font-size: 9pt; }
+
+p.list-1 { margin-left: 0.15in; text-indent: -0.15in; }
+
+p.list-2 { margin-left: 0.3in; text-indent: -0.15in; }
+
+p.list-3 { margin-left: 0.45in; text-indent: -0.15in; }
+
+p.list-4 { margin-left: 0.6in; text-indent: -0.15in; }
+
+p.list-5 { margin-left: 0.75in; text-indent: -0.15in; }
+
+p.list-6 { margin-left: 1in; text-indent: -0.15in; }
+
+pre { border: 1px solid; background: oldlace; padding: 0.5em; margin-left: 0.25in; }
+
+code { background-color: oldlace; }
+
+body { background-color: #ffffcc; }
+/*# sourceMappingURL=wtxt_sand_small.css.map */

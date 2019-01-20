@@ -58,7 +58,7 @@
           <a href="#bain-order">BAIN Package Order</a>
         </li>
         <li>
-          <a href="#bain-symbols">What Symbols &amp; Colours Mean</a>
+          <a href="#bain-symbols">What Symbols & Colours Mean</a>
         </li>
         <li>
           <a href="#bain-commands">Useful Context Menu Commands</a>
@@ -78,7 +78,7 @@
           <a href="#load-undo">Undo and redo Load Order changes</a>
         </li>
         <li>
-          <a href="#load-symbols">What Symbols &amp; Colours Mean</a>
+          <a href="#load-symbols">What Symbols & Colours Mean</a>
         </li>
         <li>
           <a href="#load-commands">Useful Context Menu Commands</a>
@@ -114,10 +114,10 @@
           <a href="#ini-overview">Overview</a>
         </li>
         <li>
-          <a href="#ini-symbols">What Symbols &amp; Colours Mean</a>
+          <a href="#ini-symbols">What Symbols & Colours Mean</a>
         </li>
         <li>
-          <a href="#ini-commands">Buttons &amp; Context Menu Commands</a>
+          <a href="#ini-commands">Buttons & Context Menu Commands</a>
         </li>
       </ol>
     </li>
@@ -128,7 +128,7 @@
           <a href="#launchers-toggles">Toggle Buttons</a>
         </li>
         <li>
-          <a href="#launchers-game">Game &amp; Editor Launchers</a>
+          <a href="#launchers-game">Game & Editor Launchers</a>
         </li>
         <li>
           <a href="#launchers-utils">Game-Specific Utilities</a>
@@ -154,7 +154,7 @@
           <a href="#trouble-permissions">File Permissions</a>
         </li>
         <li>
-          <a href="#trouble-backup">Backing Up &amp; Restoring Settings</a>
+          <a href="#trouble-backup">Backing Up & Restoring Settings</a>
         </li>
         <li>
           <a href="#trouble-report">How To Report Bugs Helpfully</a>
@@ -197,28 +197,28 @@
   <h3 id="intro-glossary">Glossary</h3>
   <p>Modding for Oblivion and Skyrim has a wonderful history of confusing terminology. The list below details some terms commonly used when dealing with mods.</p>
   <ul>
-    <li><b>The game</b> is the game that Wrye Bash is running for, either Oblivion, Fallout3, FalloutNV, Skyrim, Fallout4 or Skyrim SE.</li>
-    <li><b>CTD</b> is an acronym for Crash To Desktop. Used to describe the game crashing.</li>
-    <li><b>DLC</b> refers to any of the official downloadable content for the game.</li>
-    <li><b>Mod</b> refers to any unofficial user-made modification to the game.</li>
-    <li><b>Mod author</b> refers to a person that makes modifications to the game. It can also refer to those who are involved in the creation of utilities that are used by mod authors and/or users.</li>
-    <li><b>ESP</b> (case-insensitive) refers to any file with a <code>.esp</code> extension. It is an acronym for Elder Scrolls Plugin.</li>
-    <li><b>ESM</b> (case-insensitive) refers to any file with a <code>.esm</code> extension. It is an acronym for Elder Scrolls Master.</li>
-    <li><b>Plugin</b> refers to any ESP <span class="c5">or</span> ESM file.</li>
-    <li><b>Master</b> refers to any plugins that another plugin is dependent on to function. (It can also refer to an ESM file, as it used to be that only ESMs could be masters, until mod authors developed methods of using ESP files as masters too. The latter definition will not be used in this documentation.)</li>
-    <li><b>The game's master file</b> refers to the ESM that must be loaded for the game to function. For Oblivion, this is <code>Oblivion.esm</code>, for Skyrim this is <code>Skyrim.esm</code>, and for Fallout 4 this is <code>Fallout4.esm</code>.</li>
-    <li><b>Conflicts</b> occur when two different mods try to change the same game variable or resource, which could be anything from a specific object in game to a script or a texture. Conflicts can cause problems, including CTDs or save game corruption, but they are not inherently bad, and most modding is the result of purposeful conflicts.</li>
-    <li><b>Resource Conflicts</b> occur when two mods contain two different files that go in the same place, so one mod's file overwrites the others's file. This type of conflict can be managed by altering the install order of mods.</li>
-    <li><b>Data Conflicts</b> occur when two mod plugins alter the same game data. This type of conflict can be managed by altering the load order of plugins.</li>
-    <li><b>BSAs</b> are Bethesda Softwork Archives, with <code>.bsa</code> file extensions. They can be used to store resource files such as textures and meshes.</li>
-    <li><b>ITMs</b> are Identical To Master records, ie. data in a plugin for something that is identical to the data for that thing in the plugin's master(s). Usually a type of unintended edit, known as a <q>dirty edit</q>, which can break the functionality of other mods that require the record in question to have a specific value, but which have that value overridden by an ITM record.</li>
-    <li><b>UDRs</b> are Undeleted and Disabled References. Deleted References can cause crashing, and this can be avoided by first undeleting and then disabling them instead. A type of <q>dirty edit</q>. This acronym is generally misused - the UDR acronym is frequently used to refer to the deleted references, rather than their fixed counterparts. For example, <q>Scan For UDRs</q> will scan for deleted references, not undeleted and disabled references, and BOSS will report the UDR count for a plugin, which is actually the number of deleted references that can be fixed.</li>
+    <li><strong>The game</strong> is the game that Wrye Bash is running for, either Oblivion, Fallout3, FalloutNV, Skyrim, Fallout4 or Skyrim SE.</li>
+    <li><strong>CTD</strong> is an acronym for Crash To Desktop. Used to describe the game crashing.</li>
+    <li><strong>DLC</strong> refers to any of the official downloadable content for the game.</li>
+    <li><strong>Mod</strong> refers to any unofficial user-made modification to the game.</li>
+    <li><strong>Mod author</strong> refers to a person that makes modifications to the game. It can also refer to those who are involved in the creation of utilities that are used by mod authors and/or users.</li>
+    <li><strong>ESP</strong> (case-insensitive) refers to any file with a <code>.esp</code> extension. It is an acronym for Elder Scrolls Plugin.</li>
+    <li><strong>ESM</strong> (case-insensitive) refers to any file with a <code>.esm</code> extension. It is an acronym for Elder Scrolls Master.</li>
+    <li><strong>Plugin</strong> refers to any ESP <span class="c5">or</span> ESM file.</li>
+    <li><strong>Master</strong> refers to any plugins that another plugin is dependent on to function. (It can also refer to an ESM file, as it used to be that only ESMs could be masters, until mod authors developed methods of using ESP files as masters too. The latter definition will not be used in this documentation.)</li>
+    <li><strong>The game's master file</strong> refers to the ESM that must be loaded for the game to function. For Oblivion, this is <code>Oblivion.esm</code>, for Skyrim this is <code>Skyrim.esm</code>, and for Fallout 4 this is <code>Fallout4.esm</code>.</li>
+    <li><strong>Conflicts</strong> occur when two different mods try to change the same game variable or resource, which could be anything from a specific object in game to a script or a texture. Conflicts can cause problems, including CTDs or save game corruption, but they are not inherently bad, and most modding is the result of purposeful conflicts.</li>
+    <li><strong>Resource Conflicts</strong> occur when two mods contain two different files that go in the same place, so one mod's file overwrites the others's file. This type of conflict can be managed by altering the install order of mods.</li>
+    <li><strong>Data Conflicts</strong> occur when two mod plugins alter the same game data. This type of conflict can be managed by altering the load order of plugins.</li>
+    <li><strong>BSAs</strong> are Bethesda Softwork Archives, with <code>.bsa</code> file extensions. They can be used to store resource files such as textures and meshes.</li>
+    <li><strong>ITMs</strong> are Identical To Master records, ie. data in a plugin for something that is identical to the data for that thing in the plugin's master(s). Usually a type of unintended edit, known as a <q>dirty edit</q>, which can break the functionality of other mods that require the record in question to have a specific value, but which have that value overridden by an ITM record.</li>
+    <li><strong>UDRs</strong> are Undeleted and Disabled References. Deleted References can cause crashing, and this can be avoided by first undeleting and then disabling them instead. A type of <q>dirty edit</q>. This acronym is generally misused - the UDR acronym is frequently used to refer to the deleted references, rather than their fixed counterparts. For example, <q>Scan For UDRs</q> will scan for deleted references, not undeleted and disabled references, and BOSS will report the UDR count for a plugin, which is actually the number of deleted references that can be fixed.</li>
   </ul>
-  <p>This readme will also use the placeholder <b>[Game]</b>. Replace this with <q>Oblivion</q>, <q>Fallout 3</q>, <q>Fallout NV</q>, <q>Skyrim</q>, <q>Fallout 4</q> or <q>Skyrim SE</q> depending on which game Wrye Bash is running for. Additional terminology specific to Wrye Bash's functions will be introduced as required. Also, links that are followed by <img alt="External Link Icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAVklEQVR4Xn3PgQkAMQhDUXfqTu7kTtkpd5RA8AInfArtQ2iRXFWT2QedAfttj2FsPIOE1eCOlEuoWWjgzYaB/IkeGOrxXhqB+uA9Bfcm0lAZuh+YIeAD+cAqSz4kCMUAAAAASUVORK5CYII="> go to pages that are not part of the Wrye Bash documentation.</p>
+  <p>This readme will also use the placeholder <strong>[Game]</strong>. Replace this with <q>Oblivion</q>, <q>Fallout 3</q>, <q>Fallout NV</q>, <q>Skyrim</q>, <q>Fallout 4</q> or <q>Skyrim SE</q> depending on which game Wrye Bash is running for. Additional terminology specific to Wrye Bash's functions will be introduced as required. Also, links that are followed by <img alt="External Link Icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAVklEQVR4Xn3PgQkAMQhDUXfqTu7kTtkpd5RA8AInfArtQ2iRXFWT2QedAfttj2FsPIOE1eCOlEuoWWjgzYaB/IkeGOrxXhqB+uA9Bfcm0lAZuh+YIeAD+cAqSz4kCMUAAAAASUVORK5CYII="> go to pages that are not part of the Wrye Bash documentation.</p>
   <h2 id="install">Installation</h2>
   <p>The simplest way to install Wrye Bash is using the installer, as it installs Wrye Bash and its dependencies automatically. However, the instructions below are provided if a manual install method is preferred.</p>
-  <p><b>Note:</b> There are two versions of Wrye Bash available: the Python version and the Standalone version. Both are the same program, but the Standalone version has fewer dependencies and so is recommended for most people.</p>
-  <p><b>Windows Vista, 7, 8 &amp; 10 users:</b> Windows' User Account Control feature may interfere with the running of Wrye Bash and other utilities. See the <a href="#trouble-permissions">File Permissions</a> section for solutions.</p>
+  <p><strong>Note:</strong> There are two versions of Wrye Bash available: the Python version and the Standalone version. Both are the same program, but the Standalone version has fewer dependencies and so is recommended for most people.</p>
+  <p><strong>Windows Vista, 7, 8 & 10 users:</strong> Windows' User Account Control feature may interfere with the running of Wrye Bash and other utilities. See the <a href="#trouble-permissions">File Permissions</a> section for solutions.</p>
   <p>Manual Standalone Version Install:</p>
   <ol>
     <li>Download and install the <a href="https://download.microsoft.com/download/6/A/A/6AA4EDFF-645B-48C5-81CC-ED5963AEAD48/vc_redist.x86.exe">MSVC 2015 Redistributable (x86)</a>.
@@ -262,9 +262,9 @@
   </figure>
   <h3 id="bain-overview">Overview</h3>
   <p>Wrye Bash mod installer are known as <abbr title="Bash Installers">BAIN</abbr> (BAsh INstallers), and are presented on the Installers Tab. The first time the Installers tab is opened, a dialog will appear asking if BAIN should be initialized. If you click <q>Yes</q>, BAIN will be initialised, which can take some time. After that, the information refresh performed when the Installers tab is opened is much faster.</p>
-  <p>BAIN's primary function is to install mod packages. <b>BAIN Packages</b> can be <code>.zip</code>, <code>.7z</code> or <code>.rar</code> archives or uncompressed directories. Uncompressed directories are called <b>Projects</b> while archives are usually called <b>packages</b>, abusing terminology. When we refer to projects and packages together we will be also using the collective term <b>installers</b>.</p>
+  <p>BAIN's primary function is to install mod packages. <strong>BAIN Packages</strong> can be <code>.zip</code>, <code>.7z</code> or <code>.rar</code> archives or uncompressed directories. Uncompressed directories are called <strong>Projects</strong> while archives are usually called <strong>packages</strong>, abusing terminology. When we refer to projects and packages together we will be also using the collective term <strong>installers</strong>.</p>
   <p>If BAIN is disabled, ie. if you clicked <q>No</q> on the dialog that was displayed the first time you selected the Installers tab, it can be re-enabled by right clicking on a column header in the Installers tab and selecting <a href="Wrye%20Bash%20Advanced%20Readme.html#bainEnabled">Enabled</a>.</p>
-  <p>Installers need to be placed in the <code>Bash Installers</code> directory which is created the first time Bash runs inside the <code>"Game" Mods</code> directory. This directory is by default created on the same level as your game directory (that is if your game exe is located in "C:\GAMES\TESIV\Oblivion" then by default Bash will create the "C:\GAMES\TESIV\Oblivion Mods\" directory on first run, but you can point Bash to create this "Game" Mods directory wherever you want (or point it to an existing one) via the <code>sOblivionMods</code> ini setting. Do <i>not</i> however put it inside the game Data directory, as the game may well be confused and scan it adding to performance deterioration, mods thrashing.</p>
+  <p>Installers need to be placed in the <code>Bash Installers</code> directory which is created the first time Bash runs inside the <code>"Game" Mods</code> directory. This directory is by default created on the same level as your game directory (that is if your game exe is located in "C:\GAMES\TESIV\Oblivion" then by default Bash will create the "C:\GAMES\TESIV\Oblivion Mods\" directory on first run, but you can point Bash to create this "Game" Mods directory wherever you want (or point it to an existing one) via the <code>sOblivionMods</code> ini setting. Do <em>not</em> however put it inside the game Data directory, as the game may well be confused and scan it adding to performance deterioration, mods thrashing.</p>
   <p>To add an installer to Wrye Bash Installers, you can either manually copy and paste the zip to the Bash Installers Directory, or just drag and drop the zip onto the Installers tab.</p>
   <p>Bash will scan the Bash Installers directory and pick up all subfolders and all <code>.zip</code>, <code>.7z</code> or <code>.rar</code> archives - except for:</p>
   <ol>
@@ -294,7 +294,7 @@
       </tr>
       <tr>
         <td>ini tweaks</td>
-        <td>ini tweaks inside this will be installed in Data/Ini Tweaks/ and appear on the INI Tab - do <b>not</b> include subfolders in ini tweaks/</td>
+        <td>ini tweaks inside this will be installed in Data/Ini Tweaks/ and appear on the INI Tab - do <strong>not</strong> include subfolders in ini tweaks/</td>
       </tr>
       <tr>
         <td>screenshots</td>
@@ -315,7 +315,7 @@
         </td>
       </tr>
     </tbody>
-  </table>but there are game specific directories as well (all directory detection is <i>case insensitive</i>):
+  </table>but there are game specific directories as well (all directory detection is <em>case insensitive</em>):
   <table>
     <thead>
       <tr>
@@ -356,7 +356,7 @@
         <td>asi, calientetools (BodySlide), ini, skse, skyproc patchers, tools (BodySlide, FNIS), dyndolod</td>
       </tr>
     </tbody>
-  </table>All these directories (either in the Global or Extra and Bonus Game directories) constitute the <b>standard game directories</b> for this game. If <a href="Wrye%20Bash%20Advanced%20Readme.html#bainHasExtraDirectories">Has Extra Directories</a> is not on for the package, any other top level directory in the (sub)package will be skipped (and their content listed in Skipped tab). There are also some directories and files that will be always skipped (for all the gory details see <a href="Wrye%20Bash%20Advanced%20Readme.html#bain-skipped">Skipped Files</a>).
+  </table>All these directories (either in the Global or Extra and Bonus Game directories) constitute the <strong>standard game directories</strong> for this game. If <a href="Wrye%20Bash%20Advanced%20Readme.html#bainHasExtraDirectories">Has Extra Directories</a> is not on for the package, any other top level directory in the (sub)package will be skipped (and their content listed in Skipped tab). There are also some directories and files that will be always skipped (for all the gory details see <a href="Wrye%20Bash%20Advanced%20Readme.html#bain-skipped">Skipped Files</a>).
   <p>There are, loosely speaking, three types of BAIN-compatible package structures:</p>
   <table>
     <thead>
@@ -372,7 +372,7 @@
       </tr>
       <tr>
         <td>Complex</td>
-        <td>Installer has top-level subdirectories that each have a simple structure (as defined above). The top level subdirectories (known as subpackages) <b>must NOT have the same name as any of the standard game directories for this game</b> (like docs, or meshes). Otherwise BAIN thinks this is a simple package and will skip subpackages.<br>
+        <td>Installer has top-level subdirectories that each have a simple structure (as defined above). The top level subdirectories (known as subpackages) <strong>must NOT have the same name as any of the standard game directories for this game</strong> (like docs, or meshes). Otherwise BAIN thinks this is a simple package and will skip subpackages.<br>
         Each top-level subdirectory will be treated as a sub-package, and can be independently activated or deactivated as desired.</td>
       </tr>
       <tr>
@@ -394,7 +394,7 @@
     <li>Ensure that the BCF is installed in the correct location, <code>[Game] Mods\Bash Installers\Bain Converters</code>. Also ensure that the archive(s) it converts is/are in <code>[Game] Mods\Bash Installers</code>.</li>
     <li>From the BAIN installers list, select the archive(s) to be converted (i.e., the <q>source</q> packages) and right click on the selected file(s) to bring up the context menu, and select <a href="Wrye%20Bash%20Advanced%20Readme.html#bainConversion">Conversions</a> to open the sub-menu.
     </li>
-    <li>Click on <i>Apply</i> to open a second sub-menu and select the BCF from it. There may be more than one BCF listed if multiple installed BCFs can convert the selected package(s). An asterisk ('*') is added to the end of a BCF's name for every archive it converts that isn't selected.</li>
+    <li>Click on <em>Apply</em> to open a second sub-menu and select the BCF from it. There may be more than one BCF listed if multiple installed BCFs can convert the selected package(s). An asterisk ('*') is added to the end of a BCF's name for every archive it converts that isn't selected.</li>
     <li>Optionally choose a name for the converted archive(s).</li>
     <li>Once Wrye Bash has finished the conversion, the converted archive(s) will appear in the BAIN package list ready for install. You can now delete the original archive(s).</li>
   </ol>
@@ -432,9 +432,9 @@
   <p>The order of sub-packages within a package follow the same rules as packages. Checked sub-packages later (lower) in the sub-package list will overwrite conflicting content from sub-packages earlier (higher in the list) than them.</p>
   <p>Package conflicts are detailed in the <q>Conflicts</q> tab to the right of the package list when you select a package. This tab tells you which packages have which files that conflict with files in your currently-selected package. It gives this information for packages in the Install Order both earlier and later than the selected package in the package list.</p>
   <p>BAIN allows you to easily adjust the conflict status of packages by moving their order around. This can be done by dragging and dropping packages within the list, or by right-clicking packages and selecting the <a href="#bainMoveTo">Move To...</a> option. You can also select multiple packages and move them, in which case they will be moved as a group, retaining their order relative to one another in their new location. A third option is to select the package(s) and use Ctrl-Up or Ctrl-Down to move them up or down respectively.</p>
-  <h3 id="bain-symbols">What Symbols &amp; Colours Mean</h3>
+  <h3 id="bain-symbols">What Symbols & Colours Mean</h3>
   <p>BAIN uses the colours of packages in the package list and the state of their checkboxes to convey information about their status to the user. A checkbox state may be combined with any checkbox or text colour, and the possible states and colours are described in the tables below.</p>
-  <p><b>Note:</b> Installed packages are marked with a plus, eg. <img alt="+" height="16" src="../bash/images/checkbox_green_inc.png" width="16">. Corrupt or incomplete packages are marked with a cross, eg. <img alt="a cross" height="16" src="../bash/images/checkbox_red_x.png" width="16">. Packages that begin and end with <q>==</q>, eg. <q>==Last==</q>, are marker packages. They don't represent an archive or folder and so contain no files, but may be used to organise the package list.</p>
+  <p><strong>Note:</strong> Installed packages are marked with a plus, eg. <img alt="+" height="16" src="../bash/images/checkbox_green_inc.png" width="16">. Corrupt or incomplete packages are marked with a cross, eg. <img alt="a cross" height="16" src="../bash/images/checkbox_red_x.png" width="16">. Packages that begin and end with <q>==</q>, eg. <q>==Last==</q>, are marker packages. They don't represent an archive or folder and so contain no files, but may be used to organise the package list.</p>
   <table>
     <thead>
       <tr>
@@ -512,13 +512,13 @@
       <tr>
         <td class="c11">Yellow Background</td>
         <td>
-          The package has "underrides" i.e. some of its installed files <i>should</i> be overridden by higher order packages. This may happen after reordering mods that have already been installed. It can be repaired by running <a href="#bainAnneal">Anneal</a> or <a href="#bainAnnealAll">Anneal All</a>.
+          The package has "underrides" i.e. some of its installed files <em>should</em> be overridden by higher order packages. This may happen after reordering mods that have already been installed. It can be repaired by running <a href="#bainAnneal">Anneal</a> or <a href="#bainAnnealAll">Anneal All</a>.
         </td>
       </tr>
       <tr>
         <td class="c12">Grey Background</td>
         <td>
-          Some files present in the package will <i class="c13">not</i> be installed. This can be due to having a complex structure only partially handled by BAIN, or having file types that BAIN skips. This can sometimes be fixed by telling BAIN that the package <a href="#bainHasExtraDirectories">Has Extra Directories</a> by ticking that option in the right-click menu.
+          Some files present in the package will <em class="c13">not</em> be installed. This can be due to having a complex structure only partially handled by BAIN, or having file types that BAIN skips. This can sometimes be fixed by telling BAIN that the package <a href="#bainHasExtraDirectories">Has Extra Directories</a> by ticking that option in the right-click menu.
         </td>
       </tr>
     </tbody>
@@ -578,11 +578,11 @@
       </tr>
       <tr>
         <td>Skip OBSE Plugins</td>
-        <td><i>Oblivion only.</i> If this is checked, files in the Data\OBSE\Plugins folder will not be installed.</td>
+        <td><em>Oblivion only.</em> If this is checked, files in the Data\OBSE\Plugins folder will not be installed.</td>
       </tr>
       <tr>
         <td>Skip SKSE/Script Dragon Plugins</td>
-        <td><i>Skyrim only.</i> If this is checked, files to go in the Data\SKSE\Plugins or Data\asi folder will not be installed.</td>
+        <td><em>Skyrim only.</em> If this is checked, files to go in the Data\SKSE\Plugins or Data\asi folder will not be installed.</td>
       </tr>
     </tbody>
   </table>
@@ -607,7 +607,7 @@
       </tr>
       <tr>
         <td colspan="2">Delete</td>
-        <td>Deletes the selected package(s). Deleted packages are <b>not</b> sent to the Recycling Bin, they are permanently deleted.</td>
+        <td>Deletes the selected package(s). Deleted packages are <strong>not</strong> sent to the Recycling Bin, they are permanently deleted.</td>
       </tr>
       <tr>
         <td colspan="2">Open At...</td>
@@ -680,13 +680,13 @@
     </figcaption>
   </figure>
   <h3 id="load-overview">Overview</h3>
-  <p>Wrye Bash displays your installed plugins in its <q>Mods</q> tab. Your load order of active installed plugins, which Wrye Bash marks with a ticked checkbox, is important as it decides what plugin 'wins' any conflict between plugins, with later loading plugins overriding those that change the same thing. A mod loading later in the list will have a greater number in the Load Order column, and will "win" if there's a conflict with a mod loading earlier (which will have a lower number). <b>Load order is not the same thing as BAIN install order!</b> Install order determines which package's files overwrite other packages files when they conflict.</p>
-  <p>Although in general "Load Order" stands for the load order of the <i>active</i> plugins, all installed plugins have a load order assigned to them. In Oblivion this is based on the modification time of the plugin, in Skyrim based to an agreed upon text-file based standard, while Fallout 4 finally dumps all installed plugins in its plugins.txt, marking active ones with an asterisk. Bash needs plugins load order even for inactive plugins to correctly merge inactive mods in the bashed patch, for instance.</p>
+  <p>Wrye Bash displays your installed plugins in its <q>Mods</q> tab. Your load order of active installed plugins, which Wrye Bash marks with a ticked checkbox, is important as it decides what plugin 'wins' any conflict between plugins, with later loading plugins overriding those that change the same thing. A mod loading later in the list will have a greater number in the Load Order column, and will "win" if there's a conflict with a mod loading earlier (which will have a lower number). <strong>Load order is not the same thing as BAIN install order!</strong> Install order determines which package's files overwrite other packages files when they conflict.</p>
+  <p>Although in general "Load Order" stands for the load order of the <em>active</em> plugins, all installed plugins have a load order assigned to them. In Oblivion this is based on the modification time of the plugin, in Skyrim based to an agreed upon text-file based standard, while Fallout 4 finally dumps all installed plugins in its plugins.txt, marking active ones with an asterisk. Bash needs plugins load order even for inactive plugins to correctly merge inactive mods in the bashed patch, for instance.</p>
   <p>Plugins may be activated by clicking their checkbox so that it is ticked, or by selecting a plugin or group of plugins and pressing the space bar on your keyboard. Plugins may be deactivated by again clicking their checkbox or pressing the spacebar. If a group of selected plugins contains a mix of active and inactive plugins, pressing the space bar once will activate them all, thereafter it will function as normal.</p>
   <p>Some plugins are explicitly dependent on other plugins - they have these plugins as <q>masters</q>. When a plugin is activated, its masters are also activated. Conversely, when a plugin upon which other plugins depend is deactivated, those plugins are also deactivated.</p>
   <p>When setting the load order, make sure that Wrye Bash is displaying your plugins sorted by Load Order. Do so by clicking on the <q>Load Order</q> column header near the top of the tab. You can also display the plugins sorted by other attributes by clicking on any of the other column headers. Clicking twice will reverse the display order for any column but Load Order. The load order of plugins is given in hexadecimal digits, from 00 to FE, which is 0 to 254 in decimal. (This number also forms the first two digits of a record's Form ID.)</p>
   <p>Note that you can only have a maximum of 255 plugins active at any one time, including your game's master file (eg. Oblivion.esm, Skyrim.esm). Wrye Bash displays a plugin count in its status bar, to the right hand side, in the format <code>Mods: [active]/[installed]</code>.</p>
-  <p>With the advent of <b>esl files</b> the load order system was modified - exactly how it is still unclear. Bash makes two assumptions when calculating load order of esl files:</p>
+  <p>With the advent of <strong>esl files</strong> the load order system was modified - exactly how it is still unclear. Bash makes two assumptions when calculating load order of esl files:</p>
   <ol>
     <li>esls load among esms in the order of the plugins txt.</li>
     <li>only extension matters - Bash does not look at the esl flag. Name your esls esls.</li>
@@ -699,8 +699,8 @@
     <li>Alphabetical sorting by selecting a group of plugins and choosing File-&gt;Sort from the right-click menu.</li>
     <li>Moving plugins up or down the load order by selecting them and using Ctrl-Up or Ctrl-Down respectively. This also works with groups of plugins and preserves the group's internal order.</li>
     <li>Dragging and dropping plugins will also change the load order if the plugins are being sorted by Load Order.</li>
-    <li><i>Oblivion only.</i> Selecting a group of plugins and choosing File-&gt;Redate from the right-click menu. This will move the first plugin to the specified date/time and position the others at one minute intervals after it.</li>
-    <li><i>Oblivion only.</i> Editing plugin modification dates in the right-hand details panel.</li>
+    <li><em>Oblivion only.</em> Selecting a group of plugins and choosing File-&gt;Redate from the right-click menu. This will move the first plugin to the specified date/time and position the others at one minute intervals after it.</li>
+    <li><em>Oblivion only.</em> Editing plugin modification dates in the right-hand details panel.</li>
   </ul>
   <p>When running Wrye Bash, you can also lock your load order in place to prevent unintended changes to it by selecting the <a href="#modsLockLoadOrder">Lock Load Order</a> option in the column header right-click menu. Note that this will prevent other utilities from changing the load order, so uncheck this option if you use such a utility to set your load order. If you use BOSS to manage your load order and you also use Lock Load Order, ensure <a href="#launchersBOSSDisableLockLoadOrder">BOSS Disable Lock Load Order</a> is also enabled to allow BOSS to function correctly.</p>
   <p>Note that for Skyrim Wrye Bash will automatically undo any changes to load order done made by the Skyrim launcher or any utility that does not follow the textfile-based load order standard in order to maintain a fully coherent load order. This effectively means that unintended changes are prevented.</p>
@@ -712,9 +712,9 @@
   </figure>
   <p>The <q>Launch Using GUI</q> toggles the use of the command line interface for BOSS with the BOSS GUI. Giving quick and easy access to the additional features the GUI provides such as the <q>Edit User Rules</q> option.</p>
   <h3 id="load-undo">Undo and redo Load Order changes</h3>
-  <p>Bash features a sophisticated undo/redo load order feature, comprising both load order changes <i>of active <b>or</b> inactive plugins</i> and activating/de-activating plugins. Whether you activate a plugin, drag and drop it in another position, deactivate a plugin (having its children deactivated too) etc, you can always hit <code>Ctrl+Z</code> <i>while the list of mods has focus</i> to undo the operation or <code>Ctrl+Y</code> to redo it. Bash keeps the load orders (meaning total load order of <i>all</i> installed plugins and active state of the plugins) in its internal structures and will persist those on disc on shutting down, in <code>My Games\&lt;Game&gt;\BashLoadOrders.dat</code>, so you can undo/redo on restarting Bash.</p>
+  <p>Bash features a sophisticated undo/redo load order feature, comprising both load order changes <em>of active <strong>or</strong> inactive plugins</em> and activating/de-activating plugins. Whether you activate a plugin, drag and drop it in another position, deactivate a plugin (having its children deactivated too) etc, you can always hit <code>Ctrl+Z</code> <em>while the list of mods has focus</em> to undo the operation or <code>Ctrl+Y</code> to redo it. Bash keeps the load orders (meaning total load order of <em>all</em> installed plugins and active state of the plugins) in its internal structures and will persist those on disc on shutting down, in <code>My Games\&lt;Game&gt;\BashLoadOrders.dat</code>, so you can undo/redo on restarting Bash.</p>
   <p>The undo/redo feature will try to preserve as many load orders as possible - so unlike undo/redo in other applications if you have an initial load order state A then change it to B, then hit undo (so you are back on state A), then change it to C Bash will keep in its internal structures the load order states A C B while most other applications would end up with A C. Undo/redo load order state is a relatively new feature (available in 307 beta) so it may have rough edges.</p>
-  <h3 id="load-symbols">What Symbols &amp; Colours Mean</h3>
+  <h3 id="load-symbols">What Symbols & Colours Mean</h3>
   <p>Like in the Installers tab, Wrye Bash uses colour-coding and other formatting effects to convey information about the state of plugins. The different types of formatting used and their meanings are explained here.</p>
   <table>
     <thead>
@@ -794,7 +794,7 @@
       </tr>
       <tr>
         <td class="c17">Pink background</td>
-        <td><i>Oblivion only.</i> A plugin that shares its modification date with another plugin. Not a problem unless both plugins are active.</td>
+        <td><em>Oblivion only.</em> A plugin that shares its modification date with another plugin. Not a problem unless both plugins are active.</td>
       </tr>
       <tr>
         <td class="c18">Red background</td>
@@ -899,7 +899,7 @@
       </tr>
       <tr>
         <td id="modsRebuildPatchCBash">Rebuild Patch (CBash *Beta*)...</td>
-        <td><i>Oblivion only.</i> Rebuild the selected Bashed Patch using the CBash patcher.</td>
+        <td><em>Oblivion only.</em> Rebuild the selected Bashed Patch using the CBash patcher.</td>
       </tr>
     </tbody>
   </table>
@@ -920,7 +920,7 @@
   <p>A Bashed Patch is created by Wrye Bash the first time you run it, with the plugin being called <q class="c23">Bashed Patch, 0.esp</q>. It is configured using the plugin context menu commands <a href="#modsRebuildPatch">Rebuild Patch...</a> or <a href="#modsRebuildPatchCBash">Rebuild Patch (CBash *Beta*)...</a>. <strong>You should rebuild your Bashed Patch every time you change your load order, before playing the game.</strong> The Bashed Patch should be last in your load order, unless you have plugins that explicitly state that they must load last.</p>
   <p>The configuration dialog consists of a list of major sections to the left, and the contents of the selected section to the right, with the build and save buttons at the bottom. The sections and their items have checkboxes: checking a section will include all its checked items in the Bashed Patch. Unchecked sections and items will not be included. Some sections don't have any items, and so just need the section checkbox checked.</p>
   <p>A short description of each section and some items is displayed near the bottom of the window if the section/item is hovered over. Bolded items are new since the last time the Bashed Patch was built. Wrye Bash will try to auto-configure most sections, but some will still need tweaking.</p>
-  <p><b>Note:</b> There are currently two methods of building a Bashed Patch. One uses Python, and the other uses CBash, which is a software library written to speed up the reading of plugins. Both methods offer the same options. The CBash method is faster and allows more types of plugin to be merged, but contains some bugs as CBash is still a work in progress. CBash will become the default in the near future, once its bugs have been fixed. For now, it is probably safer to use the Python method.</p>
+  <p><strong>Note:</strong> There are currently two methods of building a Bashed Patch. One uses Python, and the other uses CBash, which is a software library written to speed up the reading of plugins. Both methods offer the same options. The CBash method is faster and allows more types of plugin to be merged, but contains some bugs as CBash is still a work in progress. CBash will become the default in the near future, once its bugs have been fixed. For now, it is probably safer to use the Python method.</p>
   <table>
     <thead>
       <tr>
@@ -974,7 +974,7 @@
   <p>Plugins that contain only certain types of data records can be merged into the Bashed Patch. This then allows these plugins to be deactivated, freeing up space in your load order.</p>
   <p>If you're merging plugins in, you do not need the plugins active to do so. In fact, trying to merge them in Bash will 1 - ask you to deactivate them before hand, and 2 - deactivate them even if you refused that prompt after the Bashed Patch has been created. So if you're merging plugins, leave them inactive before building, then select to merge them in the Bashed Patch build dialog. Don't worry, all the algorithms for the rest of the patchers still work as you'd expect on plugins merged this way.</p>
   <p>You should check the checkboxes of all the plugins listed in the <q>Merge Patches</q> section, and ensure the section is checked too.</p>
-  <p><b>Do not remove merged mods from your Data folder.</b> They will need to be present when you next rebuild your Bashed Patch.</p>
+  <p><strong>Do not remove merged mods from your Data folder.</strong> They will need to be present when you next rebuild your Bashed Patch.</p>
   <h3 id="patch-importing">Importing From Plugins</h3>
   <p>Plugins can be tagged with Bash Tags that tell Wrye Bash that they contain certain changes that should be preserved even if another mod also changes the same things. This is usually because the changes are important to the functionality of the mod. Wrye Bash then allows you to choose which plugins should have which types of changes preserved, by selecting from the various Import sections when building a Bashed Patch.</p>
   <p>If a section's description in the table below begins with <q>Preserves</q> and two or more mods in its list change the same thing, then the later-loading plugin will override the other plugin(s). Otherwise changes are merged.</p>
@@ -989,92 +989,92 @@
     <tbody>
       <tr>
         <td>Import Actors</td>
-        <td><i>Oblivion only.</i> Preserves changes made to actors (ie. NPCs and creatures) by the mods selected.</td>
+        <td><em>Oblivion only.</em> Preserves changes made to actors (ie. NPCs and creatures) by the mods selected.</td>
         <td>Always, unless you are told otherwise by a mod's readme.</td>
       </tr>
       <tr>
         <td id="patchImportActorsAIPackages">Import Actors: AIPackages</td>
-        <td><i>Oblivion only.</i> Merges the changes made to actor AI packages by all the mods selected.</td>
+        <td><em>Oblivion only.</em> Merges the changes made to actor AI packages by all the mods selected.</td>
         <td>Always, unless you are told otherwise by a mod's readme.</td>
       </tr>
       <tr>
         <td>Import Actors: Animations</td>
-        <td><i>Oblivion only.</i> Merges the changes made to actor animations by all the mods selected.</td>
+        <td><em>Oblivion only.</em> Merges the changes made to actor animations by all the mods selected.</td>
         <td>Always, unless you are told otherwise by a mod's readme.</td>
       </tr>
       <tr>
         <td>Import Actors: Death Items</td>
-        <td><i>Oblivion only.</i> Preserves the changes made to the items added to an actor when it dies by the mods selected.</td>
+        <td><em>Oblivion only.</em> Preserves the changes made to the items added to an actor when it dies by the mods selected.</td>
         <td>Always, unless you are told otherwise by a mod's readme.</td>
       </tr>
       <tr>
         <td id="patchImportActorsSpells">Import Actors: Spells</td>
-        <td><i>Oblivion only.</i> Preserves the changes made to the spells actors have by the mods selected.</td>
+        <td><em>Oblivion only.</em> Preserves the changes made to the spells actors have by the mods selected.</td>
         <td>Always, unless you are told otherwise by a mod's readme.</td>
       </tr>
       <tr>
         <td id="patchImportCells">Import Cells</td>
-        <td><i>Oblivion only.</i> Preserves the changes made by the mods selected to cell settings such as lighting, climate, music, name, owner, water and more.</td>
+        <td><em>Oblivion only.</em> Preserves the changes made by the mods selected to cell settings such as lighting, climate, music, name, owner, water and more.</td>
         <td>Always, unless you are told otherwise by a mod's readme.</td>
       </tr>
       <tr>
         <td>Import Factions</td>
-        <td><i>Oblivion only.</i> Preserves the changes made to the factions an actor belongs to by the mods selected.</td>
+        <td><em>Oblivion only.</em> Preserves the changes made to the factions an actor belongs to by the mods selected.</td>
         <td>Always, unless you are told otherwise by a mod's readme.</td>
       </tr>
       <tr>
         <td id="patchImportGraphics">Import Graphics</td>
-        <td><i>Oblivion only.</i> Preserves the changes made by the mods selected to various textures and models throughout the game.</td>
+        <td><em>Oblivion only.</em> Preserves the changes made by the mods selected to various textures and models throughout the game.</td>
         <td>The decision is entirely based on user preference. Choose whichever mods' graphics you prefer.</td>
       </tr>
       <tr>
         <td id="patchImportInventory">Import Inventory</td>
-        <td><i>Oblivion only.</i> Merges the changes made to the items in an actor's inventory by all the mods selected.</td>
+        <td><em>Oblivion only.</em> Merges the changes made to the items in an actor's inventory by all the mods selected.</td>
         <td>Always, unless you are told otherwise by a mod's readme.</td>
       </tr>
       <tr>
         <td id="patchImportNPCFaces">Import NPC Faces</td>
-        <td><i>Oblivion only.</i> Preserves the changes made to NPC faces by the mods selected.</td>
+        <td><em>Oblivion only.</em> Preserves the changes made to NPC faces by the mods selected.</td>
         <td>The decision is entirely based on user preference. Choose whichever mods' NPC faces you prefer.</td>
       </tr>
       <tr>
         <td id="patchImportNames">Import Names</td>
-        <td><i>Oblivion only.</i> Preserves the changes made to various names throughout the game by the mods selected.</td>
+        <td><em>Oblivion only.</em> Preserves the changes made to various names throughout the game by the mods selected.</td>
         <td>The decision is entirely based on user preference. Choose whichever mods' names you prefer.</td>
       </tr>
       <tr>
         <td id="patchImportRelations">Import Relations</td>
-        <td><i>Oblivion only.</i> Preserves the changes made by the mods selected to how factions interact.</td>
+        <td><em>Oblivion only.</em> Preserves the changes made by the mods selected to how factions interact.</td>
         <td>Always, unless you are told otherwise by a mod's readme.</td>
       </tr>
       <tr>
         <td>Import Roads</td>
-        <td><i>Oblivion only.</i> Preserves the changes made by the mods selected to the landscape's roads.</td>
+        <td><em>Oblivion only.</em> Preserves the changes made by the mods selected to the landscape's roads.</td>
         <td>Always, unless you are told otherwise by a mod's readme.</td>
       </tr>
       <tr>
         <td>Import Script Contents</td>
-        <td><i>Oblivion only.</i> Copies scripts from the selected mods into the Bashed Patch.</td>
+        <td><em>Oblivion only.</em> Copies scripts from the selected mods into the Bashed Patch.</td>
         <td>Never.</td>
       </tr>
       <tr>
         <td>Import Scripts</td>
-        <td><i>Oblivion only.</i> Preserves the changes made by the mods selected to the scripts attached to things in the game.</td>
+        <td><em>Oblivion only.</em> Preserves the changes made by the mods selected to the scripts attached to things in the game.</td>
         <td>Always, unless you are told otherwise by a mod's readme.</td>
       </tr>
       <tr>
         <td id="patchImportSounds">Import Sounds</td>
-        <td><i>Oblivion only.</i> Preserves the changes made by the mods selected to various sounds in the game.</td>
+        <td><em>Oblivion only.</em> Preserves the changes made by the mods selected to various sounds in the game.</td>
         <td>The decision is entirely based on user preference. Choose whichever mods' sounds you prefer.</td>
       </tr>
       <tr>
         <td id="patchImportSpellStats">Import Spell Stats</td>
-        <td><i>Oblivion only.</i> Preserves the changes made by the mods selected to items in order to fix bugs or rebalance them.</td>
+        <td><em>Oblivion only.</em> Preserves the changes made by the mods selected to items in order to fix bugs or rebalance them.</td>
         <td>Always, unless you are told otherwise by a mod's readme. There is an element of user preference, for instance if you are using several mods that overhaul spell stats. In such cases, choose whichever mods' stats you prefer.</td>
       </tr>
       <tr>
         <td>Import Stats</td>
-        <td><i>Oblivion only.</i> Preserves the changes made by the mods selected to spells in order to fix bugs or rebalance them.</td>
+        <td><em>Oblivion only.</em> Preserves the changes made by the mods selected to spells in order to fix bugs or rebalance them.</td>
         <td>Always, unless you are told otherwise by a mod's readme. There is an element of user preference, for instance if you are using several mods that overhaul item stats. In such cases, choose whichever mods' stats you prefer.</td>
       </tr>
     </tbody>
@@ -1092,28 +1092,28 @@
     <tbody>
       <tr>
         <td id="patchTweakActors">Tweak Actors</td>
-        <td><i>Oblivion only.</i> Allows you to change a number of the game's settings relating to actors (ie. NPCs).</td>
+        <td><em>Oblivion only.</em> Allows you to change a number of the game's settings relating to actors (ie. NPCs).</td>
         <td>The decision is entirely based on user preference.</td>
       </tr>
       <tr>
         <td id="patchTweakAssorted">Tweak Assorted</td>
-        <td><i>Oblivion only.</i> Contains a set of miscellaneous tweaks to the game.</td>
-        <td>The <b>Bow Reach Fix</b> and <b>Nvidia Fog Fix</b> are recommended for all users, as they fix bugs that may be uncovered by mods. The <b>DarNified Books</b> option is recommended for users of DarNified UI. Other than those, the decision is entirely based on user preference.</td>
+        <td><em>Oblivion only.</em> Contains a set of miscellaneous tweaks to the game.</td>
+        <td>The <strong>Bow Reach Fix</strong> and <strong>Nvidia Fog Fix</strong> are recommended for all users, as they fix bugs that may be uncovered by mods. The <strong>DarNified Books</strong> option is recommended for users of DarNified UI. Other than those, the decision is entirely based on user preference.</td>
       </tr>
       <tr>
         <td id="patchTweakClothes">Tweak Clothes</td>
-        <td><i>Oblivion only.</i> Contains a set of tweaks that changes settings relating to the game's clothing.</td>
+        <td><em>Oblivion only.</em> Contains a set of tweaks that changes settings relating to the game's clothing.</td>
         <td>The decision is entirely based on user preference.</td>
       </tr>
       <tr>
         <td id="patchTweakNames">Tweak Names</td>
-        <td><i>Oblivion only.</i> Contains a set of tweaks that changes the names of things in the game. Most change the names to change how they are sorted in your inventory.</td>
+        <td><em>Oblivion only.</em> Contains a set of tweaks that changes the names of things in the game. Most change the names to change how they are sorted in your inventory.</td>
         <td>The decision is entirely based on user preference.</td>
       </tr>
       <tr>
         <td id="patchTweakSettings">Tweak Settings</td>
-        <td><i>Oblivion only.</i> Contains a set of tweaks that changes various global and non-global game settings.</td>
-        <td>The <b>UOP Vampire Aging and Face Fix.esp</b> tweak is recommended for all users. Otherwise, the decision is entirely based on user preference.</td>
+        <td><em>Oblivion only.</em> Contains a set of tweaks that changes various global and non-global game settings.</td>
+        <td>The <strong>UOP Vampire Aging and Face Fix.esp</strong> tweak is recommended for all users. Otherwise, the decision is entirely based on user preference.</td>
       </tr>
     </tbody>
   </table>
@@ -1135,22 +1135,22 @@
       </tr>
       <tr>
         <td id="patchReplaceFormIDs">Replace Form IDs</td>
-        <td><i>Oblivion only.</i> Replaces a set of formIDs with another set of formIDs defined by a .csv file.</td>
+        <td><em>Oblivion only.</em> Replaces a set of formIDs with another set of formIDs defined by a .csv file.</td>
         <td>If you use a mod that tells you to use it.</td>
       </tr>
       <tr>
         <td id="patchCoblCatalogs">Cobl Catalogs</td>
-        <td><i>Oblivion only.</i> Updates Cobl's ingredient and effect catalogs to take into account those added by mods you use.</td>
+        <td><em>Oblivion only.</em> Updates Cobl's ingredient and effect catalogs to take into account those added by mods you use.</td>
         <td>If you use Cobl (a.k.a. Common Oblivion).</td>
       </tr>
       <tr>
         <td>Cobl Exhaustion</td>
-        <td><i>Oblivion only.</i> Updates greater powers added by the mods that are listed in the selected .csv file options so that they're compatible with Cobl's Exhaustion feature.</td>
+        <td><em>Oblivion only.</em> Updates greater powers added by the mods that are listed in the selected .csv file options so that they're compatible with Cobl's Exhaustion feature.</td>
         <td>If you use Cobl's Exhaustion feature.</td>
       </tr>
       <tr>
         <td>Contents Checker</td>
-        <td><i>Oblivion only.</i> Checks that leveled lists and inventories contain the correct types of entries, and removes any incorrect entries.</td>
+        <td><em>Oblivion only.</em> Checks that leveled lists and inventories contain the correct types of entries, and removes any incorrect entries.</td>
         <td>Always.</td>
       </tr>
       <tr>
@@ -1160,22 +1160,22 @@
       </tr>
       <tr>
         <td id="patchMorphFactions">Morph Factions</td>
-        <td><i>Oblivion only.</i> Updates factions so that they are more likely to work with Wrye Morph.</td>
+        <td><em>Oblivion only.</em> Updates factions so that they are more likely to work with Wrye Morph.</td>
         <td>If you use Cobl and Wrye Morph.</td>
       </tr>
       <tr>
         <td id="patchPowerExhaustion">Power Exhaustion</td>
-        <td><i>Oblivion only.</i> This is an option provided for backwards-compatibility only and was deprecated then finally removed in Wrye Bash v296. Users of Power Exhaustion should upgrade to Cobl and use its Exhaustion feature instead.</td>
+        <td><em>Oblivion only.</em> This is an option provided for backwards-compatibility only and was deprecated then finally removed in Wrye Bash v296. Users of Power Exhaustion should upgrade to Cobl and use its Exhaustion feature instead.</td>
         <td>Never.</td>
       </tr>
       <tr>
         <td id="patchRaceRecords">Race Records</td>
-        <td><i>Oblivion only.</i> Some mods make changes to races and want those changes to be preserved even if another mod changes the same race. This ensures that those changes are kept. It also checks for and fixes various errors such as googly eyes and missing hair or eyes. It also has a section of race tweaks which the user can select as desired.</td>
+        <td><em>Oblivion only.</em> Some mods make changes to races and want those changes to be preserved even if another mod changes the same race. This ensures that those changes are kept. It also checks for and fixes various errors such as googly eyes and missing hair or eyes. It also has a section of race tweaks which the user can select as desired.</td>
         <td>Always, even if there are no mods listed on the right.</td>
       </tr>
       <tr>
         <td id="patchSEWorldTests">SEWorld Tests</td>
-        <td><i>Oblivion only.</i> Fixes quests that aren't suspended while your character is in the Shivering Isles. This doesn't apply to mod-added quests, it only restores suspension to vanilla quests where mods have removed it.</td>
+        <td><em>Oblivion only.</em> Fixes quests that aren't suspended while your character is in the Shivering Isles. This doesn't apply to mod-added quests, it only restores suspension to vanilla quests where mods have removed it.</td>
         <td>Always. If you don't have Shivering Isles, the option won't do anything, in which case it doesn't hurt to have it enabled.</td>
       </tr>
     </tbody>
@@ -1191,8 +1191,8 @@
   <p>The Ini Edits tab allows the user to quickly apply edits to Oblivion.ini, Skyrim.ini or Fallout4Custom.ini, depending on your game, and mod-added ini files, including those containing scripts used to configure mods. Edits are applied from ini tweak files, which are just a text file that contains only the lines of the ini that you wish to change. Ini tweaks are stored in the <code>Data\Ini Tweaks</code> folder, and may be installed through BAIN or placed there manually.</p>
   <p>The drop-down box allows you to select the current ini file. The <q>Browse...</q> option in the drop-down box can be used to select an ini file not listed.</p>
   <p>Selecting a tweak will display its contents in the middle column, and highlights the changes it applies to the current ini file in the right column. To apply a tweak, right click it and select <a href="#tweakApply">Apply</a>.</p>
-  <p><b>Warning:</b> Incorrect Oblivion.ini or Skyrim.ini settings can cause bugs, CTDs or other damage to your game. Advanced settings in particular tend to be machine-specific and should not be casually copied from one computer to another.</p>
-  <h3 id="ini-symbols">What Symbols &amp; Colours Mean</h3>
+  <p><strong>Warning:</strong> Incorrect Oblivion.ini or Skyrim.ini settings can cause bugs, CTDs or other damage to your game. Advanced settings in particular tend to be machine-specific and should not be casually copied from one computer to another.</p>
+  <h3 id="ini-symbols">What Symbols & Colours Mean</h3>
   <table>
     <thead>
       <tr>
@@ -1245,7 +1245,7 @@
       </tr>
     </tbody>
   </table>
-  <h3 id="ini-commands">Buttons &amp; Context Menu Commands</h3>
+  <h3 id="ini-commands">Buttons & Context Menu Commands</h3>
   <table>
     <thead>
       <tr>
@@ -1375,7 +1375,7 @@
       </tr>
     </tbody>
   </table>
-  <h3 id="launchers-game">Game &amp; Editor Launchers</h3>
+  <h3 id="launchers-game">Game & Editor Launchers</h3>
   <p>The game and editor icons displayed will depend on which supported game you have Wrye Bash installed for. Using Wrye Bash's game launcher opens the game itself, rather than the game's launcher.</p>
   <table>
     <thead>
@@ -1410,15 +1410,15 @@
     </tbody>
   </table>
   <h3 id="launchers-utils">Game-Specific Utilities</h3>
-  <p>Tes4Edit, Tes4Trans and Tes4view are just different modes of Tes4Edit.exe and will be available if Tes4Edit.exe is available. Tes4Gecko &amp; Oblivion Book Creator will be available if the windows path variable <code>JAVA_HOME</code> points to a valid java install (or the javaw.exe is present in Windows\System32) and their .jar file is present in Oblivion install directory or for OBC in the data directory (you can override those default paths in bash.ini). The BOSS launcher has some options if BOSS v2 is installed:</p>
+  <p>Tes4Edit, Tes4Trans and Tes4view are just different modes of Tes4Edit.exe and will be available if Tes4Edit.exe is available. Tes4Gecko & Oblivion Book Creator will be available if the windows path variable <code>JAVA_HOME</code> points to a valid java install (or the javaw.exe is present in Windows\System32) and their .jar file is present in Oblivion install directory or for OBC in the data directory (you can override those default paths in bash.ini). The BOSS launcher has some options if BOSS v2 is installed:</p>
   <ul>
     <li>Right-clicking the BOSS icon and selecting <q id="launchersBOSSDisableLockLoadOrder">BOSS Disable Lock Load Order</q> will cause Wrye Bash to temporarily disable Lock Load Order when BOSS is run from its application launcher in the status bar, to allow BOSS to set the load order, re-enabling it after BOSS has finished running. It has no effect when BOSS is run from outside Wrye Bash, or when Wrye Bash is running for Skyrim.</li>
     <li>Right-clicking the BOSS icon and selecting the <q>Launch BOSS GUI</q> will cause Wrye Bash to launch BOSS's GUI instead of its command line interface.</li>
-    <li>If <b>V</b> is pressed, it will disable version parsing.</li>
-    <li>If <b>R</b> is pressed, it will do a level 1 revert (to the state just prior to the last sort).</li>
-    <li>If <b>Shift-R</b> is pressed, it will do a level 2 revert (to the state just prior to the 2nd last sort).</li>
-    <li>If <b>S</b> is pressed, it will run BOSS in its silent mode, so that the BOSS Log does not automatically open once it has finished running.</li>
-    <li>If <b>C</b> is pressed, it will run BOSS with its Display File CRCs option enabled, so that plugin CRCs are displayed in the BOSS Log.</li>
+    <li>If <strong>V</strong> is pressed, it will disable version parsing.</li>
+    <li>If <strong>R</strong> is pressed, it will do a level 1 revert (to the state just prior to the last sort).</li>
+    <li>If <strong>Shift-R</strong> is pressed, it will do a level 2 revert (to the state just prior to the 2nd last sort).</li>
+    <li>If <strong>S</strong> is pressed, it will run BOSS in its silent mode, so that the BOSS Log does not automatically open once it has finished running.</li>
+    <li>If <strong>C</strong> is pressed, it will run BOSS with its Display File CRCs option enabled, so that plugin CRCs are displayed in the BOSS Log.</li>
   </ul>
   <table>
     <thead>
@@ -2117,7 +2117,7 @@
     <li>In the lower box, check the box opposite <q>Full Control</q> in the <q>Allow</q> column. Press OK to exit. If a UAC prompt appears, allow the change.</li>
     <li>In the <q>Properties</q> window, select OK to exit. You should now have Full Control permissions over your chosen folder.</li>
   </ol>
-  <h3 id="trouble-backup">Backing Up &amp; Restoring Settings</h3>
+  <h3 id="trouble-backup">Backing Up & Restoring Settings</h3>
   <p>The easiest method is to just run the <a href="Wrye%20Bash%20Advanced%20Readme.html#tools">Backup Settings</a> and/or <a href="Wrye%20Bash%20Advanced%20Readme.html#tools">Restore Settings</a> commands, which are available in the <a href="Wrye%20Bash%20Advanced%20Readme.html#tools-settings">Settings menu</a>. These commands do not backup/restore any mod files or saves, just the Wrye Bash settings/data. When run, the commands ask you for the location you wish to back up to or restore from.</p>
   <p>If you wish to manually back up your settings, the directories Wrye Bash stores files in are below.</p>
   <table>
@@ -2251,7 +2251,7 @@
   </ul>
   <h3>Past Authors</h3>
   <ul>
-    <li><b>Wrye</b>: Monkey God of Modding!</li>
+    <li><strong>Wrye</strong>: Monkey God of Modding!</li>
     <li>Ralgor: Cell support and Import Cells.</li>
     <li>Raziel23x: new tweaks etc.</li>
     <li>Haama: OBSE cofile definitions, various fixes, improvements etc</li>
@@ -2265,7 +2265,7 @@
   <h3>Additional Credits</h3>
   <ul>
     <li>
-      <b>Translators</b>
+      <strong>Translators</strong>
       <ul>
         <li>German: DWS</li>
         <li>Italian: Abot</li>
@@ -2274,7 +2274,7 @@
       </ul>
     </li>
     <li>
-      <b>Mod and Save File Gurus</b>
+      <strong>Mod and Save File Gurus</strong>
       <ul>
         <li>GhostWheel</li>
         <li>Dave Humphreys</li>
@@ -2286,13 +2286,13 @@
       </ul>
     </li>
     <li>
-      <b>Python Kings</b>
+      <strong>Python Kings</strong>
       <ul>
         <li>Guido van Rossum and many, many others.</li>
       </ul>
     </li>
     <li>
-      <b>Special Thanks</b>
+      <strong>Special Thanks</strong>
       <ul>
         <li>dev_akm: Archive Invalidation, etc.</li>
         <li>ElminsterEU: Tes4View etc. Crucial for adding/checking new record types.</li>
@@ -2302,7 +2302,7 @@
       </ul>
     </li>
     <li>
-      <b>Additional Thanks</b>
+      <strong>Additional Thanks</strong>
       <ul>
         <li>ElminsterEU: Bug catching, technical suggestions.</li>
         <li><img alt="Metallicow's Icon" class="c28" height="32" src="../bash/images/mcowavi32.png" width="32"> Metallicow: Shiny new tool launcher icons, Graphics, Mooo, & the WizBAIN Editor.</li>
@@ -2316,7 +2316,7 @@
       </ul>
     </li>
     <li>
-      <b>Misc. Resources</b>
+      <strong>Misc. Resources</strong>
       <ul>
         <li>
           <a href="http://www.famfamfam.com/lab/icons/silk/">FamFamFam Icons</a>
@@ -2331,21 +2331,21 @@
   <p>Aka. ideas/stuff stolen from other people.</p>
   <ul>
     <li>
-      <b>Names Files</b>
+      <strong>Names Files</strong>
       <ul>
         <li>Flak: <a href="http://planetelderscrolls.gamespy.com/View.php?view=OblivionMods.Detail&amp;id=123">Flak's Complete Names Project</a>
         </li>
       </ul>
     </li>
     <li>
-      <b>Bash Features</b>
+      <strong>Bash Features</strong>
       <ul>
         <li>Kyorisu: Tes IV Save Manager (Save Profiles)</li>
         <li>No Light Flicker: Crypton's No Light Flicker mods</li>
       </ul>
     </li>
     <li>
-      <b>GMST Tweaks</b>
+      <strong>GMST Tweaks</strong>
       <ul>
         <li>Aelius: Arrow Litter, Essential NPC Unconsciousness</li>
         <li>David Moyer: PC Death Camera</li>
@@ -2482,7 +2482,7 @@
     <li>What Wrye Bash's keyboard shortcuts are.</li>
     <li>How to translate Wrye Bash into other languages.</li>
   </ul>
-  <p>The Advanced Readme is a more technical document aimed more towards mod authors and advanced users of Wrye Bash than the average user. If you find yourself wanting to know more, or not understanding why something in Wrye Bash behaves the way it does, then the answer you seek may be found in the <a href="Wrye%20Bash%20Advanced%20Readme.html">Advanced Readme</a>. 
-  <script src="assets/bashslide.js" type="text/javascript"></script></p>
+  <p>The Advanced Readme is a more technical document aimed more towards mod authors and advanced users of Wrye Bash than the average user. If you find yourself wanting to know more, or not understanding why something in Wrye Bash behaves the way it does, then the answer you seek may be found in the <a href="Wrye%20Bash%20Advanced%20Readme.html">Advanced Readme</a>.</p>
+  <script src="assets/bashslide.js" type="text/javascript"></script>
 </body>
 </html>

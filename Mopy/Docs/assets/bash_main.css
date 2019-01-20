@@ -1,121 +1,64 @@
-h1, h2 {
-  background: yellowgreen;
-  margin-left: -8px;
-  margin-right: -8px;
-  padding: 0.6em; }
+h1, h2 { background: yellowgreen; margin-left: -8px; margin-right: -8px; padding: 0.6em; }
 
-td, th {
-  border: 1px solid black;
-  padding: 5px;
-  vertical-align: top; }
+td, th { border: 1px solid black; padding: 5px; vertical-align: top; }
 
-.bbimgl, .bbimgr {
-  max-width: 100%;
-  max-height: 100%;
-  height: auto;
-  width: auto; }
+.bbimgl, .bbimgr { max-width: 100%; max-height: 100%; height: auto; width: auto; }
 
-html {
-  font-family: "Arial", "sans-serif";
-  background: #ffffcc;
-  font-size: 0.9em; }
+html { font-family: "Arial", "sans-serif"; background: #ffffcc; font-size: 0.9em; }
 
-h1 {
-  margin-top: -8px;
-  padding-left: 1.5em;
-  margin-bottom: 0; }
+h1 { margin-top: -8px; padding-left: 1.5em; margin-bottom: 0; }
 
-h2 {
-  margin-top: 5em;
-  padding-left: 2em; }
+h2 { margin-top: 5em; padding-left: 2em; }
 
-h3 {
-  font-size: 1.1em;
-  margin-top: 3em; }
+h3 { font-size: 1.1em; margin-top: 3em; }
 
-a:link {
-  text-decoration: none; }
+a:link { text-decoration: none; }
 
-a:hover {
-  text-decoration: underline; }
+a:hover { text-decoration: underline; }
 
-li {
-  margin-bottom: 10px; }
-  li ul {
-    margin-top: 0.4em; }
-  li ol {
-    margin-top: 0.4em; }
+li { margin-bottom: 10px; }
 
-table {
-  margin: 1em;
-  background: #fdfdfd;
-  border-collapse: collapse; }
+li ul { margin-top: 0.4em; }
 
-thead {
-  font-weight: bold;
-  background: #88aaff; }
+li ol { margin-top: 0.4em; }
 
-img {
-  border: 0; }
+td > code.box { margin: 0; }
 
-q {
-  font-style: italic; }
+table { margin: 1em; background: #fdfdfd; border-collapse: collapse; }
 
-code {
-  display: inline-block;
-  padding: 2px 5px;
-  background: #dddddd; }
-  code.box {
-    line-height: 20px;
-    white-space: pre;
-    margin: 1em 0 0 3em;
-    display: table;
-    padding: 5px 10px; }
+thead { font-weight: bold; background: #88aaff; }
 
-blockquote {
-  background: lavender;
-  display: table;
-  padding: 5px 30px 5px 10px; }
+img { border: 0; }
 
-figure {
-  margin: 0; }
+q { font-style: italic; }
 
-figcaption {
-  font-style: italic;
-  margin-bottom: 2em; }
+code { display: inline-block; padding: 2px 5px; background: #dddddd; }
 
-abbr {
-  cursor: help; }
+code.box { line-height: 20px; white-space: pre; margin: 1em 0 0 3em; display: table; padding: 5px 10px; }
 
-ol ol {
-  list-style: lower-alpha; }
-  ol ol li {
-    margin-bottom: 0.2em; }
+blockquote { background: lavender; display: table; padding: 5px 30px 5px 10px; }
 
-a[href^="http"]:after {
-  padding-left: 2px;
-  content: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAVklEQVR4Xn3PgQkAMQhDUXfqTu7kTtkpd5RA8AInfArtQ2iRXFWT2QedAfttj2FsPIOE1eCOlEuoWWjgzYaB/IkeGOrxXhqB+uA9Bfcm0lAZuh+YIeAD+cAqSz4kCMUAAAAASUVORK5CYII="); }
+figure { margin: 0; }
 
-.bbimgl {
-  float: left;
-  margin-right: 1em;
-  margin-bottom: 1em; }
+figcaption { font-style: italic; margin-bottom: 2em; }
 
-.bbimgr {
-  float: right;
-  margin-left: 1em;
-  margin-bottom: 1em; }
+abbr { cursor: help; }
 
-.missing {
-  background: red;
-  color: white;
-  border: 0.25em solid black; }
+ol ol { list-style: lower-alpha; }
 
-.slideshow img {
-  opacity: 0;
-  position: absolute;
-  -webkit-transition: opacity 1.5s;
-  transition: opacity 1.5s; }
-  .slideshow img:first-child {
-    opacity: 1; }
+ol ol li { margin-bottom: 0.2em; }
+
+a[href^="http"]:after { padding-left: 2px; content: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAVklEQVR4Xn3PgQkAMQhDUXfqTu7kTtkpd5RA8AInfArtQ2iRXFWT2QedAfttj2FsPIOE1eCOlEuoWWjgzYaB/IkeGOrxXhqB+uA9Bfcm0lAZuh+YIeAD+cAqSz4kCMUAAAAASUVORK5CYII="); }
+
+.bbimgl { float: left; margin-right: 1em; margin-bottom: 1em; }
+
+.bbimgr { float: right; margin-left: 1em; margin-bottom: 1em; }
+
+.indent { margin-left: 2em; }
+
+.missing { background: red; color: white; border: 0.25em solid black; }
+
+.slideshow img { opacity: 0; position: absolute; -webkit-transition: opacity 1.5s; transition: opacity 1.5s; }
+
+.slideshow img:first-child { opacity: 1; }
 /*# sourceMappingURL=bash_main.css.map */
