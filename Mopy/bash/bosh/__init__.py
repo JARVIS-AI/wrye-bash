@@ -588,7 +588,11 @@ class ModInfo(FileInfo):
         """Check if the ModInfo is a master file based on ESM flag -
         header must be set. ESM affects load order, and .esm and .esl
         files are always implicitly ESM flagged, even when not on disk."""
-        return self.header.flags1.esm or self.name.cext == u'.esl'
+        if bush.game.fsName in (u'Fallout4', u'Skyrim Special Edition'):
+            return self.header.flags1.esm or self.name.cext == u'.esl' or self.name.cext == u'.esm'
+        else:
+            return self.header.flags1.esm
+
 
     def is_esl(self):
         """Check if the ModInfo returns an ESL flagged file. ESL only affects
