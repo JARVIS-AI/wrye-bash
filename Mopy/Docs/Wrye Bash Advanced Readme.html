@@ -193,7 +193,10 @@
           <a href="#tools-settings">Settings Menu</a>
         </li>
         <li>
-          <a href="#tools-docs">Docs Browser</a>
+          <a href="#tools-colors">Color Configuration</a>
+        </li>
+        <li>
+          <a href="#tools-docs">Doc Browser</a>
         </li>
         <li>
           <a href="#tools-checker">Mod Checker</a>
@@ -576,7 +579,7 @@
   <h4>How to use the "Monitor External Installation" feature</h4>
   <ol>
     <li>Launch Wrye Bash and switch to the Installers tab.</li>
-    <li>At the top of any column (e.g. Packages), right click and select "Monitor External Installation..." from the context menu.</li>
+    <li>At the top of any column (e.g. Packages), and select "Monitor External Installation..." from the context menu.</li>
     <li>Wrye Bash will then begin to scan your data directory to snapshot all data contained within it before any changes are made.</li>
     <li>Once this has completed, you will be prompted to begin your external installation.</li>
     <li>At this point, switch to your external application and perform the installation or content creation you intend to perform. There is no time limit.</li>
@@ -596,7 +599,16 @@
     <li>When installing mods via Nexus Mod Manager, it is recommended that you start monitoring, install the mod via NMM, then before closing NMM, complete the monitoring session. Create the BAIN package, then switch back to NMM and uninstall the mod. You can then close NMM. Switch back to Wrye Bash then install the mod from Wrye Bash. This ensures the mod is cleanly installed, all conflicts are recorded / resolved in Wrye Bash, and therefore able to be cleanly uninstalled.</li>
   </ul>
   <h3 id="bain-commands">Context Menu Commands</h3>
-  <p>The tables below detail the full list of context menu commands available in the Installers tab.</p>
+  <div class="bbimgr clearf">
+    <div class="flft">
+      <figure class="slideshow" style="width:525px">
+        <img alt="Installer Header Menu" src="../bash/images/readme/installers-rclick-header-menu-1.png"> <img alt="Installer Header Menu" src="../bash/images/readme/installers-rclick-header-menu-2.png"> <img alt="Installer Header Menu" src="../bash/images/readme/installers-rclick-header-menu-3.png"> <img alt="Installer Header Menu" src="../bash/images/readme/installers-rclick-header-menu-4.png">
+        <figcaption style="padding-top:659px">
+          Wrye Bash's Installer Tab Column Header Menu
+        </figcaption>
+      </figure>
+    </div>
+  </div>
   <table id="bainHeaderCommands">
     <thead>
       <tr>
@@ -638,7 +650,19 @@
         <td>Sort packages by number of files they contain.</td>
       </tr>
       <tr>
-        <td rowspan="5">Columns</td>
+        <td rowspan="8">Columns</td>
+        <td>Manual</td>
+        <td>Manually customize column width.</td>
+      </tr>
+      <tr>
+        <td>Fit Contents</td>
+        <td>Columns automatically adjust width to fit their contents.</td>
+      </tr>
+      <tr>
+        <td>Fit Header</td>
+        <td>Columns automatically adjust width to fit all columns in view.</td>
+      </tr>
+      <tr>
         <td>Package</td>
         <td>Display the Package (name) column.</td>
       </tr>
@@ -780,15 +804,12 @@
         <td>If checked, installers with a Wizard will have a magic wand image displayed over their icons.</td>
       </tr>
       <tr>
-        <td colspan="2" id="bainSkipOBSEPlugins">Skip OBSE Plugins</td>
-        <td>If this is checked, files to go in the Data\OBSE\Plugins folder will not be installed (for other games replace OBSE with SKSE etc)</td>
+        <td id="bainGlobalSkips" rowspan="10">Global Skips</td>
       </tr>
       <tr>
-        <td colspan="2">Skip SKSE/Script Dragon Plugins</td>
-        <td><em>Skyrim only.</em> If this is checked, files to go in the Data\SKSE\Plugins or Data\asi folder will not be installed.</td>
-      </tr>
-      <tr>
-        <td id="bainGlobalSkips" rowspan="9">Global Skips</td>
+        <td>SKSE/Script Dragon Plugins</td>
+        <td><em>Skyrim only.</em> If this is checked, files to go in the Data\SKSE\Plugins or Data\asi folder will not be installed.<br>
+        (For other games, replace SKSE with OBSE, etc)</td>
       </tr>
       <tr>
         <td id="bainSkipScreenshots">Skip Screenshots</td>
@@ -828,6 +849,16 @@
       </tr>
     </tbody>
   </table>
+  <div class="bbimgr clearf">
+    <div class="flft">
+      <figure class="slideshow" style="width:413px">
+        <img alt="Installer Package Menu" src="../bash/images/readme/installers-rclick-installer-menu-1.png"> <img alt="Installer Package Menu" src="../bash/images/readme/installers-rclick-installer-menu-2.png"> <img alt="Installer Package Menu" src="../bash/images/readme/installers-rclick-installer-menu-3.png"> <img alt="Installer Package Menu" src="../bash/images/readme/installers-rclick-installer-menu-4.png"> <img alt="Installer Package Menu" src="../bash/images/readme/installers-rclick-installer-menu-5.png"> <img alt="Installer Package Menu" src="../bash/images/readme/installers-rclick-installer-menu-6.png"> <img alt="Installer Package Menu" src="../bash/images/readme/installers-rclick-installer-menu-7.png">
+        <figcaption style="padding-top:448px">
+          Wrye Bash's Installer Package Menu
+        </figcaption>
+      </figure>
+    </div>
+  </div>
   <table id="bainPackageCommands">
     <thead>
       <tr>
@@ -1076,14 +1107,16 @@
     </tbody>
   </table>
   <h2 id="mods">Mods Tab</h2>
-  <h3 id="mods-details">The Plugin Details Panel</h3>
-  <figure>
-    <img alt="plugin details panel" src="../bash/images/readme/mods-plugin-details-panel.png">
-    <figcaption>
-      The plugin details panel on the right hand side of the Mods tab.
-    </figcaption>
-  </figure>
-  <p>The plugin details panel contains the following:</p>
+  <div class="bbimgl clearf" style="width:318px">
+    <h3 id="mods-details">The Plugin Details Panel</h3>
+    <figure>
+      <img alt="plugin details panel" src="../bash/images/readme/mods-plugin-details-panel.png">
+      <figcaption>
+        The plugin details panel on the right hand side of the Mods tab.
+      </figcaption>
+    </figure>
+  </div>
+  <p class="ht3">The plugin details panel contains the following:</p>
   <table>
     <thead>
       <tr>
@@ -1130,7 +1163,7 @@
       </tr>
     </tbody>
   </table>
-  <h3 id="mod-masters-symbols">Color scheme for Plugin Masters (MI & Current LO)</h3>
+  <h3 class="clearfb" id="mod-masters-symbols">Color scheme for Plugin Masters (MI & Current LO)</h3>
   <p>In the table below suppose you see details for displayed_mod.esp which depends on [Oblivion.esm, displayed_mod.esm, some_other.esp, some_other2.esp] in this order. So the MIs displayed in the master list for Oblivion.esm, displayed_mod.esm, some_other.esp, some_other2.esp are 0, 1, 2, 3.</p>
   <table>
     <thead>
@@ -5240,16 +5273,18 @@
   <p>It's best to simply ensure that your plugins have the correct tags and leave this section on automatic. To add plugins to or remove plugins from the list, uncheck the <q>Automatic</q> checkbox, and use the <q>Add</q> or <q>Remove</q> buttons. The latter will remove the currently selected plugin.</p>
   <p>To manually override the Delev/Relev Bash Tags for a plugin, right-click it in the section list and check or uncheck the relevant options as desired. To return to the automatic setting, select the <q>Auto</q> option in the right-click menu.</p>
   <h2 id="saves">Saves Tab</h2>
-  <figure>
-    <img alt="Saves Tab" src="../bash/images/readme/saves.png">
-    <figcaption>
-      Wrye Bash's Saves tab.
-    </figcaption>
-  </figure>
   <h3 id="saves-overview">Overview</h3>
   <p>The Saves tab allows you to manage many aspects related to your game's saves. Save files are found in the <code>My Games\[Game]\Saves</code> directory and have the file extension <code>.ess</code>. When you quicksave or autosave, the game backs up the previous quick/autosave by replacing the file extension with <code>.bak</code>. This backup may be restored by restoring its original file extension.</p>
   <p>If you have Pluggy and/or the game's Script Extender installed, each of your save files will have a corresponding <q>cosave</q> containing the Pluggy/OBSE/SKSE-specific data. These cosaves have file extensions <code>.pluggy</code>, <code>.obse</code>, <code>.skse</code> for Pluggy, OBSE and SKSE respectively.</p>
   <p>The Saves tab is divided into two sections: the main panel lists your save files and displays some of their details in its columns. The Save Details panel on the right displays some more information relating to the currently selected save file. It comprises of the following sections:</p>
+  <div class="bbimgr clearf">
+    <figure>
+      <img alt="Saves Tab" src="../bash/images/readme/saves.png">
+      <figcaption>
+        Wrye Bash's Saves tab.
+      </figcaption>
+    </figure>
+  </div>
   <table>
     <thead>
       <tr>
@@ -5302,7 +5337,7 @@
       </tr>
     </tbody>
   </table>
-  <h3 id="saves-symbols">Color scheme for Save Game Files</h3>
+  <h3 class="clearfb" id="saves-symbols">Color scheme for Save Game Files</h3>
   <table>
     <thead>
       <tr>
@@ -5368,12 +5403,14 @@
   <p>To select a save profile, select it from the list visible in the <q>Profile</q> submenu of the column header context menu.</p>
   <p>To assign save files to a save profile, use the <a href="#savesMoveTo">Move To</a> or <a href="#savesCopyTo">Copy To</a> submenus in the save file context menu. This will also assign any related cosave files.</p>
   <h3 id="saves-face">Face Import</h3>
-  <figure>
-    <img alt="Face Import from Esp" src="../bash/images/readme/wryebash_03.png">
-    <figcaption>
-      Wrye Bash's Face Import dialog.
-    </figcaption>
-  </figure>
+  <div class="bbimgr clearf" style="margin-top:-2em">
+    <figure>
+      <img alt="Face Import from Esp" src="../bash/images/readme/wryebash_03.png">
+      <figcaption>
+        Wrye Bash's Face Import dialog.
+      </figcaption>
+    </figure>
+  </div>
   <p>Faces may be imported from saves to saves or plugins, or from plugins to saves. This allows you to preserve a character's appearance should you wish to restart a character, to roleplay as a particular character, or to turn your character into an NPC that may be encountered during playing, among other uses.</p>
   <p>To import a face to a save:</p>
   <ol>
@@ -5664,12 +5701,14 @@
     </tbody>
   </table>
   <h2 id="screenshots">Screenshots Tab</h2>
-  <figure class="slideshow">
-    <img alt="Screenshots Tab" src="../bash/images/readme/screenshots-1.png"> <img alt="Screenshots Tab" src="../bash/images/readme/screenshots-2.png">
-    <figcaption class="c6">
-      Wrye Bash's Screenshots tab.
-    </figcaption>
-  </figure>
+  <div class="bbimgr h3 clearf">
+    <figure class="slideshow" style="width:1009px">
+      <img alt="Screenshots Tab" src="../bash/images/readme/screenshots-1.png"> <img alt="Screenshots Tab" src="../bash/images/readme/screenshots-2.png">
+      <figcaption class="c6">
+        Wrye Bash's Screenshots tab.
+      </figcaption>
+    </figure>
+  </div>
   <h3 id="screenshots-overview">Overview</h3>
   <p>The Screenshots tab allows you to preview any screenshots taken in-game using the built-in Print Screen functionality. These screenshots are saved as bitmap files (.bmp). Selecting a screenshot from the list on the left will display it on the right. Screenshots can be converted from bitmaps into a few other formats using context menu commands.</p>
   <h3 id="screenshots-alt-path">Change screenshots directory (Oblivion)</h3>
@@ -5758,12 +5797,14 @@
   </ul>
   <p><strong>Note:</strong> 24x24 icons taken from shortcuts do not work well, so if you are using this size, be sure to include a custom icon. Icon size displayed can be adjusted in the <q>bash.ini</q> or the <a href="#tools-settings">Settings</a> menu.</p>
   <h2 id="people">People Tab</h2>
-  <figure class="slideshow">
-    <img alt="People tab" src="../bash/images/readme/people-1.png"> <img alt="People tab" src="../bash/images/readme/people-2.png">
-    <figcaption class="c6">
-      Wrye Bash's People tab.
-    </figcaption>
-  </figure>
+  <div class="bbimgl h3 clearf">
+    <figure class="slideshow" style="width:1009px">
+      <img alt="People tab" src="../bash/images/readme/people-1.png"> <img alt="People tab" src="../bash/images/readme/people-2.png">
+      <figcaption class="c6">
+        Wrye Bash's People tab.
+      </figcaption>
+    </figure>
+  </div>
   <h3 id="people-overview">Overview</h3>
   <p>The People tab functions as a simple database that can be used to keep notes on various people (eg. why you blocked a forum user, or what a good mod someone made).</p>
   <p>People are listed in the column on the left, and the large text box on the right can be used for writing notes on the selected person. Notes are saved automatically as you type them, but otherwise the text box behaves as a simple text editor such as Notepad.</p>
@@ -5810,7 +5851,7 @@
       </tr>
     </tbody>
   </table>
-  <h3 id="people-commands">Context Menu Commands</h3>
+  <h3 class="clearfb" id="people-commands">Context Menu Commands</h3>
   <table>
     <thead>
       <tr>
@@ -5954,12 +5995,15 @@
       </tr>
     </tbody>
   </table>
-  <figure class="slideshow">
-    <img alt="Colors Dialog" src="../bash/images/readme/settings-1-colours-dialogue-1.png"> <img alt="Colors Dialog" src="../bash/images/readme/settings-1-colours-dialogue-2.png">
-    <figcaption class="c8">
-      The Colors dialog accessible through Wrye Bash's Settings menu.
-    </figcaption>
-  </figure>
+  <h3 id="tools-colors">Color Configuration</h3>
+  <div class="bbimgl clearf">
+    <figure class="slideshow" style="width:768px">
+      <img alt="Colors Dialog" src="../bash/images/readme/settings-1-colours-dialogue-1.png"> <img alt="Colors Dialog" src="../bash/images/readme/settings-1-colours-dialogue-2.png">
+      <figcaption class="c8">
+        The Colors dialog accessible through Wrye Bash's Settings menu.
+      </figcaption>
+    </figure>
+  </div>
   <table>
     <thead>
       <tr>
@@ -6007,13 +6051,15 @@
       </tr>
     </tbody>
   </table>
-  <h3 id="tools-docs">Doc Browser</h3>
-  <figure class="slideshow">
-    <img alt="doc browser" src="../bash/images/readme/doc-browser-1.png"> <img alt="doc browser" src="../bash/images/readme/doc-browser-2.png"> <img alt="doc browser" src="../bash/images/readme/doc-browser-set-doc-dialogue.png">
-    <figcaption class="c9">
-      Wrye Bash's Doc Browser.
-    </figcaption>
-  </figure>
+  <h3 class="clearfb" id="tools-docs">Doc Browser</h3>
+  <div class="bbimgl clearf">
+    <figure class="slideshow" style="width:805px">
+      <img alt="doc browser" src="../bash/images/readme/doc-browser-1.png"> <img alt="doc browser" src="../bash/images/readme/doc-browser-2.png"> <img alt="doc browser" src="../bash/images/readme/doc-browser-set-doc-dialogue.png">
+      <figcaption class="c9">
+        Wrye Bash's Doc Browser.
+      </figcaption>
+    </figure>
+  </div>
   <p>The Doc Browser allows you to quickly and easily scan through your mods' documentation. The supported document types are: text files, HTML files and MHT files (HTML archives). To display the Doc Browser, double click any plugin in the main list of the Mods tab.</p>
   <p>When you double-click a plugin, Wrye Bash will open the Doc Browser and attempt to determine which document to associate with it. If it can determine one, it will display it. Otherwise, a blank page will be displayed. To associate a document with a plugin, use the <q>Set Doc...</q> button in the Doc Browser. To disassociate a document with a plugin, use the <q>Forget Doc...</q> button in the Doc Browser.</p>
   <p>You can also rename an associated document using the <q>Rename Doc...</q> button to select a new name and/or location. The document will be renamed and/or moved to this location.</p>
@@ -6022,34 +6068,37 @@
   <p>A new document can be created for a plugin by clicking the <q>Set Doc...</q> button and choosing a new filename. This creates a document using a blank template that you can then edit. The default template is <code>Data\Docs\My Readme Template</code> if it exists, or if not, <code>Data\Docs\Bash Readme Template.txt</code>. The latter is written in Wrye wiki text format, which will be displayed as HTML when the Doc Browser is not in edit mode.</p>
   <p>To view a different document, select a different plugin in the list on the left of the Doc Browser or in the Mods tab.</p>
   <p>Some notes on Doc Browser behaviour:</p>
-  <ul>
+  <ul class="lstfli">
     <li>If a plugin is renamed in the Mods tab, then any documents associated with it will become associated to the plugin's new name.</li>
     <li>If a plugin is copied in the Mods tab, then any documents associated with it will also become associated with the copy.</li>
     <li>Documents can be stored in any location, though <code>Data\Docs</code> is the standard location.</li>
     <li>If you delete a plugin, its documentation will not be deleted, but it will no longer be viewable through the Doc Browser.</li>
     <li>If you hide a plugin, its documentation will still be viewable through the Doc Browser.</li>
   </ul>
-  <h3 id="tools-checker">Mod Checker</h3>
-  <figure>
-    <img alt="Mod Checker" src="../bash/images/readme/mod-checker-1.png">
-    <figcaption>
-      Wrye Bash's Mod Checker
-    </figcaption>
-  </figure>
+  <h3 class="clearfb" id="tools-checker">Mod Checker</h3>
+  <div class="bbimgl clearf">
+    <figure style="width:475px">
+      <img alt="Mod Checker" src="../bash/images/readme/mod-checker-1.png">
+      <figcaption>
+        Wrye Bash's Mod Checker
+      </figcaption>
+    </figure>
+  </div>
   <p>The Mod Checker checks your active and merged plugins for errors, and provides warnings for any found, as well as configuration recaps and suggestions. It can be opened by clicking the <a href="Wrye%20Bash%20General%20Readme.html#launchersModChecker">Mod Checker button</a> in the status bar.</p>
   <p>At the top of the report is the Active Mod Files section, which lists your load order. It also displays any warnings that are applicable beneath the plugin(s) that they are applicable to. These warnings are either regarding missing masters or delinquent masters.</p>
-  <ul>
+  <ul class="lstfli">
     <li>Missing masters occur when a plugin that an active plugin depends on is not active. This results in an immediate CTD when the game is launched.</li>
     <li>Delinquent masters occur when a plugin's master loads after the plugin itself. This should be fixed to prevent issues in-game.</li>
   </ul>
   <p>The next section of the report details the output of any rulesets installed. These are text files that contain a set of instructions that tell the Mod Checker what to look for and what to say in the report if anything is found. Currently the only ruleset distributed by Wrye Bash is for Cobl. Rulesets are stored in <code>Data\Bash Patches</code> and end in <q>Rules.txt</q>. Information on ruleset syntax can be found at <a href="http://www.uesp.net/wiki/Tes4Mod:Wrye_Bash/Mod_Checker">UESP: Wrye Bash Mod Checker</a>.</p>
   <p>The rest of the report details any plugin groups that have been set up. Each group's section contains the following information:</p>
-  <ul>
+  <ul class="lstfli">
     <li>Notes: These are various notes on the plugin group, as entered by the user.</li>
     <li>Configuration: This is a summary of the plugin group's configuration. It uses a few symbols to denote the status of plugins, these are: x: active; +: merged; *: imported; -: inactive/unmerged.</li>
     <li>Suggestions: Specific suggestions for the plugin group. These are typically activating or deactivating certain plugins, or replacing mods with other mods.</li>
     <li>Warnings: Like suggestions, but the causes are more likely to cause issues. This section will detail what should be activated or deactivated to resolve the problems.</li>
   </ul>
+  <div class="clearfb"></div>
   <table>
     <thead>
       <tr>

@@ -1,20 +1,16 @@
-h1, h2, h3, h4, pre { margin-top: 0; margin-bottom: 0; }
-
-h1, h2 { border-top: 1px solid black; border-bottom: 1px solid black; border-left: none; border-right: none; padding: 0.02in 0; }
-
 h1, h2, h3, h4, p { font-family: "Arial", "serif"; }
 
 h1, h2, h3, h4, p { page-break-before: auto; page-break-after: auto; }
 
-h1 { background: #c6c63c; font-size: 11pt; }
+h1 { font-size: 11pt; margin: 0 initial; border-top: 1px solid black; border-bottom: 1px solid black; border-left: none; border-right: none; padding: 0.02in 0; background: #c6c63c; }
 
-h2 { background: #e6e64c; font-size: 9pt; }
+h2 { font-size: 9pt; margin: 0 initial; border-top: 1px solid black; border-bottom: 1px solid black; border-left: none; border-right: none; padding: 0.02in 0; background: #e6e64c; }
 
-h3 { font-size: 9pt; font-style: normal; }
+h3 { font-size: 9pt; margin: 0 initial; font-style: normal; }
 
-h4 { font-style: italic; }
+h4 { font-size: 9pt; margin: 0 initial; font-style: italic; }
 
-p { margin-top: 0.01in; margin-bottom: 0.01in; font-size: 9pt; }
+p { font-size: 9pt; margin: 0.01in initial; }
 
 p.list-1 { margin-left: 0.15in; text-indent: -0.15in; }
 
@@ -28,7 +24,7 @@ p.list-5 { margin-left: 0.75in; text-indent: -0.15in; }
 
 p.list-6 { margin-left: 1in; text-indent: -0.15in; }
 
-pre { border: 1px solid; background: oldlace; padding: 0.5em; margin-left: 0.25in; }
+pre { border: 1px solid; background: oldlace; padding: 0.5em; margin: 0 initial; margin-left: 0.25in; }
 
 code { background-color: oldlace; }
 

@@ -23,164 +23,165 @@
 </head>
 <body>
   <h1>Wrye Bash General Readme</h1>
-  <h2 class="c1">Contents</h2>
-  <ol class="c2">
-    <li>
-      <a href="#intro">Introduction</a>
-      <ol>
-        <li>
-          <a href="#intro-glossary">Glossary</a>
-        </li>
-      </ol>
-    </li>
-    <li>
-      <a href="#install">Installation</a>
-    </li>
-    <li>
-      <a href="#uninstall">Uninstallation</a>
-    </li>
-    <li>
-      <a href="#bain">Installing Mods</a>
-      <ol>
-        <li>
-          <a href="#bain-overview">Overview</a>
-        </li>
-        <li>
-          <a href="#bain-structure">BAIN-Compatible installer layout</a>
-        </li>
-        <li>
-          <a href="#bain-convert">Restructuring Packages to be BAIN-Compatible</a>
-        </li>
-        <li>
-          <a href="#bain-install">Installing/Uninstalling Via BAIN</a>
-        </li>
-        <li>
-          <a href="#bain-order">BAIN Package Order</a>
-        </li>
-        <li>
-          <a href="#bain-symbols">What Symbols & Colours Mean</a>
-        </li>
-        <li>
-          <a href="#bain-commands">Useful Context Menu Commands</a>
-        </li>
-      </ol>
-    </li>
-    <li>
-      <a href="#load">Setting Up Load Order</a>
-      <ol>
-        <li>
-          <a href="#load-overview">Overview</a>
-        </li>
-        <li>
-          <a href="#load-set">Setting The Load Order</a>
-        </li>
-        <li>
-          <a href="#load-undo">Undo and redo Load Order changes</a>
-        </li>
-        <li>
-          <a href="#load-symbols">What Symbols & Colours Mean</a>
-        </li>
-        <li>
-          <a href="#load-commands">Useful Context Menu Commands</a>
-        </li>
-      </ol>
-    </li>
-    <li>
-      <a href="#patch">Setting Up A Bashed Patch</a>
-      <ol>
-        <li>
-          <a href="#patch-overview">Overview</a>
-        </li>
-        <li>
-          <a href="#patch-merging">Merging Plugins</a>
-        </li>
-        <li>
-          <a href="#patch-importing">Importing From Plugins</a>
-        </li>
-        <li>
-          <a href="#patch-tweaking">Applying Tweaks</a>
-        </li>
-        <li>
-          <a href="#patch-other">Other Bashed Patch Options</a>
-        </li>
-      </ol>
-    </li>
-  </ol>
-  <ol class="c3" start="7">
-    <li>
-      <a href="#ini">Applying Ini File Edits</a>
-      <ol>
-        <li>
-          <a href="#ini-overview">Overview</a>
-        </li>
-        <li>
-          <a href="#ini-symbols">What Symbols & Colours Mean</a>
-        </li>
-        <li>
-          <a href="#ini-commands">Buttons & Context Menu Commands</a>
-        </li>
-      </ol>
-    </li>
-    <li>
-      <a href="#launchers">Launching Applications</a>
-      <ol>
-        <li>
-          <a href="#launchers-toggles">Toggle Buttons</a>
-        </li>
-        <li>
-          <a href="#launchers-game">Game & Editor Launchers</a>
-        </li>
-        <li>
-          <a href="#launchers-utils">Game-Specific Utilities</a>
-        </li>
-        <li>
-          <a href="#launchers-apps">Other Applications</a>
-        </li>
-        <li>
-          <a href="#launchers-features">Wrye Bash Feature Launchers</a>
-        </li>
-        <li>
-          <a href="#manually-add">Manually adding tools to the Launcher Bar</a>
-        </li>
-      </ol>
-    </li>
-    <li>
-      <a href="#trouble">Troubleshooting</a>
-      <ol>
-        <li>
-          <a href="#trouble-dump">Generating A Bug Dump</a>
-        </li>
-        <li>
-          <a href="#trouble-permissions">File Permissions</a>
-        </li>
-        <li>
-          <a href="#trouble-backup">Backing Up & Restoring Settings</a>
-        </li>
-        <li>
-          <a href="#trouble-report">How To Report Bugs Helpfully</a>
-        </li>
-        <li>
-          <a href="#trouble-known">Known Bugs</a>
-        </li>
-        <li>
-          <a href="#trouble-mistakes">Common Issues</a>
-        </li>
-      </ol>
-    </li>
-    <li>
-      <a href="#credits">Credits</a>
-    </li>
-    <li>
-      <a href="#contact">Contact</a>
-    </li>
-    <li>
-      <a href="#license">License</a>
-    </li>
-    <li>
-      <a href="#advanced">Advanced Readme Topics</a>
-    </li>
-  </ol>
-  <p class="c4"></p>
+  <h2 class="gcontents">Contents</h2>
+  <div class="clearf">
+    <ol class="gindexl">
+      <li>
+        <a href="#intro">Introduction</a>
+        <ol>
+          <li>
+            <a href="#intro-glossary">Glossary</a>
+          </li>
+        </ol>
+      </li>
+      <li>
+        <a href="#install">Installation</a>
+      </li>
+      <li>
+        <a href="#uninstall">Uninstallation</a>
+      </li>
+      <li>
+        <a href="#bain">Installing Mods</a>
+        <ol>
+          <li>
+            <a href="#bain-overview">Overview</a>
+          </li>
+          <li>
+            <a href="#bain-structure">BAIN-Compatible installer layout</a>
+          </li>
+          <li>
+            <a href="#bain-convert">Restructuring Packages to be BAIN-Compatible</a>
+          </li>
+          <li>
+            <a href="#bain-install">Installing/Uninstalling Via BAIN</a>
+          </li>
+          <li>
+            <a href="#bain-order">BAIN Package Order</a>
+          </li>
+          <li>
+            <a href="#bain-symbols">What Symbols & Colours Mean</a>
+          </li>
+          <li>
+            <a href="#bain-commands">Useful Context Menu Commands</a>
+          </li>
+        </ol>
+      </li>
+      <li>
+        <a href="#load">Setting Up Load Order</a>
+        <ol>
+          <li>
+            <a href="#load-overview">Overview</a>
+          </li>
+          <li>
+            <a href="#load-set">Setting The Load Order</a>
+          </li>
+          <li>
+            <a href="#load-undo">Undo and redo Load Order changes</a>
+          </li>
+          <li>
+            <a href="#load-symbols">What Symbols & Colours Mean</a>
+          </li>
+          <li>
+            <a href="#load-commands">Useful Context Menu Commands</a>
+          </li>
+        </ol>
+      </li>
+      <li>
+        <a href="#patch">Setting Up A Bashed Patch</a>
+        <ol>
+          <li>
+            <a href="#patch-overview">Overview</a>
+          </li>
+          <li>
+            <a href="#patch-merging">Merging Plugins</a>
+          </li>
+          <li>
+            <a href="#patch-importing">Importing From Plugins</a>
+          </li>
+          <li>
+            <a href="#patch-tweaking">Applying Tweaks</a>
+          </li>
+          <li>
+            <a href="#patch-other">Other Bashed Patch Options</a>
+          </li>
+        </ol>
+      </li>
+    </ol>
+    <ol class="gindexr" start="7">
+      <li>
+        <a href="#ini">Applying Ini File Edits</a>
+        <ol>
+          <li>
+            <a href="#ini-overview">Overview</a>
+          </li>
+          <li>
+            <a href="#ini-symbols">What Symbols & Colours Mean</a>
+          </li>
+          <li>
+            <a href="#ini-commands">Buttons & Context Menu Commands</a>
+          </li>
+        </ol>
+      </li>
+      <li>
+        <a href="#launchers">Launching Applications</a>
+        <ol>
+          <li>
+            <a href="#launchers-toggles">Toggle Buttons</a>
+          </li>
+          <li>
+            <a href="#launchers-game">Game & Editor Launchers</a>
+          </li>
+          <li>
+            <a href="#launchers-utils">Game-Specific Utilities</a>
+          </li>
+          <li>
+            <a href="#launchers-apps">Other Applications</a>
+          </li>
+          <li>
+            <a href="#launchers-features">Wrye Bash Feature Launchers</a>
+          </li>
+          <li>
+            <a href="#manually-add">Manually adding tools to the Launcher Bar</a>
+          </li>
+        </ol>
+      </li>
+      <li>
+        <a href="#trouble">Troubleshooting</a>
+        <ol>
+          <li>
+            <a href="#trouble-dump">Generating A Bug Dump</a>
+          </li>
+          <li>
+            <a href="#trouble-permissions">File Permissions</a>
+          </li>
+          <li>
+            <a href="#trouble-backup">Backing Up & Restoring Settings</a>
+          </li>
+          <li>
+            <a href="#trouble-report">How To Report Bugs Helpfully</a>
+          </li>
+          <li>
+            <a href="#trouble-known">Known Bugs</a>
+          </li>
+          <li>
+            <a href="#trouble-mistakes">Common Issues</a>
+          </li>
+        </ol>
+      </li>
+      <li>
+        <a href="#credits">Credits</a>
+      </li>
+      <li>
+        <a href="#contact">Contact</a>
+      </li>
+      <li>
+        <a href="#license">License</a>
+      </li>
+      <li>
+        <a href="#advanced">Advanced Readme Topics</a>
+      </li>
+    </ol>
+  </div>
   <h2 id="intro">Introduction</h2>
   <p>Wrye Bash is a powerful mod management utility for TES IV: Oblivion, Fallout 3, Fallout New Vegas, TES V: Skyrim, Fallout 4 and SSE: Skyrim Special Edition. Its features include:</p>
   <ul>
@@ -254,14 +255,16 @@
     <li><code>[Game] Mods</code> (in the same folder as [Game]) - The <code>Bash Installers</code> folder stores the mods you've installed via BAIN.</li>
   </ul>
   <h2 id="bain">Installing Mods</h2>
-  <figure class="slideshow">
-    <img alt="Installers Tab" src="../bash/images/readme/installers-1.png"> <img alt="Installers Tab" src="../bash/images/readme/installers-2.png"> <img alt="Installers Tab" src="../bash/images/readme/installers-3.png"> <img alt="Installers Tab" src="../bash/images/readme/installers-4.png"> <img alt="Installers Tab" src="../bash/images/readme/installers-5.png"> <img alt="Installers Tab" src="../bash/images/readme/installers-6.png"> <img alt="Installers Tab" src="../bash/images/readme/installers-7.png"> <img alt="Installers Tab" src="../bash/images/readme/installers-8.png">
-    <figcaption class="c6">
-      Wrye Bash's Installers tab.
-    </figcaption>
-  </figure>
+  <div class="bbimgr h3 clearf">
+    <figure class="slideshow" style="width:1009px">
+      <img alt="Installers Tab" src="../bash/images/readme/installers-1.png"> <img alt="Installers Tab" src="../bash/images/readme/installers-2.png"> <img alt="Installers Tab" src="../bash/images/readme/installers-3.png"> <img alt="Installers Tab" src="../bash/images/readme/installers-4.png"> <img alt="Installers Tab" src="../bash/images/readme/installers-5.png"> <img alt="Installers Tab" src="../bash/images/readme/installers-6.png"> <img alt="Installers Tab" src="../bash/images/readme/installers-7.png"> <img alt="Installers Tab" src="../bash/images/readme/installers-8.png">
+      <figcaption style="padding-top:637px">
+        Wrye Bash's Installers tab.
+      </figcaption>
+    </figure>
+  </div>
   <h3 id="bain-overview">Overview</h3>
-  <p>Wrye Bash mod installer are known as <abbr title="Bash Installers">BAIN</abbr> (BAsh INstallers), and are presented on the Installers Tab. The first time the Installers tab is opened, a dialog will appear asking if BAIN should be initialized. If you click <q>Yes</q>, BAIN will be initialised, which can take some time. After that, the information refresh performed when the Installers tab is opened is much faster.</p>
+  <p>Wrye Bash mod installer are known as <strong><abbr title="Bash Installers">BAIN</abbr></strong> (<strong>BA</strong>sh <strong>IN</strong>stallers), and are presented on the Installers Tab. The first time the Installers tab is opened, a dialog will appear asking if BAIN should be initialized. If you click <q>Yes</q>, BAIN will be initialised, which can take some time. After that, the information refresh performed when the Installers tab is opened is much faster.</p>
   <p>BAIN's primary function is to install mod packages. <strong>BAIN Packages</strong> can be <code>.zip</code>, <code>.7z</code> or <code>.rar</code> archives or uncompressed directories. Uncompressed directories are called <strong>Projects</strong> while archives are usually called <strong>packages</strong>, abusing terminology. When we refer to projects and packages together we will be also using the collective term <strong>installers</strong>.</p>
   <p>If BAIN is disabled, ie. if you clicked <q>No</q> on the dialog that was displayed the first time you selected the Installers tab, it can be re-enabled by right clicking on a column header in the Installers tab and selecting <a href="Wrye%20Bash%20Advanced%20Readme.html#bainEnabled">Enabled</a>.</p>
   <p>Installers need to be placed in the <code>Bash Installers</code> directory which is created the first time Bash runs inside the <code>"Game" Mods</code> directory. This directory is by default created on the same level as your game directory (that is if your game exe is located in "C:\GAMES\TESIV\Oblivion" then by default Bash will create the "C:\GAMES\TESIV\Oblivion Mods\" directory on first run, but you can point Bash to create this "Game" Mods directory wherever you want (or point it to an existing one) via the <code>sOblivionMods</code> ini setting. Do <em>not</em> however put it inside the game Data directory, as the game may well be confused and scan it adding to performance deterioration, mods thrashing.</p>
@@ -274,7 +277,7 @@
     <li>you may specify additional directories to be skipped via the <code>sSkippedBashInstallersDirs</code> ini setting</li>
   </ol>
   <p>Now BAIN will try to classify the packages it detected in Bash Installers into its package formats - if it fails the package will display as unrecognized and will have to be restructured.</p>
-  <h3 id="bain-structure">BAIN-Compatible installer layout</h3>
+  <h3 class="clearfb" id="bain-structure">BAIN-Compatible installer layout</h3>
   <p>When scanning an installer (package or project) BAIN follows some rules to decide what's in there and if it can be installed. BAIN will search for specific directories and file extensions (espml, bsa/ba2, ini). The directories BAIN is aware of, independently of the game, are:</p>
   <table>
     <thead>
@@ -673,12 +676,14 @@
     </tbody>
   </table>
   <h2 id="load">Setting Up Load Order</h2>
-  <figure>
-    <img alt="Mods Tab" src="../bash/images/readme/mods-1.png">
-    <figcaption>
-      Wrye Bash's Mods tab.
-    </figcaption>
-  </figure>
+  <div class="bbimgr h3 clearf" style="width:1009px">
+    <figure>
+      <img alt="Mods Tab" src="../bash/images/readme/mods-1.png">
+      <figcaption>
+        Wrye Bash's Mods tab.
+      </figcaption>
+    </figure>
+  </div>
   <h3 id="load-overview">Overview</h3>
   <p>Wrye Bash displays your installed plugins in its <q>Mods</q> tab. Your load order of active installed plugins, which Wrye Bash marks with a ticked checkbox, is important as it decides what plugin 'wins' any conflict between plugins, with later loading plugins overriding those that change the same thing. A mod loading later in the list will have a greater number in the Load Order column, and will "win" if there's a conflict with a mod loading earlier (which will have a lower number). <strong>Load order is not the same thing as BAIN install order!</strong> Install order determines which package's files overwrite other packages files when they conflict.</p>
   <p>Although in general "Load Order" stands for the load order of the <em>active</em> plugins, all installed plugins have a load order assigned to them. In Oblivion this is based on the modification time of the plugin, in Skyrim based to an agreed upon text-file based standard, while Fallout 4 finally dumps all installed plugins in its plugins.txt, marking active ones with an asterisk. Bash needs plugins load order even for inactive plugins to correctly merge inactive mods in the bashed patch, for instance.</p>
@@ -691,7 +696,7 @@
     <li>esls load among esms in the order of the plugins txt.</li>
     <li>only extension matters - Bash does not look at the esl flag. Name your esls esls.</li>
   </ol>Special cc** esls are read from Fallout4/Skyrim.ccc file
-  <h3 id="load-set">Setting The Load Order</h3>
+  <h3 class="clearfb" id="load-set">Setting The Load Order</h3>
   <p>Setting up a correct load order that minimises detrimental conflicts that could cause issues in-game can be a difficult and time-consuming process. Effective load-ordering often requires a knowledge of what each plugin in your load order contains so that you can position the plugins to minimise these conflicts. For simple mods, the description in the mod's readme will usually be sufficient to determine the records it contains, but to be sure a utility such as TES4Edit is required.</p>
   <p><a href="http://boss-developers.github.io">BOSS</a> can be used to greatly simplify the process of setting the load order, as it can correctly position thousands of plugins automatically. However, you may still need to order some plugins manually.</p>
   <p>Wrye Bash provides a number of ways for you to set up your load order:</p>
@@ -904,19 +909,22 @@
     </tbody>
   </table>
   <h2 id="patch">Setting Up A Bashed Patch</h2>
-  <figure class="slideshow">
-    <img alt="Bashed Patch" src="../bash/images/readme/bashed-patch-dialogue-1.png"> <img alt="Bashed Patch" src="../bash/images/readme/bashed-patch-dialogue-2.png"> <img alt="Bashed Patch" src="../bash/images/readme/bashed-patch-dialogue-3.png"> <img alt="Bashed Patch" src="../bash/images/readme/bashed-patch-dialogue-4.png">
-    <figcaption class="c22">
-      Wrye Bash's Bashed Patch configuration dialog.
-    </figcaption>
-  </figure>
-  <h3 id="patch-overview">Overview</h3>
-  <p>A Bashed Patch is a configurable plugin with three main functions:</p>
-  <ul>
-    <li>Merging plugins into itself. Merged plugins can be deactivated, avoiding the 255 plugin limit.</li>
-    <li>Importing specific types of data records from plugins. This can be used to avoid compatibility issues.</li>
-    <li>Applying tweaks to the game. This avoids the need to use other mods to apply the same tweaks.</li>
-  </ul>
+  <div class="bbimgl clearf" style="width:657px">
+    <h3 id="patch-overview">Overview</h3>
+    <p>A Bashed Patch is a configurable plugin with three main functions:</p>
+    <ul>
+      <li>Merging plugins into itself. Merged plugins can be deactivated, avoiding the 255 plugin limit.</li>
+      <li>Importing specific types of data records from plugins. This can be used to avoid compatibility issues.</li>
+      <li>Applying tweaks to the game. This avoids the need to use other mods to apply the same tweaks.</li>
+    </ul>
+    <figure class="slideshow" style="width:657px">
+      <img alt="Bashed Patch" src="../bash/images/readme/bashed-patch-dialogue-1.png"> <img alt="Bashed Patch" src="../bash/images/readme/bashed-patch-dialogue-2.png"> <img alt="Bashed Patch" src="../bash/images/readme/bashed-patch-dialogue-3.png"> <img alt="Bashed Patch" src="../bash/images/readme/bashed-patch-dialogue-4.png">
+      <figcaption style="padding-top: 613px">
+        Wrye Bash's Bashed Patch configuration dialog.
+      </figcaption>
+    </figure>
+  </div>
+  <h3 id="patch-configuration">Bash Configuration</h3>
   <p>A Bashed Patch is created by Wrye Bash the first time you run it, with the plugin being called <q class="c23">Bashed Patch, 0.esp</q>. It is configured using the plugin context menu commands <a href="#modsRebuildPatch">Rebuild Patch...</a> or <a href="#modsRebuildPatchCBash">Rebuild Patch (CBash *Beta*)...</a>. <strong>You should rebuild your Bashed Patch every time you change your load order, before playing the game.</strong> The Bashed Patch should be last in your load order, unless you have plugins that explicitly state that they must load last.</p>
   <p>The configuration dialog consists of a list of major sections to the left, and the contents of the selected section to the right, with the build and save buttons at the bottom. The sections and their items have checkboxes: checking a section will include all its checked items in the Bashed Patch. Unchecked sections and items will not be included. Some sections don't have any items, and so just need the section checkbox checked.</p>
   <p>A short description of each section and some items is displayed near the bottom of the window if the section/item is hovered over. Bolded items are new since the last time the Bashed Patch was built. Wrye Bash will try to auto-configure most sections, but some will still need tweaking.</p>
@@ -975,7 +983,7 @@
   <p>If you're merging plugins in, you do not need the plugins active to do so. In fact, trying to merge them in Bash will 1 - ask you to deactivate them before hand, and 2 - deactivate them even if you refused that prompt after the Bashed Patch has been created. So if you're merging plugins, leave them inactive before building, then select to merge them in the Bashed Patch build dialog. Don't worry, all the algorithms for the rest of the patchers still work as you'd expect on plugins merged this way.</p>
   <p>You should check the checkboxes of all the plugins listed in the <q>Merge Patches</q> section, and ensure the section is checked too.</p>
   <p><strong>Do not remove merged mods from your Data folder.</strong> They will need to be present when you next rebuild your Bashed Patch.</p>
-  <h3 id="patch-importing">Importing From Plugins</h3>
+  <h3 class="clearfb" id="patch-importing">Importing From Plugins</h3>
   <p>Plugins can be tagged with Bash Tags that tell Wrye Bash that they contain certain changes that should be preserved even if another mod also changes the same things. This is usually because the changes are important to the functionality of the mod. Wrye Bash then allows you to choose which plugins should have which types of changes preserved, by selecting from the various Import sections when building a Bashed Patch.</p>
   <p>If a section's description in the table below begins with <q>Preserves</q> and two or more mods in its list change the same thing, then the later-loading plugin will override the other plugin(s). Otherwise changes are merged.</p>
   <table>
@@ -1181,18 +1189,22 @@
     </tbody>
   </table>
   <h2 id="ini">Applying Ini File Edits</h2>
-  <figure class="slideshow">
-    <img alt="INI Edits Tab" src="../bash/images/readme/ini-edits-1.png"> <img alt="INI Edits Tab" src="../bash/images/readme/ini-oblivion.png"> <img alt="INI Edits Tab" src="../bash/images/readme/ini-all_natural.png">
-    <figcaption class="c6">
-      Wrye Bash's INI Edits tab, editing Oblivion.ini, Oblivion's configuration file, and All Natural.ini, a mod's configuration file. (Animated slideshow.)
-    </figcaption>
-  </figure>
   <h3 id="ini-overview">Overview</h3>
   <p>The Ini Edits tab allows the user to quickly apply edits to Oblivion.ini, Skyrim.ini or Fallout4Custom.ini, depending on your game, and mod-added ini files, including those containing scripts used to configure mods. Edits are applied from ini tweak files, which are just a text file that contains only the lines of the ini that you wish to change. Ini tweaks are stored in the <code>Data\Ini Tweaks</code> folder, and may be installed through BAIN or placed there manually.</p>
   <p>The drop-down box allows you to select the current ini file. The <q>Browse...</q> option in the drop-down box can be used to select an ini file not listed.</p>
   <p>Selecting a tweak will display its contents in the middle column, and highlights the changes it applies to the current ini file in the right column. To apply a tweak, right click it and select <a href="#tweakApply">Apply</a>.</p>
   <p><strong>Warning:</strong> Incorrect Oblivion.ini or Skyrim.ini settings can cause bugs, CTDs or other damage to your game. Advanced settings in particular tend to be machine-specific and should not be casually copied from one computer to another.</p>
-  <h3 id="ini-symbols">What Symbols & Colours Mean</h3>
+  <div id="ini-commands">
+    <h3 id="ini-symbols">What Symbols & Colours Mean</h3>
+  </div>
+  <div class="bbimgl clearf">
+    <figure class="slideshow" style="width:1053px">
+      <img alt="INI Edits Tab" src="../bash/images/readme/ini-edits-1.png"> <img alt="INI Edits Tab" src="../bash/images/readme/ini-oblivion.png"> <img alt="INI Edits Tab" src="../bash/images/readme/ini-all_natural.png">
+      <figcaption style="padding-top:638px">
+        Wrye Bash's INI Edits tab, editing Oblivion.ini, Oblivion's configuration file, and All Natural.ini, a mod's configuration file.
+      </figcaption>
+    </figure>
+  </div>
   <table>
     <thead>
       <tr>
@@ -1245,7 +1257,6 @@
       </tr>
     </tbody>
   </table>
-  <h3 id="ini-commands">Buttons & Context Menu Commands</h3>
   <table>
     <thead>
       <tr>
@@ -1300,6 +1311,7 @@
       </tr>
     </tbody>
   </table>
+  <div class="clearfb"></div>
   <table>
     <thead>
       <tr>
@@ -1338,7 +1350,7 @@
   <h2 id="launchers">Launching Applications</h2>
   <figure class="slideshow">
     <img alt="launcher" src="../bash/images/readme/toolbar-10-hover-obse-toggle.png"> <img alt="launcher" src="../bash/images/readme/toolbar-9-hover-autoquit.png"> <img alt="launcher" src="../bash/images/readme/toolbar-8-hover-launchgameviaobse.png"> <img alt="launcher" src="../bash/images/readme/toolbar-7-hover-launchgame.png"> <img alt="launcher" src="../bash/images/readme/toolbar-6-hover-launchboss.png"> <img alt="launcher" src="../bash/images/readme/toolbar-4-hover-docbrowser.png"> <img alt="launcher" src="../bash/images/readme/toolbar-3-hover-modchecker.png"> <img alt="launcher" src="../bash/images/readme/toolbar-2-hover-settings.png"> <img alt="launcher" src="../bash/images/readme/toolbar-1-hover-helpfile.png">
-    <figcaption class="c27">
+    <figcaption style="padding-top:79px">
       Wrye Bash's launcher bar, at the bottom of its main window.
     </figcaption>
   </figure>

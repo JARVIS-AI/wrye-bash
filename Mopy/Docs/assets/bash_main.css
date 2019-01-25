@@ -1,12 +1,66 @@
+/*********************
+**  FLOAT CLASSES  **
+bbimgl = float left
+bbimgr = float right
+
+**  CONDITIONALS  **
+- (These assist with aligning float content to header neighbors)
+h3 as float element class       = sets "margin-top: 2em"
+h3 as 1st child element         = sets "margin-top: 1.85em"
+bbh3 as 1st child element class = sets "margin-top: 2em"
+
+**  CLEAR CLASSES  **
+clear   = basic clear, least compatible, but still useful
+clearf  = clearfix, should be used with each float to ensure bottom clearance
+clearfb = clearfix before, should be used at the first logical breakpoint to ensure top clearance after a float
+
+**  ADJUST CLASSES  **
+lstfli  = list float indent, should be added as a class to any <ol> or <ul> positioned near a left-aligned float
+
+**  STYLE GUIDES **
+1) <figure> tags should be wrapped in a parent <div class="">, using one of the appropriate float classes.
+2) General flow recommendations depend on section content. Wide example images should usally be floated right due to size. Tall example images are variable: ones explained by a table should likely float left for easy reference, others can be probably set right. Mostly just eyeball it.
+3) Mid-content clear classes should be used at the optimal location for a 1080p screen, the most common resolution at this time, and for most instances placed in a header section (ie <h3>). No real specifics here, use your eye and some finesse like the floats.
+4) The width the images contained within the <figure class="slideshow"> should be added to the figure's inline styles. See example below.
+5) <figcaption> below any "slideshow" \specifically\ also needs to be given an inline style of "padding-top" equal to the relate images' height + 3 pixels. See example below.
+
+**  EXAMPLE  **
+- (These images are 1009px * 634px in size)
+<div class="bbimgl h3 clearf">
+    <figure class="slideshow" style="width:1009px">
+        <img alt="CSS Tab" src="../bash/images/readme/CSS-1.png">
+        <img alt="CSS Tab" src="../bash/images/readme/CSS-2.png">
+        <img alt="CSS Tab" src="../bash/images/readme/CSS-3.png">
+        <img alt="CSS Tab" src="../bash/images/readme/CSS-4.png">
+        <figcaption style="padding-top:637px">
+            Wrye Bash's CSS example.
+        </figcaption>
+    </figure>
+</div>
+<h3 id="some-category">Overview</h3>
+    <p>So many words here, you just have no idea how many words.
+    Holy crap the words!
+    Just, you know, use your imagination.</p>
+<ol class="lstfli">
+    <li>Hey, look at this neat little list that had to be bumped over!</li>
+</ol>
+<h3 class="clearfb" id="another-category">BAIN-Compatible Cleared Section</h3>
+  <p>Even all of the crazy amounts of words up there didn't drop below the images, so we'll just force this one down ourselves with "clearfb"!</p>
+
+*********************/
 h1, h2 { background: yellowgreen; margin-left: -8px; margin-right: -8px; padding: 0.6em; }
 
 td, th { border: 1px solid black; padding: 5px; vertical-align: top; }
 
-.bbimgl, .bbimgr { max-width: 100%; max-height: 100%; height: auto; width: auto; }
+.bbimgl { float: left; padding-right: 1em; margin-bottom: 1em; }
+
+.bbimgr { float: right; padding-left: 1em; margin-bottom: 1em; }
+
+.clearf::after, .clearfb::before { clear: both; content: ""; display: table; }
 
 html { font-family: "Arial", "sans-serif"; background: #ffffcc; font-size: 0.9em; }
 
-h1 { margin-top: -8px; padding-left: 1.5em; margin-bottom: 0; }
+h1 { margin-top: -8px; padding-left: 1.5em; }
 
 h2 { margin-top: 5em; padding-left: 2em; }
 
@@ -40,7 +94,7 @@ blockquote { background: lavender; display: table; padding: 5px 30px 5px 10px; }
 
 figure { margin: 0; }
 
-figcaption { font-style: italic; margin-bottom: 2em; }
+figcaption { font-style: italic; margin-bottom: 2em; vertical-align: bottom; }
 
 abbr { cursor: help; }
 
@@ -50,13 +104,31 @@ ol ol li { margin-bottom: 0.2em; }
 
 a[href^="http"]:after { padding-left: 2px; content: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAVklEQVR4Xn3PgQkAMQhDUXfqTu7kTtkpd5RA8AInfArtQ2iRXFWT2QedAfttj2FsPIOE1eCOlEuoWWjgzYaB/IkeGOrxXhqB+uA9Bfcm0lAZuh+YIeAD+cAqSz4kCMUAAAAASUVORK5CYII="); }
 
-.bbimgl { float: left; margin-right: 1em; margin-bottom: 1em; }
+.bbimgr img { right: 0.5em; }
 
-.bbimgr { float: right; margin-left: 1em; margin-bottom: 1em; }
+.bbimgr .flft img { right: initial; }
+
+.bbimgr .flft figcaption { text-align: left; }
+
+.bbimgr figcaption { text-align: right; }
+
+.bbimgl .bbh3, .bbimgr .bbh3 { margin-top: 2em; }
+
+.bbimgl.h3, .bbimgr.h3 { margin-top: 2em; }
+
+.bbimgl h3, .bbimgr h3 { margin-top: 1.85em; }
+
+.clear { clear: both; }
+
+.ht3 { margin-top: 5.5em; }
+
+.lstfli { display: inline-block; margin: 0 0 -1em 0; }
 
 .indent { margin-left: 2em; }
 
 .missing { background: red; color: white; border: 0.25em solid black; }
+
+.ovrflwh { overflow: hidden; }
 
 .slideshow img { opacity: 0; position: absolute; -webkit-transition: opacity 1.5s; transition: opacity 1.5s; }
 
