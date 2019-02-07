@@ -76,6 +76,8 @@ li ul { margin-top: 0.4em; }
 
 li ol { margin-top: 0.4em; }
 
+ul.nodot li { list-style: none; margin-left: -20px; }
+
 td > code.box { margin: 0; }
 
 table { margin: 1em; background: #fdfdfd; border-collapse: collapse; }
@@ -102,7 +104,7 @@ ol ol { list-style: lower-alpha; }
 
 ol ol li { margin-bottom: 0.2em; }
 
-a[href^="http"]:after { padding-left: 2px; content: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAVklEQVR4Xn3PgQkAMQhDUXfqTu7kTtkpd5RA8AInfArtQ2iRXFWT2QedAfttj2FsPIOE1eCOlEuoWWjgzYaB/IkeGOrxXhqB+uA9Bfcm0lAZuh+YIeAD+cAqSz4kCMUAAAAASUVORK5CYII="); }
+a[href^="http"]:after { content: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAVklEQVR4Xn3PgQkAMQhDUXfqTu7kTtkpd5RA8AInfArtQ2iRXFWT2QedAfttj2FsPIOE1eCOlEuoWWjgzYaB/IkeGOrxXhqB+uA9Bfcm0lAZuh+YIeAD+cAqSz4kCMUAAAAASUVORK5CYII="); padding-left: 2px; }
 
 .bbimgr img { right: 0.5em; }
 
