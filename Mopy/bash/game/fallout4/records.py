@@ -24,6 +24,7 @@
 """This module contains the Fallout 4 record classes. The great majority are
 imported from skyrim, but only after setting MelModel to the FO4 format."""
 from ... import brec
+from ...bass import null2
 from ...brec import MelBase, MelGroup, MreHeaderBase, MelSet, MelString, \
     MelStruct, MelUnicode, MelNull, MelFidList, MreLeveledListBase, \
     MelGroups, MelFid, FID, MelOptStruct, MelLString, MelStructA
@@ -105,7 +106,8 @@ class MreLeveledList(MreLeveledListBase):
     class MelLevListLvlo(MelGroups):
         def __init__(self):
             MelGroups.__init__(self,'entries',
-                MelStruct('LVLO','=3I','level',(FID,'listId',None),('count',1)),
+                MelStruct('LVLO','=HHIHH','level',('unknown1',null2),
+                          (FID,'listId',None),('count',1),('unknown2',null2)),
                 MelCoed(),
                 )
         def dumpData(self,record,out):
