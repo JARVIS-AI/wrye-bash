@@ -68,10 +68,9 @@ if brec.MelModel is None:
             return self
     brec.MelModel = _MelModel
 # Now we can import from parent game records file
-from ..skyrim.records import MelBounds, MreLeveledList
+from ..skyrim.records import MelBounds, MelCoed
 # Those are unused here, but need be in this file as are accessed via it
 from ..skyrim.records import MreGmst # used in basher.app_buttons.App_GenPickle#_update_pkl
-
 
 #------------------------------------------------------------------------------
 # Fallout 4 Records -----------------------------------------------------------
@@ -92,19 +91,35 @@ class MreHeader(MreHeaderBase):
         MelBase('SCRN', 'scrn_p'),
         MelBase('INTV','intv_p'),
         MelBase('INCC', 'incc_p'),
-        ## TODO: When the GECK is released, check on the following:
-        ##  - verify MAST is still used to not masters
-        ##  - check if DATA is present along with MAST
-        ##  - verify ONAM is still used for overrides
-        ##  - check if SNAM is used at all
-        ##  - check if SCRN is used at all
         )
     __slots__ = melSet.getSlotsUsed()
 
 #------------------------------------------------------------------------------
+# Marker for organization please don't remove ---------------------------------
+# GLOB ------------------------------------------------------------------------
+# Defined in brec.py as class MreGlob(MelRecord) ------------------------------
+#------------------------------------------------------------------------------
+class MreLeveledList(MreLeveledListBase):
+    """Skyrim Leveled item/creature/spell list."""
+
+    class MelLevListLvlo(MelGroups):
+        def __init__(self):
+            MelGroups.__init__(self,'entries',
+                MelStruct('LVLO','=3I','level',(FID,'listId',None),('count',1)),
+                MelCoed(),
+                )
+        def dumpData(self,record,out):
+            out.packSub('LLCT','B',len(record.entries))
+            MelGroups.dumpData(self,record,out)
+
+    __slots__ = MreLeveledListBase.__slots__
+
+
+#------------------------------------------------------------------------------
 class MreLvli(MreLeveledList):
     classType = 'LVLI'
-    copyAttrs = ('chanceNone','glob',)
+    copyAttrs = ('chanceNone','maxCount','glob','filterKeywordChances',
+                 'epicLootChance','overrideName')
 
     melSet = MelSet(
         MelString('EDID','eid'),
@@ -115,7 +130,8 @@ class MreLvli(MreLeveledList):
         MelOptStruct('LVLG','I',(FID,'glob')),
         MelNull('LLCT'),
         MreLeveledList.MelLevListLvlo(),
-        MelStructA('LLKC','2I','filterKeywordChances',(FID, 'keyword'), 'chance'),
+        MelStructA('LLKC','2I','filterKeywordChances',(FID,'keyword',None),
+                      ('chance',0)),
         MelFid('LVSG', 'epicLootChance'),
         MelLString('ONAM', 'overrideName')
         )
@@ -124,7 +140,8 @@ class MreLvli(MreLeveledList):
 #------------------------------------------------------------------------------
 class MreLvln(MreLeveledList):
     classType = 'LVLN'
-    copyAttrs = ('chanceNone','model','modt_p',)
+    copyAttrs = ('chanceNone','maxCount','glob','filterKeywordChances',
+                 'model','modt_p')
 
     melSet = MelSet(
         MelString('EDID','eid'),
@@ -135,7 +152,8 @@ class MreLvln(MreLeveledList):
         MelOptStruct('LVLG','I',(FID,'glob')),
         MelNull('LLCT'),
         MreLeveledList.MelLevListLvlo(),
-        MelStructA('LLKC','2I','filterKeywordChances',(FID, 'keyword'), 'chance'),
+        MelStructA('LLKC','2I','filterKeywordChances',(FID,'keyword',None),
+                      ('chance',0)),
         MelString('MODL','model'),
         MelBase('MODT','modt_p'),
         )
