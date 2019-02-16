@@ -49,6 +49,7 @@ Unicode true
     Var Path_SkyrimSE
     Var Path_Fallout3
     Var Path_FalloutNV
+    Var Path_Enderal
     Var Path_Ex1
     Var Path_Ex2
     Var MSVC_Sub_Key
@@ -66,6 +67,7 @@ Unicode true
     Var Check_Extra
     Var Check_Fallout3
     Var Check_FalloutNV
+    Var Check_Enderal
     Var Check_Ex1
     Var Check_Ex2
     Var CheckState_OB
@@ -76,6 +78,7 @@ Unicode true
     Var CheckState_Extra
     Var CheckState_Fallout3
     Var CheckState_FalloutNV
+    Var CheckState_Enderal
     Var CheckState_Ex1
     Var CheckState_Ex2
     Var Check_OB_Py
@@ -85,6 +88,7 @@ Unicode true
     Var Check_SkyrimSE_Py
     Var Check_Fallout3_Py
     Var Check_FalloutNV_Py
+    Var Check_Enderal_Py
     Var Check_Ex1_Py
     Var Check_Ex2_Py
     Var CheckState_OB_Py
@@ -94,6 +98,7 @@ Unicode true
     Var CheckState_SkyrimSE_Py
     Var CheckState_Fallout3_Py
     Var CheckState_FalloutNV_Py
+    Var CheckState_Enderal_Py
     Var CheckState_Ex1_Py
     Var CheckState_Ex2_Py
     Var Check_OB_Exe
@@ -103,6 +108,7 @@ Unicode true
     Var Check_SkyrimSE_Exe
     Var Check_Fallout3_Exe
     Var Check_FalloutNV_Exe
+    Var Check_Enderal_Exe
     Var Check_Ex1_Exe
     Var Check_Ex2_Exe
     Var CheckState_OB_Exe
@@ -112,6 +118,7 @@ Unicode true
     Var CheckState_SkyrimSE_Exe
     Var CheckState_Fallout3_Exe
     Var CheckState_FalloutNV_Exe
+    Var CheckState_Enderal_Exe
     Var CheckState_Ex1_Exe
     Var CheckState_Ex2_Exe
     Var Reg_Value_OB_Py
@@ -121,6 +128,7 @@ Unicode true
     Var Reg_Value_SkyrimSE_Py
     Var Reg_Value_Fallout3_Py
     Var Reg_Value_FalloutNV_Py
+    Var Reg_Value_Enderal_Py
     Var Reg_Value_Ex1_Py
     Var Reg_Value_Ex2_Py
     Var Reg_Value_OB_Exe
@@ -130,6 +138,7 @@ Unicode true
     Var Reg_Value_SkyrimSE_Exe
     Var Reg_Value_Fallout3_Exe
     Var Reg_Value_FalloutNV_Exe
+    Var Reg_Value_Enderal_Exe
     Var Reg_Value_Ex1_Exe
     Var Reg_Value_Ex2_Exe
     Var PathDialogue_OB
@@ -139,6 +148,7 @@ Unicode true
     Var PathDialogue_SkyrimSE
     Var PathDialogue_Fallout3
     Var PathDialogue_FalloutNV
+    Var PathDialogue_Enderal
     Var PathDialogue_Ex1
     Var PathDialogue_Ex2
     Var Browse_OB
@@ -148,6 +158,7 @@ Unicode true
     Var Browse_SkyrimSE
     Var Browse_Fallout3
     Var Browse_FalloutNV
+    Var Browse_Enderal
     Var Browse_Ex1
     Var Browse_Ex2
     Var Check_Readme
@@ -277,6 +288,13 @@ Unicode true
             StrCpy $CheckState_FalloutNV ${BST_CHECKED}
         ${EndIf}
 
+        ${If} $Path_Enderal == $Empty
+            ReadRegStr $Path_Enderal HKCU "Software\SureAI\Enderal" "Install_Path"
+        ${EndIf}
+        ${If} $Path_Enderal != $Empty
+            StrCpy $CheckState_Enderal ${BST_CHECKED}
+        ${EndIf}
+
         ${If} $Path_Ex1 != $Empty
             StrCpy $CheckState_Extra ${BST_CHECKED}
             StrCpy $CheckState_Ex1 ${BST_CHECKED}
@@ -343,6 +361,14 @@ Unicode true
             StrCpy $CheckState_FalloutNV_Py ${BST_CHECKED}
         ${EndIf}
 
+        ${If} $Reg_Value_Enderal_Exe == $True
+        ${OrIf} $Reg_Value_Enderal_Py != $True
+            StrCpy $CheckState_Enderal_Exe ${BST_CHECKED}
+        ${EndIf}
+        ${If} $Reg_Value_Enderal_Py == $True
+            StrCpy $CheckState_Enderal_Py ${BST_CHECKED}
+        ${EndIf}
+
         ${If} $Reg_Value_Ex1_Exe == $True
         ${OrIf} $Reg_Value_Ex1_Py != $True
             StrCpy $CheckState_Ex1_Exe ${BST_CHECKED}
@@ -378,6 +404,8 @@ Unicode true
             StrCpy $1 $PathDialogue_Fallout3
         ${ElseIf} $0 == $Browse_FalloutNV
             StrCpy $1 $PathDialogue_FalloutNV
+        ${ElseIf} $0 == $Browse_Enderal
+            StrCpy $1 $PathDialogue_Enderal
         ${ElseIf} $0 == $Browse_Ex1
             StrCpy $1 $PathDialogue_Ex1
         ${ElseIf} $0 == $Browse_Ex2
@@ -438,6 +466,8 @@ Unicode true
             StrCpy $1 $PathDialogue_Fallout3
         ${ElseIf} $0 == $Browse_FalloutNV
             StrCpy $1 $PathDialogue_FalloutNV
+        ${ElseIf} $0 == $Browse_Enderal
+            StrCpy $1 $PathDialogue_Enderal
         ${ElseIf} $0 == $Browse_Ex1
             StrCpy $1 $PathDialogue_Ex1
         ${ElseIf} $0 == $Browse_Ex2
