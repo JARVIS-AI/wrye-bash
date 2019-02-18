@@ -287,16 +287,17 @@ class CellImporter(_ACellImporter, ImportPatcher):
             Add attribute values from source mods to a temporary cache.
             These are used to filter for required records by formID and
             to update the attribute values taken from the master files
-            when creating cell_data.
+            when creating cellData.
             """
             if not cellBlock.cell.flags1.ignored:
                 fid = cellBlock.cell.fid
                 for attr in attrs:
-                    tempCellData[fid][attr] = cellBlock.cell.__getattribute__(
-                        attr)
+                    tempCellData[fid][attr] = (
+                        cellBlock.cell.__getattribute__(attr))
                 for flag in flags:
-                    tempCellData[fid + ('flags',)][
-                        flag] = cellBlock.cell.flags.__getattr__(flag)
+                    tempCellData[fid + ('flags',)][flag] = (
+                        cellBlock.cell.flags.__getattr__(flag))
+
         def checkMasterCellBlockData(cellBlock):
             """
             Add attribute values from record(s) in master file(s).
@@ -315,10 +316,11 @@ class CellImporter(_ACellImporter, ImportPatcher):
                 for flag in flags:
                     master_flag = cellBlock.cell.flags.__getattr__(flag)
                     if tempCellData[fid + ('flags',)][flag] != master_flag:
-                        cellData[fid + ('flags',)][flag] = \
-                            tempCellData[fid + ('flags',)][flag]
-        loadFactory = LoadFactory(False,MreRecord.type_class['CELL'],
-                                        MreRecord.type_class['WRLD'])
+                        cellData[fid + ('flags',)][flag] = (
+                            tempCellData[fid + ('flags',)][flag])
+
+        loadFactory = LoadFactory(False, MreRecord.type_class['CELL'],
+                                  MreRecord.type_class['WRLD'])
         progress.setFull(len(self.srcs))
         cachedMasters = {}
         for srcMod in self.srcs:
@@ -406,6 +408,18 @@ class CellImporter(_ACellImporter, ImportPatcher):
 
     def buildPatch(self,log,progress): # buildPatch0
         """Adds merged lists to patchfile."""
+
+        def regions_differ(patch_value, value_):
+            """
+            Required for regions because comparing using `==` or `!=`
+            results in false positives.
+            """
+            sorted_patch_value = sorted(patch_value)
+            sorted_value = sorted(value_)
+            regions_compare = set(sorted_value).difference(
+                sorted_patch_value)
+            return (bool(regions_compare))
+
         def handlePatchCellBlock(patchCellBlock):
             """
             This function checks if an attribute or flag in CellData has
@@ -418,17 +432,15 @@ class CellImporter(_ACellImporter, ImportPatcher):
             Modified cell Blocks are kept, the other are discarded.
             """
             modified=False
-            for attr,value in cellData[patchCellBlock.cell.fid].iteritems():
+            for attr, value in cellData[patchCellBlock.cell.fid].viewitems():
                 if attr == 'regions':
-                    if set(value).difference(set(patchCellBlock.cell.__getattribute__(attr))):
+                    if regions_differ(patchCellBlock.cell.__getattribute__(attr), value):
                         patchCellBlock.cell.__setattr__(attr, value)
                         modified = True
-                else:
-                    if patchCellBlock.cell.__getattribute__(attr) != value:
-                        patchCellBlock.cell.__setattr__(attr, value)
-                        modified=True
-            for flag, value in cellData[
-                        patchCellBlock.cell.fid + ('flags',)].iteritems():
+                elif patchCellBlock.cell.__getattribute__(attr) != value:
+                    patchCellBlock.cell.__setattr__(attr, value)
+                    modified = True
+            for flag, value in cellData[patchCellBlock.cell.fid + ('flags',)].viewitems():
                 if patchCellBlock.cell.flags.__getattr__(flag) != value:
                     patchCellBlock.cell.flags.__setattr__(flag, value)
                     modified=True
@@ -436,6 +448,7 @@ class CellImporter(_ACellImporter, ImportPatcher):
                 patchCellBlock.cell.setChanged()
                 keep(patchCellBlock.cell.fid)
             return modified
+
         if not self.isActive: return
         keep = self.patchFile.getKeeper()
         cellData, count = self.cellData, collections.defaultdict(int)
@@ -445,10 +458,10 @@ class CellImporter(_ACellImporter, ImportPatcher):
         for worldBlock in self.patchFile.WRLD.worldBlocks:
             keepWorld = False
             for cellBlock in worldBlock.cellBlocks:
-                if cellBlock.cell.fid in cellData and handlePatchCellBlock(
-                        cellBlock):
-                    count[cellBlock.cell.fid[0]] += 1
-                    keepWorld = True
+                if cellBlock.cell.fid in cellData:
+                    if handlePatchCellBlock(cellBlock):
+                        count[cellBlock.cell.fid[0]] += 1
+                        keepWorld = True
             if worldBlock.worldCellBlock:
                 if worldBlock.worldCellBlock.cell.fid in cellData:
                     if handlePatchCellBlock(worldBlock.worldCellBlock):
