@@ -1762,6 +1762,7 @@ class ModInfos(FileInfos):
     def cached_lo_last_esm(self):
         last_esm = self.masterName
         for mod in self._lo_wip[1:]:
+            # checking for ESM or ESL, investigate
             if not load_order.in_master_block(self[mod]): return last_esm
             last_esm = mod
         return last_esm
@@ -1780,6 +1781,7 @@ class ModInfos(FileInfos):
     def cached_lo_append_if_missing(self, mods):
         new = mods - set(self._lo_wip)
         if not new: return
+        # checking for ESM or ESL, investigate
         esms = set(x for x in new if load_order.in_master_block(self[x]))
         if esms:
             last = self.cached_lo_last_esm()
@@ -2203,6 +2205,7 @@ class ModInfos(FileInfos):
         try:
             espms_extra, esls_extra = load_order.check_active_limit(
                 self._active_wip + [fileName])
+            # checking for ESL flaged file, investigate
             if espms_extra or esls_extra:
                 msg = u'%s: Trying to activate more than ' % fileName
                 if espms_extra:
@@ -2293,7 +2296,13 @@ class ModInfos(FileInfos):
             if toActivate: self.cached_lo_save_active(active=toActivate)
 
     def lo_activate_exact(self, modNames):
-        """Activate exactly the specified set of mods."""
+        """Activate exactly the specified set of mods.
+
+        revised: ESM affects load order, and .esm and .esl files are always
+        implicitly ESM flagged, even when not on disk. ESL only affects whether
+        or not a module takes a full or light slot, and .esl are always
+        implicitly ESL flagged, even when not on disk.
+        """
         modsSet, all_mods = set(modNames), set(self.keys())
         #--Ensure plugins that cannot be deselected stay selected
         modsSet.update(load_order.must_be_active_if_present() & all_mods)

@@ -157,6 +157,11 @@ class Mod_OrderByName(EnabledLink):
 
     @balt.conversation
     def Execute(self):
+        """revised: ESM affects load order, and .esm and .esl files are always
+        implicitly ESM flagged, even when not on disk. ESL only affects whether
+        or not a module takes a full or light slot, and .esl are always
+        implicitly ESL flagged, even when not on disk.
+        """
         message = _(u'Reorder selected mods in alphabetical order?  The first '
             u'file will be given the date/time of the current earliest file '
             u'in the group, with consecutive files following at 1 minute '
@@ -170,6 +175,8 @@ class Mod_OrderByName(EnabledLink):
                                  _(u'Sort Mods')): return
         #--Do it
         self.selected.sort()
+        # checking for ESM or ESL, investigate
+        # originally: sort esmls first, revised: see docstring
         self.selected.sort( # sort esmls first
             key=lambda m: not load_order.in_master_block(bosh.modInfos[m]))
         if not load_order.using_txt_file():
@@ -1477,6 +1484,7 @@ class Mod_CopyToEsmp(EnabledLink):
     def _enable(self):
         """Disable if selected are mixed esm/p's or inverted mods."""
         for minfo in self.iselected_infos():
+            # checking for ESL flagged file, investigate
             if minfo.is_esl() or minfo.isInvertedMod() or \
                     minfo.has_esm_flag() != self._is_esm:
                 return False
@@ -1608,8 +1616,18 @@ class Mod_FlipEsm(_Esm_Esl_Flip):
         """For pre esl games check if all mods are of the same type (esm or
         esp), based on the flag and if are all esp extension files. For esl
         games the esp extension is even more important as esm and esl have
-        the master flag set in memory no matter what."""
+        the master flag set in memory no matter what.
+		
+		revised: changed to look at specific flag and not use .isEsm
+        and .is_esl because those also check file extension
+
+        intent:
+        1) Check for the presence of either bit eslFile or esm so both cannot be set at the same time
+        2) Compare if the selected file self._is_esm/self._is_esl has the bit set
+        3) Check to see if the selected file ends in 'p'
+		"""
         for m, minfo in self.iselected_pairs():
+            # checking for ESL flagged file, investigate
             if m.cext[-1] != u'p' or minfo.has_esm_flag() != self._is_esm:
                 return False
         return True
@@ -1646,8 +1664,18 @@ class Mod_FlipEsl(_Esm_Esl_Flip):
 
     def _enable(self):
         """Allow if all selected mods are .espm files, have same esl flag and
-        are esl capable if converting to esl."""
+        are esl capable if converting to esl.
+		
+		revised: changed to look at specific flag and not use .isEsm
+        and .is_esl because those also check file extension
+
+        intent:
+        1) Check for the presence of either bit eslFile or esm so both cannot be set at the same time
+        2) Compare if the selected file self._is_esm/self._is_esl has the bit set
+        3) Check to see if the selected file ends in 'p'
+        """
         for m, minfo in self.iselected_pairs():
+            # checking for ESL flagged file, investigate
             if m.cext[-1] not in u'pm' or minfo.is_esl() != self._is_esl \
                     or (not self._is_esl and not m in bosh.modInfos.mergeable):
                 return False

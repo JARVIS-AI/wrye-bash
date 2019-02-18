@@ -118,6 +118,7 @@ def is_esl_capable(modInfo, minfos, reasons):
     """Returns True or error message indicating whether specified mod is
     convertible to a light plugin."""
     verbose = reasons is not None
+    #--Bashed Patch
     if modInfo.isBP():
         if not verbose: return False
         reasons.append(_(u'Is Bashed Patch.'))

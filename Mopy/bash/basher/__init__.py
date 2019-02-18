@@ -272,7 +272,15 @@ class _ModsUIList(balt.UIList):
         settings[self.keyPrefix + '.selectedFirst'] = val
 
     def _sortEsmsFirst(self, items):
+        """revised: ESM affects load order, and .esm and .esl files are always
+        implicitly ESM flagged, even when not on disk. ESL only affects whether
+        or not a module takes a full or light slot, and .esl are always
+        implicitly ESL flagged, even when not on disk.
+        """
+        # checking for ESM or ESL, investigate
+        # This makes Skyrim.esm and DLC load first
         if self.esmsFirst:
+            # checking for ESM or ESL, investigate
             items.sort(key=lambda a: not load_order.in_master_block(
                 self.data_store[a]))
 
@@ -798,6 +806,7 @@ class ModList(_ModsUIList):
             msg = _(u'Reordering mods is only allowed when they are sorted '
                     u'by Load Order.')
         else:
+            # This keeps you from reordering DLC, investigate
             pinned = load_order.filter_pinned(self.GetSelected())
             if pinned:
                 msg = _(u"You can't reorder the following mods:\n" +
@@ -841,6 +850,7 @@ class ModList(_ModsUIList):
                 item_format.text_key = 'mods.text.noMerge'
                 mouseText += _(u"Technically mergeable but has NoMerge tag.  ")
             else:
+                # TODO: ESL flagged message needs to be updated
                 item_format.text_key = 'mods.text.mergeable'
                 if bush.game.check_esl:
                     mouseText += _(u"Qualifies to be ESL flagged.  ")
