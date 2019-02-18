@@ -475,18 +475,19 @@ class MobCell(MobBase):
     def getBsb(self):
         """Returns tesfile block and sub-block indices for cells in this group.
         For interior cell, bsb is (blockNum,subBlockNum). For exterior cell,
-        bsb is ((blockY,blockX),(subblockY,subblockX))."""
+        bsb is ((blockX,blockY),(subblockX,subblockY))."""
         cell = self.cell
         #--Interior cell
         if cell.flags.isInterior:
             baseFid = cell.fid & 0x00FFFFFF
             return baseFid%10, baseFid%100//10
         #--Exterior cell
+        # Grup Coord are reversed for Exteriors
         else:
-            x,y = cell.posY,cell.posX
+            x,y = cell.posX,cell.posY
             if x is None: x = 0
             if y is None: y = 0
-            return (x//32, y//32), (x//8, y//8)
+            return (y//32, x//32), (y//8, x//8)
 
     def dump(self,out):
         """Dumps group header and then records."""
