@@ -30,62 +30,47 @@ from .default_tweaks import default_tweaks
 from .. import GameInfo
 from ... import brec
 
-class Fallout4GameInfo(GameInfo):
-    displayName = u'Fallout 4'
-    fsName = u'Fallout4'
+class Fallout76GameInfo(GameInfo):
+    displayName = u'Fallout 76'
+    fsName = u'Fallout76'
     altName = u'Wrye Flash'
-    defaultIniFile = u'Fallout4_default.ini'
-    exe = u'Fallout4.exe'
-    masterFiles = [u'Fallout4.esm']
-    iniFiles = [u'Fallout4.ini', u'Fallout4Prefs.ini', u'Fallout4Custom.ini', ]
-    pklfile = ur'bash\db\Fallout4_ids.pkl'
-    regInstallKeys = (u'Bethesda Softworks\\Fallout4', u'Installed Path')
-    nexusUrl = u'http://www.nexusmods.com/fallout4/'
-    nexusName = u'Fallout 4 Nexus'
-    nexusKey = 'bash.installers.openFallout4Nexus.continue'
+    defaultIniFile = u'Fallout76.ini'
+    exe = u'Fallout76.exe'
+    masterFiles = [u'SeventySix.esm']
+    iniFiles = [u'Fallout76.ini', u'Fallout76Prefs.ini', u'Fallout76Custom.ini', ]
+    pklfile = ur''
+    regInstallKeys = (u'Microsoft\Windows\CurrentVersion\Uninstall\Fallout 76', u'Path')
+    nexusUrl = u''
+    nexusName = u''
+    nexusKey = ''
 
     bsa_extension = ur'ba2'
     vanilla_string_bsas = {
-        u'fallout4.esm': [u'Fallout4 - Interface.ba2'],
-        u'dlcrobot.esm': [u'DLCRobot - Main.ba2'],
-        u'dlcworkshop01.esm': [u'DLCworkshop01 - Main.ba2'],
-        u'dlcworkshop02.esm': [u'DLCworkshop02 - Main.ba2'],
-        u'dlcworkshop03.esm': [u'DLCworkshop03 - Main.ba2'],
-        u'dlccoast.esm': [u'DLCCoast - Main.ba2'],
-        u'dlcnukaworld.esm':  [u'DLCNukaWorld - Main.ba2'],
+        u'seventysix.esm': [u'SeventySix - Interface.ba2'],
     }
-    resource_archives_keys = (
-        u'sResourceIndexFileList', u'sResourceStartUpArchiveList',
-        u'sResourceArchiveList', u'sResourceArchiveList2',
-        u'sResourceArchiveListBeta'
-    )
-
-    espm_extensions = {u'.esp', u'.esm', u'.esl'}
-    has_achlist = True
+    resource_archives_keys = (u'sResourceArchiveList', u'sResourceArchiveList2')
 
     class cs(GameInfo.cs):
         # TODO:  When the Fallout 4 Creation Kit is actually released,
         # double check that the filename is correct, and create an actual icon
-        shortName = u'FO4CK'
+        shortName = u'FO76CK'
         longName = u'Creation Kit'
         exe = u'CreationKit.exe'
         seArgs = None
         imageName = u'creationkit%s.png'
 
     class se(GameInfo.se):
-        shortName = u'F4SE'
-        longName = u'Fallout 4 Script Extender'
-        exe = u'f4se_loader.exe'
-        steamExe = u'f4se_steam_loader.dll'
-        url = u'http://f4se.silverlock.org/'
-        urlTip = u'http://f4se.silverlock.org/'
+        shortName = u''
+        longName = u''
+        exe = u''
+        steamExe = u''
+        url = u''
+        urlTip = u''
 
     class ini(GameInfo.ini):
         allowNewLines = True
         bsaRedirection = (u'',u'')
 
-    class ess(GameInfo.ess):
-        ext = u'.fos'
 
     # BAIN:
     dataDirs = GameInfo.dataDirs | {
@@ -150,26 +135,29 @@ class Fallout4GameInfo(GameInfo):
         # Setting RecordHeader class variables --------------------------------
         brec.RecordHeader.topTypes = [
             'GMST', 'KYWD', 'LCRT', 'AACT', 'TRNS', 'CMPO', 'TXST', 'GLOB',
-            'DMGT', 'CLAS', 'FACT', 'HDPT', 'RACE', 'SOUN', 'ASPC', 'MGEF',
-            'LTEX', 'ENCH', 'SPEL', 'ACTI', 'TACT', 'ARMO', 'BOOK', 'CONT',
-            'DOOR', 'INGR', 'LIGH', 'MISC', 'STAT', 'SCOL', 'MSTT', 'GRAS',
-            'TREE', 'FLOR', 'FURN', 'WEAP', 'AMMO', 'NPC_', 'PLYR', 'LVLN',
-            'KEYM', 'ALCH', 'IDLM', 'NOTE', 'PROJ', 'HAZD', 'BNDS', 'TERM',
-            'LVLI', 'WTHR', 'CLMT', 'SPGD', 'RFCT', 'REGN', 'NAVI', 'CELL',
-            'WRLD', 'QUST', 'IDLE', 'PACK', 'CSTY', 'LSCR', 'LVSP', 'ANIO',
+            'DMGT', 'CLAS', 'FACT', 'HDPT', 'EYES', 'RACE', 'SOUN', 'SECH',
+            'ASPC', 'RESO', 'MGEF', 'LTEX', 'ENCH', 'SPEL', 'ACTI', 'TACT',
+            'CURV', 'ARMO', 'BOOK', 'CONT', 'DOOR', 'INGR', 'LIGH', 'MISC',
+            'MSCS', 'CNCY', 'STAT', 'SCOL', 'MSTT', 'GRAS', 'TREE', 'FLOR',
+            'FURN', 'WEAP', 'AMMO', 'NPC_', 'PLYR', 'LVLN', 'LVLP', 'KEYM',
+            'ALCH', 'IDLM', 'NOTE', 'PROJ', 'HAZD', 'BNDS', 'TERM', 'PPAK',
+            'PACH', 'LVLI', 'WTHR', 'CLMT', 'SPGD', 'RFCT', 'REGN', 'NAVI',
+            'CELL', 'WRLD', 'QUST', 'IDLE', 'PACK', 'CSTY', 'LSCR', 'ANIO',
             'WATR', 'EFSH', 'EXPL', 'DEBR', 'IMGS', 'IMAD', 'FLST', 'PERK',
-            'BPTD', 'ADDN', 'AVIF', 'CAMS', 'CPTH', 'VTYP', 'MATT', 'IPCT',
-            'IPDS', 'ARMA', 'ECZN', 'LCTN', 'MESG', 'DOBJ', 'DFOB', 'LGTM',
-            'MUSC', 'FSTP', 'FSTS', 'SMBN', 'SMQN', 'SMEN', 'DLBR', 'MUST',
-            'DLVW', 'EQUP', 'RELA', 'SCEN', 'ASTP', 'OTFT', 'ARTO', 'MATO',
-            'MOVT', 'SNDR', 'SNCT', 'SOPM', 'COLL', 'CLFM', 'REVB', 'PKIN',
-            'RFGP', 'AMDL', 'LAYR', 'COBJ', 'OMOD', 'MSWP', 'ZOOM', 'INNR',
-            'KSSM', 'AECH', 'SCCO', 'AORU', 'SCSN', 'STAG', 'NOCM', 'LENS',
-            'GDRY', 'OVIS']
+            'PCRD', 'LVPC', 'BPTD', 'ADDN', 'AVIF', 'CAMS', 'CPTH', 'VTYP',
+            'MATT', 'IPCT', 'IPDS', 'ARMA', 'LCTN', 'MESG', 'DOBJ', 'DFOB',
+            'LGTM', 'MUSC', 'FSTP', 'FSTS', 'SMBN', 'SMQN', 'SMEN', 'MUST',
+            'DLVW', 'EQUP', 'RELA', 'ASTP', 'OTFT', 'ARTO', 'MATO', 'MOVT',
+            'SNDR', 'SNCT', 'SOPM', 'COLL', 'CLFM', 'REVB', 'PKIN', 'RFGP',
+            'AMDL', 'LAYR', 'COBJ', 'OMOD', 'MSWP', 'ZOOM', 'INNR', 'KSSM',
+            'AECH', 'SCCO', 'AORU', 'SCSN', 'STAG', 'NOCM', 'LENS', 'GDRY',
+            'OVIS', 'STND', 'STMP', 'GCVR', 'EMOT', 'STHD', 'VOLI', 'ECAT', 
+            'WSPR', 'ENTM', 'PCEN', 'COEN', 'CSEN', 'WAVE', 'AAPD', 'PMFT',
+            'CHAL', 'AVTR', 'CNDF']
         brec.RecordHeader.recordTypes = (set(brec.RecordHeader.topTypes) |
             {'GRUP', 'TES4', 'REFR', 'ACHR', 'PMIS', 'PARW', 'PGRE', 'PBEA',
              'PFLA', 'PCON', 'PBAR', 'PHZD', 'LAND', 'NAVM', 'DIAL', 'INFO'})
-        brec.RecordHeader.plugin_form_version = 131
+        brec.RecordHeader.plugin_form_version = 184
         brec.MreRecord.type_class = dict((x.classType,x) for x in (
             #--Always present
             MreHeader, MreLvli, MreLvln,
@@ -179,4 +167,4 @@ class Fallout4GameInfo(GameInfo):
         brec.MreRecord.simpleTypes = (
             set(brec.MreRecord.type_class) - {'TES4',})
 
-GAME_TYPE = Fallout4GameInfo
+GAME_TYPE = Fallout76GameInfo
