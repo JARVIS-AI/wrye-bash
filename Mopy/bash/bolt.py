@@ -123,6 +123,7 @@ def decode(byte_str, encoding=None, avoidEncodings=()):
     # TODO(ut) monkey patch
     if encoding == 'cp65001':
         encoding = 'utf-8'
+        codecs.register(lambda name: codecs.lookup('utf-8') if name == 'cp65001' else None)
     if encoding:
         try: return unicode(byte_str, encoding)
         except UnicodeDecodeError: pass
