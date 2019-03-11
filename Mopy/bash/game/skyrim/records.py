@@ -1020,7 +1020,7 @@ class MreHeader(MreHeaderBase):
 
     #--Data elements
     melSet = MelSet(
-        MelStruct('HEDR','f2I',('version',0.94),'numRecords',('nextObject',0xCE6)),
+        MelStruct('HEDR','f2I',('version',1.70),'numRecords',('nextObject',0xCE6)),
         MelUnicode('CNAM','author',u'',512),
         MelUnicode('SNAM','description',u'',512),
         MreHeaderBase.MelMasterName('MAST','masters'),
