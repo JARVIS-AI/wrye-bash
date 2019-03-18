@@ -205,10 +205,15 @@ def _main(opts):
     :param opts: command line arguments
     """
     import barg
+    print 'Imported Barg'
     bass.sys_argv = barg.convert_to_long_options(sys.argv)
+    print 'bass.sys_argv set to {}'.format(bass.sys_argv)
     import env # env imports bolt (this needs fixing)
+    print 'Imported env'
     bolt.deprintOn = opts.debug
+    print 'bolt.deprintOn set to {}'.format(bolt.deprintOn)
     # useful for understanding context of bug reports
+    print 'Entering IF # 1'
     if opts.debug or is_standalone:
         # Standalone stdout is NUL no matter what.   Redirect it to stderr.
         # Also, setup stdout/stderr to the debug log if debug mode /
@@ -221,17 +226,24 @@ def _main(opts):
         sys.stderr = _bugdump_handle
         old_stderr = _bugdump_handle
 
+    print 'Entering IF # 2'
     if opts.debug:
         dump_environment()
 
     # Check if there are other instances of Wrye Bash running
     instance = _wx.SingleInstanceChecker('Wrye Bash') # must stay alive !
+    print 'instance set to {}'.format(instance)
+    print 'Entering assure_single_instance'
     assure_single_instance(instance)
+    print 'single instance finished'
 
     #--Bash installation directories, set on boot, not likely to change
+    print 'about to init dirs'
     initialization.init_dirs_mopy_and_cd(is_standalone)
+    print 'finished init dirs'
 
     # if HTML file generation was requested, just do it and quit
+    print 'Entering IF # 3'
     if opts.genHtml is not None:
         msg1 = _(u"generating HTML file from: '%s'") % opts.genHtml
         msg2 = _(u'done')
@@ -244,9 +256,13 @@ def _main(opts):
         return
 
     # We need the Mopy dirs to initialize restore settings instance
+    print 'about to set bash_ini_path'
     bash_ini_path, restore_ = u'bash.ini', None
+    print 'instance set to {} and {}'.format(bash_ini_path, restore_)
     # import barb that does not import from bosh/balt/bush
     import barb
+    print 'Imported barb'
+    print 'Entering IF # 4'
     if opts.restore:
         try:
             restore_ = barb.RestoreSettings(opts.filename)
@@ -287,11 +303,16 @@ def _main(opts):
         _show_wx_error(msg)
         return
 
+    print 'About to run exit_cleanup'
     atexit.register(exit_cleanup)
+    print 'basher.InitSettings'
     basher.InitSettings()
+    print 'basher.InitLinks'
     basher.InitLinks()
+    print 'basher.InitImages'
     basher.InitImages()
     #--Start application
+    print 'Entering IF # 5'
     if opts.debug:
         if is_standalone:
             # Special case for py2exe version
@@ -304,10 +325,13 @@ def _main(opts):
     else:
         app = basher.BashApp()
 
+    print 'Entering IF # 6'
     if not is_standalone and (
         not _rightWxVersion() or not _rightPythonVersion()): return
+    print 'Entering IF # 7'
     if env.isUAC:
         uacRestart = opts.uac
+        print 'Entering IF # 7a'
         if not opts.noUac and not opts.uac:
             # Show a prompt asking if we should restart in Admin Mode
             message = _(
@@ -320,14 +344,17 @@ def _main(opts):
                                               title=_(u'UAC Protection'),
                                               mopy=bass.dirs['mopy'])
             if uacRestart: bass.update_sys_argv(['--uac'])
+        print 'Entering IF # 7b'
         if uacRestart:
             bass.is_restarting = True
             return
     # Backup the Bash settings - we need settings being initialized to get
     # the previous version - we should read this from a file so we can move
     # backup higher up in the boot sequence.
+    print 'About to run previous_bash_version'
     previous_bash_version = bass.settings['bash.version']
     # backup settings if app version has changed or on user request
+    print 'Entering IF # 8'
     if opts.backup or barb.BackupSettings.new_bash_version_prompt_backup(
             balt, previous_bash_version):
         frame = None # balt.Link.Frame, not defined yet, no harm done
@@ -357,7 +384,9 @@ def _main(opts):
                                  title=_(u'Unable to create backup!')):
                     return  # Quit
 
+    print 'app.Init'
     app.Init() # Link.Frame is set here !
+    print 'app.MainLoop'
     app.MainLoop()
 
 def _detect_game(opts, backup_bash_ini):
