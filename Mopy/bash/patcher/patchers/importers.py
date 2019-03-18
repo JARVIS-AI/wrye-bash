@@ -409,19 +409,8 @@ class CellImporter(_ACellImporter, ImportPatcher):
     def buildPatch(self, log, progress):  # buildPatch0
         """Adds merged lists to patchfile."""
 
-        def regions_differ(patch_value, value_):
-            """
-            Required for regions because comparing using `==` or `!=`
-            results in false positives.
-            """
-            sorted_patch_value = sorted(patch_value)
-            sorted_value = sorted(value_)
-            regions_compare = set(sorted_value).difference(
-                sorted_patch_value)
-            return (bool(regions_compare))
-
         def has_been_modified(patch_cell_block):
-            #@formatter:off
+            # @formatter:off
             """
             This function checks if an attribute or flag in CellData has
             a value which is different to the corresponding value in the
@@ -432,7 +421,7 @@ class CellImporter(_ACellImporter, ImportPatcher):
             to the bash patch, and the cell is flagged as modified.
             Modified cell Blocks are kept, the other are discarded.
             """
-            #@formatter:on
+            # @formatter:on
             src_values = cell_data[patch_cell_block.cell.fid].viewitems()
             src_flags = cell_data[
                 patch_cell_block.cell.fid + ('flags',)].viewitems()
@@ -441,12 +430,13 @@ class CellImporter(_ACellImporter, ImportPatcher):
             for attribute, src_value in src_values:
                 patch_value = patch_cell_block.cell.__getattribute__(attribute)
                 if attribute == 'regions':
-                    if regions_differ(patch_value, src_value):
+                    if set(src_value).difference(set(patch_value)):
                         patch_cell_block.cell.__setattr__(attribute, src_value)
                         modified = True
-                elif patch_value != src_value:
-                    patch_cell_block.cell.__setattr__(attribute, src_value)
-                    modified = True
+                else:
+                    if patch_value != src_value:
+                        patch_cell_block.cell.__setattr__(attribute, src_value)
+                        modified = True
             for flag, src_value in src_flags:
                 patch_value = patch_cell_block.cell.flags.__getattr__(flag)
                 if patch_value != src_value:
@@ -463,7 +453,7 @@ class CellImporter(_ACellImporter, ImportPatcher):
         cell_data, count = self.cell_data, collections.defaultdict(int)
         for cell_block in self.patchFile.CELL.cellBlocks:
             if cell_block.cell.fid in cell_data and has_been_modified(
-                    cell_block):
+                cell_block):
                 count[cell_block.cell.fid[0]] += 1
         for world_block in self.patchFile.WRLD.worldBlocks:
             keep_world = False
