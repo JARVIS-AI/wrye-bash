@@ -409,18 +409,8 @@ class CellImporter(_ACellImporter, ImportPatcher):
     def buildPatch(self,log,progress): # buildPatch0
         """Adds merged lists to patchfile."""
 
-        def regions_differ(patch_value, value_):
-            """
-            Required for regions because comparing using `==` or `!=`
-            results in false positives.
-            """
-            sorted_patch_value = sorted(patch_value)
-            sorted_value = sorted(value_)
-            regions_compare = set(sorted_value).difference(
-                sorted_patch_value)
-            return (bool(regions_compare))
-
-        def handlePatchCellBlock(patchCellBlock):
+        def has_been_modified(patch_cell_block):
+            # @formatter:off
             """
             This function checks if an attribute or flag in CellData has
             a value which is different to the corresponding value in the
@@ -431,40 +421,48 @@ class CellImporter(_ACellImporter, ImportPatcher):
             to the bash patch, and the cell is flagged as modified.
             Modified cell Blocks are kept, the other are discarded.
             """
-            modified=False
-            for attr, value in cellData[patchCellBlock.cell.fid].viewitems():
-                if attr == 'regions':
-                    if regions_differ(patchCellBlock.cell.__getattribute__(attr), value):
-                        patchCellBlock.cell.__setattr__(attr, value)
+            # @formatter:on
+            src_values = cellData[patch_cell_block.cell.fid].viewitems()
+            src_flags = cellData[
+                patch_cell_block.cell.fid + ('flags',)].viewitems()
+            modified = False
+
+            for attribute, src_value in src_values:
+                patch_value = patch_cell_block.cell.__getattribute__(attribute)
+                if attribute == 'regions':
+                    if set(src_value).difference(set(patch_value)):
+                        patch_cell_block.cell.__setattr__(attribute, src_value)
                         modified = True
-                elif patchCellBlock.cell.__getattribute__(attr) != value:
-                    patchCellBlock.cell.__setattr__(attr, value)
+                else:
+                    if patch_value != src_value:
+                        patch_cell_block.cell.__setattr__(attribute, src_value)
+                        modified = True
+            for flag, src_value in src_flags:
+                patch_value = patch_cell_block.cell.flags.__getattr__(flag)
+                if patch_value != src_value:
+                    patch_cell_block.cell.flags.__setattr__(flag, src_value)
                     modified = True
-            for flag, value in cellData[patchCellBlock.cell.fid + ('flags',)].viewitems():
-                if patchCellBlock.cell.flags.__getattr__(flag) != value:
-                    patchCellBlock.cell.flags.__setattr__(flag, value)
-                    modified=True
             if modified:
-                patchCellBlock.cell.setChanged()
-                keep(patchCellBlock.cell.fid)
+                patch_cell_block.cell.setChanged()
+                keep(patch_cell_block.cell.fid)
             return modified
 
         if not self.isActive: return
         keep = self.patchFile.getKeeper()
         cellData, count = self.cellData, collections.defaultdict(int)
         for cellBlock in self.patchFile.CELL.cellBlocks:
-            if cellBlock.cell.fid in cellData and handlePatchCellBlock(cellBlock):
+            if cellBlock.cell.fid in cellData and has_been_modified(cellBlock):
                 count[cellBlock.cell.fid[0]] += 1
         for worldBlock in self.patchFile.WRLD.worldBlocks:
             keepWorld = False
             for cellBlock in worldBlock.cellBlocks:
                 if cellBlock.cell.fid in cellData:
-                    if handlePatchCellBlock(cellBlock):
+                    if has_been_modified(cellBlock):
                         count[cellBlock.cell.fid[0]] += 1
                         keepWorld = True
             if worldBlock.worldCellBlock:
                 if worldBlock.worldCellBlock.cell.fid in cellData:
-                    if handlePatchCellBlock(worldBlock.worldCellBlock):
+                    if has_been_modified(worldBlock.worldCellBlock):
                         count[worldBlock.worldCellBlock.cell.fid[0]] += 1
                         keepWorld = True
             # if worldBlock.world.fid in cellData['Maps']:
@@ -479,7 +477,8 @@ class CellImporter(_ACellImporter, ImportPatcher):
         self.cellData.clear()
         self._patchLog(log, count)
 
-    def _plog(self,log,count): # type 1 but for logMsg % sum(count.values())...
+    # type 1 but for logMsg % sum(count.values())...
+    def _plog(self,log,count):
         log(self.__class__.logMsg)
         for srcMod in load_order.get_ordered(count.keys()):
             log(u'* %s: %d' % (srcMod.s,count[srcMod]))
