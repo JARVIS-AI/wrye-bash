@@ -88,6 +88,8 @@ class GameInfo(object):
     # check if a plugin is convertible to a light master instead of checking
     # mergeability
     check_esl = False
+    # Whether or not this game has standalone .pluggy cosaves
+    has_standalone_pluggy = False
 
     def __init__(self, gamePath):
         self.gamePath = gamePath # absolute bolt Path to the game directory
@@ -175,9 +177,10 @@ class GameInfo(object):
     # Save Game format stuff
     class ess(object):
         # Save file capabilities
-        canReadBasic = True # Can read the info needed for the Save Tab display
-        canEditMore = False # Advanced editing
-        ext = u'.ess'       # Save file extension
+        canReadBasic = True     # Can read the info needed for the Save Tab
+                                # display
+        canEditMore = False     # Advanced editing
+        ext = u'.ess'           # Save file extension
 
     # Information about Plugin-Name-specific Directories supported by this game
     # Some examples are sound\voices\PLUGIN_NAME.esp, or the facegendata ones.
