@@ -80,6 +80,11 @@ class SkyrimSEGameInfo(SkyrimGameInfo):
         long_name = u''
         install_dir = u''
 
+    # SKSE64 supports PLGN, so we can use the cosave list to display saves
+    # from load orders with ESLs correctly
+    class ess(SkyrimGameInfo.ess):
+        use_cosave_list = True
+
     @classmethod
     def init(cls):
         # First import from skyrimse.records file
