@@ -1416,11 +1416,8 @@ class xSECosave(_ACosave):
             readable_sig = u'Pluggy'
         else:
             # Reverse the result since xSE writes signatures backwards
-            # TODO(inf) There has to be a better way to do this
-            readable_sig = (self._to_unichr(raw_sig, 0) +
-                            self._to_unichr(raw_sig, 8) +
-                            self._to_unichr(raw_sig, 16) +
-                            self._to_unichr(raw_sig, 24))[::-1]
+            readable_sig = u''.join(
+                [self._to_unichr(raw_sig, x) for x in [0, 8, 16, 24]])[::-1]
         return readable_sig + u' (0x%X)' % raw_sig
 
     @staticmethod
