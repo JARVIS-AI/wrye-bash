@@ -48,8 +48,6 @@ import time
 import zipfile
 from contextlib import contextmanager
 
-import git
-
 import _winreg
 import install_loot_api
 import utils
@@ -290,24 +288,24 @@ def get_git_files(git_folder, version):
     """
     if sys.platform != "win32":
         raise OSError("Only Windows is supported.")
-    # check all the PATH options first
-    for path in os.environ["PATH"].split(os.pathsep):
+    # try user supplied directory, as well as common install paths
+    pfiles = os.path.join(os.environ.get("ProgramFiles", ""), u"Git", u"bin")
+    pfilesx64 = os.path.join(os.environ.get("ProgramW6432", ""), u"Git",
+                             u"bin")
+    for path in (git_folder, pfiles, pfilesx64):
         git_exe = os.path.join(path, u"git.exe")
         if os.path.isfile(git_exe):
             LOGGER.debug("Found git executable at {}".format(git_exe))
-            # Found, no changes necessary
+            # Found it, put the path into PATH
+            os.environ["PATH"] += os.pathsep + path
             break
-    else:
-        # Not found in PATH, try user supplied directory,
-        # as well as common install paths
-        pfiles = os.path.join(os.environ.get("ProgramFiles", ""), u"Git", u"bin")
-        pfilesx64 = os.path.join(os.environ.get("ProgramW6432", ""), u"Git", u"bin")
-        for path in (git_folder, pfiles, pfilesx64):
+    else:  # TODO(ut) doesn't python git already have done that?
+        # check all the PATH options
+        for path in os.environ["PATH"].split(os.pathsep):
             git_exe = os.path.join(path, u"git.exe")
             if os.path.isfile(git_exe):
                 LOGGER.debug("Found git executable at {}".format(git_exe))
-                # Found it, put the path into PATH
-                os.environ["PATH"] += os.pathsep + path
+                # Found, no changes necessary
                 break
         else:
             # git still not found
@@ -316,6 +314,7 @@ def get_git_files(git_folder, version):
                 "your git directory to the PATH environment variable."
             )
     # Git is working good, now use it
+    import git
     repo = git.Repo(ROOT_PATH)
     if repo.is_dirty():
         LOGGER.warning("Your repository is dirty (you have uncommitted changes).")
@@ -794,6 +793,7 @@ def main(args):
 if __name__ == "__main__":
     argparser = argparse.ArgumentParser(description=__doc__,
         formatter_class=argparse.RawDescriptionHelpFormatter)
+    # TODO (ut) there is an ArgumentDefaultsHelpFormatter that we may consider
     utils.setup_common_parser(argparser)
     setup_parser(argparser)
     if loot_api is None:
