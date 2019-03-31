@@ -1397,7 +1397,8 @@ class ItemStats:
                               'stagger':self.sfloat,
                               'enchantPoints':self.sint,
                               'critDamage':self.sint,
-                              'criticalMultiplier':self.sfloat,}
+                              'criticalMultiplier':self.sfloat,
+                              'criticalEffect':self.sint,}
         elif bush.game.fsName in (u'FalloutNV', u'Fallout3'):
             self.attr_type = {'eid':self.sstr,
                               'weight':self.sfloat,
