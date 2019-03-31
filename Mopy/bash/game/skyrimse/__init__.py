@@ -80,6 +80,8 @@ class SkyrimSEGameInfo(SkyrimGameInfo):
         long_name = u''
         install_dir = u''
 
+    SkipBAINRefresh = {u'sseedit backups', u'sseedit cache'}
+
     @classmethod
     def init(cls):
         # First import from skyrimse.records file
