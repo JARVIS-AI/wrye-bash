@@ -17071,7 +17071,7 @@ statsTypes = {
         'SLGM':('eid', 'weight', 'value'),
         'WEAP':('eid', 'weight', 'value', 'damage', 'speed', 'reach',
                 'enchantPoints', 'stagger', 'critDamage','criticalMultiplier',
-            ),
+                'criticalEffect',),
     }
 statsHeaders = (
     #--Alch
