@@ -139,7 +139,7 @@ plugins:
     dirty:
       - crc: 0xcc32f754
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 10
   - name: 'avangraffscorned.esp'
     tag:
@@ -147,7 +147,7 @@ plugins:
     dirty:
       - crc: 0x26ab27d
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 1
   - name: 'awilderwasteland.esp'
     tag:
@@ -156,7 +156,7 @@ plugins:
     dirty:
       - crc: 0xed3d7bb3
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 9
   - name: 'AWOP-AhztekWeaponPatch.esp'
     tag:
@@ -379,7 +379,7 @@ plugins:
     dirty:
       - crc: 0x38c75b04
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 7
   - name: 'CaliberXgunrunners.esm'
     tag:
@@ -468,7 +468,7 @@ plugins:
     dirty:
       - crc: 0xd70f165b
         util: '[FNVEdit v4.0.0](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A guide for running **Quick Auto Clean** can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#quickautoclean).'
+        info: 'A guide for running **Quick Auto Clean** can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
         itm: 403
         udr: 51
   - name: 'DeadMoneyFemaleTuxedo.esp'
@@ -510,8 +510,8 @@ plugins:
     tag:
       - Actors.ACBS
       - Delev
-      - Names
       - NPC.Class
+      - Names
       - Stats
   - name: 'Equipment Restoration Project - Project Nevada.esp'
     tag:
@@ -567,7 +567,7 @@ plugins:
     dirty:
       - crc: 0xec0f1920
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 1
   - name: 'EZ_VanillaFollowers.esp'
     tag:
@@ -597,8 +597,8 @@ plugins:
       - Destructible
       - Factions
       - Invent
-      - Names
       - NPC.Class
+      - Names
       - NpcFaces
       - Relations
       - Relev
@@ -616,14 +616,14 @@ plugins:
     dirty:
       - crc: 0xe746e1d
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 1
   - name: 'FCO - NPC Changes.esp'
     tag:
       - Actors.ACBS
       - Eyes
-      - Names
       - NPC.Race
+      - Names
       - NpcFaces
   - name: 'FCO - OWB.esp'
     tag:
@@ -633,7 +633,7 @@ plugins:
     dirty:
       - crc: 0x15a3bcc8
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 18
   - name: 'FCO - Playable Races + Roberts Patch.esp'
     tag:
@@ -645,7 +645,7 @@ plugins:
     dirty:
       - crc: 0xa03db8ae
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 1
   - name: 'FCO - The New Bison Steve.esp'
     tag:
@@ -669,8 +669,8 @@ plugins:
     tag:
       - Actors.ACBS
       - Eyes
-      - Names
       - NPC.Race
+      - Names
       - NpcFaces
   - name: 'FeelingIrradiated-IS.esp'
     tag:
@@ -682,7 +682,7 @@ plugins:
     dirty:
       - crc: 0xb5671ca9
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 8
         udr: 54166
   - name: 'Flight of the ValkED-E.esp'
@@ -766,7 +766,7 @@ plugins:
     dirty:
       - crc: 0xaac938d
         util: '[FNVEdit v4.0.0](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A guide for running **Quick Auto Clean** can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#quickautoclean).'
+        info: 'A guide for running **Quick Auto Clean** can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
         itm: 97
   - name: 'Hanlon the badass 4.esp'
     tag:
@@ -800,7 +800,7 @@ plugins:
     dirty:
       - crc: 0x2352b189
         util: '[FNVEdit v4.0.0](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A guide for running **Quick Auto Clean** can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#quickautoclean).'
+        info: 'A guide for running **Quick Auto Clean** can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
         itm: 121
         udr: 10
   - name: 'ILO - A World of Pain.esp'
@@ -809,8 +809,8 @@ plugins:
   - name: 'ILO - D.E.I.M.O.S.esp'
     tag:
       - C.ImageSpace
-      - C.Light
       - C.LTemplate
+      - C.Light
       - C.Owner
   - name: 'ILO - Dead Money.esp'
     tag:
@@ -833,23 +833,23 @@ plugins:
   - name: 'ILO - New Vegas Bounties II.esp'
     tag:
       - C.ImageSpace
-      - C.Light
       - C.LTemplate
+      - C.Light
     dirty:
       - crc: 0x8e8f65e5
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 7
         udr: 1
   - name: 'ILO - New Vegas Bounties.esp'
     tag:
       - C.ImageSpace
-      - C.Light
       - C.LTemplate
+      - C.Light
     dirty:
       - crc: 0xd7d915c3
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 1
   - name: 'ILO - NVInteriors Project - AWOP.esp'
     tag:
@@ -857,13 +857,13 @@ plugins:
   - name: 'ILO - NVInteriors Project.esp'
     tag:
       - C.ImageSpace
-      - C.Light
       - C.LTemplate
+      - C.Light
       - C.Owner
     dirty:
       - crc: 0xe5b86a01
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 7
   - name: 'ILO - Old World Blues.esp'
     tag:
@@ -1044,8 +1044,8 @@ plugins:
       - Destructible
       - Graphics
       - Invent
-      - Names
       - NPC.Class
+      - Names
       - Relev
       - Stats
       - WeaponMods
@@ -1063,13 +1063,13 @@ plugins:
     dirty:
       - crc: 0xba26c46
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 13
   - name: 'lexx_brahmin-variant.esp'
     dirty:
       - crc: 0xb596767c
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 16
         udr: 1
   - name: 'LFox Bottle That Water.esp'
@@ -1087,9 +1087,9 @@ plugins:
       - Eyes
       - Hair
       - Invent
-      - Names
       - NPC.Class
       - NPC.Race
+      - Names
       - NpcFaces
       - R.Attributes-F
       - R.Attributes-M
@@ -1113,7 +1113,7 @@ plugins:
     dirty:
       - crc: 0x30073d50
         util: '[FNVEdit v4.0.0](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A guide for running **Quick Auto Clean** can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#quickautoclean).'
+        info: 'A guide for running **Quick Auto Clean** can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
         itm: 243
         udr: 6
   - name: 'LootOverhaul.esp'
@@ -1326,9 +1326,21 @@ plugins:
     tag:
       - Actors.ACBS
       - Invent
+  - name: 'More Perks for Dead Money.esm'
+    dirty:
+      - crc: 0x129204a2
+        util: '[FNVEdit v4.0.1i EXPERIMENTAL](https://www.nexusmods.com/newvegas/mods/34703)'
+        info: 'Contains wild edits to records 0x00160BFA(TreeJoshANV) and 0x010117C6(Placed Object ''Scotch''). Contains multiple ITPO records, use xEdit''s Remove Identitical to Previous Override records script to remove them.'
+        itm: 301
   - name: 'More Perks for Honest Hearts Update.esp'
     tag:
       - Graphics
+  - name: 'More Perks for Honest Hearts.esm'
+    dirty:
+      - crc: 0x25b6073b
+        util: '[FNVEdit v4.0.1i EXPERIMENTAL](https://www.nexusmods.com/newvegas/mods/34703)'
+        info: 'Contains wild edits to records 0x0100A66E(NVDLC02ZionToMojaveDoorREF).'
+        itm: 13
   - name: 'More Perks for Old World Blues Update.esp'
     tag:
       - Names
@@ -1358,13 +1370,13 @@ plugins:
     dirty:
       - crc: 0xbddf839b
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 6
   - name: 'Nevada Skies - Ultimate DLC Edition.esp'
     dirty:
       - crc: 0xd6b9e659
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 4
   - name: 'Nevada Skies - URWLHH.esp'
     tag:
@@ -1438,7 +1450,7 @@ plugins:
     dirty:
       - crc: 0xeb023707
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 93
         udr: 73
   - name: 'New Vegas Redesigned 3.esp'
@@ -1455,7 +1467,7 @@ plugins:
     dirty:
       - crc: 0xfaf9f22e
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 1018
         udr: 74
   - name: 'New Vegas Redesigned II.esm'
@@ -1482,7 +1494,7 @@ plugins:
     dirty:
       - crc: 0x11d6afea
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         nav: 2
   - name: 'NewVegasUncut.esm'
     tag:
@@ -1647,7 +1659,7 @@ plugins:
     dirty:
       - crc: 0x7f8f8225
         util: '[FNVEdit v4.0.0](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A guide for running **Quick Auto Clean** can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#quickautoclean).'
+        info: 'A guide for running **Quick Auto Clean** can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
         itm: 124
   - name: 'originalintro.esp'
     tag:
@@ -1656,7 +1668,7 @@ plugins:
     dirty:
       - crc: 0xb0a1b1bb
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 6
   - name: 'originalintroExtended.esp'
     tag:
@@ -1665,7 +1677,7 @@ plugins:
     dirty:
       - crc: 0x3abe494e
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 4
   - name: 'OWB Big Empty Overhaul.esp'
     tag:
@@ -1682,7 +1694,7 @@ plugins:
     dirty:
       - crc: 0x793d7342
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 1
   - name: 'PlasmaRifleAwesomefied.esp'
     tag:
@@ -1731,7 +1743,7 @@ plugins:
     dirty:
       - crc: 0xc7507f30
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 46
         udr: 16
   - name: 'populatedcasino-medium.esp'
@@ -1740,7 +1752,7 @@ plugins:
     dirty:
       - crc: 0x39574e5a
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 47
         udr: 8
   - name: 'populatedcasino.esp'
@@ -1749,7 +1761,7 @@ plugins:
     dirty:
       - crc: 0x9eae96ff
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 48
         udr: 2
   - name: 'Power Armor Distribution Overhaul - JSawyer.esp'
@@ -1778,8 +1790,8 @@ plugins:
       - Delev
       - Graphics
       - Invent
-      - Names
       - NPC.Class
+      - Names
       - Stats
   - name: 'Power Armor Distribution Overhaul - TTW_OutcastTrading.esp'
     tag:
@@ -1849,7 +1861,7 @@ plugins:
     dirty:
       - crc: 0xe0e2c3c0
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 22
   - name: 'Project Nevada - Rebalance.esp'
     tag:
@@ -1880,7 +1892,7 @@ plugins:
     dirty:
       - crc: 0xe0e2c3c0
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 22
   - name: 'Project Westland vision-ZionHH.esp'
     tag:
@@ -1914,7 +1926,7 @@ plugins:
     dirty:
       - crc: 0x8ab4f125
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 15
   - name: 'Raul - Danny Trejo.esp'
     tag:
@@ -1999,6 +2011,14 @@ plugins:
   - name: 'RivensEyescapesNV.esp'
     tag:
       - Eyes
+  - name: 'RobCo Certified.esm'
+    tag:
+      - Factions
+    dirty:
+      - crc: 0x3b28b2fe
+        util: '[FNVEdit v4.0.1i EXPERIMENTAL](https://www.nexusmods.com/newvegas/mods/34703)'
+        info: 'Contains wild edits to records 0x00094684 (DLC01TrogFaction) and 0x00137622 (FortCaesarScript).'
+        itm: 9
   - name: 'Roberts_NewVegas.esp'
     tag:
       - Body-M
@@ -2006,7 +2026,7 @@ plugins:
     dirty:
       - crc: 0x8162c3ba
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 1
   - name: 'rotfacetoriches.esp'
     tag:
@@ -2065,7 +2085,7 @@ plugins:
     dirty:
       - crc: 0xec7f4960
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 15
         udr: 8226
   - name: 'Superior Firepower - Factional Changes.esp'
@@ -2123,7 +2143,7 @@ plugins:
     dirty:
       - crc: 0x35f7bae7
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 17
   - name: 'TheInheritance.esp'
     tag:
@@ -2131,7 +2151,7 @@ plugins:
     dirty:
       - crc: 0x71715d56
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         udr: 2
         nav: 4
   - name: 'ThePitt.esm'
@@ -2153,7 +2173,7 @@ plugins:
     dirty:
       - crc: 0x40b5e4bc
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 4
   - name: 'TTW - Realistic Interior Lighting.esp'
     tag:
@@ -2233,7 +2253,7 @@ plugins:
     dirty:
       - crc: 0xd1257bc7
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 1
   - name: 'Type 6.esp'
     tag:
@@ -2270,11 +2290,11 @@ plugins:
     dirty:
       - crc: 0x31b1b874
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 377
       - crc: 0x71755f08
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 356
   - name: 'VyntageCass02.esp'
     tag:
@@ -2317,13 +2337,13 @@ plugins:
     dirty:
       - crc: 0xe0d9629c
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 1
   - name: 'Weapons.of.the.New.Millenia.esm'
     dirty:
       - crc: 0x1e04d898
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 10
   - name: 'Weapons.of.the.New.Millenia.Store.LITE.esp'
     tag:
@@ -2331,7 +2351,7 @@ plugins:
     dirty:
       - crc: 0xb5824c7a
         util: '[FNVEdit](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'A cleaning guide is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-B).'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 8
   - name: 'Weight_Balance.esp'
     tag:
@@ -2513,8 +2533,8 @@ plugins:
       - Factions
       - Graphics
       - Invent
-      - Names
       - NPC.Class
+      - Names
       - Scripts
       - Sound
       - Stats
@@ -2541,8 +2561,8 @@ plugins:
       - Delev
       - Factions
       - Invent
-      - Names
       - NPC.Class
       - NPC.Race
+      - Names
       - NpcFaces
       - Scripts
