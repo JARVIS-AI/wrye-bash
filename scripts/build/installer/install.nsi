@@ -8,7 +8,7 @@
 
         ClearErrors
 
-        ; All versions require the MSVC 2015 redist for the LOOT API.
+        ; All versions require the MSVC 2017 redist for the LOOT API.
         ${If} ${RunningX64}
             StrCpy $MSVC_Sub_Key "SOFTWARE\Wow6432Node\Microsoft\VisualStudio\14.0\VC\Runtimes\x86"
         ${Else}
@@ -23,27 +23,27 @@
         ${If} $MSVC_Installed == "0"
         ${OrIf} $MSVC_Major < 14
         ${OrIf} $MSVC_Minor < 0
-        ${OrIf} $MSVC_Bld < 24215
-            DetailPrint "Visual C++ 2015 Redistributable registry key was not found; assumed to be uninstalled."
-            DetailPrint "Downloading Visual C++ 2015 Redistributable Setup..."
+        ${OrIf} $MSVC_Bld < 26706
+            DetailPrint "Visual C++ 2017 Redistributable registry key was not found; assumed to be uninstalled."
+            DetailPrint "Downloading Visual C++ 2017 Redistributable Setup..."
             SetOutPath $TEMP
-            NSISdl::download "https://download.microsoft.com/download/6/A/A/6AA4EDFF-645B-48C5-81CC-ED5963AEAD48/vc_redist.x86.exe" "vc_redist.x86.exe"
+            NSISdl::download "https://download.visualstudio.microsoft.com/download/pr/749aa419-f9e4-4578-a417-a43786af205e/d59197078cc425377be301faba7dd87a/vc_redist.x86.exe" "vc_redist.x86.exe"
 
             Pop $R0 ;Get the return value
             ${If} $R0 == "success"
-                DetailPrint "Running Visual C++ 2015 Redistributable Setup..."
+                DetailPrint "Running Visual C++ 2017 Redistributable Setup..."
                 Sleep 2000
                 HideWindow
                 ExecWait '"$TEMP\vc_redist.x86.exe" /quiet /norestart'
                 BringToFront
-                DetailPrint "Finished Visual C++ 2015 Redistributable Setup"
+                DetailPrint "Finished Visual C++ 2017 Redistributable Setup"
 
                 Delete "$TEMP\vc_redist.x86.exe"
             ${Else}
                 DetailPrint "Could not contact Microsoft.com, or the file has been (re)moved!"
             ${EndIf}
         ${Else}
-            DetailPrint "Visual C++ 2015 Redistributable is already installed; skipping!"
+            DetailPrint "Visual C++ 2017 Redistributable is already installed; skipping!"
         ${EndIf}
 
         ; Python version requires Python, wxPython, Python Comtypes and PyWin32.

@@ -957,7 +957,7 @@ def main():
             return
 
         # Add the LOOT API binaries to all_files
-        all_files.append(os.path.join(u'Mopy', u'loot_api.dll'))
+        all_files.append(os.path.join(u'Mopy', u'loot.dll'))
         all_files.append(os.path.join(u'Mopy', u'loot_api.pyd'))
 
         file_version = GetVersionInfo(args.version)
