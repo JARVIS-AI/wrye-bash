@@ -23,11 +23,11 @@
         ${If} $MSVC_Installed == "0"
         ${OrIf} $MSVC_Major < 14
         ${OrIf} $MSVC_Minor < 0
-        ${OrIf} $MSVC_Bld < 24215
+        ${OrIf} $MSVC_Bld < 26706
             DetailPrint "Visual C++ 2015 Redistributable registry key was not found; assumed to be uninstalled."
             DetailPrint "Downloading Visual C++ 2015 Redistributable Setup..."
             SetOutPath $TEMP
-            NSISdl::download "https://download.microsoft.com/download/6/A/A/6AA4EDFF-645B-48C5-81CC-ED5963AEAD48/vc_redist.x86.exe" "vc_redist.x86.exe"
+            NSISdl::download "https://download.visualstudio.microsoft.com/download/pr/749aa419-f9e4-4578-a417-a43786af205e/d59197078cc425377be301faba7dd87a/vc_redist.x86.exe" "vc_redist.x86.exe"
 
             Pop $R0 ;Get the return value
             ${If} $R0 == "success"
