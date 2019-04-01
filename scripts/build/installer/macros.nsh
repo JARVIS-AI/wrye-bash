@@ -35,7 +35,7 @@
         ${If} ${DoPython} == ${BST_CHECKED}
             ; Install Python only files
             SetOutPath "${GameDir}\Mopy"
-            File /r "${WB_CLEAN_MOPY}\*.py" "${WB_CLEAN_MOPY}\*.pyw" "${WB_CLEAN_MOPY}\*.bat" "${WB_CLEAN_MOPY}\*.template" "${WB_CLEAN_MOPY}\loot_api.*"
+            File /r "${WB_CLEAN_MOPY}\*.py" "${WB_CLEAN_MOPY}\*.pyw" "${WB_CLEAN_MOPY}\*.bat" "${WB_CLEAN_MOPY}\*.template" "${WB_CLEAN_MOPY}\loot_api.*" "${WB_CLEAN_MOPY}\loot.*"
             ; Write the installation path into the registry
             WriteRegStr HKLM "SOFTWARE\Wrye Bash" "${GameName} Python Version" "True"
         ${ElseIf} ${RegValuePy} == $Empty
@@ -46,7 +46,7 @@
             ; Install the standalone only files
             SetOutPath "${GameDir}\Mopy"
             File "${WB_CLEAN_MOPY}\Wrye Bash.exe"
-            File "${WB_CLEAN_MOPY}\loot_api.dll"
+            File "${WB_CLEAN_MOPY}\loot.dll"
             ; Write the installation path into the registry
             WriteRegStr HKLM "SOFTWARE\Wrye Bash" "${GameName} Standalone Version" "True"
         ${ElseIf} ${RegValueExe} == $Empty
