@@ -769,19 +769,18 @@ class Save_StatObse(AppendableLink, OneItemLink):
 
     def _enable(self):
         if not super(Save_StatObse, self)._enable(): return False
-        return self._selected_info.get_xse_cosave_path().exists()
+        self._xse_co = self._selected_info.get_xse_cosave()
+        # TODO do we really need to check existence see Save_StatPluggy#_enable
+        return bool(self._xse_co) and self._xse_co.abs_path.exists()
 
     def Execute(self):
         with balt.BusyCursor():
             log = bolt.LogFile(StringIO.StringIO())
-            cosave = self._selected_info.get_xse_cosave()
-            if cosave is not None:
-                cosave.dump_to_log(log, self._selected_info.header.masters)
+            self._xse_co.dump_to_log(log, self._selected_info.header.masters)
         text = log.out.getvalue()
         log.out.close()
-        if cosave is not None:
-            self._showLog(text, title=cosave.cosave_path.tail.s,
-                          fixedFont=False)
+        self._showLog(text, title=self._xse_co.cosave_path.tail.s,
+                      fixedFont=False)
 
 #------------------------------------------------------------------------------
 class Save_StatPluggy(AppendableLink, OneItemLink):
@@ -793,19 +792,21 @@ class Save_StatPluggy(AppendableLink, OneItemLink):
 
     def _enable(self):
         if not super(Save_StatPluggy, self)._enable(): return False
-        return self._selected_info.get_pluggy_cosave_path().exists()
+        self._pluggy_cosave = self._selected_info.get_pluggy_cosave()
+        # TODO by the time the menus are accessed get_pluggy_cosave should
+        #  return None or an existing cosave, drop exists()
+        return bool(
+            self._pluggy_cosave) and self._pluggy_cosave.abs_path.exists()
 
     def Execute(self):
         with balt.BusyCursor():
             log = bolt.LogFile(StringIO.StringIO())
-            cosave = self._selected_info.get_pluggy_cosave()
-            if cosave is not None:
-                cosave.dump_to_log(log, self._selected_info.header.masters)
+            self._pluggy_cosave.dump_to_log(log,
+                                            self._selected_info.header.masters)
         text = log.out.getvalue()
         log.out.close()
-        if cosave is not None:
-            self._showLog(text, title=cosave.cosave_path.tail.s,
-                          fixedFont=False)
+        self._showLog(text, title=self._pluggy_cosave.cosave_path.tail.s,
+                      fixedFont=False)
 
 #------------------------------------------------------------------------------
 class Save_Unbloat(OneItemLink):
