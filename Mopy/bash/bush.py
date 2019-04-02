@@ -48,6 +48,10 @@ _registryGames = {}   # 'name' -> path
 _fsName_display = {}
 _display_fsName = {}
 
+def assert_game_set(module):
+    if game is None:
+        raise BoltError(u'Game is unset can not import %s' % module)
+
 def reset_bush_globals():
     global game, game_mod
     game = game_mod = None

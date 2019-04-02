@@ -104,6 +104,7 @@ except ImportError:
 if sys.prefix not in set(os.environ['PATH'].split(';')):
     os.environ['PATH'] += ';'+sys.prefix
 
+bush.assert_game_set(__name__)
 # Settings --------------------------------------------------------------------
 settings = None
 
@@ -1429,14 +1430,14 @@ class ModDetails(_SashDetailsPanel):
             self.descriptionStr = self.description.text_content ##: .replace('\n', 'r\n')
             self.SetEdited()
 
-    bsaAndBlocking = _(u'This mod has an associated archive (%s.' +
+    bsaAndBlocking = _(u'This mod has an associated archive (%s' +
                        bush.game.bsa_extension + u') and an '
         u'associated plugin-name-specific directory (e.g. Sound\\Voice\\%s),'
         u' which will become detached when the mod is renamed.') + u'\n\n' + \
         _(u'Note that the BSA archive may also contain a plugin-name-specific '
         u'directory, which would remain detached even if the archive name is '
         u'adjusted.')
-    bsa = _(u'This mod has an associated archive (%s.' +
+    bsa = _(u'This mod has an associated archive (%s' +
                     bush.game.bsa_extension + u'), which will become '
         u'detached when the mod is renamed.') + u'\n\n' + _(u'Note that this '
         u'BSA archive may contain a plugin-name-specific directory (e.g. '

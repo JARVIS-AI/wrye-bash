@@ -37,6 +37,8 @@ from ...patcher.base import AMultiTweakItem
 from .base import MultiTweakItem, CBash_MultiTweakItem, MultiTweaker, \
     CBash_MultiTweaker
 
+bush.assert_game_set(__name__)
+
 def _is_templated(record, flag_name):
     """Checks if the specified record has a template record and the
     appropriate template flag set."""

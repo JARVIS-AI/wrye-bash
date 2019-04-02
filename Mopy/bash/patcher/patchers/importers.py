@@ -40,6 +40,8 @@ from ...parsers import ActorFactions, CBash_ActorFactions, FactionRelations, \
     CBash_FactionRelations, FullNames, CBash_FullNames, ItemStats, \
     CBash_ItemStats, SpellRecords, CBash_SpellRecords, LoadFactory, ModFile
 
+bush.assert_game_set(__name__)
+
 class _SimpleImporter(ImportPatcher):
     """For lack of a better name - common methods of a bunch of importers.
     :type rec_attrs: dict[str, tuple]"""

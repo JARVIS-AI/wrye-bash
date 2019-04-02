@@ -32,6 +32,8 @@ from ...patcher.patchers.base import MultiTweakItem, CBash_MultiTweakItem
 from ...patcher.patchers.base import MultiTweaker, CBash_MultiTweaker
 from ...patcher.base import AMultiTweaker, DynamicNamedTweak
 
+bush.assert_game_set(__name__)
+
 # Patchers: 30 ----------------------------------------------------------------
 class GlobalsTweak(DynamicNamedTweak, MultiTweakItem):
     """set a global to specified value"""

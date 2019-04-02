@@ -26,6 +26,7 @@
 from .. import bass, bush
 from ..balt import Image, ImageList, defPos
 
+bush.assert_game_set(__name__)
 # Color Descriptions ----------------------------------------------------------
 colorInfo = {
     'default.text': (_(u'Default Text'),

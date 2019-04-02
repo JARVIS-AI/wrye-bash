@@ -33,6 +33,7 @@ from ... import bosh, bush, load_order  # for modInfos
 from ...bolt import GPath, SubProgress
 from ...cint import FormID
 
+bush.assert_game_set(__name__)
 # Patchers: 40 ----------------------------------------------------------------
 class _AListsMerger(SpecialPatcher, AListPatcher):
     """Merged leveled lists mod file."""
@@ -92,7 +93,7 @@ class _AListsMerger(SpecialPatcher, AListPatcher):
             self.OverhaulUOPSkips = set()
 
 class ListsMerger(_AListsMerger, ListPatcher):
-    _read_write_records = bush.game.listTypes # bush.game must be set!
+    _read_write_records = bush.game.listTypes
 
     #--Patch Phase ------------------------------------------------------------
     def initPatchFile(self, patchFile):
