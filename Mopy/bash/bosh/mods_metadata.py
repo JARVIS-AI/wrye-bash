@@ -477,10 +477,10 @@ class ConfigHelpers:
                     log(u'* __'+mod.s+u'__')
             if shouldClean:
                 log.setHeader(
-                    u'=== ' + _(u'Mods that need cleaning with TES4Edit'))
+                    u'=== ' + _(u'Mods that need cleaning with xEdit'))
                 log(_(u'Following mods have identical to master (ITM) records,'
                       u' deleted records (UDR), or other issues that should be'
-                      u' fixed with TES4Edit.  Visit the %(cleaning_wiki_url)s'
+                      u' fixed with xEdit.  Visit the %(cleaning_wiki_url)s'
                       u' for more information.') % {
                         'cleaning_wiki_url': self._cleaning_wiki_url})
                 for mod in sorted(shouldClean.keys()):
@@ -489,12 +489,12 @@ class ConfigHelpers:
                 log.setHeader(
                     u'=== ' + _(u'Mods with special cleaning instructions'))
                 log(_(u'Following mods have special instructions for cleaning '
-                      u'with TES4Edit'))
+                      u'with xEdit'))
                 for mod in sorted(shouldCleanMaybe):
                     log(u'* __'+mod[0].s+u':__  '+mod[1])
             elif mod_checker and not shouldClean:
                 log.setHeader(
-                    u'=== ' + _(u'Mods that need cleaning with TES4Edit'))
+                    u'=== ' + _(u'Mods that need cleaning with xEdit'))
                 log(_(u'Congratulations all mods appear clean.'))
             if invalidVersion:
                 ver_list = u', '.join(
@@ -1025,7 +1025,7 @@ class ModCleaner:
                                 copy(size)
             #--Save
             retry = _(u'Bash encountered an error when saving %s.') + u'\n\n' \
-                + _(u'The file is in use by another process such as TES4Edit.'
+                + _(u'The file is in use by another process such as xEdit.'
                 ) + u'\n' + _(u'Please close the other program that is '
                               u'accessing %s.') + u'\n\n' + _(u'Try again?')
             if changed:
