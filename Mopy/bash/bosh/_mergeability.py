@@ -120,7 +120,11 @@ def isPBashMergeable(modInfo, minfos, reasons):
 
 def is_esl_capable(modInfo, minfos, reasons):
     """Returns True or error message indicating whether specified mod is
-    convertible to a light plugin."""
+    convertible to a light plugin.
+
+    You are doing this wrong, here and in Mod_MarkMergeable.
+
+    This entire thing needs to be overhauled."""
     verbose = reasons is not None
     if modInfo.isBP():
         if not verbose: return False
