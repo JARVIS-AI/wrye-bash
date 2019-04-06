@@ -394,7 +394,7 @@ class ConfigHelpers:
                 for m, modinf in modInfos.items():
                     if not modinf.is_esl():
                         continue # we check .esl extension and ESL flagged mods
-                    if not is_esl_capable(modinf, modInfos, verbose=False):
+                    if not is_esl_capable(modinf, modInfos, reasons=None):
                         removeEslFlag.add(m)
             shouldDeactivateA, shouldDeactivateB = [], []
             for x in active:
@@ -452,7 +452,7 @@ class ConfigHelpers:
                     log(u'* __'+mod.s+u'__')
             if removeEslFlag:
                 log.setHeader(u'=== ' + _(u'Remove ESL Flag'))
-                log(_(u'Following mods have an ESL flag, but do not qualify.'))
+                log(_(u'Following mods have an ESL flag, but may not qualify. Check with xEdit.'))
                 for mod in sorted(removeEslFlag):
                     log(u'* __' + mod.s + u'__')
             if shouldDeactivateB:
