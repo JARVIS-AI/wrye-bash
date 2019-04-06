@@ -968,7 +968,6 @@ from . import cosaves
 
 class SaveInfo(FileInfo):
     cosave_types = () # cosave types for this game - set once in SaveInfos
-    _xse_cosave_type = None # xSE co-type if any - set once in SaveInfos
     _cosave_ui_string = {PluggyCosave: 'XP', xSECosave: 'XO'} # ui strings
     __empty = {} # sentinel
     # The xSE cosaves that may come with this save file. Lazily initialized.
@@ -1069,7 +1068,7 @@ class SaveInfo(FileInfo):
     def get_xse_cosave(self):
         """:rtype: cosaves.xSECosave"""
         try:
-            return self.get_cosave_instances()[self._xse_cosave_type]
+            return self.get_cosave_instances()[xSECosave]
         except KeyError:
             return None
 
@@ -2685,7 +2684,6 @@ class SaveInfos(FileInfos):
         co_types = cosaves.get_cosave_types(bush.game.fsName,
                                             bush.game.ess.ext)
         SaveInfo.cosave_types = co_types
-        SaveInfo._xse_cosave_type = co_types and co_types[0]
 
     @property
     def bash_dir(self): return self.store_dir.join(u'Bash')
