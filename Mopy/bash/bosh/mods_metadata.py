@@ -373,7 +373,6 @@ class ConfigHelpers:
         merged_ = modInfos.merged
         imported_ = modInfos.imported
         activeMerged = active | merged_
-        removeEslFlag = set()
         warning = u'=== <font color=red>'+_(u'WARNING:')+u'</font> '
         #--Header
         with sio() as out:
@@ -390,12 +389,6 @@ class ConfigHelpers:
                 shouldMerge = modInfos.mergeable
             else:
                 shouldMerge = active & modInfos.mergeable
-            if bush.game.check_esl:
-                for m, modinf in modInfos.items():
-                    if not modinf.is_esl():
-                        continue # we check .esl extension and ESL flagged mods
-                    if not is_esl_capable(modinf, modInfos, reasons=None):
-                        removeEslFlag.add(m)
             shouldDeactivateA, shouldDeactivateB = [], []
             for x in active:
                 tags = modInfos[x].getBashTags()
@@ -450,11 +443,6 @@ class ConfigHelpers:
                           u'the bashed patch.'))
                 for mod in sorted(shouldMerge):
                     log(u'* __'+mod.s+u'__')
-            if removeEslFlag:
-                log.setHeader(u'=== ' + _(u'Remove ESL Flag'))
-                log(_(u'Following mods have an ESL flag, but may not qualify. Check with xEdit.'))
-                for mod in sorted(removeEslFlag):
-                    log(u'* __' + mod.s + u'__')
             if shouldDeactivateB:
                 log.setHeader(u'=== '+_(u'NoMerge Tagged Mods'))
                 log(_(u'Following mods are tagged NoMerge and should be '
