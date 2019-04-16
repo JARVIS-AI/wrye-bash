@@ -486,8 +486,7 @@ class ConfigHelpers:
                     u'=== ' + _(u'Mods that need cleaning with xEdit'))
                 log(_(u'Congratulations all mods appear clean.'))
             if invalidVersion:
-                ver_list = u', '.join(
-                    sorted(bush.game.esp.validHeaderVersions))
+                ver_list = u', '.join(sorted(str(v) for v in bush.game.esp.validHeaderVersions))
                 log.setHeader(
                     u'=== ' + _(u'Mods with non standard TES4 versions'))
                 log(_(u"Following mods have a TES4 version that isn't "
