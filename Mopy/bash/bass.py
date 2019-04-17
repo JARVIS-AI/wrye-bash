@@ -29,7 +29,7 @@ and environment issues - do not modify or imitate (ut)."""
 # no imports
 
 language = None
-AppVersion = u"307.201904130032" # must represent a valid float
+AppVersion = u"307.201904161810" # must represent a valid float
 
 #--Null strings (for default empty byte arrays)
 null1 = '\x00'
