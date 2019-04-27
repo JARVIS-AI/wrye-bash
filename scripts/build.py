@@ -718,8 +718,10 @@ def main(args):
         # Get repository files
         all_files = get_git_files(args.version)
         # Add the LOOT API binaries to all_files
-        loot_dll = os.path.join(u"Mopy", u"loot_api.dll")
+        loot_api_dll = os.path.join(u"Mopy", u"loot_api.dll")
+        loot_dll = os.path.join(u"Mopy", u"loot.dll")
         loot_pyd = os.path.join(u"Mopy", u"loot_api.pyd")
+        all_files.append(loot_api_dll)
         all_files.append(loot_dll)
         all_files.append(loot_pyd)
         version_info = get_version_info(args.version)
