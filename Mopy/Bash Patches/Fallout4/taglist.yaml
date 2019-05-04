@@ -3,316 +3,95 @@ plugins:
     dirty:
       - crc: 0x30c3276a
         util: '[FO4Edit](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 42
   - name: 'ArmorKeywords.esm'
     dirty:
-      - crc: 0xd21d5cd0
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in **Quick Auto Clean** mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-          - lang: de
-            text: 'Wegen Verbesserungen die dem Säuberungsprozess zugute gekommen sind mit der offiziellen Veröffentlichung von xEdit 4.0.x+, sämtliche Mods die als sauber verifiziert wurden mithilfe älterer Versionen von xEdit brauchen eventuell zusätzliche Säuberungen. Eine englische Anleitung zum ausführen von xEdit 4.0.x+ im **Schnell-Automatisch-Säubern** Modus kann [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2) aufgefunden werden.'
-        itm: 52
+      - crc: 0x88b5c88
+        util: 'FO4Edit v3.2.67'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
+        itm: 68
+      - crc: 0x2f5753ce
+        util: 'FO4Edit v3.2.67'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
+        itm: 68
+      - crc: 0x30156c76
+        util: 'FO4Edit v3.2'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
+        itm: 1
+      - crc: 0x7415ada9
+        util: 'FO4Edit v3.2.54'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
+        itm: 79
+      - crc: 0x898d5313
+        util: 'FO4Edit v3.2.63'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
+        itm: 79
+      - crc: 0xf2ec3f44
+        util: 'FO4Edit v3.2.67'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
+        itm: 68
   - name: 'Armorsmith Extended.esp'
     dirty:
-      - crc: 0x4de48100
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in **Quick Auto Clean** mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-          - lang: de
-            text: 'Wegen Verbesserungen die dem Säuberungsprozess zugute gekommen sind mit der offiziellen Veröffentlichung von xEdit 4.0.x+, sämtliche Mods die als sauber verifiziert wurden mithilfe älterer Versionen von xEdit brauchen eventuell zusätzliche Säuberungen. Eine englische Anleitung zum ausführen von xEdit 4.0.x+ im **Schnell-Automatisch-Säubern** Modus kann [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2) aufgefunden werden.'
-        itm: 13
-  - name: 'AtomCatGarage.esp'
-    dirty:
-      - crc: 0x50132a36
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in **Quick Auto Clean** mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-          - lang: de
-            text: 'Wegen Verbesserungen die dem Säuberungsprozess zugute gekommen sind mit der offiziellen Veröffentlichung von xEdit 4.0.x+, sämtliche Mods die als sauber verifiziert wurden mithilfe älterer Versionen von xEdit brauchen eventuell zusätzliche Säuberungen. Eine englische Anleitung zum ausführen von xEdit 4.0.x+ im **Schnell-Automatisch-Säubern** Modus kann [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2) aufgefunden werden.'
-        itm: 6
-      - crc: 0x6f330cff
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in **Quick Auto Clean** mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-          - lang: de
-            text: 'Wegen Verbesserungen die dem Säuberungsprozess zugute gekommen sind mit der offiziellen Veröffentlichung von xEdit 4.0.x+, sämtliche Mods die als sauber verifiziert wurden mithilfe älterer Versionen von xEdit brauchen eventuell zusätzliche Säuberungen. Eine englische Anleitung zum ausführen von xEdit 4.0.x+ im **Schnell-Automatisch-Säubern** Modus kann [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2) aufgefunden werden.'
-        itm: 3
-      - crc: 0xdc85f4b1
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in **Quick Auto Clean** mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-          - lang: de
-            text: 'Wegen Verbesserungen die dem Säuberungsprozess zugute gekommen sind mit der offiziellen Veröffentlichung von xEdit 4.0.x+, sämtliche Mods die als sauber verifiziert wurden mithilfe älterer Versionen von xEdit brauchen eventuell zusätzliche Säuberungen. Eine englische Anleitung zum ausführen von xEdit 4.0.x+ im **Schnell-Automatisch-Säubern** Modus kann [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2) aufgefunden werden.'
-        itm: 6
-        udr: 1
-  - name: 'BetterBostonAirport.esp'
-    dirty:
-      - crc: 0x55f6c318
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'It is strongly recommended not to use mods that contain **Deleted navmeshes** as they''re known to cause crashes. **Deleted navmeshes** must be corrected manually(A complex process that should be done by the mod author). More information on **Deleted navmeshes** is provided [here](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial).'
-          - lang: de
-            text: 'Es wird streng empfohlen keine Mods zu verwenden die **Gelöschte Navmeshes** beinhalten da diese dafür bekannt sind Abstürze auszulösen. **Gelöschte Navmeshes** müssen manuell korrigiert werden(Ein komplexer Prozess der vom Mod-Autor erledigt werden sollte). Mehr Informationen über **Gelöschte Navmeshes** wird [hier](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial) geboten.'
-        itm: 47
-        udr: 1
-        nav: 2
-      - crc: 0x655d55a4
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'It is strongly recommended not to use mods that contain **Deleted navmeshes** as they''re known to cause crashes. **Deleted navmeshes** must be corrected manually(A complex process that should be done by the mod author). More information on **Deleted navmeshes** is provided [here](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial).'
-          - lang: de
-            text: 'Es wird streng empfohlen keine Mods zu verwenden die **Gelöschte Navmeshes** beinhalten da diese dafür bekannt sind Abstürze auszulösen. **Gelöschte Navmeshes** müssen manuell korrigiert werden(Ein komplexer Prozess der vom Mod-Autor erledigt werden sollte). Mehr Informationen über **Gelöschte Navmeshes** wird [hier](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial) geboten.'
-        nav: 7
-      - crc: 0x7b4cb67a
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'It is strongly recommended not to use mods that contain **Deleted navmeshes** as they''re known to cause crashes. **Deleted navmeshes** must be corrected manually(A complex process that should be done by the mod author). More information on **Deleted navmeshes** is provided [here](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial).'
-          - lang: de
-            text: 'Es wird streng empfohlen keine Mods zu verwenden die **Gelöschte Navmeshes** beinhalten da diese dafür bekannt sind Abstürze auszulösen. **Gelöschte Navmeshes** müssen manuell korrigiert werden(Ein komplexer Prozess der vom Mod-Autor erledigt werden sollte). Mehr Informationen über **Gelöschte Navmeshes** wird [hier](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial) geboten.'
-        itm: 2
-        nav: 2
-      - crc: 0x7d70b245
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'It is strongly recommended not to use mods that contain **Deleted navmeshes** as they''re known to cause crashes. **Deleted navmeshes** must be corrected manually(A complex process that should be done by the mod author). More information on **Deleted navmeshes** is provided [here](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial).'
-          - lang: de
-            text: 'Es wird streng empfohlen keine Mods zu verwenden die **Gelöschte Navmeshes** beinhalten da diese dafür bekannt sind Abstürze auszulösen. **Gelöschte Navmeshes** müssen manuell korrigiert werden(Ein komplexer Prozess der vom Mod-Autor erledigt werden sollte). Mehr Informationen über **Gelöschte Navmeshes** wird [hier](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial) geboten.'
-        itm: 46
-        udr: 15
-        nav: 7
-      - crc: 0xa474b024
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'It is strongly recommended not to use mods that contain **Deleted navmeshes** as they''re known to cause crashes. **Deleted navmeshes** must be corrected manually(A complex process that should be done by the mod author). More information on **Deleted navmeshes** is provided [here](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial).'
-          - lang: de
-            text: 'Es wird streng empfohlen keine Mods zu verwenden die **Gelöschte Navmeshes** beinhalten da diese dafür bekannt sind Abstürze auszulösen. **Gelöschte Navmeshes** müssen manuell korrigiert werden(Ein komplexer Prozess der vom Mod-Autor erledigt werden sollte). Mehr Informationen über **Gelöschte Navmeshes** wird [hier](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial) geboten.'
-        nav: 2
-      - crc: 0xf57092de
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'It is strongly recommended not to use mods that contain **Deleted navmeshes** as they''re known to cause crashes. **Deleted navmeshes** must be corrected manually(A complex process that should be done by the mod author). More information on **Deleted navmeshes** is provided [here](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial).'
-          - lang: de
-            text: 'Es wird streng empfohlen keine Mods zu verwenden die **Gelöschte Navmeshes** beinhalten da diese dafür bekannt sind Abstürze auszulösen. **Gelöschte Navmeshes** müssen manuell korrigiert werden(Ein komplexer Prozess der vom Mod-Autor erledigt werden sollte). Mehr Informationen über **Gelöschte Navmeshes** wird [hier](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial) geboten.'
-        itm: 2
-        nav: 7
-  - name: 'BetterMikaMerged-1_1main.esp'
-    dirty:
-      - crc: 0x4b387286
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'It is strongly recommended not to use mods that contain **Deleted navmeshes** as they''re known to cause crashes. **Deleted navmeshes** must be corrected manually(A complex process that should be done by the mod author). More information on **Deleted navmeshes** is provided [here](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial).'
-          - lang: de
-            text: 'Es wird streng empfohlen keine Mods zu verwenden die **Gelöschte Navmeshes** beinhalten da diese dafür bekannt sind Abstürze auszulösen. **Gelöschte Navmeshes** müssen manuell korrigiert werden(Ein komplexer Prozess der vom Mod-Autor erledigt werden sollte). Mehr Informationen über **Gelöschte Navmeshes** wird [hier](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial) geboten.'
-        nav: 3
-      - crc: 0xa9b2d7d0
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'It is strongly recommended not to use mods that contain **Deleted navmeshes** as they''re known to cause crashes. **Deleted navmeshes** must be corrected manually(A complex process that should be done by the mod author). More information on **Deleted navmeshes** is provided [here](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial).'
-          - lang: de
-            text: 'Es wird streng empfohlen keine Mods zu verwenden die **Gelöschte Navmeshes** beinhalten da diese dafür bekannt sind Abstürze auszulösen. **Gelöschte Navmeshes** müssen manuell korrigiert werden(Ein komplexer Prozess der vom Mod-Autor erledigt werden sollte). Mehr Informationen über **Gelöschte Navmeshes** wird [hier](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial) geboten.'
-        nav: 3
-      - crc: 0xbdce6fc7
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'It is strongly recommended not to use mods that contain **Deleted navmeshes** as they''re known to cause crashes. **Deleted navmeshes** must be corrected manually(A complex process that should be done by the mod author). More information on **Deleted navmeshes** is provided [here](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial).'
-          - lang: de
-            text: 'Es wird streng empfohlen keine Mods zu verwenden die **Gelöschte Navmeshes** beinhalten da diese dafür bekannt sind Abstürze auszulösen. **Gelöschte Navmeshes** müssen manuell korrigiert werden(Ein komplexer Prozess der vom Mod-Autor erledigt werden sollte). Mehr Informationen über **Gelöschte Navmeshes** wird [hier](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial) geboten.'
-        itm: 238
-        udr: 180
-        nav: 3
-  - name: 'BetterMikaMerged-1_1nocttb.esp'
-    dirty:
-      - crc: 0xacad0c17
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'It is strongly recommended not to use mods that contain **Deleted navmeshes** as they''re known to cause crashes. **Deleted navmeshes** must be corrected manually(A complex process that should be done by the mod author). More information on **Deleted navmeshes** is provided [here](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial).'
-          - lang: de
-            text: 'Es wird streng empfohlen keine Mods zu verwenden die **Gelöschte Navmeshes** beinhalten da diese dafür bekannt sind Abstürze auszulösen. **Gelöschte Navmeshes** müssen manuell korrigiert werden(Ein komplexer Prozess der vom Mod-Autor erledigt werden sollte). Mehr Informationen über **Gelöschte Navmeshes** wird [hier](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial) geboten.'
-        nav: 7
-      - crc: 0xbd2a66c4
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'It is strongly recommended not to use mods that contain **Deleted navmeshes** as they''re known to cause crashes. **Deleted navmeshes** must be corrected manually(A complex process that should be done by the mod author). More information on **Deleted navmeshes** is provided [here](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial).'
-          - lang: de
-            text: 'Es wird streng empfohlen keine Mods zu verwenden die **Gelöschte Navmeshes** beinhalten da diese dafür bekannt sind Abstürze auszulösen. **Gelöschte Navmeshes** müssen manuell korrigiert werden(Ein komplexer Prozess der vom Mod-Autor erledigt werden sollte). Mehr Informationen über **Gelöschte Navmeshes** wird [hier](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial) geboten.'
-        itm: 2
-        nav: 7
-      - crc: 0xc2e4cb5a
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'It is strongly recommended not to use mods that contain **Deleted navmeshes** as they''re known to cause crashes. **Deleted navmeshes** must be corrected manually(A complex process that should be done by the mod author). More information on **Deleted navmeshes** is provided [here](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial).'
-          - lang: de
-            text: 'Es wird streng empfohlen keine Mods zu verwenden die **Gelöschte Navmeshes** beinhalten da diese dafür bekannt sind Abstürze auszulösen. **Gelöschte Navmeshes** müssen manuell korrigiert werden(Ein komplexer Prozess der vom Mod-Autor erledigt werden sollte). Mehr Informationen über **Gelöschte Navmeshes** wird [hier](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial) geboten.'
-        itm: 79
-        udr: 160
-        nav: 7
-      - crc: 0xde226b93
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'It is strongly recommended not to use mods that contain **Deleted navmeshes** as they''re known to cause crashes. **Deleted navmeshes** must be corrected manually(A complex process that should be done by the mod author). More information on **Deleted navmeshes** is provided [here](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial).'
-          - lang: de
-            text: 'Es wird streng empfohlen keine Mods zu verwenden die **Gelöschte Navmeshes** beinhalten da diese dafür bekannt sind Abstürze auszulösen. **Gelöschte Navmeshes** müssen manuell korrigiert werden(Ein komplexer Prozess der vom Mod-Autor erledigt werden sollte). Mehr Informationen über **Gelöschte Navmeshes** wird [hier](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial) geboten.'
-        itm: 10
-        nav: 7
-  - name: 'BetterMikaMerged-1_1UCS-DA-PW-ACG.esp'
-    dirty:
-      - crc: 0x389ae824
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in **Quick Auto Clean** mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-          - lang: de
-            text: 'Wegen Verbesserungen die dem Säuberungsprozess zugute gekommen sind mit der offiziellen Veröffentlichung von xEdit 4.0.x+, sämtliche Mods die als sauber verifiziert wurden mithilfe älterer Versionen von xEdit brauchen eventuell zusätzliche Säuberungen. Eine englische Anleitung zum ausführen von xEdit 4.0.x+ im **Schnell-Automatisch-Säubern** Modus kann [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2) aufgefunden werden.'
-        itm: 9
-      - crc: 0x8e6f3127
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in **Quick Auto Clean** mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-          - lang: de
-            text: 'Wegen Verbesserungen die dem Säuberungsprozess zugute gekommen sind mit der offiziellen Veröffentlichung von xEdit 4.0.x+, sämtliche Mods die als sauber verifiziert wurden mithilfe älterer Versionen von xEdit brauchen eventuell zusätzliche Säuberungen. Eine englische Anleitung zum ausführen von xEdit 4.0.x+ im **Schnell-Automatisch-Säubern** Modus kann [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2) aufgefunden werden.'
-        itm: 3
-      - crc: 0x927de20a
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in **Quick Auto Clean** mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-          - lang: de
-            text: 'Wegen Verbesserungen die dem Säuberungsprozess zugute gekommen sind mit der offiziellen Veröffentlichung von xEdit 4.0.x+, sämtliche Mods die als sauber verifiziert wurden mithilfe älterer Versionen von xEdit brauchen eventuell zusätzliche Säuberungen. Eine englische Anleitung zum ausführen von xEdit 4.0.x+ im **Schnell-Automatisch-Säubern** Modus kann [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2) aufgefunden werden.'
-        itm: 33
-        udr: 145
-  - name: 'BetterMikaMerged.esp'
-    dirty:
-      - crc: 0x366b5b2f
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'It is strongly recommended not to use mods that contain **Deleted navmeshes** as they''re known to cause crashes. **Deleted navmeshes** must be corrected manually(A complex process that should be done by the mod author). More information on **Deleted navmeshes** is provided [here](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial).'
-          - lang: de
-            text: 'Es wird streng empfohlen keine Mods zu verwenden die **Gelöschte Navmeshes** beinhalten da diese dafür bekannt sind Abstürze auszulösen. **Gelöschte Navmeshes** müssen manuell korrigiert werden(Ein komplexer Prozess der vom Mod-Autor erledigt werden sollte). Mehr Informationen über **Gelöschte Navmeshes** wird [hier](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial) geboten.'
-        itm: 2
-        nav: 10
-      - crc: 0x7261a48b
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'It is strongly recommended not to use mods that contain **Deleted navmeshes** as they''re known to cause crashes. **Deleted navmeshes** must be corrected manually(A complex process that should be done by the mod author). More information on **Deleted navmeshes** is provided [here](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial).'
-          - lang: de
-            text: 'Es wird streng empfohlen keine Mods zu verwenden die **Gelöschte Navmeshes** beinhalten da diese dafür bekannt sind Abstürze auszulösen. **Gelöschte Navmeshes** müssen manuell korrigiert werden(Ein komplexer Prozess der vom Mod-Autor erledigt werden sollte). Mehr Informationen über **Gelöschte Navmeshes** wird [hier](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial) geboten.'
-        nav: 10
-      - crc: 0x7581a517
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'It is strongly recommended not to use mods that contain **Deleted navmeshes** as they''re known to cause crashes. **Deleted navmeshes** must be corrected manually(A complex process that should be done by the mod author). More information on **Deleted navmeshes** is provided [here](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial).'
-          - lang: de
-            text: 'Es wird streng empfohlen keine Mods zu verwenden die **Gelöschte Navmeshes** beinhalten da diese dafür bekannt sind Abstürze auszulösen. **Gelöschte Navmeshes** müssen manuell korrigiert werden(Ein komplexer Prozess der vom Mod-Autor erledigt werden sollte). Mehr Informationen über **Gelöschte Navmeshes** wird [hier](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial) geboten.'
-        itm: 315
-        udr: 340
-        nav: 10
+      - crc: 0x232590b7
+        util: 'FO4Edit v3.2'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
+        itm: 5
+      - crc: 0x837fe661
+        util: 'FO4Edit v3.2.63'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
+        itm: 1
+      - crc: 0xe7694ec1
+        util: 'FO4Edit v3.2.63'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
+        itm: 1
   - name: 'BetterSettlersCleanFacePack.esp'
     dirty:
       - crc: 0x7331d352
         util: 'FO4Edit v3.2.1'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 33
   - name: 'BrahminPackMod.esp'
     dirty:
       - crc: 0x6b8c7589
         util: 'FO4Edit v3.2.23'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 371
         udr: 12
       - crc: 0x97c9a7de
         util: 'FO4Edit v3.2.23'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 372
         udr: 12
   - name: 'BTInteriors_Project.esp'
     dirty:
       - crc: 0xd66fe314
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in **Quick Auto Clean** mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-          - lang: de
-            text: 'Wegen Verbesserungen die dem Säuberungsprozess zugute gekommen sind mit der offiziellen Veröffentlichung von xEdit 4.0.x+, sämtliche Mods die als sauber verifiziert wurden mithilfe älterer Versionen von xEdit brauchen eventuell zusätzliche Säuberungen. Eine englische Anleitung zum ausführen von xEdit 4.0.x+ im **Schnell-Automatisch-Säubern** Modus kann [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2) aufgefunden werden.'
-        itm: 43
+        util: 'FO4Edit v3.2.1'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
+        itm: 6
   - name: 'BuildYourOwnVault.esp'
     dirty:
       - crc: 0xea39cbc4
         util: 'FO4Edit v3.2.1'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 2
   - name: 'CC''s Unique Vault Suit Boxes - Far Harbor Patch.esp'
     dirty:
       - crc: 0xb02466b0
         util: '[FO4Edit](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         udr: 2
   - name: 'CC''s Unique Vault Suit Boxes.esp'
     dirty:
       - crc: 0x8a219a39
         util: '[FO4Edit](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 2
   - name: 'CombatZoneRestored.esp'
     dirty:
       - crc: 0x86419c03
         util: '[FO4Edit](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 20
         udr: 20
         nav: 1
@@ -320,172 +99,77 @@ plugins:
     dirty:
       - crc: 0x498d961c
         util: '[FO4Edit](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 6
   - name: 'Conquest.esp'
     dirty:
       - crc: 0x21243775
         util: 'FO4Edit v3.2.1'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 10
-  - name: 'CrimeTown.esp'
-    dirty:
-      - crc: 0xd8b6a82
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'It is strongly recommended not to use mods that contain **Deleted navmeshes** as they''re known to cause crashes. **Deleted navmeshes** must be corrected manually(A complex process that should be done by the mod author). More information on **Deleted navmeshes** is provided [here](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial).'
-          - lang: de
-            text: 'Es wird streng empfohlen keine Mods zu verwenden die **Gelöschte Navmeshes** beinhalten da diese dafür bekannt sind Abstürze auszulösen. **Gelöschte Navmeshes** müssen manuell korrigiert werden(Ein komplexer Prozess der vom Mod-Autor erledigt werden sollte). Mehr Informationen über **Gelöschte Navmeshes** wird [hier](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial) geboten.'
-        nav: 2
-      - crc: 0x12e32660
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'It is strongly recommended not to use mods that contain **Deleted navmeshes** as they''re known to cause crashes. **Deleted navmeshes** must be corrected manually(A complex process that should be done by the mod author). More information on **Deleted navmeshes** is provided [here](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial).'
-          - lang: de
-            text: 'Es wird streng empfohlen keine Mods zu verwenden die **Gelöschte Navmeshes** beinhalten da diese dafür bekannt sind Abstürze auszulösen. **Gelöschte Navmeshes** müssen manuell korrigiert werden(Ein komplexer Prozess der vom Mod-Autor erledigt werden sollte). Mehr Informationen über **Gelöschte Navmeshes** wird [hier](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial) geboten.'
-        itm: 217
-        udr: 50
-        nav: 2
-      - crc: 0x305d7674
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'It is strongly recommended not to use mods that contain **Deleted navmeshes** as they''re known to cause crashes. **Deleted navmeshes** must be corrected manually(A complex process that should be done by the mod author). More information on **Deleted navmeshes** is provided [here](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial).'
-          - lang: de
-            text: 'Es wird streng empfohlen keine Mods zu verwenden die **Gelöschte Navmeshes** beinhalten da diese dafür bekannt sind Abstürze auszulösen. **Gelöschte Navmeshes** müssen manuell korrigiert werden(Ein komplexer Prozess der vom Mod-Autor erledigt werden sollte). Mehr Informationen über **Gelöschte Navmeshes** wird [hier](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial) geboten.'
-        itm: 217
-        nav: 1
-      - crc: 0xf0ce4e14
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'It is strongly recommended not to use mods that contain **Deleted navmeshes** as they''re known to cause crashes. **Deleted navmeshes** must be corrected manually(A complex process that should be done by the mod author). More information on **Deleted navmeshes** is provided [here](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial).'
-          - lang: de
-            text: 'Es wird streng empfohlen keine Mods zu verwenden die **Gelöschte Navmeshes** beinhalten da diese dafür bekannt sind Abstürze auszulösen. **Gelöschte Navmeshes** müssen manuell korrigiert werden(Ein komplexer Prozess der vom Mod-Autor erledigt werden sollte). Mehr Informationen über **Gelöschte Navmeshes** wird [hier](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial) geboten.'
-        nav: 1
-  - name: 'DeadAirplane.esp'
-    dirty:
-      - crc: 0x2173a62f
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in **Quick Auto Clean** mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-          - lang: de
-            text: 'Wegen Verbesserungen die dem Säuberungsprozess zugute gekommen sind mit der offiziellen Veröffentlichung von xEdit 4.0.x+, sämtliche Mods die als sauber verifiziert wurden mithilfe älterer Versionen von xEdit brauchen eventuell zusätzliche Säuberungen. Eine englische Anleitung zum ausführen von xEdit 4.0.x+ im **Schnell-Automatisch-Säubern** Modus kann [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2) aufgefunden werden.'
-        itm: 3
-      - crc: 0xa1837827
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in **Quick Auto Clean** mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-          - lang: de
-            text: 'Wegen Verbesserungen die dem Säuberungsprozess zugute gekommen sind mit der offiziellen Veröffentlichung von xEdit 4.0.x+, sämtliche Mods die als sauber verifiziert wurden mithilfe älterer Versionen von xEdit brauchen eventuell zusätzliche Säuberungen. Eine englische Anleitung zum ausführen von xEdit 4.0.x+ im **Schnell-Automatisch-Säubern** Modus kann [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2) aufgefunden werden.'
-        itm: 7
-      - crc: 0xb7248f22
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in **Quick Auto Clean** mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-          - lang: de
-            text: 'Wegen Verbesserungen die dem Säuberungsprozess zugute gekommen sind mit der offiziellen Veröffentlichung von xEdit 4.0.x+, sämtliche Mods die als sauber verifiziert wurden mithilfe älterer Versionen von xEdit brauchen eventuell zusätzliche Säuberungen. Eine englische Anleitung zum ausführen von xEdit 4.0.x+ im **Schnell-Automatisch-Säubern** Modus kann [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2) aufgefunden werden.'
-        itm: 7
-        udr: 140
   - name: 'DiamondLighting.esp'
     dirty:
       - crc: 0x306fdd54
         util: '[FO4Edit](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 1
         udr: 4
   - name: 'Diverse Cats.esp'
     dirty:
       - crc: 0xea3b193f
         util: '[FO4Edit](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 6
   - name: 'DLCCoast.esm'
     dirty:
       - crc: 0xf1f28026
-        util: '[FO4Edit v4.0.2](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in **Quick Auto Clean** mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-          - lang: de
-            text: 'Wegen Verbesserungen die dem Säuberungsprozess zugute gekommen sind mit der offiziellen Veröffentlichung von xEdit 4.0.x+, sämtliche Mods die als sauber verifiziert wurden mithilfe älterer Versionen von xEdit brauchen eventuell zusätzliche Säuberungen. Eine englische Anleitung zum ausführen von xEdit 4.0.x+ im **Schnell-Automatisch-Säubern** Modus kann [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2) aufgefunden werden.'
+        util: '[FO4Edit v4.0.0](https://www.nexusmods.com/fallout4/mods/2737)'
+        info: 'A guide for running **Quick Auto Clean** can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
         itm: 85
         udr: 86
   - name: 'DLCNukaWorld.esm'
     dirty:
       - crc: 0x43d25c56
-        util: '[FO4Edit v4.0.2](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in **Quick Auto Clean** mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-          - lang: de
-            text: 'Wegen Verbesserungen die dem Säuberungsprozess zugute gekommen sind mit der offiziellen Veröffentlichung von xEdit 4.0.x+, sämtliche Mods die als sauber verifiziert wurden mithilfe älterer Versionen von xEdit brauchen eventuell zusätzliche Säuberungen. Eine englische Anleitung zum ausführen von xEdit 4.0.x+ im **Schnell-Automatisch-Säubern** Modus kann [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2) aufgefunden werden.'
-        itm: 194
+        util: '[FO4Edit v4.0.0](https://www.nexusmods.com/fallout4/mods/2737)'
+        info: 'A guide for running **Quick Auto Clean** can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
+        itm: 193
         udr: 418
         nav: 7
   - name: 'DLCRobot.esm'
     dirty:
+      - crc: 0x950f94c8
+        util: '[FO4Edit v4.0.0](https://www.nexusmods.com/fallout4/mods/2737)'
+        info: 'A guide for running **Quick Auto Clean** can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
+        itm: 1
+        nav: 1
       - crc: 0xd69027ea
-        util: '[FO4Edit v4.0.2](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in **Quick Auto Clean** mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-          - lang: de
-            text: 'Wegen Verbesserungen die dem Säuberungsprozess zugute gekommen sind mit der offiziellen Veröffentlichung von xEdit 4.0.x+, sämtliche Mods die als sauber verifiziert wurden mithilfe älterer Versionen von xEdit brauchen eventuell zusätzliche Säuberungen. Eine englische Anleitung zum ausführen von xEdit 4.0.x+ im **Schnell-Automatisch-Säubern** Modus kann [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2) aufgefunden werden.'
-        itm: 50
+        util: '[FO4Edit v4.0.0](https://www.nexusmods.com/fallout4/mods/2737)'
+        info: 'A guide for running **Quick Auto Clean** can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
+        itm: 49
         udr: 38
         nav: 1
   - name: 'DLCworkshop01.esm'
     dirty:
       - crc: 0x47bae27e
-        util: '[FO4Edit v4.0.2](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in **Quick Auto Clean** mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-          - lang: de
-            text: 'Wegen Verbesserungen die dem Säuberungsprozess zugute gekommen sind mit der offiziellen Veröffentlichung von xEdit 4.0.x+, sämtliche Mods die als sauber verifiziert wurden mithilfe älterer Versionen von xEdit brauchen eventuell zusätzliche Säuberungen. Eine englische Anleitung zum ausführen von xEdit 4.0.x+ im **Schnell-Automatisch-Säubern** Modus kann [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2) aufgefunden werden.'
+        util: '[FO4Edit v4.0.0](https://www.nexusmods.com/fallout4/mods/2737)'
+        info: 'A guide for running **Quick Auto Clean** can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
         itm: 6
   - name: 'DLCworkshop02.esm'
     dirty:
       - crc: 0x83abc821
-        util: '[FO4Edit v4.0.2](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in **Quick Auto Clean** mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-          - lang: de
-            text: 'Wegen Verbesserungen die dem Säuberungsprozess zugute gekommen sind mit der offiziellen Veröffentlichung von xEdit 4.0.x+, sämtliche Mods die als sauber verifiziert wurden mithilfe älterer Versionen von xEdit brauchen eventuell zusätzliche Säuberungen. Eine englische Anleitung zum ausführen von xEdit 4.0.x+ im **Schnell-Automatisch-Säubern** Modus kann [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2) aufgefunden werden.'
+        util: '[FO4Edit v4.0.0](https://www.nexusmods.com/fallout4/mods/2737)'
+        info: 'A guide for running **Quick Auto Clean** can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
         itm: 2
   - name: 'DLCworkshop03.esm'
     dirty:
+      - crc: 0x9f6b3c8
+        util: '[FO4Edit v4.0.0](https://www.nexusmods.com/fallout4/mods/2737)'
+        info: 'A guide for running **Quick Auto Clean** can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
+        itm: 3
       - crc: 0xe0089fbb
-        util: '[FO4Edit v4.0.2](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in **Quick Auto Clean** mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-          - lang: de
-            text: 'Wegen Verbesserungen die dem Säuberungsprozess zugute gekommen sind mit der offiziellen Veröffentlichung von xEdit 4.0.x+, sämtliche Mods die als sauber verifiziert wurden mithilfe älterer Versionen von xEdit brauchen eventuell zusätzliche Säuberungen. Eine englische Anleitung zum ausführen von xEdit 4.0.x+ im **Schnell-Automatisch-Säubern** Modus kann [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2) aufgefunden werden.'
-        itm: 25
+        util: '[FO4Edit v4.0.0](https://www.nexusmods.com/fallout4/mods/2737)'
+        info: 'A guide for running **Quick Auto Clean** can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
+        itm: 22
         udr: 10
   - name: 'FO4Merged.esp'
     tag:
@@ -494,283 +178,126 @@ plugins:
     dirty:
       - crc: 0xa5ee4658
         util: 'FO4Edit v3.2.1'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 4
   - name: 'Hot Sosig.esp'
     dirty:
       - crc: 0x967e4d12
         util: '[FO4Edit](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 1
   - name: 'MAGS.esp'
     dirty:
       - crc: 0xa9913693
         util: '[FO4Edit](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 12
         udr: 9
   - name: 'MakeYourOwnSynths.esp'
     dirty:
       - crc: 0xbc97890d
         util: 'FO4Edit v3.2.1'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 10
   - name: 'Mechanist Lair Overhaul SEC.esp'
     dirty:
       - crc: 0x13978275
         util: 'FO4Edit v3.2.3r'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         nav: 1
   - name: 'Mechanist Lair Overhaul.esp'
     dirty:
       - crc: 0xb428de36
         util: 'FO4Edit v3.2.3r'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         nav: 1
   - name: 'Northland Diggers New.esp'
     dirty:
       - crc: 0x3fef8e47
         util: 'FO4Edit v3.2.1'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 5
   - name: 'NukaRadBans.esp'
     dirty:
       - crc: 0x174f8132
         util: '[FO4Edit](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         udr: 1
       - crc: 0x717e7f08
         util: '[FO4Edit](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         udr: 1
   - name: 'nvvault1080.esp'
     dirty:
       - crc: 0xd6acc264
         util: '[FO4Edit](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         nav: 5
-  - name: 'Pipsy.esl'
-    dirty:
-      - crc: 0x585fc8c4
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in **Quick Auto Clean** mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-          - lang: de
-            text: 'Wegen Verbesserungen die dem Säuberungsprozess zugute gekommen sind mit der offiziellen Veröffentlichung von xEdit 4.0.x+, sämtliche Mods die als sauber verifiziert wurden mithilfe älterer Versionen von xEdit brauchen eventuell zusätzliche Säuberungen. Eine englische Anleitung zum ausführen von xEdit 4.0.x+ im **Schnell-Automatisch-Säubern** Modus kann [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2) aufgefunden werden.'
-        itm: 1
-      - crc: 0x72261c69
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in **Quick Auto Clean** mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-          - lang: de
-            text: 'Wegen Verbesserungen die dem Säuberungsprozess zugute gekommen sind mit der offiziellen Veröffentlichung von xEdit 4.0.x+, sämtliche Mods die als sauber verifiziert wurden mithilfe älterer Versionen von xEdit brauchen eventuell zusätzliche Säuberungen. Eine englische Anleitung zum ausführen von xEdit 4.0.x+ im **Schnell-Automatisch-Säubern** Modus kann [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2) aufgefunden werden.'
-        itm: 131
-        udr: 20
-  - name: 'Pipsy.esp'
-    dirty:
-      - crc: 0xafa33be5
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in **Quick Auto Clean** mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-          - lang: de
-            text: 'Wegen Verbesserungen die dem Säuberungsprozess zugute gekommen sind mit der offiziellen Veröffentlichung von xEdit 4.0.x+, sämtliche Mods die als sauber verifiziert wurden mithilfe älterer Versionen von xEdit brauchen eventuell zusätzliche Säuberungen. Eine englische Anleitung zum ausführen von xEdit 4.0.x+ im **Schnell-Automatisch-Säubern** Modus kann [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2) aufgefunden werden.'
-        itm: 1
-      - crc: 0xdf7d6406
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in **Quick Auto Clean** mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-          - lang: de
-            text: 'Wegen Verbesserungen die dem Säuberungsprozess zugute gekommen sind mit der offiziellen Veröffentlichung von xEdit 4.0.x+, sämtliche Mods die als sauber verifiziert wurden mithilfe älterer Versionen von xEdit brauchen eventuell zusätzliche Säuberungen. Eine englische Anleitung zum ausführen von xEdit 4.0.x+ im **Schnell-Automatisch-Säubern** Modus kann [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2) aufgefunden werden.'
-        itm: 121
-        udr: 20
-  - name: 'PlaneWreck.esp'
-    dirty:
-      - crc: 0x2c98e514
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in **Quick Auto Clean** mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-          - lang: de
-            text: 'Wegen Verbesserungen die dem Säuberungsprozess zugute gekommen sind mit der offiziellen Veröffentlichung von xEdit 4.0.x+, sämtliche Mods die als sauber verifiziert wurden mithilfe älterer Versionen von xEdit brauchen eventuell zusätzliche Säuberungen. Eine englische Anleitung zum ausführen von xEdit 4.0.x+ im **Schnell-Automatisch-Säubern** Modus kann [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2) aufgefunden werden.'
-        itm: 3
-      - crc: 0xaf3baf0c
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in **Quick Auto Clean** mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-          - lang: de
-            text: 'Wegen Verbesserungen die dem Säuberungsprozess zugute gekommen sind mit der offiziellen Veröffentlichung von xEdit 4.0.x+, sämtliche Mods die als sauber verifiziert wurden mithilfe älterer Versionen von xEdit brauchen eventuell zusätzliche Säuberungen. Eine englische Anleitung zum ausführen von xEdit 4.0.x+ im **Schnell-Automatisch-Säubern** Modus kann [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2) aufgefunden werden.'
-        itm: 18
-      - crc: 0xc2b782aa
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in **Quick Auto Clean** mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-          - lang: de
-            text: 'Wegen Verbesserungen die dem Säuberungsprozess zugute gekommen sind mit der offiziellen Veröffentlichung von xEdit 4.0.x+, sämtliche Mods die als sauber verifiziert wurden mithilfe älterer Versionen von xEdit brauchen eventuell zusätzliche Säuberungen. Eine englische Anleitung zum ausführen von xEdit 4.0.x+ im **Schnell-Automatisch-Säubern** Modus kann [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2) aufgefunden werden.'
-        itm: 18
-        udr: 4
   - name: 'RailroadPerksCut.esp'
     dirty:
       - crc: 0x98ccfb8b
         util: '[FO4Edit](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 4
   - name: 'Rangergearnew.esp'
     dirty:
       - crc: 0x82272ac3
         util: 'FO4Edit v3.2.1'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 2
   - name: 'RenLightMod.esp'
     dirty:
       - crc: 0x770b67b6
         util: 'FO4Edit v3.2.67'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 78
   - name: 'Sanctuary Terminals.esp'
     dirty:
       - crc: 0x6cfbe10e
         util: '[FO4Edit](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 4
   - name: 'SettlementAttacksBeyondFH.esp'
     dirty:
       - crc: 0xe0fb33f8
         util: '[FO4Edit](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 1
   - name: 'SimSettlements.esm'
     dirty:
       - crc: 0x619aca1a
         util: 'FO4Edit v3.2.67'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 2
       - crc: 0x9b2392b0
         util: 'FO4Edit v3.2.67'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 2
       - crc: 0xd659f761
         util: 'FO4Edit v3.2.67'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 2
       - crc: 0xe2a28496
         util: 'FO4Edit v3.2.67'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 2
       - crc: 0xe42587b0
         util: 'FO4Edit v3.2.67'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 2
       - crc: 0xe6df75e6
         util: 'FO4Edit v3.2.67'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 2
       - crc: 0xf5dfc3e9
         util: 'FO4Edit v3.2.67'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 2
   - name: 'slevins_chemVFX-Light.esp'
     dirty:
       - crc: 0xf46cb5c0
         util: '[FO4Edit](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 2
   - name: 'Smashed Patch.esp'
     tag:
@@ -779,198 +306,69 @@ plugins:
     dirty:
       - crc: 0x1e1ce4d4
         util: '[FO4Edit](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         udr: 3
   - name: 'Some Assembly Required.esp'
     dirty:
       - crc: 0xae45ec68
         util: '[FO4Edit](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 15
   - name: 'StarlightLOD.esp'
     dirty:
       - crc: 0x31827654
         util: '[FO4Edit](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 4
   - name: 'starlightwingfix_v3.esp'
     dirty:
       - crc: 0xd8d7f936
         util: 'FO4Edit v3.2.1'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 10
         udr: 1
         nav: 1
-  - name: 'Stm_DiamondCityExpansion.esp'
-    dirty:
-      - crc: 0x5e45d526
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'It is strongly recommended not to use mods that contain **Deleted navmeshes** as they''re known to cause crashes. **Deleted navmeshes** must be corrected manually(A complex process that should be done by the mod author). More information on **Deleted navmeshes** is provided [here](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial).'
-          - lang: de
-            text: 'Es wird streng empfohlen keine Mods zu verwenden die **Gelöschte Navmeshes** beinhalten da diese dafür bekannt sind Abstürze auszulösen. **Gelöschte Navmeshes** müssen manuell korrigiert werden(Ein komplexer Prozess der vom Mod-Autor erledigt werden sollte). Mehr Informationen über **Gelöschte Navmeshes** wird [hier](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial) geboten.'
-        nav: 8
-      - crc: 0xb3a2f88b
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'It is strongly recommended not to use mods that contain **Deleted navmeshes** as they''re known to cause crashes. **Deleted navmeshes** must be corrected manually(A complex process that should be done by the mod author). More information on **Deleted navmeshes** is provided [here](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial).'
-          - lang: de
-            text: 'Es wird streng empfohlen keine Mods zu verwenden die **Gelöschte Navmeshes** beinhalten da diese dafür bekannt sind Abstürze auszulösen. **Gelöschte Navmeshes** müssen manuell korrigiert werden(Ein komplexer Prozess der vom Mod-Autor erledigt werden sollte). Mehr Informationen über **Gelöschte Navmeshes** wird [hier](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial) geboten.'
-        itm: 482
-        udr: 6
-        nav: 8
   - name: 'th1nkEyeBot-NukaWorld.esp'
     dirty:
       - crc: 0x171964ce
         util: 'FO4Edit v3.2.1'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 1
-  - name: 'TrainBar.esp'
-    dirty:
-      - crc: 0x1576dee9
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'It is strongly recommended not to use mods that contain **Deleted navmeshes** as they''re known to cause crashes. **Deleted navmeshes** must be corrected manually(A complex process that should be done by the mod author). More information on **Deleted navmeshes** is provided [here](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial).'
-          - lang: de
-            text: 'Es wird streng empfohlen keine Mods zu verwenden die **Gelöschte Navmeshes** beinhalten da diese dafür bekannt sind Abstürze auszulösen. **Gelöschte Navmeshes** müssen manuell korrigiert werden(Ein komplexer Prozess der vom Mod-Autor erledigt werden sollte). Mehr Informationen über **Gelöschte Navmeshes** wird [hier](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial) geboten.'
-        nav: 1
-      - crc: 0x21a91f2c
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'It is strongly recommended not to use mods that contain **Deleted navmeshes** as they''re known to cause crashes. **Deleted navmeshes** must be corrected manually(A complex process that should be done by the mod author). More information on **Deleted navmeshes** is provided [here](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial).'
-          - lang: de
-            text: 'Es wird streng empfohlen keine Mods zu verwenden die **Gelöschte Navmeshes** beinhalten da diese dafür bekannt sind Abstürze auszulösen. **Gelöschte Navmeshes** müssen manuell korrigiert werden(Ein komplexer Prozess der vom Mod-Autor erledigt werden sollte). Mehr Informationen über **Gelöschte Navmeshes** wird [hier](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial) geboten.'
-        nav: 1
-      - crc: 0x4b435470
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'It is strongly recommended not to use mods that contain **Deleted navmeshes** as they''re known to cause crashes. **Deleted navmeshes** must be corrected manually(A complex process that should be done by the mod author). More information on **Deleted navmeshes** is provided [here](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial).'
-          - lang: de
-            text: 'Es wird streng empfohlen keine Mods zu verwenden die **Gelöschte Navmeshes** beinhalten da diese dafür bekannt sind Abstürze auszulösen. **Gelöschte Navmeshes** müssen manuell korrigiert werden(Ein komplexer Prozess der vom Mod-Autor erledigt werden sollte). Mehr Informationen über **Gelöschte Navmeshes** wird [hier](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial) geboten.'
-        itm: 24
-        udr: 130
-        nav: 1
-      - crc: 0x65550c3a
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'It is strongly recommended not to use mods that contain **Deleted navmeshes** as they''re known to cause crashes. **Deleted navmeshes** must be corrected manually(A complex process that should be done by the mod author). More information on **Deleted navmeshes** is provided [here](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial).'
-          - lang: de
-            text: 'Es wird streng empfohlen keine Mods zu verwenden die **Gelöschte Navmeshes** beinhalten da diese dafür bekannt sind Abstürze auszulösen. **Gelöschte Navmeshes** müssen manuell korrigiert werden(Ein komplexer Prozess der vom Mod-Autor erledigt werden sollte). Mehr Informationen über **Gelöschte Navmeshes** wird [hier](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial) geboten.'
-        itm: 24
-        nav: 1
-      - crc: 0x73b44475
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'It is strongly recommended not to use mods that contain **Deleted navmeshes** as they''re known to cause crashes. **Deleted navmeshes** must be corrected manually(A complex process that should be done by the mod author). More information on **Deleted navmeshes** is provided [here](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial).'
-          - lang: de
-            text: 'Es wird streng empfohlen keine Mods zu verwenden die **Gelöschte Navmeshes** beinhalten da diese dafür bekannt sind Abstürze auszulösen. **Gelöschte Navmeshes** müssen manuell korrigiert werden(Ein komplexer Prozess der vom Mod-Autor erledigt werden sollte). Mehr Informationen über **Gelöschte Navmeshes** wird [hier](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial) geboten.'
-        nav: 1
-      - crc: 0xf22c4856
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'It is strongly recommended not to use mods that contain **Deleted navmeshes** as they''re known to cause crashes. **Deleted navmeshes** must be corrected manually(A complex process that should be done by the mod author). More information on **Deleted navmeshes** is provided [here](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial).'
-          - lang: de
-            text: 'Es wird streng empfohlen keine Mods zu verwenden die **Gelöschte Navmeshes** beinhalten da diese dafür bekannt sind Abstürze auszulösen. **Gelöschte Navmeshes** müssen manuell korrigiert werden(Ein komplexer Prozess der vom Mod-Autor erledigt werden sollte). Mehr Informationen über **Gelöschte Navmeshes** wird [hier](https://www.creationkit.com/index.php?title=Fixing_Navmesh_Deletion_Tutorial) geboten.'
-        itm: 24
-        udr: 130
-        nav: 1
   - name: 'tsuki no hana.esp'
     dirty:
       - crc: 0x1284f3e5
         util: '[FO4Edit](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 5
         udr: 2
-  - name: 'UFOCrashSite.esp'
-    dirty:
-      - crc: 0x5abd3880
-        util: '[FO4Edit v4.0.1](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in **Quick Auto Clean** mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-          - lang: de
-            text: 'Wegen Verbesserungen die dem Säuberungsprozess zugute gekommen sind mit der offiziellen Veröffentlichung von xEdit 4.0.x+, sämtliche Mods die als sauber verifiziert wurden mithilfe älterer Versionen von xEdit brauchen eventuell zusätzliche Säuberungen. Eine englische Anleitung zum ausführen von xEdit 4.0.x+ im **Schnell-Automatisch-Säubern** Modus kann [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2) aufgefunden werden.'
-        itm: 2
   - name: 'UniqueUniques.esp'
     dirty:
       - crc: 0x1ac3385e
         util: '[FO4Edit](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 8
   - name: 'Ushi.esp'
     dirty:
       - crc: 0x8240d505
         util: 'FO4Edit v3.2.31'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 11
   - name: 'Vault Girl.esp'
     dirty:
       - crc: 0xe5ad59a1
         util: '[FO4Edit](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 1
   - name: 'Vault-Tec Historical Preservation Initiative.esp'
     dirty:
       - crc: 0xc8545353
         util: '[FO4Edit](https://www.nexusmods.com/fallout4/mods/2737)'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 3
         udr: 9
   - name: 'Vault-Tec Workshop Overhaul.esp'
     dirty:
       - crc: 0x8fef7906
         util: 'FO4Edit v3.2.1'
-        info:
-          - lang: en
-            text: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
-          - lang: de
-            text: 'Eine englische Säuberungsanleitung ist [hier](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3) verfügbar.'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 1

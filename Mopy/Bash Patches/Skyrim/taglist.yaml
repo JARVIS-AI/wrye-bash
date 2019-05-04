@@ -2019,6 +2019,12 @@ plugins:
         util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
         info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 29
+  - name: 'Brows.esp'
+    dirty:
+      - crc: 0xac68717a
+        util: '[TES5Edit v4.0.1](https://www.nexusmods.com/skyrim/mods/25859)'
+        info: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in Quick Auto Clean mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
+        itm: 1
   - name: 'Bryling.esp'
     dirty:
       - crc: 0x6531ffc7
@@ -2130,12 +2136,6 @@ plugins:
         util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
         info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 4
-  - name: 'CampNewZainab.esp'
-    dirty:
-      - crc: 0x17c4919c
-        util: '[TES5Edit v4.0.2](https://www.nexusmods.com/skyrim/mods/25859)'
-        info: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in Quick Auto Clean mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-        itm: 25
   - name: 'Camps.esp'
     dirty:
       - crc: 0x6f42e236
@@ -2596,10 +2596,14 @@ plugins:
         udr: 303
   - name: 'CollegeOfWinterholdImmersive.esp'
     dirty:
-      - crc: 0x4c958994
-        util: '[TES5Edit v4.0.2](https://www.nexusmods.com/skyrim/mods/25859)'
+      - crc: 0x96df9769
+        util: '[TES5Edit v4.0.1](https://www.nexusmods.com/skyrim/mods/25859)'
         info: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in Quick Auto Clean mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-        itm: 4
+        itm: 3
+      - crc: 0xfb30c482
+        util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
+        itm: 5
   - name: 'colossus.esp'
     dirty:
       - crc: 0x750d890c
@@ -2625,12 +2629,6 @@ plugins:
         util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
         info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 2
-  - name: 'Combined.esp'
-    dirty:
-      - crc: 0xdeee4b61
-        util: '[TES5Edit v4.0.2](https://www.nexusmods.com/skyrim/mods/25859)'
-        info: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in Quick Auto Clean mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-        itm: 6
   - name: 'Companion_Ria.esp'
     dirty:
       - crc: 0x24989bbb
@@ -3202,12 +3200,6 @@ plugins:
         util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
         info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 2
-  - name: 'DCR_KingCrusaderArmor.esp'
-    dirty:
-      - crc: 0x5425f279
-        util: '[TES5Edit v4.0.2](https://www.nexusmods.com/skyrim/mods/25859)'
-        info: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in Quick Auto Clean mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-        itm: 1
   - name: 'dD - Enhanced Blood Main.esp'
     dirty:
       - crc: 0xfd8abf04
@@ -4370,12 +4362,24 @@ plugins:
     tag:
       - Delev
       - Relev
+  - name: 'ESFCompanions.esp'
+    dirty:
+      - crc: 0x16c76fa7
+        util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
+        itm: 1
   - name: 'ETaC - Complete ELFX Patch.esp'
     dirty:
       - crc: 0x352fe2a2
         util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
         info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 2
+  - name: 'ETaC - Complete.esp'
+    dirty:
+      - crc: 0x356ac786
+        util: '[TES5Edit v4.0.1](https://www.nexusmods.com/skyrim/mods/25859)'
+        info: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in Quick Auto Clean mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
+        itm: 68
   - name: 'ETaC - Darkwater.esp'
     dirty:
       - crc: 0x41f31139
@@ -5662,11 +5666,15 @@ plugins:
         itm: 2
   - name: 'hearthfireextended.esp'
     dirty:
-      - crc: 0xcdadf5bc
-        util: '[TES5Edit v4.0.2](https://www.nexusmods.com/skyrim/mods/25859)'
-        info: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in Quick Auto Clean mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
+      - crc: 0x1f024ac9
+        util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 1
-  - name: 'HearthFires.esm'
+      - crc: 0xcdadf5bc
+        util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
+        itm: 1
+  - name: 'Hearthfires.esm'
     tag:
       - C.Location
       - C.RecordFlags
@@ -6111,12 +6119,6 @@ plugins:
         util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
         info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 6
-  - name: 'HothFollower.esp'
-    dirty:
-      - crc: 0xa96903e0
-        util: '[TES5Edit v4.0.2](https://www.nexusmods.com/skyrim/mods/25859)'
-        info: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in Quick Auto Clean mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-        itm: 7
   - name: 'hothtrooper44_ArmorCompilation.esp'
     tag:
       - name: Deactivate
@@ -6623,10 +6625,14 @@ plugins:
         udr: 6
   - name: 'Inigo.esp'
     dirty:
-      - crc: 0x6371e737
-        util: '[TES5Edit v4.0.2](https://www.nexusmods.com/skyrim/mods/25859)'
-        info: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in Quick Auto Clean mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-        itm: 36
+      - crc: 0x4321049d
+        util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
+        itm: 39
+      - crc: 0xb9fc7507
+        util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
+        itm: 10
   - name: 'InnoLostAlt.esp'
     dirty:
       - crc: 0x3fe81bbd
@@ -9227,12 +9233,6 @@ plugins:
         util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
         info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         udr: 2
-  - name: 'Palaces Castles Enhanced.esp'
-    dirty:
-      - crc: 0x6bf5ed10
-        util: '[TES5Edit v4.0.2](https://www.nexusmods.com/skyrim/mods/25859)'
-        info: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in Quick Auto Clean mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-        itm: 21
   - name: 'paradise_halls_fellglow_slave_camp.esp'
     dirty:
       - crc: 0xa2742491
@@ -10090,6 +10090,18 @@ plugins:
         util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
         info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 8
+  - name: 'Requiem - Dragonborn.esp'
+    dirty:
+      - crc: 0x740bb9f0
+        util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
+        itm: 3
+  - name: 'Requiem - Hearthfires.esp'
+    dirty:
+      - crc: 0xa3a78f22
+        util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
+        info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
+        itm: 1
   - name: 'Requiem.esp'
     tag:
       - Delev
@@ -12714,19 +12726,6 @@ plugins:
         util: '[TES5Edit](http://www.nexusmods.com/skyrim/mods/25859)'
         info: 'An explanation of Dirty Edits is available [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#Apendix-A).'
         itm: 22
-  - name: 'The Great City of Falkreath - CFTO Patch.esp'
-    dirty:
-      - crc: 0xe212753a
-        util: '[TES5Edit v4.0.2](https://www.nexusmods.com/skyrim/mods/25859)'
-        info: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in Quick Auto Clean mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-        itm: 7
-  - name: 'The Great City of Morthal - CFTO Patch.esp'
-    dirty:
-      - crc: 0x78277794
-        util: '[TES5Edit v4.0.2](https://www.nexusmods.com/skyrim/mods/25859)'
-        info: 'Due to Improvements made to the cleaning process with the official release of xEdit 4.0.x+, any mods which were verified as clean with older versions of xEdit may now require additional cleaning. A guide for running xEdit 4.0.x+ in Quick Auto Clean mode can be found [here](https://tes5edit.github.io/docs/5-mod-cleaning-and-error-checking.html#s_5-3-2).'
-        itm: 17
-        udr: 2
   - name: 'The Great City of Morthal.esp'
     dirty:
       - crc: 0x6b06fcc3

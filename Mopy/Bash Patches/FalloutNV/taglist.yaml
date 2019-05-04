@@ -1326,21 +1326,9 @@ plugins:
     tag:
       - Actors.ACBS
       - Invent
-  - name: 'More Perks for Dead Money.esm'
-    dirty:
-      - crc: 0x129204a2
-        util: '[FNVEdit v4.0.1i EXPERIMENTAL](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'Contains wild edits to records 0x00160BFA(TreeJoshANV) and 0x010117C6(Placed Object ''Scotch''). Contains multiple ITPO records, use xEdit''s Remove Identitical to Previous Override records script to remove them.'
-        itm: 301
   - name: 'More Perks for Honest Hearts Update.esp'
     tag:
       - Graphics
-  - name: 'More Perks for Honest Hearts.esm'
-    dirty:
-      - crc: 0x25b6073b
-        util: '[FNVEdit v4.0.1i EXPERIMENTAL](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'Contains wild edits to records 0x0100A66E(NVDLC02ZionToMojaveDoorREF).'
-        itm: 13
   - name: 'More Perks for Old World Blues Update.esp'
     tag:
       - Names
@@ -2011,14 +1999,6 @@ plugins:
   - name: 'RivensEyescapesNV.esp'
     tag:
       - Eyes
-  - name: 'RobCo Certified.esm'
-    tag:
-      - Factions
-    dirty:
-      - crc: 0x3b28b2fe
-        util: '[FNVEdit v4.0.1i EXPERIMENTAL](https://www.nexusmods.com/newvegas/mods/34703)'
-        info: 'Contains wild edits to records 0x00094684 (DLC01TrogFaction) and 0x00137622 (FortCaesarScript).'
-        itm: 9
   - name: 'Roberts_NewVegas.esp'
     tag:
       - Body-M
