@@ -1165,7 +1165,9 @@ class DataStore(DataDict):
         env.shellMove(*zip(*rename_paths))
 
     def _get_rename_paths(self, oldName, newName):
-        return [tuple(map(self.store_dir.join, (oldName, newName)))]
+        """Return possible paths this file's renaming might affect (possibly
+        omitting some that do not exist)."""
+        return [(self.store_dir.join(oldName), self.store_dir.join(newName))]
 
     @property
     def bash_dir(self):
