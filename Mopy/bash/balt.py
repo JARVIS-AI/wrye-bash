@@ -2001,7 +2001,7 @@ class UIList(wx.Panel):
             item = self.GetItem(index)
             if item not in items: self.__gList.RemoveItemAt(index)
             else:
-                self.PopulateItem(index)
+                self.PopulateItem(itemDex=index)
                 items.remove(item)
                 index += 1
         #--Add remaining new items
