@@ -883,7 +883,7 @@ reUnixNewLine = re.compile(u'' r'(?<!\r)\n', re.U)
 
 # Util Classes ----------------------------------------------------------------
 #------------------------------------------------------------------------------
-class CsvReader:
+class CsvReader(object):
     """For reading csv files. Handles comma, semicolon and tab separated (excel) formats.
        CSV files must be encoded in UTF-8"""
     @staticmethod
@@ -1198,7 +1198,7 @@ class MemorySet(object):
     def __ne__(self,other): return list(self) != list(other)
 
 #------------------------------------------------------------------------------
-class MainFunctions:
+class MainFunctions(object):
     """Encapsulates a set of functions and/or object instances so that they can
     be called from the command line with normal command line syntax.
 
@@ -1264,7 +1264,7 @@ def mainfunc(func):
     return func
 
 #------------------------------------------------------------------------------
-class PickleDict:
+class PickleDict(object):
     """Dictionary saved in a pickle file.
     Note: self.vdata and self.data are not reassigned! (Useful for some clients.)"""
     def __init__(self,path,readOnly=False):
@@ -1463,7 +1463,7 @@ def unpack_many(ins, fmt):
     return struct_unpack(fmt, ins.read(struct.calcsize(fmt)))
 
 #------------------------------------------------------------------------------
-class TableColumn:
+class TableColumn(object):
     """Table accessor that presents table column as a dictionary."""
     def __init__(self,table,column):
         self.table = table
@@ -1707,7 +1707,7 @@ def winNewLines(inString):
 
 # Log/Progress ----------------------------------------------------------------
 #------------------------------------------------------------------------------
-class Log:
+class Log(object):
     """Log Callable. This is the abstract/null version. Useful version should
     override write functions.
 
@@ -1922,7 +1922,7 @@ class StringTable(dict):
 
 # WryeText --------------------------------------------------------------------
 codebox = None
-class WryeText:
+class WryeText(object):
     """This class provides a function for converting wtxt text files to html
     files.
 
