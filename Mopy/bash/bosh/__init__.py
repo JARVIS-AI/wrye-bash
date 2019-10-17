@@ -397,7 +397,7 @@ class FileInfo(AFile):
 reBashTags = re.compile(u'{{ *BASH *:[^}]*}}\\s*\\n?',re.U)
 
 class ModInfo(FileInfo):
-    """A plugin file. Currently, these are .esp, .esm and .esl files."""
+    """A plugin file. Currently, these are .esp, .esm, .esl and .esu files."""
 
     def __init__(self, fullpath, load_cache=False):
         self.isGhost = endsInGhost = (fullpath.cs[-6:] == u'.ghost')
@@ -2282,6 +2282,8 @@ class ModInfos(FileInfos):
                     _activated=None):
         """Mutate _active_wip cache then save if needed."""
         if _activated is None: _activated = set()
+        # Skip .esu files, those can't be activated
+        if fileName.cext == u'.esu': return []
         try:
             espms_extra, esls_extra = load_order.check_active_limit(
                 self._active_wip + [fileName])

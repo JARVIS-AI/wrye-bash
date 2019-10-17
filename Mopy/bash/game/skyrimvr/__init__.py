@@ -53,7 +53,7 @@ class SkyrimVRGameInfo(SkyrimSEGameInfo):
         ],
     }
 
-    espm_extensions = {u'.esp', u'.esm'}
+    espm_extensions = SkyrimSEGameInfo.espm_extensions - {u'.esl'}
     check_esl = False
 
     allTags = SkyrimSEGameInfo.allTags | {u'NoMerge'}

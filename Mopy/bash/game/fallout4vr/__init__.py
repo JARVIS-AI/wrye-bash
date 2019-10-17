@@ -49,7 +49,7 @@ class Fallout4VRGameInfo(Fallout4GameInfo):
         u'fallout4_vr.esm': [u'Fallout4_VR - Main.ba2'],
     })
 
-    espm_extensions = {u'.esp', u'.esm'}
+    espm_extensions = Fallout4GameInfo.espm_extensions - {u'.esl'}
     check_esl = False
 
     class se(Fallout4GameInfo.se):
