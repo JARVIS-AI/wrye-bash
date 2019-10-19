@@ -58,10 +58,6 @@ class Fallout4VRGameInfo(Fallout4GameInfo):
         exe = u'f4sevr_loader.exe'
         ver_files = [u'f4sevr_loader.exe', u'f4sevr_steam_loader.dll']
 
-    dataDirsPlus = {
-        u'ini',
-        u'tools', # bodyslide
-    }
     SkipBAINRefresh = {u'fo4vredit backups', u'fo4vredit cache'}
 
     # ---------------------------------------------------------------------
