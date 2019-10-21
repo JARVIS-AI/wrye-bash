@@ -58,9 +58,12 @@ class SkyrimVRGameInfo(SkyrimSEGameInfo):
 
     allTags = SkyrimSEGameInfo.allTags | {u'NoMerge'}
     patchers = (
-        u'CellImporter', u'GmstTweaker', u'GraphicsPatcher',
-        u'ImportInventory', u'ListsMerger', u'PatchMerger', u'SoundPatcher',
-        u'StatsPatcher', u'NamesPatcher',
+        u'ActorImporter', u'CellImporter', u'ContentsChecker',
+        u'DeathItemPatcher', u'DestructiblePatcher', u'GmstTweaker',
+        u'GraphicsPatcher', u'ImportActorsSpells', u'ImportInventory',
+        u'KeywordsImporter', u'ListsMerger', u'NamesPatcher',
+        u'NPCAIPackagePatcher', u'ObjectBoundsImporter', u'PatchMerger',
+        u'SoundPatcher', u'SpellsPatcher', u'StatsPatcher', u'TextImporter',
     )
 
     class se(SkyrimSEGameInfo.se):
