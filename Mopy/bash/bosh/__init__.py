@@ -64,7 +64,8 @@ oldTags = sorted((u'Merge',))
 oldTagsSet = set(oldTags)
 reOblivion = re.compile(
     u'^(Oblivion|Nehrim)(|_SI|_1.1|_1.1b|_1.5.0.8|_GOTY non-SI).esm$', re.U)
-bak_file_pattern = re.compile(u'' r'(quick|auto)(save)(\.bak)+', re.I | re.U)
+# quick or auto save.bak(.bak...)
+bak_file_pattern = re.compile(u'' r'(quick|auto)(save)(\.bak)+$', re.I | re.U)
 
 undefinedPath = GPath(u'C:\\not\\a\\valid\\path.exe')
 empty_path = GPath(u'') # evaluates to False in boolean expressions
@@ -2711,10 +2712,8 @@ class SaveInfos(FileInfos):
 
     def __init__(self):
         _ext = re.escape(bush.game.ess.ext)
-        self.__class__.file_pattern = re.compile(
-            r'((quick|auto)save(\.bak)+|(' + # quick or auto save.bak(.bak...)
-            _ext + u'|' + _ext[:-1] + u'r' + u'))$', # enabled/disabled save
-            re.I | re.U)
+        patt = u'(%s|%sr)(f?)$' % (_ext, _ext[:-1]) # enabled/disabled save
+        self.__class__.file_pattern = re.compile(patt, re.I | re.U)
         self.localSave = bush.game.save_prefix
         self._setLocalSaveFromIni()
         super(SaveInfos, self).__init__(dirs['saveBase'].join(self.localSave),
@@ -2727,8 +2726,15 @@ class SaveInfos(FileInfos):
             if row.endswith(u'\\'):
                 self.profiles.moveRow(row, row[:-1])
         SaveInfo.cosave_types = cosaves.get_cosave_types(
-            bush.game.fsName, bush.game.ess.ext, bush.game.se.cosave_tag,
-            bush.game.se.cosave_ext)
+            bush.game.fsName, self.__class__.file_pattern,
+            bush.game.se.cosave_tag, bush.game.se.cosave_ext)
+
+    @classmethod
+    def rightFileType(cls, fileName):
+        """Saves come into quick/auto bak format and regular ones that might be
+        disabled"""
+        return cls.file_pattern.search(
+            u'%s' % fileName) or bak_file_pattern.match(u'%s' % fileName)
 
     @property
     def bash_dir(self): return self.store_dir.join(u'Bash')
