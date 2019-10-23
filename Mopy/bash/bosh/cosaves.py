@@ -1318,7 +1318,7 @@ class ACosave(_Dumpable, _Remappable, AFile):
         :rtype: bolt.Path"""
         maSave = cls.re_save.search(save_path.s)
         if maSave:
-            first = maSave.group(1) or u''
+            first = maSave.group(2) or u''
             return save_path.root + cls.cosave_ext + first
         ma_bak = bak_file_pattern.search(save_path.s)
         if ma_bak:
@@ -1565,12 +1565,12 @@ class PluggyCosave(ACosave):
             pluggy_block.dump_to_log(log, save_masters)
 
 # Factory
-def get_cosave_types(game_fsName, save_ext, cosave_tag, cosave_ext):
+def get_cosave_types(game_fsName, save_regex, cosave_tag, cosave_ext):
     """Factory method for retrieving the cosave types for the current game.
     Also sets up some class variables for xSE and Pluggy signatures.
 
     :param game_fsName: bush.game.fsName, the name of the current game.
-    :param save_ext: bush.game.ess.ext, the extension for save files.
+    :param save_regex: SaveInfos.file_pattern.
     :param cosave_tag: bush.game.se.cosave_tag, the magic tag used to mark the
         cosave. Empty string if this game doesn't have cosaves.
     :param cosave_ext: bush.game.se.cosave_ext, the extension for cosaves.
@@ -1581,8 +1581,7 @@ def get_cosave_types(game_fsName, save_ext, cosave_tag, cosave_ext):
     # Assign things that concern all games with script extenders
     _xSEHeader.savefile_tag = cosave_tag
     xSECosave.cosave_ext = cosave_ext
-    ACosave.re_save = re.compile(re.escape(save_ext) + '(f?)$',
-                                 re.I | re.U)
+    ACosave.re_save = save_regex
     cosave_types = [xSECosave]
     # Handle game-specific special cases
     if game_fsName == u'Oblivion':
