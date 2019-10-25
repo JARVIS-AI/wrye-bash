@@ -23,7 +23,9 @@ tested on (previous versions or latest versions may or may not work):
 * Skyrim (patch 1.9.36.0)
 * Enderal (patch 1.5.8.0)
 * Fallout 4 (patch 1.10.163.0)
+* Fallout 4 VR (patch 1.2.72.0)
 * Skyrim Special Edition (patch 1.5.97.0)
+* Skyrim VR (patch 1.4.15.0)
 
 ### Download
 
