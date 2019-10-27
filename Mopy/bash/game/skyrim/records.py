@@ -2849,7 +2849,6 @@ class MreInfo(MelRecord):
         MelUInt8('CNAM', 'favorLevel'),
         MelFids('TCLT','linkTo',),
         MelFid('DNAM','responseData',),
-        # {>>> Unordered, CTDA can appear before or after LNAM <- REQUIRES CONFIRMATION <<<}
         MelGroups('responses',
             MelStruct('TRDT', '2I4sB3sIB3s', 'emotionType', 'emotionValue',
                       ('unused1', null4), 'responseNumber', ('unused2', null3),
