@@ -909,12 +909,13 @@ class SkyrimSE(AsteriskGame):
         return add
 
 # Game factory
-def game_factory(name, mod_infos, plugins_txt_path, loadorder_txt_path=None):
-    if name in (u'Enderal', u'Skyrim'):
+def game_factory(game_fsName, mod_infos, plugins_txt_path,
+                 loadorder_txt_path=None):
+    if game_fsName in (u'Enderal', u'Skyrim'):
         return TextfileGame(mod_infos, plugins_txt_path, loadorder_txt_path)
-    elif name == u'Skyrim Special Edition':
+    elif game_fsName == u'Skyrim Special Edition':
         return SkyrimSE(mod_infos, plugins_txt_path)
-    elif name == u'Fallout4':
+    elif game_fsName == u'Fallout4':
         return Fallout4(mod_infos, plugins_txt_path)
     else:
         return TimestampGame(mod_infos, plugins_txt_path)
