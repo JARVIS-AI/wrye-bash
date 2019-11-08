@@ -57,14 +57,13 @@ class SkyrimVRGameInfo(SkyrimSEGameInfo):
     check_esl = False
 
     allTags = SkyrimSEGameInfo.allTags | {u'NoMerge'}
-    patchers = (
+    patchers = (u'PatchMerger', # PatchMerger must come first !
         u'ActorImporter', u'CellImporter', u'ContentsChecker',
         u'DeathItemPatcher', u'DestructiblePatcher', u'GmstTweaker',
         u'GraphicsPatcher', u'ImportActorsSpells', u'ImportInventory',
         u'KeywordsImporter', u'ListsMerger', u'NamesPatcher',
-        u'NPCAIPackagePatcher', u'ObjectBoundsImporter', u'PatchMerger',
-        u'SoundPatcher', u'SpellsPatcher', u'StatsPatcher', u'TextImporter',
-        u'TweakActors',
+        u'NPCAIPackagePatcher', u'ObjectBoundsImporter', u'SoundPatcher',
+        u'SpellsPatcher', u'StatsPatcher', u'TextImporter', u'TweakActors',
     )
 
     class se(SkyrimSEGameInfo.se):
