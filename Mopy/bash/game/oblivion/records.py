@@ -265,7 +265,7 @@ class MreLeveledList(MreLeveledListBase):
         MelString('EDID','eid'),
         MelLevListLvld(),
         MelUInt8('LVLF', (MreLeveledListBase._flags, 'flags', 0L)),
-        MelFid('SCRI','script'),
+        MelFid('SCRI','script'), # LVLC only
         MelFid('TNAM','template'),
         MelLevListLvlo('LVLO','h2sIh2s','entries','level',('unused1',null2),
                        (FID,'listId',None),('count',1),('unused2',null2)),
@@ -702,10 +702,11 @@ class MreCrea(MreActor):
             'trainLevel',('unused1',null2)),
         MelFids('PKID','aiPackages'),
         MelStrings('KFFZ','animations'),
-        MelStruct('DATA','=5BsH2sH8B','creatureType','combat','magic','stealth',
-                  'soul',('unused2',null1),'health',('unused3',null2),
-                  'attackDamage','strength','intelligence','willpower',
-                  'agility','speed','endurance','personality','luck'),
+        MelStruct('DATA','=5BsH2sH8B','creatureType','combatSkill','magic',
+                  'stealth','soul',('unused2',null1),'health',
+                  ('unused3',null2),'attackDamage','strength','intelligence',
+                  'willpower','agility','speed','endurance','personality',
+                  'luck'),
         MelUInt8('RNAM', 'attackReach'),
         MelFid('ZNAM','combatStyle'),
         MelFloat('TNAM', 'turningSpeed'),
@@ -1978,7 +1979,7 @@ class MreSpel(MelRecord,MreHasEffects):
     classType = 'SPEL'
 
     class SpellFlags(Flags):
-        """For SpellFlags, immuneSilence activates bits 1 AND 3."""
+        """For SpellFlags, immuneToSilence activates bits 1 AND 3."""
         def __setitem__(self,index,value):
             setter = Flags.__setitem__
             setter(self,index,value)
