@@ -99,7 +99,7 @@ class InstallerGroup(Sequence):
         (this behaves like a list)
 
         :param installer: the parent FomodInstaller
-        :param page: the ElementTree element for an 'group'
+        :param group: the ElementTree element for an 'group'
         """
         self._installer = installer
         self._object = group
@@ -129,7 +129,7 @@ class InstallerOption(object):
         via instance attributes with the same names.
 
         :param installer: the parent FomodInstaller
-        :param page: the ElementTree element for an 'plugin'
+        :param option: the ElementTree element for an 'plugin'
         """
         self._installer = installer
         self._object = option
