@@ -559,8 +559,7 @@ class MreClas(MelRecord):
             if size_ == 52:
                 MelStruct.loadData(self, record, ins, sub_type, size_, readId)
                 return
-            elif size_ == 42:
-                #--Else 42 byte record (skips trainSkill, trainLevel,unused1...
+            elif size_ == 48:
                 unpacked = ins.unpack('2iI7i2I', size_, readId)
             else:
                 raise ModSizeError(ins.inName, readId, (52, 42), size_)
