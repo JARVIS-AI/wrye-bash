@@ -139,7 +139,7 @@ class Installer(object):
             progress(done, progress_msg + rpFile)
             sub = bolt.SubProgress(progress, done, done + size + 1)
             sub.setFull(size + 1)
-            crc = 0L
+            crc = 0
             try:
                 with open(asFile, 'rb') as ins:
                     insTell = ins.tell
@@ -1847,7 +1847,7 @@ class InstallersData(DataStore):
         try:
             converter.apply(destArchive, crc_installer,
                             bolt.SubProgress(progress, 0.0, 0.99),
-                            embedded=installer.crc if installer else 0L)
+                            embedded=installer.crc if installer else 0)
             #--Add the new archive to Bash
             if destArchive not in self:
                 self[destArchive] = InstallerArchive(destArchive)
