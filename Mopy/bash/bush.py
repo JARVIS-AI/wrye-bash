@@ -36,6 +36,11 @@ from bolt import GPath, Path, deprint
 from env import get_registry_game_path
 from exception import BoltError
 
+SUPPORTED_GAMES = [
+    "enderal", "fallout3", "fallout4", "falloutnv",
+    "oblivion", "skyrim", "skyrimse"
+]
+
 # Game detection --------------------------------------------------------------
 game = None         # type: game_init.GameInfo
 game_mod = None     # type: game_init
@@ -59,10 +64,8 @@ def _supportedGames():
     """Set games supported by Bash and return their paths from the registry."""
     # rebuilt cache
     reset_bush_globals()
-    import pkgutil
     # Detect the known games
-    for importer, modname, ispkg in pkgutil.iter_modules(game_init.__path__):
-        if not ispkg: continue # game support modules are packages
+    for modname in SUPPORTED_GAMES:
         # Equivalent of "from game import <modname>"
         try:
             module = __import__('game',globals(),locals(),[modname],-1)
@@ -79,7 +82,6 @@ def _supportedGames():
         if registry_path: _registryGames[game_type.fsName] = registry_path
         del module
     # unload some modules, _supportedGames is meant to run once
-    del pkgutil
     _display_fsName.update({v: k for k, v in _fsName_display.iteritems()})
     # Dump out info about all games that we *could* launch, but wrap it
     deprint(u'The following games are supported by this version of Wrye Bash:')
