@@ -51,6 +51,7 @@ from contextlib import contextmanager
 
 import loot_api
 import pygit2
+import PyInstaller.__main__
 
 import _winreg
 import utils
@@ -129,6 +130,17 @@ def setup_parser(parser):
         help="Specify a custom path to the NSIS root folder.",
     )
     parser.set_defaults(version=nightly_version)
+
+
+# PyInstaller thinks it's fine to setup logging on import... -.-
+def setup_pyinstaller_logger(logfile):
+    root_logger = logging.getLogger()
+    stupid_handler = root_logger.handlers[0]
+    stupid_formatter = stupid_handler.formatter
+    root_logger.removeHandler(stupid_handler)
+    file_handler = logging.FileHandler(logfile)
+    file_handler.setFormatter(stupid_formatter)
+    logging.getLogger("PyInstaller").addHandler(file_handler)
 
 
 def get_version_info(version):
@@ -257,35 +269,24 @@ def pack_manual(version):
 def build_executable(version, file_version):
     """ Builds the executable. """
     LOGGER.info("Building executable...")
-    loot_orig = os.path.join(loot_api.__path__[0], u"loot.dll")
-    loot_target = os.path.join(MOPY_PATH, u"loot.dll")
-    build_folder = os.path.join(MOPY_PATH, u"build")
-    dist_folder = os.path.join(MOPY_PATH, u"dist")
-    setup_orig = os.path.join(WBSA_PATH, u"setup.py")
-    setup_target = os.path.join(MOPY_PATH, u"setup.py")
-    exe_orig = os.path.join(dist_folder, u"Wrye Bash Launcher.exe")
-    exe_target = os.path.join(MOPY_PATH, u"Wrye Bash.exe")
-    cpy(setup_orig, setup_target)
-    # Call the setup script
-    utils.run_subprocess(
-        [sys.executable, setup_target, "py2exe", "--version", file_version],
-        LOGGER,
-        cwd=MOPY_PATH
-    )
-    # Copy the exe's to the Mopy folder
-    cpy(exe_orig, exe_target)
-    # py2exe can't read the loot.dll if it's in the exe
-    # so we have to include it before and delete it after
-    cpy(loot_orig, loot_target)
-    # Clean up py2exe generated files/folders
-    rm(setup_target)
-    rm(build_folder)
-    rm(dist_folder)
+    temp_path = os.path.join(WBSA_PATH, u"temp")
+    dist_path = os.path.join(WBSA_PATH, u"dist")
+    spec_path = os.path.join(WBSA_PATH, u"pyinstaller.spec")
+    orig_exe = os.path.join(dist_path, u"Wrye Bash.exe")
+    dest_exe = os.path.join(MOPY_PATH, u"Wrye Bash.exe")
+    PyInstaller.__main__.run([
+        "--clean",
+        "--noconfirm",
+        "--distpath={}".format(dist_path),
+        "--workpath={}".format(temp_path),
+        spec_path,
+    ])
+    # Copy the exe to the Mopy folder
+    cpy(orig_exe, dest_exe)
     try:
         yield
     finally:
-        rm(exe_target)
-        rm(loot_target)
+        rm(dest_exe)
 
 
 def pack_standalone(version):
@@ -426,6 +427,7 @@ def check_timestamp(build_version):
 
 
 def main(args):
+    setup_pyinstaller_logger(LOGFILE)
     utils.setup_log(LOGGER, verbosity=args.verbosity, logfile=LOGFILE)
     # check nightly timestamp is different than previous
     if not check_timestamp(args.version):
