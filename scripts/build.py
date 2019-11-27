@@ -35,7 +35,7 @@ Creates three different types of distributables:
 Most steps of the build process can be customized, see the options below.
 """
 
-
+from __future__ import absolute_import, print_function
 import argparse
 import datetime
 import glob
@@ -51,8 +51,13 @@ from distutils.dir_util import copy_tree
 
 import pygit2
 
-import _winreg
 import utils
+
+# PY3: should be 'import winreg'
+try:
+    import winreg
+except ImportError:
+    import _winreg as winreg
 
 LOGGER = logging.getLogger(__name__)
 
@@ -192,10 +197,9 @@ def get_nsis_root(cmd_arg):
         LOGGER.debug("User provided NSIS path at {}".format(cmd_arg))
         return cmd_arg
     try:
-        if _winreg:
-            nsis_path = _winreg.QueryValue(_winreg.HKEY_LOCAL_MACHINE, r"Software\NSIS")
-            LOGGER.debug("Found system NSIS path at {}".format(nsis_path))
-            return nsis_path
+        nsis_path = winreg.QueryValue(winreg.HKEY_LOCAL_MACHINE, r"Software\NSIS")
+        LOGGER.debug("Found system NSIS path at {}".format(nsis_path))
+        return nsis_path
     except WindowsError:
         pass
     if not os.path.isdir(NSIS_PATH):
@@ -242,12 +246,12 @@ def pack_manual(version):
         join(ROOT_PATH, u"Pipfile.lock"): join(MOPY_PATH, u"Pipfile.lock"),
         join(WBSA_PATH, u"bash.ico"): join(MOPY_PATH, u"bash.ico"),
     }
-    for orig, target in files_to_include.iteritems():
+    for orig, target in files_to_include.items():
         cpy(orig, target)
     try:
         pack_7z(archive)
     finally:
-        for path in files_to_include.itervalues():
+        for path in files_to_include.values():
             rm(path)
 
 
@@ -409,6 +413,7 @@ def check_timestamp(build_version):
         nightly_version = nightly_version.group(0)
         previous_version = previous_version.group(0)
         if nightly_version == previous_version:
+            # PY3: raw_input -> input
             answer = raw_input(
                 "Current timestamp is equal to the previous build. Continue? [y/N]\n> "
             )
@@ -480,7 +485,7 @@ def hold_files(*files):
     try:
         yield
     finally:
-        for orig, target in file_map.iteritems():
+        for orig, target in file_map.items():
             mv(target, orig)
         rm(tmpdir)
 
@@ -488,11 +493,11 @@ def hold_files(*files):
 @contextmanager
 def clean_repo():
     repo = pygit2.Repository(ROOT_PATH)
-    if any(v != pygit2.GIT_STATUS_IGNORED for v in repo.status().itervalues()):
-        print "Your repository is dirty (you have uncommitted changes)."
+    if any(v != pygit2.GIT_STATUS_IGNORED for v in repo.status().values()):
+        print("Your repository is dirty (you have uncommitted changes).")
     branch_name = repo.head.shorthand
     if not branch_name.startswith(("rel-", "release-", "nightly")):
-        print (
+        print(
             "You are building off branch '{}', which does not "
             "appear to be a release branch".format(branch_name)
         )
@@ -535,7 +540,7 @@ if __name__ == "__main__":
     utils.setup_common_parser(argparser)
     setup_parser(argparser)
     parsed_args = argparser.parse_args()
-    print "Building on Python {}".format(sys.version)
+    print("Building on Python {}".format(sys.version))
     if sys.version_info[0:3] < (2, 7, 12):
         raise OSError("You must run at least Python 2.7.12 to package Wrye Bash.")
     rm(LOGFILE)
