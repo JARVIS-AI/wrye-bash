@@ -83,7 +83,8 @@ def extract7z(src_archive, extract_dir, progress=None, readExtensions=None,
     command = _extract_command(src_archive, extract_dir, recursive,
                                filelist_to_extract)
     proc = subprocess.Popen(command, stdout=subprocess.PIPE, bufsize=1,
-                            stdin=subprocess.PIPE, startupinfo=startupinfo)
+                            stdin=subprocess.PIPE, stderr=subprocess.PIPE,
+                            startupinfo=startupinfo)
     # Error checking, progress feedback and subArchives for recursive unpacking
     index, errorLine, subArchives = 0, u'', []
     source_archive = src_archive.tail.s
