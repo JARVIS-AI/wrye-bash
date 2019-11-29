@@ -34,7 +34,7 @@ from .bolt import GPath, deprint
 from .exception import AbstractError, AccessDeniedError, ArgumentError, \
     BoltError, CancelError, SkipError, StateError
 #--Python
-import cPickle
+import cPickle as pickle  # PY3
 import textwrap
 import time
 import threading
@@ -1331,7 +1331,7 @@ class ListCtrl(wx.ListCtrl, ListCtrlAutoWidthMixin):
                     self.window.OnDropFiles(x, y, self.dataFile.GetFilenames())
                 elif dtype == self.dataList.GetFormat().GetType():
                     # ListCtrl indexes
-                    data = cPickle.loads(self.dataList.GetData())
+                    data = pickle.loads(self.dataList.GetData())
                     self.window._OnDropList(x, y, data)
 
         def OnDragOver(self, x, y, dragResult):
@@ -1399,7 +1399,7 @@ class ListCtrl(wx.ListCtrl, ListCtrlAutoWidthMixin):
                     stop = index - 1
         if stop < 0: stop = self.GetItemCount()
 
-        selected = cPickle.dumps(indexes, 1)
+        selected = pickle.dumps(indexes, 1)
         ldata = wx.CustomDataObject('ListIndexes')
         ldata.SetData(selected)
 

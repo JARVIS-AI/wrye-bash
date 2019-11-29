@@ -698,9 +698,9 @@ class App_GenPickle(StatusBar_Button):
         based either on a list of new eids or the gmsts in the specified mod
         file. Updated pkl file is dropped in Mopy directory."""
         #--Data base
-        import cPickle
+        import cPickle as pickle  # PY3
         try:
-            fids = cPickle.load(GPath(bush.game.pklfile).open('r'))['GMST']
+            fids = pickle.load(GPath(bush.game.pklfile).open('r'))['GMST']
             if fids:
                 maxId = max(fids.values())
             else:
@@ -735,7 +735,7 @@ class App_GenPickle(StatusBar_Button):
         #--Changes?
         if maxId > maxOld:
             outData = {'GMST': fids}
-            cPickle.dump(outData, GPath(bush.game.pklfile).open('w'))
+            pickle.dump(outData, GPath(bush.game.pklfile).open('w'))
             print _(u"%d new gmst ids written to " + bush.game.pklfile) % (
                 (maxId - maxOld),)
         else:
