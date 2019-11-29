@@ -55,7 +55,6 @@ class MobBase(object):
                  'changed','numRecords','loadFactory','inName']
 
     def __init__(self, header, loadFactory, ins=None, do_unpack=False):
-        """Initialize."""
         self.header = header
         if header.recType == 'GRUP':
             self.size,self.label,self.groupType,self.stamp = (
@@ -162,7 +161,6 @@ class MobObjects(MobBase):
     all top groups except CELL, WRLD and DIAL."""
 
     def __init__(self, header, loadFactory, ins=None, do_unpack=False):
-        """Initialize."""
         self.records = []
         self.id_records = {}
         MobBase.__init__(self, header, loadFactory, ins, do_unpack)
@@ -366,12 +364,9 @@ class MobDials(MobObjects):
 class MobCell(MobBase):
     """Represents cell block structure -- including the cell and all
     subrecords."""
-
-    __slots__ = MobBase.__slots__ + ['cell','persistent','distant','temp',
-                                     'land','pgrd']
+    __slots__ = ['cell','persistent','distant','temp', 'land','pgrd']
 
     def __init__(self, header, loadFactory, cell, ins=None, do_unpack=False):
-        """Initialize."""
         self.cell = cell
         self.persistent = []
         self.distant = []
@@ -595,7 +590,6 @@ class MobCells(MobBase):
     are tuples of grid tuples."""
 
     def __init__(self, header, loadFactory, ins=None, do_unpack=False):
-        """Initialize."""
         self.cellBlocks = [] #--Each cellBlock is a cell and its related
         # records.
         self.id_cellBlock = {}
@@ -795,7 +789,6 @@ class MobICells(MobCells):
 #------------------------------------------------------------------------------
 class MobWorld(MobCells):
     def __init__(self, header, loadFactory, world, ins=None, do_unpack=False):
-        """Initialize."""
         self.world = world
         self.worldCellBlock = None
         self.road = None
@@ -1017,7 +1010,6 @@ class MobWorlds(MobBase):
     of world blocks."""
 
     def __init__(self, header, loadFactory, ins=None, do_unpack=False):
-        """Initialize."""
         self.worldBlocks = []
         self.id_worldBlocks = {}
         self.orphansSkipped = 0
