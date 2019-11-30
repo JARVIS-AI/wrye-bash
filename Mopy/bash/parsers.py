@@ -24,7 +24,7 @@
 
 """This module contains the parser classes used by the importer patcher classes
 and the Mod_Import/Export Mods menu."""
-from __future__ import division
+from __future__ import division, print_function
 import ctypes
 from _ctypes import POINTER
 from ctypes import cast, c_ulong
@@ -2817,9 +2817,9 @@ class CBash_CompleteItemData(_UsesEffectsMixin): #Needs work
             for group in pickupables:
                 for record in getattr(modFile,group):
                     values = ExtractExportList(record)
-                    print values
-                    print
-                    print
+                    print(values)
+                    print()
+                    print()
                     class_fid_values.setdefault(group,{})[record.fid] = values
                     break
 
@@ -4018,7 +4018,7 @@ class ModFile(object):
                         self.topsSkipped.add(label)
                         insSeek(size-header.__class__.rec_header_size,1,type + '.' + label)
                 except:
-                    print u'Error in',self.fileInfo.name.s
+                    print(u'Error in',self.fileInfo.name.s)
                     deprint(u' ',traceback=True)
                     break
                 subProgress(insTell())
@@ -4045,9 +4045,9 @@ class ModFile(object):
         fileName = self.fileInfo.name
         if re.match(u'' r'\s*[yY]', raw_input(u'\nSave changes to '+fileName.s+u' [y/n]?: '), flags=re.U):
             self.safeSave()
-            print fileName.s,u'saved.'
+            print(fileName.s,u'saved.')
         else:
-            print fileName.s,u'not saved.'
+            print(fileName.s,u'not saved.')
 
     def safeSave(self):
         """Save data to file safely.  Works under UAC."""
