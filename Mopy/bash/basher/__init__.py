@@ -580,7 +580,7 @@ class INIList(balt.UIList):
     @staticmethod
     def filterOutDefaultTweaks(ini_tweaks):
         """Filter out default tweaks from tweaks iterable."""
-        return filter(lambda x: not bosh.iniInfos[x].is_default_tweak, ini_tweaks)
+        return [x for x in ini_tweaks if not bosh.iniInfos[x].is_default_tweak]
 
     def _toDelete(self, items):
         items = super(INIList, self)._toDelete(items)
@@ -806,7 +806,7 @@ class ModList(_ModsUIList):
             pinned = load_order.filter_pinned(self.GetSelected())
             if pinned:
                 msg = _(u"You can't reorder the following mods:\n" +
-                        u', '.join(map(unicode, pinned)))
+                        u', '.join(unicode(s) for s in pinned))
                 continue_key = 'bash.mods.dnd.pinned.continue'
         if msg:
             balt.askContinue(self, msg, continue_key)
@@ -979,8 +979,8 @@ class ModList(_ModsUIList):
             self._toggle_active_state(*toggle_target)
         # Ctrl+C: Copy file(s) to clipboard
         elif event.CmdDown() and code == ord('C'):
-            balt.copyListToClipboard([self.data_store[mod].getPath().s
-                                      for mod in self.GetSelected()])
+            balt.copyListToClipboard(self.data_store[mod].abs_path.s
+                                     for mod in self.GetSelected())
         super(ModList, self).OnKeyUp(event)
 
     def OnLeftDown(self,event):
@@ -1909,9 +1909,8 @@ class SaveList(balt.UIList):
         code = event.GetKeyCode()
         # Ctrl+C: Copy file(s) to clipboard
         if event.CmdDown() and code == ord('C'):
-            sel = map(lambda save: self.data_store[save].getPath().s,
-                      self.GetSelected())
-            balt.copyListToClipboard(sel)
+            balt.copyListToClipboard(self.data_store[save].abs_path.s
+                                     for save in self.GetSelected())
         super(SaveList, self).OnKeyUp(event)
 
     def OnLeftDown(self,event):
@@ -2486,9 +2485,8 @@ class InstallersList(balt.UIList):
             self.addMarker()
         # Ctrl+C: Copy file(s) to clipboard
         elif event.CmdDown() and code == ord('C'):
-            sel = map(lambda x: bass.dirs['installers'].join(x).s,
-                      self.GetSelected())
-            balt.copyListToClipboard(sel)
+            balt.copyListToClipboard(bass.dirs['installers'].join(x).s
+                                     for x in self.GetSelected())
         super(InstallersList, self).OnKeyUp(event)
 
     # Installer specific ------------------------------------------------------
@@ -2836,7 +2834,7 @@ class InstallersDetails(_DetailsMixin, SashPanel):
             installer.extras_dict['fomod_active'] = self.gSubList.IsChecked(0)
             self.gSubList.Delete(0)
             has_fomod = True
-        for index in range(self.gSubList.GetCount()):
+        for index in xrange(self.gSubList.GetCount()):
             installer.subActives[index+1] = self.gSubList.IsChecked(index)
         if has_fomod:
             self.gSubList.Insert("fomod", 0)
@@ -3138,9 +3136,8 @@ class ScreensList(balt.UIList):
         code = event.GetKeyCode()
         # Ctrl+C: Copy file(s) to clipboard
         if event.CmdDown() and code == ord('C'):
-            sel = map(lambda x: bosh.screen_infos.store_dir.join(x).s,
-                      self.GetSelected())
-            balt.copyListToClipboard(sel)
+            balt.copyListToClipboard(self.data_store[screen].abs_path.s
+                                     for screen in self.GetSelected())
         super(ScreensList, self).OnKeyUp(event)
 
 #------------------------------------------------------------------------------
@@ -3412,7 +3409,7 @@ class _Tab_Link(AppendableLink, CheckLink, EnabledLink):
             iMods = None
             iInstallers = None
             iDelete = None
-            for i in range(Link.Frame.notebook.GetPageCount()):
+            for i in xrange(Link.Frame.notebook.GetPageCount()):
                 pageTitle = Link.Frame.notebook.GetPageText(i)
                 if pageTitle == tabInfo['Mods'][1]:
                     iMods = i
@@ -3658,7 +3655,7 @@ class BashStatusBar(DnDStatusBar):
             self._addButton(link)
             button = self.buttons.pop()
             thisIndex, insertBefore = order.index(link.uid), 0
-            for i in range(len(self.buttons)):
+            for i in xrange(len(self.buttons)):
                 otherlink = self.GetLink(index=i)
                 indexOther = order.index(otherlink.uid)
                 if indexOther > thisIndex:

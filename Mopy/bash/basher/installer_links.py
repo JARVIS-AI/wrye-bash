@@ -507,8 +507,10 @@ class Installer_Hide(_InstallerLink, UIList_Hide):
                                   u'selected.')
 
     def _enable(self):
-        return not any(map(lambda inf: isinstance(inf, bosh.InstallerMarker),
-                       self.iselected_infos()))
+        for info in self.iselected_infos():
+            if isinstance(info, bosh.InstallerMarker):
+                return False
+        return True
 
 class Installer_Rename(UIList_Rename, _InstallerLink):
     """Renames files by pattern."""
@@ -518,8 +520,10 @@ class Installer_Rename(UIList_Rename, _InstallerLink):
     def _enable(self):
         ##Only enable if all selected items are of the same type
         firstItem = next(self.iselected_infos())
-        return all(map(lambda inf: isinstance(inf, type(firstItem)),
-                       self.iselected_infos()))
+        for info in self.iselected_infos():
+            if not isinstance(info, type(firstItem)):
+                return False
+        return True
 
 class Installer_HasExtraData(CheckLink, _RefreshingLink):
     """Toggle hasExtraData flag on installer."""
@@ -906,7 +910,7 @@ class Installer_Espm_SelectAll(_Installer_Details_Link):
 
     def Execute(self):
         self._installer.espmNots = set()
-        for i in range(len(self.window.espms)):
+        for i in xrange(len(self.window.espms)):
             self.window.gEspmList.Check(i, True)
         self.window.refreshCurrent(self._installer)
 
@@ -917,7 +921,7 @@ class Installer_Espm_DeselectAll(_Installer_Details_Link):
 
     def Execute(self):
         espmNots = self._installer.espmNots = set()
-        for i in range(len(self.window.espms)):
+        for i in xrange(len(self.window.espms)):
             self.window.gEspmList.Check(i, False)
             espm =GPath(self.window.gEspmList.GetString(i).replace(u'&&',u'&'))
             espmNots.add(espm)
@@ -981,7 +985,7 @@ class Installer_Espm_List(_Installer_Details_Link):
         subs = (_(u'Plugin List for %s:') % self._installer.archive +
                 u'\n[spoiler]\n')
         espm_list = self.window.gEspmList
-        for index in range(espm_list.GetCount()):
+        for index in xrange(espm_list.GetCount()):
             subs += [u'   ',u'** '][espm_list.IsChecked(index)] + \
                     espm_list.GetString(index) + '\n'
         subs += u'[/spoiler]'
@@ -1095,8 +1099,10 @@ class InstallerArchive_Unpack(AppendableLink, _InstallerLink):
     def _append(self, window):
         self.selected = window.GetSelected() # append runs before _initData
         self.window = window # and the idata access is via self.window
-        return all(map(lambda inf: isinstance(inf, bosh.InstallerArchive),
-                       self.iselected_infos()))
+        for info in self.iselected_infos():
+            if not isinstance(info, bosh.InstallerArchive):
+                return False
+        return True
 
     @balt.conversation
     def Execute(self):

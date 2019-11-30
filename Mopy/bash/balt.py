@@ -337,7 +337,7 @@ def setCheckListItems(checkListBox, names, values):
                     continue
                 checkListBox.SetString(index, name)
             checkListBox.Check(index, value)
-        for index in range(checkListBox.GetCount(), len(names), -1):
+        for index in xrange(checkListBox.GetCount(), len(names), -1):
             checkListBox.Delete(index - 1)
 
 # Elements --------------------------------------------------------------------
@@ -518,7 +518,7 @@ def askOpen(parent,title=u'',defaultDir=u'',defaultFile=u'',wildcard=u'',style=w
     if dialog.ShowModal() != wx.ID_OK:
         result = False
     elif style & wx.FD_MULTIPLE:
-        result = map(GPath,dialog.GetPaths())
+        result = [GPath(path) for path in dialog.GetPaths()]
         if mustExist:
             for returned_path in result:
                 if not returned_path.exists():
@@ -1137,10 +1137,10 @@ class TabDragMixin(object):
                 else:
                     left,right,step = oldPos+1,newPos+1,-1
                 insert = left+step
-                addPages = [(self.GetPage(x),self.GetPageText(x)) for x in range(left,right)]
+                addPages = [(self.GetPage(x),self.GetPageText(x)) for x in xrange(left,right)]
                 addPages.reverse()
                 num = right - left
-                for i in range(num):
+                for i in xrange(num):
                     self.RemovePage(left)
                 for page,title in addPages:
                     self.InsertPage(insert,page,title)
@@ -1385,7 +1385,7 @@ class ListCtrl(wx.ListCtrl, ListCtrlAutoWidthMixin):
 
         indexes = []
         start = stop = -1
-        for index in range(self.GetItemCount()):
+        for index in xrange(self.GetItemCount()):
             if self.GetItemState(index, wx.LIST_STATE_SELECTED):
                 if stop >= 0 and self.dndOnlyCont:
                     # Only allow moving selections if they are in a
@@ -1670,7 +1670,7 @@ class UIList(wx.Panel):
         else: # no way we're inserting with a None item
             item = self.GetItem(itemDex)
         cols = self.cols
-        for colDex in range(len(cols)):
+        for colDex in xrange(len(cols)):
             col = cols[colDex]
             labelTxt = self.labels[col](self, item)
             if insert and colDex == 0:
@@ -2718,7 +2718,7 @@ class ListBoxes(Dialog):
                 checksCtrl.Bind(wx.EVT_KEY_UP,self.OnKeyUp)
                 checksCtrl.Bind(wx.EVT_CONTEXT_MENU,self.OnContext)
                 # check all - for range and set see wx._controls.CheckListBox
-                checksCtrl.SetChecked(set(range(len(strings))))
+                checksCtrl.SetChecked(set(xrange(len(strings))))
             elif liststyle == 'list':
                 checksCtrl = listBox(self, choices=strings, isHScroll=True)
             else:

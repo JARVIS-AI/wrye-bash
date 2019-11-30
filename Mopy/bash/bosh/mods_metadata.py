@@ -476,7 +476,7 @@ class ModCleaner(object):
             numGroups = 1
         progress.setFull(numGroups)
         ret = []
-        for i in range(numGroups):
+        for i in xrange(numGroups):
             #--Load
             progress(i,_(u'Loading...'))
             groupModInfos = modInfos[i*ModsPerGroup:(i+1)*ModsPerGroup]
@@ -677,7 +677,7 @@ class ModCleaner(object):
             ModsPerGroup = 255
             numGroups = 1
         progress.setFull(numGroups)
-        for i in range(numGroups):
+        for i in xrange(numGroups):
             #--Load
             progress(i,_(u'Loading...'))
             groupCleaners = cleaners[i*ModsPerGroup:(i+1)*ModsPerGroup]
