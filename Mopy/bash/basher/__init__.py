@@ -60,7 +60,7 @@ import re
 import sys
 import time
 from collections import OrderedDict
-from functools import partial
+from functools import partial, reduce
 from operator import itemgetter
 #--wxPython
 import wx

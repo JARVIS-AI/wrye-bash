@@ -43,6 +43,7 @@ from ctypes import byref, cast, c_bool, c_byte, c_char, c_char_p, c_float, \
     POINTER, string_at, Structure, c_int, c_void_p
 import math
 import os
+from functools import reduce
 from os.path import exists, join
 try:
     #See if cint is being used by Wrye Bash
