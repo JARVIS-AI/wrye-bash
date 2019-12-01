@@ -43,13 +43,11 @@ class AssortedTweak_ArmorShows(MultiTweakItem):
     """Fix armor to show amulets/rings."""
     tweak_read_classes = 'ARMO',
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self, label, tweak_tip, key):
         super(AssortedTweak_ArmorShows, self).__init__(label, tweak_tip, key)
         self.hidesBit = {u'armorShowsRings':16,u'armorShowsAmulets':17}[key]
         self.logMsg = u'* '+_(u'Armor Pieces Tweaked') + u': %d'
 
-    #--Patch Phase ------------------------------------------------------------
     def scanModFile(self,modFile,progress,patchFile):
         mapper = modFile.getLongMapper()
         patchRecords = patchFile.ARMO
@@ -77,7 +75,6 @@ class CBash_AssortedTweak_ArmorShows(CBash_MultiTweakItem):
     name = _(u'Armor Tweaks')
     tweak_read_classes = 'ARMO',
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self, label, tweak_tip, key):
         super(CBash_AssortedTweak_ArmorShows, self).__init__(label, tweak_tip,
                                                              key)
@@ -85,7 +82,6 @@ class CBash_AssortedTweak_ArmorShows(CBash_MultiTweakItem):
                          u'armorShowsAmulets': 'IsHideAmulets'}[key]
         self.logMsg = u'* '+_(u'Armor Pieces Tweaked') + u': %d'
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired."""
         if record.IsNonPlayable:
@@ -103,7 +99,6 @@ class AssortedTweak_ClothingShows(MultiTweakItem):
     """Fix robes, gloves and the like to show amulets/rings."""
     tweak_read_classes = 'CLOT',
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self, label, tweak_tip, key):
         super(AssortedTweak_ClothingShows, self).__init__(label, tweak_tip,
                                                           key)
@@ -111,7 +106,6 @@ class AssortedTweak_ClothingShows(MultiTweakItem):
             {u'ClothingShowsRings': 16, u'ClothingShowsAmulets': 17}[key]
         self.logMsg = u'* '+_(u'Clothing Pieces Tweaked') + u': %d'
 
-    #--Patch Phase ------------------------------------------------------------
     def scanModFile(self,modFile,progress,patchFile):
         mapper = modFile.getLongMapper()
         patchRecords = patchFile.CLOT
@@ -139,7 +133,6 @@ class CBash_AssortedTweak_ClothingShows(CBash_MultiTweakItem):
     name = _(u'Clothing Tweaks')
     tweak_read_classes = 'CLOT',
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self, label, tweak_tip, key):
         super(CBash_AssortedTweak_ClothingShows, self).__init__(label,
                                                                 tweak_tip, key)
@@ -165,7 +158,6 @@ class AAssortedTweak_BowReach(AMultiTweakItem):
     """Fix bows to have reach = 1.0."""
     tweak_read_classes = 'WEAP',
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(AAssortedTweak_BowReach, self).__init__(_(u"Bow Reach Fix"),
             _(u'Fix bows with zero reach. (Zero reach causes CTDs.)'),
@@ -177,7 +169,6 @@ class AAssortedTweak_BowReach(AMultiTweakItem):
 
 class AssortedTweak_BowReach(AAssortedTweak_BowReach,MultiTweakItem):
 
-    #--Patch Phase ------------------------------------------------------------
     def scanModFile(self,modFile,progress,patchFile):
         mapper = modFile.getLongMapper()
         patchRecords = patchFile.WEAP
@@ -202,7 +193,6 @@ class CBash_AssortedTweak_BowReach(AAssortedTweak_BowReach,
                                    CBash_MultiTweakItem):
     name = _(u'Bow Reach Fix')
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired."""
         if record.IsBow and record.reach <= 0:
@@ -218,7 +208,6 @@ class AAssortedTweak_SkyrimStyleWeapons(AMultiTweakItem):
     """Sets all one handed weapons as blades, two handed weapons as blunt."""
     tweak_read_classes = 'WEAP',
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(AAssortedTweak_SkyrimStyleWeapons, self).__init__(
             _(u"Skyrim-style Weapons"),
@@ -229,7 +218,6 @@ class AAssortedTweak_SkyrimStyleWeapons(AMultiTweakItem):
 class AssortedTweak_SkyrimStyleWeapons(AAssortedTweak_SkyrimStyleWeapons,
                                        MultiTweakItem):
 
-    #--Patch Phase ------------------------------------------------------------
     def scanModFile(self,modFile,progress,patchFile):
         mapper = modFile.getLongMapper()
         patchRecords = patchFile.WEAP
@@ -259,7 +247,6 @@ class CBash_AssortedTweak_SkyrimStyleWeapons(AAssortedTweak_SkyrimStyleWeapons,
                                              CBash_MultiTweakItem):
     name = _(u'Skyrim-style Weapons')
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired."""
         if record.IsBlade2Hand or record.IsBlunt1Hand:
@@ -278,7 +265,6 @@ class AAssortedTweak_ConsistentRings(AMultiTweakItem):
     """Sets rings to all work on same finger."""
     tweak_read_classes = 'CLOT',
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(AAssortedTweak_ConsistentRings, self).__init__(
             _(u"Right Hand Rings"),
@@ -290,7 +276,6 @@ class AAssortedTweak_ConsistentRings(AMultiTweakItem):
 class AssortedTweak_ConsistentRings(AAssortedTweak_ConsistentRings,
                                     MultiTweakItem):
 
-    #--Patch Phase ------------------------------------------------------------
     def scanModFile(self,modFile,progress,patchFile):
         mapper = modFile.getLongMapper()
         patchRecords = patchFile.CLOT
@@ -316,7 +301,6 @@ class CBash_AssortedTweak_ConsistentRings(AAssortedTweak_ConsistentRings,
                                           CBash_MultiTweakItem):
     name = _(u'Right Hand Rings')
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired. """
         if record.IsLeftRing:
@@ -337,7 +321,6 @@ class AAssortedTweak_ClothingPlayable(AMultiTweakItem):
     """Sets all clothes to playable"""
     tweak_read_classes = 'CLOT',
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(AAssortedTweak_ClothingPlayable, self).__init__(
             _(u"All Clothing Playable"),
@@ -349,7 +332,6 @@ class AAssortedTweak_ClothingPlayable(AMultiTweakItem):
 class AssortedTweak_ClothingPlayable(AAssortedTweak_ClothingPlayable,
                                      MultiTweakItem):
 
-    #--Patch Phase ------------------------------------------------------------
     def scanModFile(self,modFile,progress,patchFile):
         mapper = modFile.getLongMapper()
         patchRecords = patchFile.CLOT
@@ -390,7 +372,6 @@ class CBash_AssortedTweak_ClothingPlayable(AAssortedTweak_ClothingPlayable,
     editOrder = 29
     name = _(u'Playable Clothes')
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired. """
         if record.IsNonPlayable:
@@ -416,7 +397,6 @@ class AAssortedTweak_ArmorPlayable(AMultiTweakItem):
     """Sets all armors to be playable"""
     tweak_read_classes = 'ARMO',
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(AAssortedTweak_ArmorPlayable, self).__init__(
             _(u"All Armor Playable"), _(u'Sets all armor to be playable.'),
@@ -426,7 +406,6 @@ class AAssortedTweak_ArmorPlayable(AMultiTweakItem):
 
 class AssortedTweak_ArmorPlayable(AAssortedTweak_ArmorPlayable,MultiTweakItem):
 
-    #--Patch Phase ------------------------------------------------------------
     def scanModFile(self,modFile,progress,patchFile):
         mapper = modFile.getLongMapper()
         patchRecords = patchFile.ARMO
@@ -468,7 +447,6 @@ class CBash_AssortedTweak_ArmorPlayable(AAssortedTweak_ArmorPlayable,
     editOrder = 29
     name = _(u'Playable Armor')
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired. """
         if record.IsNonPlayable:
@@ -503,7 +481,6 @@ class AAssortedTweak_DarnBooks(AMultiTweakItem):
     reAlign = re.compile(u'' r'^(<<|\^\^|>>)', re.M)
     tweak_read_classes = 'BOOK',
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(AAssortedTweak_DarnBooks, self).__init__(_(u"DarNified Books"),
             _(u'Books will be reformatted for DarN UI.'),
@@ -514,7 +491,6 @@ class AAssortedTweak_DarnBooks(AMultiTweakItem):
 
 class AssortedTweak_DarnBooks(AAssortedTweak_DarnBooks,MultiTweakItem):
 
-    #--Patch Phase ------------------------------------------------------------
     def scanModFile(self,modFile,progress,patchFile):
         # maxWeight = self.choiceValues[self.chosen][0] # TODO: is this
         # supposed to be used ?
@@ -591,7 +567,6 @@ class CBash_AssortedTweak_DarnBooks(AAssortedTweak_DarnBooks,
                                     CBash_MultiTweakItem):
     name = _(u'Books DarNified')
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired."""
         def replaceBold(mo):
@@ -653,7 +628,6 @@ class CBash_AssortedTweak_DarnBooks(AAssortedTweak_DarnBooks,
 class AAssortedTweak_FogFix(AMultiTweakItem):
     """Fix fog in cell to be non-zero."""
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(AAssortedTweak_FogFix, self).__init__(_(u"Nvidia Fog Fix"),
             _(u'Fix fog related Nvidia black screen problems.'),
@@ -666,7 +640,6 @@ class AAssortedTweak_FogFix(AMultiTweakItem):
 class AssortedTweak_FogFix(AAssortedTweak_FogFix,MultiTweakItem):
     tweak_read_classes = 'CELL', 'WRLD',
 
-    #--Patch Phase ------------------------------------------------------------
     def scanModFile(self, modFile, progress,patchFile):
         """Add lists from modFile."""
         if 'CELL' not in modFile.tops: return
@@ -695,7 +668,6 @@ class CBash_AssortedTweak_FogFix(AAssortedTweak_FogFix,CBash_MultiTweakItem):
     # run in the same group as the CellImporter, so we'll have to skip
     # worldspaces.  It shouldn't be a problem in those CELLs.
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired."""
         if record.Parent:  # It's a CELL that showed up because we said
@@ -714,7 +686,6 @@ class AAssortedTweak_NoLightFlicker(AMultiTweakItem):
     """Remove light flickering for low end machines."""
     tweak_read_classes = 'LIGH',
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(AAssortedTweak_NoLightFlicker, self).__init__(
             _(u"No Light Flicker"),
@@ -727,14 +698,12 @@ class AAssortedTweak_NoLightFlicker(AMultiTweakItem):
 class AssortedTweak_NoLightFlicker(AAssortedTweak_NoLightFlicker,
                                    MultiTweakItem):
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(AssortedTweak_NoLightFlicker, self).__init__()
         self.flags = flags = MreRecord.type_class['LIGH']._flags()
         flags.flickers = flags.flickerSlow = flags.pulse = flags.pulseSlow =\
             True
 
-    #--Patch Phase ------------------------------------------------------------
     def scanModFile(self,modFile,progress,patchFile):
         flickerFlags = self.flags
         mapper = modFile.getLongMapper()
@@ -762,7 +731,6 @@ class CBash_AssortedTweak_NoLightFlicker(AAssortedTweak_NoLightFlicker,
                                          CBash_MultiTweakItem):
     name = _(u'No Light Flicker')
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired. """
         if record.IsFlickers or record.IsFlickerSlow or record.IsPulse or \
@@ -799,7 +767,6 @@ class AAssortedTweak_PotionWeight(AMultiTweakItem_Weight):
     """Reweighs standard potions down to 0.1."""
     tweak_read_classes = 'ALCH',
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(AAssortedTweak_PotionWeight, self).__init__(
             _(u"Reweigh: Potions (Maximum)"),
@@ -816,7 +783,6 @@ class AAssortedTweak_PotionWeight(AMultiTweakItem_Weight):
 
 class AssortedTweak_PotionWeight(AAssortedTweak_PotionWeight,MultiTweakItem):
 
-    #--Patch Phase ------------------------------------------------------------
     def scanModFile(self,modFile,progress,patchFile):
         maxWeight = self.weight
         mapper = modFile.getLongMapper()
@@ -846,7 +812,6 @@ class CBash_AssortedTweak_PotionWeight(AAssortedTweak_PotionWeight,
                                        CBash_MultiTweakItem_Weight):
     name = _(u"Reweigh: Potions (Maximum)")
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(CBash_AssortedTweak_PotionWeight, self).__init__()
         # see https://github.com/wrye-bash/wrye-bash/commit/3aa3c941b2de6d751f71e50613ba20ac14f477e8
@@ -856,7 +821,6 @@ class CBash_AssortedTweak_PotionWeight(AAssortedTweak_PotionWeight,
         # read in, and always before patchers that will need them
         self.SEFF = MGEFCode('SEFF')
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired. """
         maxWeight = self.weight
@@ -876,7 +840,6 @@ class AAssortedTweak_IngredientWeight(AMultiTweakItem_Weight):
     """Reweighs standard ingredients down to 0.1."""
     tweak_read_classes = 'INGR',
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(AAssortedTweak_IngredientWeight, self).__init__(
             _(u"Reweigh: Ingredients"),
@@ -895,7 +858,6 @@ class AAssortedTweak_IngredientWeight(AMultiTweakItem_Weight):
 class AssortedTweak_IngredientWeight(AAssortedTweak_IngredientWeight,
                                      MultiTweakItem):
 
-    #--Patch Phase ------------------------------------------------------------
     def scanModFile(self,modFile,progress,patchFile):
         maxWeight = self.weight
         mapper = modFile.getLongMapper()
@@ -924,12 +886,10 @@ class CBash_AssortedTweak_IngredientWeight(AAssortedTweak_IngredientWeight,
                                            CBash_MultiTweakItem_Weight):
     name = _(u'Reweigh: Ingredients')
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(CBash_AssortedTweak_IngredientWeight, self).__init__()
         self.SEFF = MGEFCode('SEFF')
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired. """
         maxWeight = self.weight
@@ -949,7 +909,6 @@ class AAssortedTweak_PotionWeightMinimum(AMultiTweakItem_Weight):
     """Reweighs any potions up to 4."""
     tweak_read_classes = 'ALCH',
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(AAssortedTweak_PotionWeightMinimum, self).__init__(
             _(u"Reweigh: Potions (Minimum)"),
@@ -967,7 +926,6 @@ class AAssortedTweak_PotionWeightMinimum(AMultiTweakItem_Weight):
 class AssortedTweak_PotionWeightMinimum(AAssortedTweak_PotionWeightMinimum,
                                         MultiTweakItem):
 
-    #--Patch Phase ------------------------------------------------------------
     def scanModFile(self,modFile,progress,patchFile):
         minWeight = self.weight
         mapper = modFile.getLongMapper()
@@ -998,7 +956,6 @@ class CBash_AssortedTweak_PotionWeightMinimum(
     editOrder = 33
     name = _(u'Reweigh: Potions (Minimum)')
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired. """
         minWeight = self.weight
@@ -1015,7 +972,6 @@ class AAssortedTweak_StaffWeight(AMultiTweakItem_Weight):
     """Reweighs staffs."""
     tweak_read_classes = 'WEAP',
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(AAssortedTweak_StaffWeight, self).__init__(
             _(u"Reweigh: Staffs/Staves"),
@@ -1037,7 +993,6 @@ class AAssortedTweak_StaffWeight(AMultiTweakItem_Weight):
 
 class AssortedTweak_StaffWeight(AAssortedTweak_StaffWeight,MultiTweakItem):
 
-    #--Patch Phase ------------------------------------------------------------
     def scanModFile(self,modFile,progress,patchFile):
         maxWeight = self.weight
         mapper = modFile.getLongMapper()
@@ -1066,7 +1021,6 @@ class CBash_AssortedTweak_StaffWeight(AAssortedTweak_StaffWeight,
                                       CBash_MultiTweakItem_Weight):
     name = _(u'Reweigh: Staffs/Staves')
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired. """
         maxWeight = self.weight
@@ -1082,7 +1036,6 @@ class CBash_AssortedTweak_StaffWeight(AAssortedTweak_StaffWeight,
 class AAssortedTweak_ArrowWeight(AMultiTweakItem_Weight):
     tweak_read_classes = 'AMMO',
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(AAssortedTweak_ArrowWeight, self).__init__(_(u"Reweigh: Arrows"),
             _(u'Arrow weights will be capped.'),
@@ -1099,7 +1052,6 @@ class AAssortedTweak_ArrowWeight(AMultiTweakItem_Weight):
 
 class AssortedTweak_ArrowWeight(AAssortedTweak_ArrowWeight,MultiTweakItem):
 
-    #--Patch Phase ------------------------------------------------------------
     def scanModFile(self,modFile,progress,patchFile):
         maxWeight = self.weight
         mapper = modFile.getLongMapper()
@@ -1128,7 +1080,6 @@ class CBash_AssortedTweak_ArrowWeight(AAssortedTweak_ArrowWeight,
                                       CBash_MultiTweakItem_Weight):
     name = _(u'Reweigh: Arrows')
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired. """
         maxWeight = self.weight
@@ -1146,7 +1097,6 @@ class AAssortedTweak_ScriptEffectSilencer(AMultiTweakItem):
     speed."""
     tweak_read_classes = 'MGEF',
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(AAssortedTweak_ScriptEffectSilencer, self).__init__(
             _(u"Magic: Script Effect Silencer"),
@@ -1163,7 +1113,6 @@ class AAssortedTweak_ScriptEffectSilencer(AMultiTweakItem):
 class AssortedTweak_ScriptEffectSilencer(AAssortedTweak_ScriptEffectSilencer,
                                          MultiTweakItem):
 
-    #--Patch Phase ------------------------------------------------------------
     def scanModFile(self,modFile,progress,patchFile):
         mapper = modFile.getLongMapper()
         patchBlock = patchFile.MGEF
@@ -1203,7 +1152,6 @@ class CBash_AssortedTweak_ScriptEffectSilencer(
     AAssortedTweak_ScriptEffectSilencer, CBash_MultiTweakItem):
     name = _(u'Magic: Script Effect Silencer')
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(CBash_AssortedTweak_ScriptEffectSilencer, self).__init__()
         self.attrs = ['modPath', 'modb', 'modt_p', 'projectileSpeed', 'light',
@@ -1216,7 +1164,6 @@ class CBash_AssortedTweak_ScriptEffectSilencer(
         # should call the constructor directly instead of super() ?
         self.buildPatchLog=self._patchLog # AAssortedTweak_ScriptEffectSilencer
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired. """
         if record.eid == self.SEFF[0]:
@@ -1235,7 +1182,6 @@ class AAssortedTweak_HarvestChance(AMultiTweakItem):
     """Adjust Harvest Chances."""
     tweak_read_classes = 'FLOR',
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(AAssortedTweak_HarvestChance, self).__init__(
             _(u"Harvest Chance"),
@@ -1258,7 +1204,6 @@ class AAssortedTweak_HarvestChance(AMultiTweakItem):
 
 class AssortedTweak_HarvestChance(AAssortedTweak_HarvestChance,MultiTweakItem):
 
-    #--Patch Phase ------------------------------------------------------------
     def scanModFile(self,modFile,progress,patchFile):
         chance = self.choiceValues[self.chosen][0]
         mapper = modFile.getLongMapper()
@@ -1290,12 +1235,10 @@ class CBash_AssortedTweak_HarvestChance(AAssortedTweak_HarvestChance,
                                         CBash_MultiTweakItem):
     name = _(u'Harvest Chance')
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(CBash_AssortedTweak_HarvestChance, self).__init__()
         self.attrs = ['spring','summer','fall','winter']
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired. """
         if record.eid.startswith(u'Nirnroot'): return #skip Nirnroots
@@ -1314,7 +1257,6 @@ class AAssortedTweak_WindSpeed(AMultiTweakItem):
     """Disables Weather winds."""
     tweak_read_classes = 'WTHR',
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(AAssortedTweak_WindSpeed, self).__init__(_(u"Disable Wind"),
             _(u'Disables the wind on all weathers.'),
@@ -1325,7 +1267,6 @@ class AAssortedTweak_WindSpeed(AMultiTweakItem):
 
 class AssortedTweak_WindSpeed(AAssortedTweak_WindSpeed,MultiTweakItem):
 
-    #--Patch Phase ------------------------------------------------------------
     def scanModFile(self,modFile,progress,patchFile):
         mapper = modFile.getLongMapper()
         patchBlock = patchFile.WTHR
@@ -1352,7 +1293,6 @@ class CBash_AssortedTweak_WindSpeed(AAssortedTweak_WindSpeed,
                                     CBash_MultiTweakItem):
     name = _(u'Disable Wind')
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired. """
         if record.windSpeed != 0:
@@ -1368,7 +1308,6 @@ class AAssortedTweak_UniformGroundcover(AMultiTweakItem):
     """Eliminates random variation in groundcover."""
     tweak_read_classes = 'GRAS',
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(AAssortedTweak_UniformGroundcover, self).__init__(
             _(u"Uniform Groundcover"),
@@ -1382,7 +1321,6 @@ class AAssortedTweak_UniformGroundcover(AMultiTweakItem):
 class AssortedTweak_UniformGroundcover(AAssortedTweak_UniformGroundcover,
                                        MultiTweakItem):
 
-    #--Patch Phase ------------------------------------------------------------
     def scanModFile(self,modFile,progress,patchFile):
         mapper = modFile.getLongMapper()
         patchBlock = patchFile.GRAS
@@ -1409,7 +1347,6 @@ class CBash_AssortedTweak_UniformGroundcover(AAssortedTweak_UniformGroundcover,
                                              CBash_MultiTweakItem):
     name = _(u'Uniform Groundcover')
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired. """
         if record.heightRange != 0:
@@ -1425,7 +1362,6 @@ class AAssortedTweak_SetCastWhenUsedEnchantmentCosts(AMultiTweakItem):
     """Sets Cast When Used Enchantment number of uses."""
     tweak_read_classes = 'ENCH',
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(AAssortedTweak_SetCastWhenUsedEnchantmentCosts, self).__init__(
             _(u"Number of uses for pre-enchanted weapons and Staffs/Staves"),
@@ -1456,7 +1392,6 @@ class AssortedTweak_SetCastWhenUsedEnchantmentCosts(
     AAssortedTweak_SetCastWhenUsedEnchantmentCosts, MultiTweakItem):
     #info: 'itemType','chargeAmount','enchantCost'
 
-    #--Patch Phase ------------------------------------------------------------
     def scanModFile(self,modFile,progress,patchFile):
         mapper = modFile.getLongMapper()
         patchBlock = patchFile.ENCH
@@ -1488,7 +1423,6 @@ class CBash_AssortedTweak_SetCastWhenUsedEnchantmentCosts(
     AAssortedTweak_SetCastWhenUsedEnchantmentCosts, CBash_MultiTweakItem):
     name = _(u'Set Enchantment Number of Uses')
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired. """
         if record.IsStaff or record.IsWeapon:
@@ -1510,7 +1444,6 @@ class CBash_AssortedTweak_SetCastWhenUsedEnchantmentCosts(
 class AAssortedTweak_DefaultIcons(AMultiTweakItem):
     """Sets a default icon for any records that don't have any icon
     assigned."""
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(AAssortedTweak_DefaultIcons,self).__init__(_(u"Default Icons"),
             _(u"Sets a default icon for any records that don't have any icon"
@@ -1738,7 +1671,6 @@ class CBash_AssortedTweak_DefaultIcons(AAssortedTweak_DefaultIcons,
                 }
     tweak_read_classes = list(type_defaultIcon)
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired. """
         if getattr(record, 'iconPath', None): return
@@ -1819,7 +1751,6 @@ class AAssortedTweak_SetSoundAttenuationLevels(AMultiTweakItem):
     """Sets Sound Attenuation Levels for all records except Nirnroots."""
     tweak_read_classes = 'SOUN',
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(AAssortedTweak_SetSoundAttenuationLevels,self).__init__(
             _(u"Set Sound Attenuation Levels"),
@@ -1839,7 +1770,6 @@ class AAssortedTweak_SetSoundAttenuationLevels(AMultiTweakItem):
 class AssortedTweak_SetSoundAttenuationLevels(
     AAssortedTweak_SetSoundAttenuationLevels, MultiTweakItem):
 
-    #--Patch Phase ------------------------------------------------------------
     def scanModFile(self,modFile,progress,patchFile):
         mapper = modFile.getLongMapper()
         patchBlock = patchFile.SOUN
@@ -1867,7 +1797,6 @@ class CBash_AssortedTweak_SetSoundAttenuationLevels(
     AAssortedTweak_SetSoundAttenuationLevels, CBash_MultiTweakItem):
     name = _(u'Set Sound Attenuation Levels')
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired. """
         choice = self.choiceValues[self.chosen][0] // 100
@@ -1887,7 +1816,6 @@ class AAssortedTweak_SetSoundAttenuationLevels_NirnrootOnly(AMultiTweakItem):
     """Sets Sound Attenuation Levels for Nirnroots."""
     tweak_read_classes = 'SOUN',
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(AAssortedTweak_SetSoundAttenuationLevels_NirnrootOnly,
               self).__init__(
@@ -1909,7 +1837,6 @@ class AAssortedTweak_SetSoundAttenuationLevels_NirnrootOnly(AMultiTweakItem):
 class AssortedTweak_SetSoundAttenuationLevels_NirnrootOnly(
     AAssortedTweak_SetSoundAttenuationLevels_NirnrootOnly, MultiTweakItem):
 
-    #--Patch Phase ------------------------------------------------------------
     def scanModFile(self,modFile,progress,patchFile):
         mapper = modFile.getLongMapper()
         patchBlock = patchFile.SOUN
@@ -1938,7 +1865,6 @@ class CBash_AssortedTweak_SetSoundAttenuationLevels_NirnrootOnly(
     CBash_MultiTweakItem):
     name = _(u'Set Sound Attenuation Levels: Nirnroots Only')
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired. """
         choice = self.choiceValues[self.chosen][0] / 100
@@ -1959,7 +1885,6 @@ class AAssortedTweak_FactioncrimeGoldMultiplier(AMultiTweakItem):
     crimeGoldMultiplier of 1.0."""
     tweak_read_classes = 'FACT',
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(AAssortedTweak_FactioncrimeGoldMultiplier,self).__init__(
             _(u"Faction crime Gold Multiplier Fix"),
@@ -1973,7 +1898,6 @@ class AAssortedTweak_FactioncrimeGoldMultiplier(AMultiTweakItem):
 class AssortedTweak_FactioncrimeGoldMultiplier(
     AAssortedTweak_FactioncrimeGoldMultiplier, MultiTweakItem):
 
-    #--Patch Phase ------------------------------------------------------------
     def scanModFile(self,modFile,progress,patchFile):
         mapper = modFile.getLongMapper()
         patchRecords = patchFile.FACT
@@ -1998,7 +1922,6 @@ class CBash_AssortedTweak_FactioncrimeGoldMultiplier(
     AAssortedTweak_FactioncrimeGoldMultiplier, CBash_MultiTweakItem):
     name = _(u'Faction crime Gold Multiplier Fix')
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired."""
         if record.crimeGoldMultiplier is None:
@@ -2014,7 +1937,6 @@ class AAssortedTweak_LightFadeValueFix(AMultiTweakItem):
     """Remove light flickering for low end machines."""
     tweak_read_classes = 'LIGH',
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(AAssortedTweak_LightFadeValueFix, self).__init__(
             _(u"No Light Fade Value Fix"),
@@ -2026,7 +1948,7 @@ class AAssortedTweak_LightFadeValueFix(AMultiTweakItem):
 
 class AssortedTweak_LightFadeValueFix(AAssortedTweak_LightFadeValueFix,
                                       MultiTweakItem):
-    #--Patch Phase ------------------------------------------------------------
+
     def scanModFile(self,modFile,progress,patchFile):
         mapper = modFile.getLongMapper()
         patchRecords = patchFile.LIGH
@@ -2051,7 +1973,6 @@ class CBash_AssortedTweak_LightFadeValueFix(AAssortedTweak_LightFadeValueFix,
                                             CBash_MultiTweakItem):
     name = _(u'No Light Fade Value Fix')
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired. """
         if record.fade is None:
@@ -2067,7 +1988,6 @@ class AAssortedTweak_TextlessLSCRs(AMultiTweakItem):
     """Removes the description from loading screens."""
     tweak_read_classes = 'LSCR',
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(AAssortedTweak_TextlessLSCRs, self).__init__(
             _(u"No Description Loading Screens"),
@@ -2079,7 +1999,6 @@ class AAssortedTweak_TextlessLSCRs(AMultiTweakItem):
 
 class AssortedTweak_TextlessLSCRs(AAssortedTweak_TextlessLSCRs,MultiTweakItem):
 
-    #--Patch Phase ------------------------------------------------------------
     def scanModFile(self,modFile,progress,patchFile):
         mapper = modFile.getLongMapper()
         patchRecords = patchFile.LSCR
@@ -2104,7 +2023,6 @@ class CBash_AssortedTweak_TextlessLSCRs(AAssortedTweak_TextlessLSCRs,
                                         CBash_MultiTweakItem):
     name = _(u"No Description Loading Screens")
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired. """
         if record.text:

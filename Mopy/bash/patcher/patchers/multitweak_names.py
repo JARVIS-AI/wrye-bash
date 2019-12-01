@@ -27,6 +27,7 @@ to the Names Multitweaker - as well as the NamesTweaker itself."""
 
 from __future__ import division
 import re
+from collections import Counter
 # Internal
 from ... import load_order
 from ...patcher.base import AMultiTweakItem, AMultiTweaker
@@ -92,7 +93,7 @@ class NamesTweak_Body(_AMultiTweakItem_Names):
 
     def buildPatch(self,log,progress,patchFile):
         """Edits patch file as desired. Will write to log."""
-        count = {}
+        count = Counter()
         format_ = self.choiceValues[self.chosen][0]
         showStat = u'%02d' in format_
         keep = patchFile.getKeeper()
@@ -123,13 +124,12 @@ class NamesTweak_Body(_AMultiTweakItem_Names):
                 record.full = format_ % type_ + record.full
             keep(record.fid)
             srcMod = record.fid[0]
-            count[srcMod] = count.get(srcMod,0) + 1
+            count[srcMod] += 1
         self._patchLog(log, count)
 
 class CBash_NamesTweak_Body(CBash_MultiTweakItem):
     """Names tweaker for armor and clothes."""
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self, label, tweak_tip, key, *choices, **kwargs):
         super(CBash_NamesTweak_Body, self).__init__(label, tweak_tip, key,
                                                     *choices, **kwargs)
@@ -139,7 +139,6 @@ class CBash_NamesTweak_Body(CBash_MultiTweakItem):
     def getTypes(self):
         return [self.key]
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired. """
         if record.IsNonPlayable: return
@@ -178,7 +177,6 @@ class ANamesTweak_Potions(AMultiTweakItem):
     reOldEnd = re.compile(u' -$',re.U)
     tweak_read_classes = 'ALCH',
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(ANamesTweak_Potions, self).__init__(_(u"Potions"),
             _(u'Label potions to sort by type and effect.'),
@@ -193,7 +191,6 @@ class ANamesTweak_Potions(AMultiTweakItem):
 
 class NamesTweak_Potions(ANamesTweak_Potions, _AMultiTweakItem_Names):
 
-    #--Patch Phase ------------------------------------------------------------
     def scanModFile(self,modFile,progress,patchFile):
         mapper = modFile.getLongMapper()
         patchBlock = patchFile.ALCH
@@ -246,7 +243,6 @@ class NamesTweak_Potions(ANamesTweak_Potions, _AMultiTweakItem_Names):
 
 class CBash_NamesTweak_Potions(ANamesTweak_Potions, CBash_MultiTweakItem):
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired. """
         newFull = record.full
@@ -320,7 +316,6 @@ class ANamesTweak_Scrolls(AMultiTweakItem):
 class NamesTweak_Scrolls(ANamesTweak_Scrolls,_AMultiTweakItem_Names):
     tweak_read_classes = 'BOOK','ENCH',
 
-    #--Patch Phase ------------------------------------------------------------
     def scanModFile(self,modFile,progress,patchFile):
         mapper = modFile.getLongMapper()
         #--Scroll Enchantments
@@ -343,7 +338,7 @@ class NamesTweak_Scrolls(ANamesTweak_Scrolls,_AMultiTweakItem_Names):
 
     def buildPatch(self,log,progress,patchFile):
         """Edits patch file as desired. Will write to log."""
-        count = {}
+        count = Counter()
         reOldLabel = self.__class__.reOldLabel
         orderFormat, magicFormat = self.orderFormat, self.magicFormat
         keep = patchFile.getKeeper()
@@ -371,14 +366,13 @@ class NamesTweak_Scrolls(ANamesTweak_Scrolls,_AMultiTweakItem_Names):
             record.full = orderFormat[isEnchanted] + record.full
             keep(record.fid)
             srcMod = record.fid[0]
-            count[srcMod] = count.get(srcMod,0) + 1
+            count[srcMod] += 1
         self._patchLog(log, count)
 
 class CBash_NamesTweak_Scrolls(ANamesTweak_Scrolls,CBash_MultiTweakItem):
     """Names tweaker for scrolls."""
     tweak_read_classes = 'BOOK',
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired. """
         newFull = record.full
@@ -423,7 +417,6 @@ class ANamesTweak_Spells(AMultiTweakItem):
     """Names tweaker for spells."""
     tweak_read_classes = 'SPEL',
 
-    #--Config Phase -----------------------------------------------------------
     reOldLabel = reSpell
     def __init__(self):
         super(ANamesTweak_Spells, self).__init__(_(u"Spells"),
@@ -445,7 +438,6 @@ class ANamesTweak_Spells(AMultiTweakItem):
 
 class NamesTweak_Spells(ANamesTweak_Spells,_AMultiTweakItem_Names):
 
-    #--Patch Phase ------------------------------------------------------------
     def scanModFile(self,modFile,progress,patchFile):
         mapper = modFile.getLongMapper()
         patchBlock = patchFile.SPEL
@@ -491,7 +483,6 @@ class NamesTweak_Spells(ANamesTweak_Spells,_AMultiTweakItem_Names):
 
 class CBash_NamesTweak_Spells(ANamesTweak_Spells,CBash_MultiTweakItem):
 
-    #--Config Phase -----------------------------------------------------------
     def save_tweak_config(self, configs):
         """Save config to configs dictionary."""
         super(CBash_NamesTweak_Spells, self).save_tweak_config(configs)
@@ -499,7 +490,6 @@ class CBash_NamesTweak_Spells(ANamesTweak_Spells,CBash_MultiTweakItem):
         self.removeTags = u'%s' not in self.format
         self.showLevel = u'%d' in self.format
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired. """
         newFull = record.full
@@ -535,7 +525,6 @@ class ANamesTweak_Weapons(AMultiTweakItem):
     """Names tweaker for weapons and ammo."""
     tweak_read_classes = 'AMMO','WEAP',
 
-    #--Config Phase -----------------------------------------------------------
     def __init__(self):
         super(ANamesTweak_Weapons, self).__init__(_(u"Weapons"),
             _(u'Label ammo and weapons to sort by type and damage.'),
@@ -597,14 +586,12 @@ class NamesTweak_Weapons(ANamesTweak_Weapons,_AMultiTweakItem_Names):
 
 class CBash_NamesTweak_Weapons(ANamesTweak_Weapons,CBash_MultiTweakItem):
 
-    #--Config Phase -----------------------------------------------------------
     def save_tweak_config(self, configs):
         """Save config to configs dictionary."""
         super(CBash_NamesTweak_Weapons, self).save_tweak_config(configs)
         self.format = self.choiceValues[self.chosen][0]
         self.showStat = u'%02d' in self.format
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired. """
         newFull = record.full
@@ -630,7 +617,7 @@ class CBash_NamesTweak_Weapons(ANamesTweak_Weapons,CBash_MultiTweakItem):
 #------------------------------------------------------------------------------
 class ATextReplacer(AMultiTweakItem):
     """Base class for replacing any text via regular expressions."""
-    #--Config Phase -----------------------------------------------------------
+
     def __init__(self, reMatch, reReplace, label, tweak_tip, key, choices):
         super(ATextReplacer, self).__init__(label, tweak_tip, key, choices)
         self.reMatch = reMatch
@@ -789,7 +776,6 @@ class CBash_TextReplacer(ATextReplacer,CBash_MultiTweakItem):
         self.format = self.choiceValues[self.chosen][0]
         self.showStat = u'%02d' in self.format
 
-    #--Patch Phase ------------------------------------------------------------
     def apply(self,modFile,record,bashTags):
         """Edits patch file as desired. """
         reMatch = re.compile(self.reMatch)
