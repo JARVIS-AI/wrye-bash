@@ -1180,7 +1180,7 @@ class DataStore(DataDict):
     def _get_rename_paths(self, oldName, newName):
         """Return possible paths this file's renaming might affect (possibly
         omitting some that do not exist)."""
-        return [(self[oldName].abs_path, self.store_dir.join(newName))] # TTT rename ghosts
+        return [(self.store_dir.join(oldName), self.store_dir.join(newName))]
 
     @property
     def bash_dir(self):
