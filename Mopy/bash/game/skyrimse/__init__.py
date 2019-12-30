@@ -57,13 +57,16 @@ class SkyrimSEGameInfo(SkyrimGameInfo):
     has_achlist = True
     check_esl = True
 
-    allTags = SkyrimGameInfo.allTags - {u'NoMerge'}
+    allTags = SkyrimGameInfo.allTags - {u'MustBeActiveIfImported', u'NoMerge',}
 
     patchers = (
-        u'CellImporter', u'GmstTweaker', u'GraphicsPatcher',
-        u'ImportInventory', u'ListsMerger', u'SoundPatcher', u'StatsPatcher',
-        u'NamesPatcher',
-        )
+        u'ActorImporter', u'CellImporter', u'ContentsChecker',
+        u'DeathItemPatcher', u'DestructiblePatcher', u'GmstTweaker',
+        u'GraphicsPatcher', u'ImportActorsSpells', u'ImportInventory',
+        u'KeywordsImporter', u'ListsMerger', u'NamesPatcher',
+        u'NPCAIPackagePatcher', u'ObjectBoundsImporter', u'SoundPatcher',
+        u'SpellsPatcher', u'StatsPatcher', u'TextImporter', u'TweakActors',
+    )
 
     # MreScpt is Oblivion/FO3/FNV Only
     # MreMgef, has not been verified to be used here for Skyrim
@@ -86,8 +89,7 @@ class SkyrimSEGameInfo(SkyrimGameInfo):
     def init(cls):
         cls._dynamic_import_modules(__name__)
         # First import from skyrimse.records file
-        from .records import MreWthr, MreMato, MreLtex, MreWatr, MreWeap, \
-            MreStat, MreAmmo, MreVoli, MreLens
+        from .records import MreVoli, MreLens
         # then import rest of records from skyrim.records
         from ..skyrim.records import MreAact, MreAchr, MreActi, MreAddn, \
             MreAlch, MreAnio, MreAppa, MreArma, MreArmo, MreArto, MreAspc, \
@@ -103,7 +105,8 @@ class SkyrimSEGameInfo(SkyrimGameInfo):
             MreMust, MreNpc, MreOtft, MrePerk, MreProj, MreQust, MreRegn, \
             MreRela, MreRevb, MreRfct, MreScrl, MreShou, MreSlgm, MreSmbn, \
             MreSmen, MreSmqn, MreSnct, MreSndr, MreSopm, MreSoun, MreSpel, \
-            MreSpgd, MreTact, MreTree, MreTxst, MreVtyp, MreWoop, MreWrld
+            MreSpgd, MreTact, MreTree, MreTxst, MreVtyp, MreWoop, MreWrld, \
+            MreAmmo, MreLtex, MreMato, MreStat, MreWatr, MreWeap, MreWthr
         cls.mergeClasses = (
             # MreAchr, MreDial, MreInfo, MreFact,
             MreAact, MreActi, MreAddn, MreAlch, MreAmmo, MreAnio, MreAppa,
