@@ -25,7 +25,7 @@ from __future__ import division
 import errno
 import os
 
-import loot_api
+import loot
 
 from ._mergeability import is_esl_capable
 from .. import balt, bolt, bush, bass, load_order
@@ -43,11 +43,12 @@ class ConfigHelpers(object):
     def __init__(self):
         """bass.dir must have been initialized"""
         global lootDb
-        deprint(u'Using LOOT API version:', loot_api.Version.string())
+        deprint(u'Using LOOT API version:', loot.Version.string())
         try:
             gameType = self.getLootApiGameType(bush.game.fsName)
-            loot_api.initialise_locale('')
-            loot_game = loot_api.create_game_handle(gameType, bass.dirs['app'].s)
+            # initialise_locale is no longer a function
+            # loot.initialise_locale('')
+            loot_game = loot.create_game_handle(gameType, bass.dirs['app'].s)
             lootDb = loot_game.get_database()
         except (OSError, AttributeError):
             deprint(u'The LOOT API failed to initialize', traceback=True)
@@ -129,22 +130,22 @@ class ConfigHelpers(object):
     @staticmethod
     def getLootApiGameType(fsName):
         if fsName == 'Oblivion':
-            return loot_api.GameType.tes4
+            return loot.GameType.tes4
         # TODO See if LOOT adds a new GameType for Enderal
         elif fsName in ('Enderal', 'Skyrim'):
-            return loot_api.GameType.tes5
+            return loot.GameType.tes5
         elif fsName == 'Skyrim Special Edition':
-            return loot_api.GameType.tes5se
+            return loot.GameType.tes5se
         elif fsName == 'Skyrim VR':
-            return loot_api.GameType.tes5vr
+            return loot.GameType.tes5vr
         elif fsName == 'Fallout3':
-            return loot_api.GameType.fo3
+            return loot.GameType.fo3
         elif fsName == 'FalloutNV':
-            return loot_api.GameType.fonv
+            return loot.GameType.fonv
         elif fsName == 'Fallout4':
-            return loot_api.GameType.fo4
+            return loot.GameType.fo4
         elif fsName == 'Fallout4VR':
-            return loot_api.GameType.fo4vr
+            return loot.GameType.fo4vr
         else:
             return None
 
@@ -152,7 +153,7 @@ class ConfigHelpers(object):
     def getDirtyMessage(modName):
         if lootDb is None:
             return False, u''
-        if lootDb.get_plugin_cleanliness(modName.s, True) == loot_api.PluginCleanliness.dirty:
+        if lootDb.get_plugin_cleanliness(modName.s, True) == loot.PluginCleanliness.dirty:
             return True, 'Contains dirty edits, needs cleaning.'
         else:
             return False, ''

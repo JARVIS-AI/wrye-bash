@@ -49,7 +49,7 @@ import time
 import zipfile
 from contextlib import contextmanager
 
-import loot_api
+import loot
 import pygit2
 
 import _winreg
@@ -257,7 +257,7 @@ def pack_manual(version):
 def build_executable(version, file_version):
     """ Builds the executable. """
     LOGGER.info("Building executable...")
-    loot_orig = os.path.join(loot_api.__path__[0], u"loot.dll")
+    loot_orig = os.path.join(loot.__path__[0], u"loot.dll")
     loot_target = os.path.join(MOPY_PATH, u"loot.dll")
     build_folder = os.path.join(MOPY_PATH, u"build")
     dist_folder = os.path.join(MOPY_PATH, u"dist")
