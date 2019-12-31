@@ -37,7 +37,7 @@ import shutil
 import sys
 import tempfile
 
-import loot_api
+import loot
 
 import utils
 
@@ -88,16 +88,16 @@ def main(args):
     utils.setup_log(LOGGER, verbosity=args.verbosity, logfile=args.logfile)
     LOGGER.debug(
         u"Loaded the LOOT API v{} using wrapper version {}".format(
-            loot_api.Version.string(), loot_api.WrapperVersion.string()
+            loot.Version.string(), loot.WrapperVersion.string()
         )
     )
     game_data = [
-        (u"Oblivion", "Oblivion.esm", "oblivion", loot_api.GameType.tes4),
-        (u"Skyrim", "Skyrim.esm", "skyrim", loot_api.GameType.tes5),
-        (u"SkyrimSE", "Skyrim.esm", "skyrimse", loot_api.GameType.tes5se),
-        (u"Fallout3", "Fallout3.esm", "fallout3", loot_api.GameType.fo3),
-        (u"FalloutNV", "FalloutNV.esm", "falloutnv", loot_api.GameType.fonv),
-        (u"Fallout4", "Fallout4.esm", "fallout4", loot_api.GameType.fo4),
+        (u"Oblivion", "Oblivion.esm", "oblivion", loot.GameType.tes4),
+        (u"Skyrim", "Skyrim.esm", "skyrim", loot.GameType.tes5),
+        (u"SkyrimSE", "Skyrim.esm", "skyrimse", loot.GameType.tes5se),
+        (u"Fallout3", "Fallout3.esm", "fallout3", loot.GameType.fo3),
+        (u"FalloutNV", "FalloutNV.esm", "falloutnv", loot.GameType.fonv),
+        (u"Fallout4", "Fallout4.esm", "fallout4", loot.GameType.fo4),
     ]
     for game_name, master_name, repository, game_type in game_data:
         game_install_path = mock_game_install(master_name)
@@ -111,8 +111,8 @@ def main(args):
             )
             continue
         download_masterlist(repository, args.masterlist_version, masterlist_path)
-        loot_api.initialise_locale("")
-        loot_game = loot_api.create_game_handle(game_type, game_install_path)
+        # loot.initialise_locale("")
+        loot_game = loot.create_game_handle(game_type, game_install_path)
         loot_db = loot_game.get_database()
         loot_db.load_lists(masterlist_path)
         loot_db.write_minimal_list(taglist_path, True)
