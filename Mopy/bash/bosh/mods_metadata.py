@@ -46,7 +46,8 @@ class ConfigHelpers(object):
         deprint(u'Using LOOT API version:', loot.Version.string())
         try:
             gameType = self.getLootApiGameType(bush.game.fsName)
-            loot.initialise_locale('')
+            # initialise_locale is no longer a function
+            # loot.initialise_locale('')
             loot_game = loot.create_game_handle(gameType, bass.dirs['app'].s)
             lootDb = loot_game.get_database()
         except (OSError, AttributeError):
