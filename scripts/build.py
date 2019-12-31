@@ -49,7 +49,7 @@ import time
 import zipfile
 from contextlib import contextmanager
 
-import loot_api
+import loot
 import pygit2
 import PyInstaller.__main__
 
