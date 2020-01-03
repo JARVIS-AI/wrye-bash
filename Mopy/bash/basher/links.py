@@ -300,35 +300,35 @@ def InitInstallerLinks():
     #--Install, uninstall, etc.
     InstallersList.itemMenu.append(Installer_OpenReadme())
     InstallersList.itemMenu.append(Installer_Anneal())
+    InstallersList.itemMenu.append(Installer_Refresh())
     InstallersList.itemMenu.append(
         Installer_Refresh(calculate_projects_crc=False))
     InstallersList.itemMenu.append(Installer_Move())
     InstallersList.itemMenu.append(SeparatorLink())
-    if True:  # Install Menu
-        installMenu = MenuLink(_(u'Install..'))
+    if True:  #--Package Menu
+        installMenu = MenuLink(_(u"Install.."))
+        installMenu.links.append(Installer_ListStructure())
         installMenu.links.append(Installer_Install())
-        installMenu.links.append(Installer_Install('MISSING'))
         installMenu.links.append(Installer_Install('LAST'))
         installMenu.links.append(Installer_Fomod())
-        if bEnableWizard:
-            wizardMenu = MenuLink(_(u'Wizard Installer..'))
-            wizardMenu.links.append(Installer_Wizard(False))
-            wizardMenu.links.append(Installer_Wizard(True))
-            wizardMenu.links.append(Installer_EditWizard())
-            installMenu.links.append(wizardMenu)
         InstallersList.itemMenu.append(installMenu)
+    if bEnableWizard:
+        wizardMenu = MenuLink(_(u"Wizard Installer.."))
+        wizardMenu.links.append(Installer_Wizard(False))
+        wizardMenu.links.append(Installer_Wizard(True))
+        wizardMenu.links.append(Installer_EditWizard())
+        InstallersList.itemMenu.append(wizardMenu)
+    InstallersList.itemMenu.append(Installer_Install('MISSING'))
     InstallersList.itemMenu.append(Installer_Uninstall())
     InstallersList.itemMenu.append(SeparatorLink())
-    if True:  # Package Menu
-        packageMenu = MenuLink(_(u'Package..'))
-        packageMenu.links.append(Installer_Refresh())
-        packageMenu.links.append(SeparatorLink())
+    if True:  #--Package Menu
+        packageMenu = MenuLink(_(u"Package.."))
         if bush.game.has_achlist:
             packageMenu.links.append(Installer_ExportAchlist())
+        packageMenu.links.append(SeparatorLink())
         packageMenu.links.append(InstallerProject_Pack())
         packageMenu.links.append(InstallerProject_ReleasePack())
         packageMenu.links.append(SeparatorLink())
-        packageMenu.links.append(Installer_ListStructure())
         packageMenu.links.append(InstallerProject_Sync())
         packageMenu.links.append(InstallerArchive_Unpack())
         packageMenu.links.append(Installer_CopyConflicts())
