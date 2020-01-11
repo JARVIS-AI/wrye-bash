@@ -342,7 +342,8 @@ class _Mods_xEditExpert(BoolLink):
 
     def __init__(self):
         super(_Mods_xEditExpert, self).__init__()
-        self._text, self.key = bush.game.xEdit_expert
+        self._text = _(u'%s Expert') % bush.game.xe.full_name
+        self.key = bush.game.xe.expert_key
 
 class App_Tes4View(App_Button):
     """Allow some extra args for Tes4View."""
@@ -382,7 +383,7 @@ class App_Tes4View(App_Button):
 #  or name ends with Trans.exe
     def __init__(self,*args,**kwdargs):
         App_Button.__init__(self,*args,**kwdargs)
-        if bush.game.xEdit_expert:
+        if bush.game.xe.expert_key:
             self.mainMenu.append(_Mods_xEditExpert())
 
     def IsPresent(self):
@@ -395,8 +396,8 @@ class App_Tes4View(App_Button):
         return True
 
     def Execute(self):
-        is_expert = bush.game.xEdit_expert and bass.settings[
-            bush.game.xEdit_expert[1]]
+        is_expert = bush.game.xe.expert_key and bass.settings[
+            bush.game.xe.expert_key]
         extraArgs = bass.inisettings[
             'xEditCommandLineArguments'].split() if is_expert else []
         if balt.getKeyState_Control():
@@ -504,7 +505,7 @@ class Game_Button(App_Button):
 
 #------------------------------------------------------------------------------
 class TESCS_Button(App_Button):
-    """CS button.  Needs a special Tooltip when OBSE is enabled."""
+    """CS/CK button. Needs a special tooltip when OBSE is enabled."""
     @property
     def obseTip(self):
         # TESCS (version)
