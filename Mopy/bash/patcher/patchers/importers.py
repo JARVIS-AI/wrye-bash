@@ -406,18 +406,6 @@ class CellImporter(_ACellImporter, ImportPatcher):
 
     def buildPatch(self,log,progress): # buildPatch0
         """Adds merged lists to patchfile."""
-
-        def regions_differ(patch_value, value_):
-            """
-            Required for regions because comparing using `==` or `!=`
-            results in false positives.
-            """
-            sorted_patch_value = sorted(patch_value)
-            sorted_value = sorted(value_)
-            regions_compare = set(sorted_value).difference(
-                sorted_patch_value)
-            return (bool(regions_compare))
-
         def handlePatchCellBlock(patchCellBlock):
             """
             This function checks if an attribute or flag in CellData has
@@ -432,12 +420,13 @@ class CellImporter(_ACellImporter, ImportPatcher):
             modified=False
             for attr, value in cellData[patchCellBlock.cell.fid].viewitems():
                 if attr == 'regions':
-                    if regions_differ(patchCellBlock.cell.__getattribute__(attr), value):
+                    if set(value).difference(set(patchCellBlock.cell.__getattribute__(attr))):
                         patchCellBlock.cell.__setattr__(attr, value)
                         modified = True
-                elif patchCellBlock.cell.__getattribute__(attr) != value:
-                    patchCellBlock.cell.__setattr__(attr, value)
-                    modified = True
+                else:
+                    if patchCellBlock.cell.__getattribute__(attr) != value:
+                        patchCellBlock.cell.__setattr__(attr, value)
+                        modified=True
             for flag, value in cellData[
                         patchCellBlock.cell.fid + ('flags',)].viewitems():
                 if patchCellBlock.cell.flags.__getattr__(flag) != value:
