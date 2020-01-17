@@ -1122,14 +1122,15 @@ class MobWorlds(MobBase):
             if worldBlock:
                 worldBlock.updateRecords(srcWorldBlock,mapper,mergeIds)
 
-    def setWorld(self, world, worldcellblock=None):
+    # def setWorld(self, world, worldcellblock=None):
+    def setWorld(self, world):
         """Adds record to record list and indexed."""
         if self.worldBlocks and not self.id_worldBlocks:
             self.indexRecords()
         fid = world.fid
         if fid in self.id_worldBlocks:
             self.id_worldBlocks[fid].world = world
-            self.id_worldBlocks[fid].worldCellBlock = worldcellblock
+            # self.id_worldBlocks[fid].worldCellBlock = worldcellblock
         else:
             worldBlock = MobWorld(RecordHeader('GRUP',0,0,1,self.stamp),
                                   self.loadFactory,world)

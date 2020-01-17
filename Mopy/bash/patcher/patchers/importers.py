@@ -265,7 +265,7 @@ class CellImporter(_ACellImporter, ImportPatcher):
     def initPatchFile(self, patchFile):
         super(CellImporter, self).initPatchFile(patchFile)
         self.cellData = defaultdict(dict)
-        self.persistentData = defaultdict(dict)
+        # self.persistentData = defaultdict(dict)
         # TODO: docs: recAttrs vs tag_attrs - extra in PBash:
         # 'unused1','unused2','unused3'
         self.recAttrs = bush.game.cellRecAttrs # dict[unicode, tuple[str]]
@@ -283,7 +283,7 @@ class CellImporter(_ACellImporter, ImportPatcher):
         """Get cells from source files."""
         if not self.isActive: return
         cellData = self.cellData
-        persistentData = self.persistentData
+        # persistentData = self.persistentData
         # cellData['Maps'] = {}
         def importCellBlockData(cellBlock):
             """
@@ -294,14 +294,14 @@ class CellImporter(_ACellImporter, ImportPatcher):
             """
             if not cellBlock.cell.flags1.ignored:
                 fid = cellBlock.cell.fid
-                if cellBlock.cell.flags1.persistent:
-                    for attr in attrs:
-                        tempPersistentData[fid][attr] = (
-                                cellBlock.cell.__getattribute__(attr))
-                    for flg_ in flgs_:
-                        tempPersistentData[fid + ('flags',)][flg_] = (
-                                cellBlock.cell.flags.__getattr__(flg_))
-                else:
+                # if cellBlock.cell.flags1.persistent:
+                #     for attr in attrs:
+                #         tempPersistentData[fid][attr] = (
+                #                 cellBlock.cell.__getattribute__(attr))
+                #     for flg_ in flgs_:
+                #         tempPersistentData[fid + ('flags',)][flg_] = (
+                #                 cellBlock.cell.flags.__getattr__(flg_))
+                if not cellBlock.cell.flags1.persistent:
                     for attr in attrs:
                         tempCellData[fid][attr] = (
                                 cellBlock.cell.__getattribute__(attr))
@@ -319,18 +319,18 @@ class CellImporter(_ACellImporter, ImportPatcher):
             """
             if not cellBlock.cell.flags1.ignored:
                 fid = cellBlock.cell.fid
-                if fid in tempPersistentData:
-                    for attr in attrs:
-                        master_attr = cellBlock.cell.__getattribute__(attr)
-                        if tempPersistentData[fid][attr] != master_attr:
-                            persistentData[fid][attr] = (
-                                    tempPersistentData[fid][attr])
-                    for flg_ in flgs_:
-                        master_flag = cellBlock.cell.flags.__getattr__(flg_)
-                        if tempPersistentData[fid + ('flags',)][
-                            flg_] != master_flag:
-                            persistentData[fid + ('flags',)][flg_] = (
-                                    tempPersistentData[fid + ('flags',)][flg_])
+                # if fid in tempPersistentData:
+                #     for attr in attrs:
+                #         master_attr = cellBlock.cell.__getattribute__(attr)
+                #         if tempPersistentData[fid][attr] != master_attr:
+                #             persistentData[fid][attr] = (
+                #                     tempPersistentData[fid][attr])
+                #     for flg_ in flgs_:
+                #         master_flag = cellBlock.cell.flags.__getattr__(flg_)
+                #         if tempPersistentData[fid + ('flags',)][
+                #             flg_] != master_flag:
+                #             persistentData[fid + ('flags',)][flg_] = (
+                #                     tempPersistentData[fid + ('flags',)][flg_])
                 if fid in tempCellData:
                     for attr in attrs:
                         master_attr = cellBlock.cell.__getattribute__(attr)
@@ -354,7 +354,7 @@ class CellImporter(_ACellImporter, ImportPatcher):
             # values from the value in any of srcMod's masters.
             tempCellData = defaultdict(dict)
             tempCellData['Maps'] = {} # unused !
-            tempPersistentData = defaultdict(dict)
+            # tempPersistentData = defaultdict(dict)
             srcInfo = bosh.modInfos[srcMod]
             srcFile = ModFile(srcInfo,loadFactory)
             srcFile.load(True)
@@ -377,8 +377,8 @@ class CellImporter(_ACellImporter, ImportPatcher):
                 for worldBlock in srcFile.WRLD.worldBlocks:
                     for cellBlock in worldBlock.cellBlocks:
                         importCellBlockData(cellBlock)
-                    if worldBlock.worldCellBlock:
-                        importCellBlockData(worldBlock.worldCellBlock)
+                    # if worldBlock.worldCellBlock:
+                    #     importCellBlockData(worldBlock.worldCellBlock)
                     # if 'C.Maps' in bashTags:
                     #     if worldBlock.world.mapPath:
                     #         tempCellData['Maps'][worldBlock.world.fid] = worldBlock.world.mapPath
@@ -399,8 +399,8 @@ class CellImporter(_ACellImporter, ImportPatcher):
                     for worldBlock in masterFile.WRLD.worldBlocks:
                         for cellBlock in worldBlock.cellBlocks:
                             checkMasterCellBlockData(cellBlock)
-                        if worldBlock.worldCellBlock:
-                            checkMasterCellBlockData(worldBlock.worldCellBlock)
+                        # if worldBlock.worldCellBlock:
+                        #     checkMasterCellBlockData(worldBlock.worldCellBlock)
                         # if worldBlock.world.fid in tempCellData['Maps']:
                             # if worldBlock.world.mapPath != tempCellData['Maps'][worldBlock.world.fid]:
                                 # cellData['Maps'][worldBlock.world.fid] = tempCellData['Maps'][worldBlock.world.fid]
@@ -414,7 +414,7 @@ class CellImporter(_ACellImporter, ImportPatcher):
                 'CELL' not in modFile.tops and 'WRLD' not in modFile.tops):
             return
         cellData = self.cellData
-        persistentData = self.persistentData
+        # persistentData = self.persistentData
         patchCells = self.patchFile.CELL
         patchWorlds = self.patchFile.WRLD
         modFile.convertToLongFids(('CELL','WRLD'))
@@ -426,14 +426,15 @@ class CellImporter(_ACellImporter, ImportPatcher):
             for worldBlock in modFile.WRLD.worldBlocks:
                 for cellBlock in worldBlock.cellBlocks:
                     if cellBlock.cell.fid in cellData:
-                        patchWorlds.setWorld(worldBlock.world,
-                                             worldBlock.worldCellBlock)
+                        patchWorlds.setWorld(worldBlock.world)
+                        # patchWorlds.setWorld(worldBlock.world,
+                        #                      worldBlock.worldCellBlock)
                         patchWorlds.id_worldBlocks[
                             worldBlock.world.fid].setCell(cellBlock.cell)
-                if worldBlock.worldCellBlock is not None:
-                    if worldBlock.worldCellBlock.cell.fid in persistentData:
-                        patchWorlds.setWorld(worldBlock.world,
-                                             worldBlock.worldCellBlock)
+                # if worldBlock.worldCellBlock is not None:
+                #     if worldBlock.worldCellBlock.cell.fid in persistentData:
+                #         patchWorlds.setWorld(worldBlock.world,
+                #                              worldBlock.worldCellBlock)
                 # if worldBlock.world.fid in cellData['Maps']:
                     # patchWorlds.setWorld(worldBlock.world)
 
@@ -452,22 +453,22 @@ class CellImporter(_ACellImporter, ImportPatcher):
             """
             modified = False
             fid = patchCellBlock.cell.fid
-            if fid in persistentData:
-                for attr, value in persistentData[fid].iteritems():
-                    if attr == 'regions':
-                        if set(value).difference(set(
-                                patchCellBlock.cell.__getattribute__(attr))):
-                            patchCellBlock.cell.__setattr__(attr, value)
-                            modified = True
-                    else:
-                        if patchCellBlock.cell.__getattribute__(attr) != value:
-                            patchCellBlock.cell.__setattr__(attr, value)
-                            modified = True
-                for flag, value in persistentData[fid + ('flags',)].iteritems():
-                    if patchCellBlock.cell.flags.__getattr__(flag) != value:
-                        patchCellBlock.cell.flags.__setattr__(flag, value)
-                        modified = True
-            elif fid in cellData:
+            # if fid in persistentData:
+            #     for attr, value in persistentData[fid].iteritems():
+            #         if attr == 'regions':
+            #             if set(value).difference(set(
+            #                     patchCellBlock.cell.__getattribute__(attr))):
+            #                 patchCellBlock.cell.__setattr__(attr, value)
+            #                 modified = True
+            #         else:
+            #             if patchCellBlock.cell.__getattribute__(attr) != value:
+            #                 patchCellBlock.cell.__setattr__(attr, value)
+            #                 modified = True
+            #     for flag, value in persistentData[fid + ('flags',)].iteritems():
+            #         if patchCellBlock.cell.flags.__getattr__(flag) != value:
+            #             patchCellBlock.cell.flags.__setattr__(flag, value)
+            #             modified = True
+            if fid in cellData:
                 for attr, value in cellData[fid].iteritems():
                     if attr == 'regions':
                         if set(value).difference(set(
@@ -489,11 +490,13 @@ class CellImporter(_ACellImporter, ImportPatcher):
 
         if not self.isActive: return
         keep = self.patchFile.getKeeper()
-        cellData, persistentData, count = (
-                self.cellData, self.persistentData, Counter())
+        cellData, count = self.cellData, Counter()
+        # cellData, persistentData, count = (
+        #         self.cellData, self.persistentData, Counter())
         for cellBlock in self.patchFile.CELL.cellBlocks:
-            if cellBlock.cell.fid in cellData and handlePatchCellBlock(cellBlock):
-                count[cellBlock.cell.fid[0]] += 1
+            if cellBlock.cell.fid in cellData:
+                if handlePatchCellBlock(cellBlock):
+                    count[cellBlock.cell.fid[0]] += 1
         for worldBlock in self.patchFile.WRLD.worldBlocks:
             keepWorld = False
             for cellBlock in worldBlock.cellBlocks:
@@ -501,11 +504,11 @@ class CellImporter(_ACellImporter, ImportPatcher):
                     if handlePatchCellBlock(cellBlock):
                         count[cellBlock.cell.fid[0]] += 1
                         keepWorld = True
-            if worldBlock.worldCellBlock:
-                if worldBlock.worldCellBlock.cell.fid in persistentData:
-                    if handlePatchCellBlock(worldBlock.worldCellBlock):
-                        count[worldBlock.worldCellBlock.cell.fid[0]] += 1
-                        keepWorld = True
+            # if worldBlock.worldCellBlock:
+            #     if worldBlock.worldCellBlock.cell.fid in persistentData:
+            #         if handlePatchCellBlock(worldBlock.worldCellBlock):
+            #             count[worldBlock.worldCellBlock.cell.fid[0]] += 1
+            #             keepWorld = True
             # if worldBlock.world.fid in cellData['Maps']:
                 # if worldBlock.world.mapPath != cellData['Maps'][worldBlock.world.fid]:
                     # print worldBlock.world.mapPath
