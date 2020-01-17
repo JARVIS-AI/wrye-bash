@@ -744,7 +744,7 @@ soundsTypes = {
 # CellImporter
 #------------------------------------------------------------------------------
 cellAutoKeys = {u'C.Acoustic', u'C.Climate', u'C.Encounter',
-                u'C.ForceHideLand', u'C.ImageSpace', u'C.Light', u'C.Music',
+                u'C.ImageSpace', u'C.Light', u'C.Music',
                 u'C.Name', u'C.Owner', u'C.RecordFlags', u'C.Regions',
                 u'C.Water'} #,u'C.Maps')
 cellRecAttrs = {
