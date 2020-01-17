@@ -5459,7 +5459,7 @@ class MreWrld(MelRecord):
     melSet = MelSet(
         MelEdid(),
         MelGroups('unusedRNAM', # leftover
-            MelBase('RNAM','unknown',),
+            MelNull('RNAM'),
         ),
         MelBase('MHDT','maxHeightData'),
         MelFull(),
