@@ -131,7 +131,7 @@ class Fallout3GameInfo(GameInfo):
         u'Actors.AIPackagesForceAdd', u'Actors.Anims', u'Actors.CombatStyle',
         u'Actors.DeathItem', u'Actors.Skeleton', u'Actors.Spells',
         u'Actors.SpellsForceAdd', u'Actors.Stats', u'C.Acoustic', u'C.Climate',
-        u'C.Encounter', u'C.ForceHideLand', u'C.ImageSpace', u'C.Light',
+        u'C.Encounter', u'C.ImageSpace', u'C.Light',
         u'C.Music', u'C.Name', u'C.Owner', u'C.RecordFlags', u'C.Regions',
         u'C.Water', u'Creatures.Blood', u'Creatures.Type', u'Deactivate',
         u'Deflst', u'Delev', u'Destructible', u'Factions', u'Filter',
