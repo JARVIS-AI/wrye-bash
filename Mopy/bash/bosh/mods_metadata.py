@@ -299,7 +299,7 @@ class ConfigHelpers(object):
             if invalidVersion:
                 # Always an ASCII byte string, so this is fine
                 header_sig = unicode(
-                    bush.game_mod.records.MreHeader.classType,
+                    bush.game_mod.records.MreTes4.classType,
                     encoding='ascii')
                 ver_list = u', '.join(sorted([
                     unicode(v) for v in bush.game.esp.validHeaderVersions]))
@@ -893,7 +893,7 @@ class ModDetails(object):
                 return reader,sizeCheck
         progress = progress or bolt.Progress()
         group_records = self.group_records = {}
-        records = group_records[bush.game_mod.records.MreHeader.classType] = []
+        records = group_records[bush.game_mod.records.MreTes4.classType] = []
         with ModReader(modInfo.name,modInfo.getPath().open('rb')) as ins:
             while not ins.atEnd():
                 header = ins.unpackRecHeader()
@@ -921,4 +921,4 @@ class ModDetails(object):
                         recs.seek(rec_siz, 1)
                     records.append((header.fid,eid))
                     ins.seek(nextRecord)
-        del group_records[bush.game_mod.records.MreHeader.classType]
+        del group_records[bush.game_mod.records.MreTes4.classType]

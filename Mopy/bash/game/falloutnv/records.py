@@ -44,7 +44,7 @@ from ...exception import ModSizeError
 #------------------------------------------------------------------------------
 # FalloutNV Records -----------------------------------------------------------
 #------------------------------------------------------------------------------
-class MreHeader(MreHeaderBase):
+class MreTes4(MreHeaderBase):
     """TES4 Record.  File header."""
     classType = 'TES4'
 
