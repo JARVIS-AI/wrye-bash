@@ -50,15 +50,28 @@ To run Wrye Bash from the latest `dev` code (download from [here][12])
 you need:
 
 * A game to manage from the supported games.
-* [Python 2.7 32-bit](http://www.python.org/) (latest 2.7 is recommended)
+* [Python 2.7 64-bit](http://www.python.org/) (latest 2.7 is recommended)
 
-**NB**: the 32-bit version is required even if you are on a 64-bit
-operating system.
+**NB**: the 64-bit version is **required**. 32-bit operating systems are no
+longer supported.
 
-Once you have those, install the required packages by running:
+**Note:** Currently, you will have to manually download three wheels from the
+unofficial [Python Extension Packages for Windows](https://www.lfd.uci.edu/~gohlke/pythonlibs/)
+page, since there is no official, automatically downloadable build for these.
+Please head there, Ctrl+F for these three and download them:
+```
+py2exe‑0.6.10a1‑cp27‑none‑win_amd64.whl
+wxPython_common‑3.0.2.0‑py2‑none‑any.whl
+wxPython‑3.0.2.0‑cp27‑none‑win_amd64.whl
+```
+
+Once you have all that, install the required packages by running:
 
 ```bash
 path/to/python.exe -m pip install -r requirements.txt
+path/to/python.exe -m pip install /path/to/downloads/py2exe‑0.6.10a1‑cp27‑none‑win_amd64.whl
+path/to/python.exe -m pip install /path/to/downloads/wxPython_common‑3.0.2.0‑py2‑none‑any.whl
+path/to/python.exe -m pip install /path/to/downloads/wxPython‑3.0.2.0‑cp27‑none‑win_amd64.whl
 ```
 
 Refer to the readmes for [detailed instructions][12]. In short:

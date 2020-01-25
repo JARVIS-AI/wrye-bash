@@ -38,7 +38,9 @@
 ####### END LICENSE BLOCK ######
 
 from __future__ import division
-from ctypes import *
+from ctypes import byref, cast, c_bool, c_byte, c_char, c_char_p, c_float, \
+    CFUNCTYPE, c_long, c_short, c_ubyte, c_uint32, c_ushort, c_ulong, CDLL, \
+    POINTER, string_at, Structure, c_int, c_void_p
 import math
 import os
 from os.path import exists, join
@@ -127,9 +129,6 @@ except:
         raise UnicodeEncodeError(u'Text could not be encoded using any of the following encodings: %s' % encodings)
     _enc = _encode
 
-
-_CBashRequiredVersion = (0,6,0)
-
 class CBashError(Exception):
     def __init__(self, value):
         self.value = value
@@ -151,40 +150,24 @@ def PositiveIsErrorCheck(result, function, cArguments, *args):
     return result
 
 _CBash = None
-# path to compiled dir hardcoded since importing bosh would be circular
-# TODO: refactor to avoid circular deps
-if CBashEnabled == 0: #regular depends on the filepath existing.
-    paths = [join(u'bash', u'compiled', u'CBash.dll'),join(u'compiled', u'CBash.dll')]
-elif CBashEnabled == 1: #force python mode
-    paths = []
-elif CBashEnabled == 2: #attempt to force CBash mode
-    paths = [join(u'bash',u'compiled',filename) for filename in [u'CBash.dll',u'rename_CBash.dll',u'_CBash.dll']]
-else: #attempt to force path to CBash dll
-    paths = [join(path,u'CBash.dll') for path in CBashEnabled]
-
-try:
-    for path in paths:
-        if exists(path):
-            # CDLL doesn't play with unicode path strings nicely on windows :(
-            # Use this workaround
-            handle = None
-            if isinstance(path,unicode) and os.name in ('nt','ce'):
-                LoadLibrary = windll.kernel32.LoadLibraryW
-                handle = LoadLibrary(path)
-            from .env import get_file_version
-            if get_file_version(path) < (0, 7):
-                raise ImportError(u'Bundled CBash version is too old for this '
-                                  u'Wrye Bash version. Only 0.7.0+ is '
-                                  u'supported.')
-            _CBash = CDLL(path,handle=handle)
-            break
-    del paths
-except (AttributeError,ImportError,OSError) as error:
-    _CBash = None
-    deprint(u'Failed to import CBash.', traceback=True)
-except:
-    _CBash = None
-    raise
+# Have to hardcode this relative to the cwd, because passing any non-unicode
+# characters to CDLL tries to encode them as ASCII and crashes
+# TODO(inf) fixed in py3, remove this on upgrade
+cb_path = join(u'bash', u'compiled', u'CBash.dll')
+if CBashEnabled != 1 and exists(cb_path):
+    try:
+        from .env import get_file_version
+        if get_file_version(cb_path) < (0, 7):
+            raise ImportError(u'Bundled CBash version is too old for this '
+                              u'Wrye Bash version. Only 0.7.0+ is '
+                              u'supported.')
+        _CBash = CDLL(cb_path)
+    except (AttributeError, ImportError, OSError):
+        _CBash = None
+        deprint(u'Failed to import CBash.', traceback=True)
+    except:
+        _CBash = None
+        raise
 
 if _CBash:
     def LoggingCB(logString):
@@ -212,38 +195,30 @@ if _CBash:
 ##        raise CBashError("Check the log.")
         return
 
+    # https://stackoverflow.com/a/5030940
+    class _CCollection(Structure): pass
+    class _CMod(Structure): pass
+    class _CRecord(Structure): pass
+
+    c_collection_p = POINTER(_CCollection)
+    c_mod_p = POINTER(_CMod)
+    c_record_p = POINTER(_CRecord)
+
     _CGetVersionMajor = _CBash.cb_GetVersionMajor
     _CGetVersionMinor = _CBash.cb_GetVersionMinor
     _CGetVersionRevision = _CBash.cb_GetVersionRevision
-    _CGetVersionMajor.restype = c_ulong
-    _CGetVersionMinor.restype = c_ulong
-    _CGetVersionRevision.restype = c_ulong
-    if (_CGetVersionMajor(),_CGetVersionMinor(),_CGetVersionRevision()) < _CBashRequiredVersion:
-        raise ImportError(_("cint.py requires CBash v%d.%d.%d or higher! (found v%d.%d.%d)") % (_CBashRequiredVersion + (_CGetVersionMajor(),_CGetVersionMinor(),_CGetVersionRevision())))
     _CCreateCollection = _CBash.cb_CreateCollection
-    _CCreateCollection.errcheck = ZeroIsErrorCheck
     _CDeleteCollection = _CBash.cb_DeleteCollection
-    _CDeleteCollection.errcheck = NegativeIsErrorCheck
     _CLoadCollection = _CBash.cb_LoadCollection
-    _CLoadCollection.errcheck = NegativeIsErrorCheck
     _CUnloadCollection = _CBash.cb_UnloadCollection
-    _CUnloadCollection.errcheck = NegativeIsErrorCheck
     _CGetCollectionType = _CBash.cb_GetCollectionType
-    _CGetCollectionType.errcheck = NegativeIsErrorCheck
     _CUnloadAllCollections = _CBash.cb_UnloadAllCollections
-    _CUnloadAllCollections.errcheck = NegativeIsErrorCheck
     _CDeleteAllCollections = _CBash.cb_DeleteAllCollections
-    _CDeleteAllCollections.errcheck = NegativeIsErrorCheck
     _CAddMod = _CBash.cb_AddMod
-    _CAddMod.errcheck = ZeroIsErrorCheck
     _CLoadMod = _CBash.cb_LoadMod
-    _CLoadMod.errcheck = NegativeIsErrorCheck
     _CUnloadMod = _CBash.cb_UnloadMod
-    _CUnloadMod.errcheck = NegativeIsErrorCheck
     _CCleanModMasters = _CBash.cb_CleanModMasters
-    _CCleanModMasters.errcheck = NegativeIsErrorCheck
     _CSaveMod = _CBash.cb_SaveMod
-    _CSaveMod.errcheck = NegativeIsErrorCheck
     _CGetAllNumMods = _CBash.cb_GetAllNumMods
     _CGetAllModIDs = _CBash.cb_GetAllModIDs
     _CGetLoadOrderNumMods = _CBash.cb_GetLoadOrderNumMods
@@ -261,16 +236,10 @@ if _CBash:
     _CGetCollectionIDByModID = _CBash.cb_GetCollectionIDByModID
     _CIsModEmpty = _CBash.cb_IsModEmpty
     _CGetModNumTypes = _CBash.cb_GetModNumTypes
-    _CGetModNumTypes.errcheck = NegativeIsErrorCheck
     _CGetModTypes = _CBash.cb_GetModTypes
-    _CGetModTypes.errcheck = NegativeIsErrorCheck
     _CGetModNumEmptyGRUPs = _CBash.cb_GetModNumEmptyGRUPs
-    _CGetModNumEmptyGRUPs.errcheck = NegativeIsErrorCheck
     _CGetModNumOrphans = _CBash.cb_GetModNumOrphans
-    _CGetModNumOrphans.errcheck = NegativeIsErrorCheck
     _CGetModOrphansFormIDs = _CBash.cb_GetModOrphansFormIDs
-    _CGetModOrphansFormIDs.errcheck = NegativeIsErrorCheck
-
     _CGetLongIDName = _CBash.cb_GetLongIDName
     _CMakeShortFormID = _CBash.cb_MakeShortFormID
     _CCreateRecord = _CBash.cb_CreateRecord
@@ -296,14 +265,79 @@ if _CBash:
     _CGetFieldAttribute = _CBash.cb_GetFieldAttribute
     _CGetField = _CBash.cb_GetField
 
-    _CCreateCollection.restype = c_ulong
+    _CGetVersionMajor.argtypes = []
+    _CGetVersionMinor.argtypes = []
+    _CGetVersionRevision.argtypes = []
+    _CCreateCollection.argtypes = [c_char_p, c_int]
+    _CDeleteCollection.argtypes = [c_collection_p]
+    _CLoadCollection.argtypes = [c_collection_p, CFUNCTYPE(c_bool, c_ulong, c_ulong, c_char_p)]
+    _CUnloadCollection.argtypes = [c_collection_p]
+    _CGetCollectionType.argtypes = [c_collection_p]
+    _CUnloadAllCollections.argtypes = []
+    _CDeleteAllCollections.argtypes = []
+    _CAddMod.argtypes = [c_collection_p, c_char_p, c_int]
+    _CLoadMod.argtypes = [c_mod_p]
+    _CUnloadMod.argtypes = [c_mod_p]
+    _CCleanModMasters.argtypes = [c_mod_p]
+    _CSaveMod.argtypes = [c_mod_p, c_int, c_char_p]
+    _CGetAllNumMods.argtypes = [c_collection_p]
+    _CGetAllModIDs.argtypes = [c_collection_p, POINTER(c_mod_p)]
+    _CGetLoadOrderNumMods.argtypes = [c_collection_p]
+    _CGetLoadOrderModIDs.argtypes = [c_collection_p, POINTER(c_mod_p)]
+    _CGetFileNameByID.argtypes = [c_mod_p]
+    _CGetFileNameByLoadOrder.argtypes = [c_collection_p, c_ulong]
+    _CGetModNameByID.argtypes = [c_mod_p]
+    _CGetModNameByLoadOrder.argtypes = [c_collection_p, c_ulong]
+    _CGetModIDByName.argtypes = [c_collection_p, c_char_p]
+    _CGetModIDByLoadOrder.argtypes = [c_collection_p, c_ulong]
+    _CGetModLoadOrderByName.argtypes = [c_collection_p, c_char_p]
+    _CGetModLoadOrderByID.argtypes = [c_mod_p]
+    _CGetModIDByRecordID.argtypes = [c_record_p]
+    _CGetCollectionIDByRecordID.argtypes = [c_record_p]
+    _CGetCollectionIDByModID.argtypes = [c_mod_p]
+    _CIsModEmpty.argtypes = [c_mod_p]
+    _CGetModNumTypes.argtypes = [c_mod_p]
+    _CGetModTypes.argtypes = [c_mod_p, POINTER(c_char * 4)]
+    _CGetModNumEmptyGRUPs.argtypes = [c_mod_p]
+    _CGetModNumOrphans.argtypes = [c_mod_p]
+    _CGetModOrphansFormIDs.argtypes = [c_mod_p, POINTER(c_ulong)]
+    _CGetLongIDName.argtypes = [c_record_p, c_ulong, c_bool]
+    _CMakeShortFormID.argtypes = [c_mod_p, c_ulong, c_bool]
+    _CCreateRecord.argtypes = [c_mod_p, c_ulong, c_ulong, c_char_p, c_record_p, c_int]
+    _CCopyRecord.argtypes = [c_record_p, c_mod_p, c_record_p, c_ulong, c_char_p, c_int]
+    _CUnloadRecord.argtypes = [c_record_p]
+    _CResetRecord.argtypes = [c_record_p]
+    _CDeleteRecord.argtypes = [c_record_p]
+    _CGetRecordID.argtypes = [c_mod_p, c_ulong, c_char_p]
+    _CGetNumRecords.argtypes = [c_mod_p, c_ulong]
+    _CGetRecordIDs.argtypes = [c_mod_p, c_ulong, POINTER(c_record_p)]
+    _CIsRecordWinning.argtypes = [c_record_p, c_bool]
+    _CGetNumRecordConflicts.argtypes = [c_record_p, c_bool]
+    _CGetRecordConflicts.argtypes = [c_record_p, POINTER(c_record_p), c_bool]
+    _CGetRecordHistory.argtypes = [c_record_p, POINTER(c_record_p)]
+    _CGetNumIdenticalToMasterRecords.argtypes = [c_mod_p]
+    _CGetIdenticalToMasterRecords.argtypes = [c_mod_p, POINTER(c_record_p)]
+    _CIsRecordFormIDsInvalid.argtypes = [c_record_p]
+    _CUpdateReferences.argtypes = [c_mod_p, c_record_p, POINTER(c_ulong), POINTER(c_ulong), POINTER(c_ulong), c_ulong]
+    _CGetRecordUpdatedReferences.argtypes = [c_collection_p, c_record_p]
+    _CSetIDFields.argtypes = [c_record_p, c_ulong, c_char_p]
+    field_ids = [c_ulong] * 7
+    _CSetField.argtypes = [c_record_p] + field_ids + [c_void_p, c_ulong]
+    _CDeleteField.argtypes = [c_record_p] + field_ids
+    _CGetFieldAttribute.argtypes = [c_record_p] + field_ids + [c_ulong]
+    _CGetField.argtypes = [c_record_p] + field_ids + [c_void_p]
+
+    _CGetVersionMajor.restype = c_ulong
+    _CGetVersionMinor.restype = c_ulong
+    _CGetVersionRevision.restype = c_ulong
+    _CCreateCollection.restype = c_collection_p
     _CDeleteCollection.restype = c_long
     _CLoadCollection.restype = c_long
     _CUnloadCollection.restype = c_long
     _CGetCollectionType.restype = c_long
     _CUnloadAllCollections.restype = c_long
     _CDeleteAllCollections.restype = c_long
-    _CAddMod.restype = c_ulong
+    _CAddMod.restype = c_mod_p
     _CLoadMod.restype = c_long
     _CUnloadMod.restype = c_long
     _CCleanModMasters.restype = c_long
@@ -316,13 +350,13 @@ if _CBash:
     _CGetFileNameByLoadOrder.restype = c_char_p
     _CGetModNameByID.restype = c_char_p
     _CGetModNameByLoadOrder.restype = c_char_p
-    _CGetModIDByName.restype = c_ulong
-    _CGetModIDByLoadOrder.restype = c_ulong
+    _CGetModIDByName.restype = c_mod_p
+    _CGetModIDByLoadOrder.restype = c_mod_p
     _CGetModLoadOrderByName.restype = c_long
     _CGetModLoadOrderByID.restype = c_long
-    _CGetModIDByRecordID.restype = c_ulong
-    _CGetCollectionIDByRecordID.restype = c_ulong
-    _CGetCollectionIDByModID.restype = c_ulong
+    _CGetModIDByRecordID.restype = c_mod_p
+    _CGetCollectionIDByRecordID.restype = c_collection_p
+    _CGetCollectionIDByModID.restype = c_collection_p
     _CIsModEmpty.restype = c_ulong
     _CGetModNumTypes.restype = c_long
     _CGetModTypes.restype = c_long
@@ -331,12 +365,12 @@ if _CBash:
     _CGetModOrphansFormIDs.restype = c_long
     _CGetLongIDName.restype = c_char_p
     _CMakeShortFormID.restype = c_ulong
-    _CCreateRecord.restype = c_ulong
-    _CCopyRecord.restype = c_ulong
+    _CCreateRecord.restype = c_record_p
+    _CCopyRecord.restype = c_record_p
     _CUnloadRecord.restype = c_long
     _CResetRecord.restype = c_long
     _CDeleteRecord.restype = c_long
-    _CGetRecordID.restype = c_ulong
+    _CGetRecordID.restype = c_record_p
     _CGetNumRecords.restype = c_long
     _CGetRecordIDs.restype = c_long
     _CIsRecordWinning.restype = c_long
@@ -350,6 +384,25 @@ if _CBash:
     _CGetRecordUpdatedReferences.restype = c_long
     _CSetIDFields.restype = c_long
     _CGetFieldAttribute.restype = c_ulong
+
+    _CCreateCollection.errcheck = ZeroIsErrorCheck
+    _CDeleteCollection.errcheck = NegativeIsErrorCheck
+    _CLoadCollection.errcheck = NegativeIsErrorCheck
+    _CUnloadCollection.errcheck = NegativeIsErrorCheck
+    _CGetCollectionType.errcheck = NegativeIsErrorCheck
+    _CUnloadAllCollections.errcheck = NegativeIsErrorCheck
+    _CDeleteAllCollections.errcheck = NegativeIsErrorCheck
+    _CAddMod.errcheck = ZeroIsErrorCheck
+    _CLoadMod.errcheck = NegativeIsErrorCheck
+    _CUnloadMod.errcheck = NegativeIsErrorCheck
+    _CCleanModMasters.errcheck = NegativeIsErrorCheck
+    _CSaveMod.errcheck = NegativeIsErrorCheck
+    _CGetModNumTypes.errcheck = NegativeIsErrorCheck
+    _CGetModTypes.errcheck = NegativeIsErrorCheck
+    _CGetModNumEmptyGRUPs.errcheck = NegativeIsErrorCheck
+    _CGetModNumOrphans.errcheck = NegativeIsErrorCheck
+    _CGetModOrphansFormIDs.errcheck = NegativeIsErrorCheck
+
     LoggingCallback = CFUNCTYPE(c_long, c_char_p)(LoggingCB)
     RaiseCallback = CFUNCTYPE(None, c_char_p)(RaiseCB)
     _CBash.cb_RedirectMessages(LoggingCallback)
@@ -631,7 +684,7 @@ class FormID(object):
 
         def GetShortFormID(self, target):
             """An empty FormID is always valid, so it isn't resolved. That's why it subclasses ValidFormID."""
-            return None
+            return 0
 
     class RawFormID(ValidFormID):
         __slots__ = ['shortID']
@@ -1583,7 +1636,7 @@ class CBashLIST(object):
             length = len(nElements)
             if not isinstance(nElements[0], tuple): nElements = ExtractCopyList(nElements)
             ##Resizes the list
-            _CSetField(instance._RecordID, self._FieldID, 0, 0, 0, 0, 0, 0, 0, c_long(length))
+            _CSetField(instance._RecordID, self._FieldID, 0, 0, 0, 0, 0, 0, 0, c_ulong(length))
             SetCopyList([self._Type(instance._RecordID, self._FieldID, x) for x in xrange(_CGetFieldAttribute(instance._RecordID, self._FieldID, 0, 0, 0, 0, 0, 0, 1))], nElements)
 
 class CBashUNKNOWN_OR_GENERIC(object):
@@ -1653,8 +1706,9 @@ class CBashIUNICODEARRAY(object):
     def __get__(self, instance, owner):
         numRecords = _CGetFieldAttribute(instance._RecordID, self._FieldID, 0, 0, 0, 0, 0, 0, 1)
         if (numRecords > 0):
-            cRecords = (POINTER(c_char_p) * numRecords)()
-            _CGetField(instance._RecordID, self._FieldID, 0, 0, 0, 0, 0, 0, byref(cRecords))
+            cRecords = (POINTER(c_void_p) * numRecords)()
+            _CGetField(instance._RecordID, self._FieldID, 0, 0, 0, 0, 0, 0, cRecords)
+            cRecords = cast(cRecords, POINTER(c_char_p))
             return [IUNICODE(_uni(string_at(cRecords[x]))) for x in xrange(numRecords)]
         return []
 
@@ -1928,7 +1982,7 @@ class CBashUNICODE(object):
 
     def __set__(self, instance, nValue):
         if nValue is None: _CDeleteField(instance._RecordID, self._FieldID, 0, 0, 0, 0, 0, 0)
-        else: _CSetField(instance._RecordID, self._FieldID, 0, 0, 0, 0, 0, 0, _enc(nValue), 0)
+        else: _CSetField(instance._RecordID, self._FieldID, 0, 0, 0, 0, 0, 0, cast(_enc(nValue), c_void_p), 0)
 
 class CBashISTRING(object):
     __slots__ = ['_FieldID']
@@ -1952,8 +2006,8 @@ class CBashRECORDARRAY(object):
     def __get__(self, instance, owner):
         numRecords = _CGetNumRecords(instance._ModID, self._TypeName)
         if(numRecords > 0):
-            cRecords = (c_ulong * numRecords)()
-            _CGetRecordIDs(instance._ModID, self._TypeName, byref(cRecords))
+            cRecords = (c_record_p * numRecords)()
+            _CGetRecordIDs(instance._ModID, self._TypeName, cRecords)
             return [self._Type(x) for x in cRecords]
         return []
 
@@ -1981,7 +2035,7 @@ class CBashSUBRECORDARRAY(object):
     def __get__(self, instance, owner):
         numRecords = _CGetFieldAttribute(instance._RecordID, self._FieldID, 0, 0, 0, 0, 0, 0, 1)
         if(numRecords > 0):
-            cRecords = (c_ulong * numRecords)()
+            cRecords = (c_void_p * numRecords)()
             _CGetField(instance._RecordID, self._FieldID, 0, 0, 0, 0, 0, 0, byref(cRecords))
             return [self._Type(x) for x in cRecords]
         return []
@@ -2993,7 +3047,7 @@ class FnvBaseRecord(object):
         return [x for x in Changes]
 
     def History(self):
-        cRecordIDs = (c_ulong * 257)() #just allocate enough for the max number + size
+        cRecordIDs = (c_record_p * 257)() #just allocate enough for the max number + size
         numRecords = _CGetRecordHistory(self._RecordID, byref(cRecordIDs))
         return [self.__class__(cRecordIDs[x]) for x in range(numRecords)]
 
@@ -3009,7 +3063,7 @@ class FnvBaseRecord(object):
     def Conflicts(self, GetExtendedConflicts=False):
         numRecords = _CGetNumRecordConflicts(self._RecordID, c_ulong(GetExtendedConflicts)) #gives upper bound
         if(numRecords > 1):
-            cRecordIDs = (c_ulong * numRecords)()
+            cRecordIDs = (c_record_p * numRecords)()
             numRecords = _CGetRecordConflicts(self._RecordID, byref(cRecordIDs), c_ulong(GetExtendedConflicts))
             return [self.__class__(cRecordIDs[x]) for x in range(numRecords)]
         return []
@@ -3206,7 +3260,7 @@ class FnvACHRRecord(FnvBaseRecord):
     __slots__ = []
     @property
     def _ParentID(self):
-        _CGetField.restype = c_ulong
+        _CGetField.restype = c_record_p
         return _CGetField(self._RecordID, 55, 0, 0, 0, 0, 0, 0, 0)
 
     _Type = 'ACHR'
@@ -3330,7 +3384,7 @@ class FnvACRERecord(FnvBaseRecord):
     __slots__ = []
     @property
     def _ParentID(self):
-        _CGetField.restype = c_ulong
+        _CGetField.restype = c_record_p
         return _CGetField(self._RecordID, 57, 0, 0, 0, 0, 0, 0, 0)
 
     _Type = 'ACRE'
@@ -3456,7 +3510,7 @@ class FnvREFRRecord(FnvBaseRecord):
     __slots__ = []
     @property
     def _ParentID(self):
-        _CGetField.restype = c_ulong
+        _CGetField.restype = c_record_p
         return _CGetField(self._RecordID, 141, 0, 0, 0, 0, 0, 0, 0)
 
     _Type = 'REFR'
@@ -3797,7 +3851,7 @@ class FnvPGRERecord(FnvBaseRecord):
     __slots__ = []
     @property
     def _ParentID(self):
-        _CGetField.restype = c_ulong
+        _CGetField.restype = c_record_p
         return _CGetField(self._RecordID, 56, 0, 0, 0, 0, 0, 0, 0)
 
     _Type = 'PGRE'
@@ -3939,7 +3993,7 @@ class FnvPMISRecord(FnvBaseRecord):
     __slots__ = []
     @property
     def _ParentID(self):
-        _CGetField.restype = c_ulong
+        _CGetField.restype = c_record_p
         return _CGetField(self._RecordID, 56, 0, 0, 0, 0, 0, 0, 0)
 
     _Type = 'PMIS'
@@ -4081,7 +4135,7 @@ class FnvPBEARecord(FnvBaseRecord):
     __slots__ = []
     @property
     def _ParentID(self):
-        _CGetField.restype = c_ulong
+        _CGetField.restype = c_record_p
         return _CGetField(self._RecordID, 56, 0, 0, 0, 0, 0, 0, 0)
 
     _Type = 'PBEA'
@@ -4223,7 +4277,7 @@ class FnvPFLARecord(FnvBaseRecord):
     __slots__ = []
     @property
     def _ParentID(self):
-        _CGetField.restype = c_ulong
+        _CGetField.restype = c_record_p
         return _CGetField(self._RecordID, 56, 0, 0, 0, 0, 0, 0, 0)
 
     _Type = 'PFLA'
@@ -4365,7 +4419,7 @@ class FnvPCBERecord(FnvBaseRecord):
     __slots__ = []
     @property
     def _ParentID(self):
-        _CGetField.restype = c_ulong
+        _CGetField.restype = c_record_p
         return _CGetField(self._RecordID, 56, 0, 0, 0, 0, 0, 0, 0)
 
     _Type = 'PCBE'
@@ -4507,7 +4561,7 @@ class FnvNAVMRecord(FnvBaseRecord):
     __slots__ = []
     @property
     def _ParentID(self):
-        _CGetField.restype = c_ulong
+        _CGetField.restype = c_record_p
         return _CGetField(self._RecordID, 20, 0, 0, 0, 0, 0, 0, 0)
 
     _Type = 'NAVM'
@@ -4632,7 +4686,7 @@ class FnvLANDRecord(FnvBaseRecord):
     __slots__ = []
     @property
     def _ParentID(self):
-        _CGetField.restype = c_ulong
+        _CGetField.restype = c_record_p
         return _CGetField(self._RecordID, 17, 0, 0, 0, 0, 0, 0, 0)
 
     _Type = 'LAND'
@@ -4811,7 +4865,7 @@ class FnvINFORecord(FnvBaseRecord):
     __slots__ = []
     @property
     def _ParentID(self):
-        _CGetField.restype = c_ulong
+        _CGetField.restype = c_record_p
         return _CGetField(self._RecordID, 44, 0, 0, 0, 0, 0, 0, 0)
 
     _Type = 'INFO'
@@ -8989,7 +9043,7 @@ class FnvCELLRecord(FnvBaseRecord):
     _Type = 'CELL'
     @property
     def _ParentID(self):
-        _CGetField.restype = c_ulong
+        _CGetField.restype = c_record_p
         return _CGetField(self._RecordID, 67, 0, 0, 0, 0, 0, 0, 0)
 
     @property
@@ -10574,7 +10628,7 @@ class ObBaseRecord(object):
         _CDeleteRecord(self._RecordID)
 
     def GetRecordUpdatedReferences(self):
-        return _CGetRecordUpdatedReferences(0, self._RecordID)
+        return _CGetRecordUpdatedReferences(None, self._RecordID)
 
     def UpdateReferences(self, Old_NewFormIDs):
         Old_NewFormIDs = FormID.FilterValidDict(Old_NewFormIDs, self, True, True, AsShort=True)
@@ -10587,8 +10641,8 @@ class ObBaseRecord(object):
         return [x for x in Changes]
 
     def History(self):
-        cRecordIDs = (c_ulong * 257)() #just allocate enough for the max number + size
-        numRecords = _CGetRecordHistory(self._RecordID, byref(cRecordIDs))
+        cRecordIDs = (c_record_p * 257)() #just allocate enough for the max number + size
+        numRecords = _CGetRecordHistory(self._RecordID, cRecordIDs)
         return [self.__class__(cRecordIDs[x]) for x in range(numRecords)]
 
     def IsWinning(self, GetExtendedConflicts=False):
@@ -10603,8 +10657,8 @@ class ObBaseRecord(object):
     def Conflicts(self, GetExtendedConflicts=False):
         numRecords = _CGetNumRecordConflicts(self._RecordID, c_ulong(GetExtendedConflicts)) #gives upper bound
         if(numRecords > 1):
-            cRecordIDs = (c_ulong * numRecords)()
-            numRecords = _CGetRecordConflicts(self._RecordID, byref(cRecordIDs), c_ulong(GetExtendedConflicts))
+            cRecordIDs = (c_record_p * numRecords)()
+            numRecords = _CGetRecordConflicts(self._RecordID, cRecordIDs, c_ulong(GetExtendedConflicts))
             return [self.__class__(cRecordIDs[x]) for x in range(numRecords)]
         return []
 
@@ -10664,16 +10718,16 @@ class ObBaseRecord(object):
         ##Record Creation Flags
         ##SetAsOverride       = 0x00000001
         ##CopyWinningParent   = 0x00000002
-        DestParentID, DestModID = (0, target._ModID) if not hasattr(self, '_ParentID') else (self._ParentID, target._ModID) if isinstance(target, ObModFile) else (target._RecordID, target.GetParentMod()._ModID)
-        RecordID = _CCopyRecord(self._RecordID, DestModID, DestParentID, 0, 0, c_ulong(0x00000003 if UseWinningParents else 0x00000001))
+        DestParentID, DestModID = (None, target._ModID) if not hasattr(self, '_ParentID') else (self._ParentID, target._ModID) if isinstance(target, ObModFile) else (target._RecordID, target.GetParentMod()._ModID)
+        RecordID = _CCopyRecord(self._RecordID, DestModID, DestParentID, 0, None, c_int(0x00000003 if UseWinningParents else 0x00000001))
         return self.__class__(RecordID) if RecordID else None
 
     def CopyAsNew(self, target, UseWinningParents=False, RecordFormID=0):
         ##Record Creation Flags
         ##SetAsOverride       = 0x00000001
         ##CopyWinningParent   = 0x00000002
-        DestParentID, DestModID = (0, target._ModID) if not hasattr(self, '_ParentID') else (self._ParentID, target._ModID) if isinstance(target, ObModFile) else (target._RecordID, target.GetParentMod()._ModID)
-        RecordID = _CCopyRecord(self._RecordID, DestModID, DestParentID, RecordFormID.GetShortFormID(target) if RecordFormID else 0, 0, c_ulong(0x00000002 if UseWinningParents else 0))
+        DestParentID, DestModID = (None, target._ModID) if not hasattr(self, '_ParentID') else (self._ParentID, target._ModID) if isinstance(target, ObModFile) else (target._RecordID, target.GetParentMod()._ModID)
+        RecordID = _CCopyRecord(self._RecordID, DestModID, DestParentID, RecordFormID.GetShortFormID(target) if RecordFormID else 0, 0, c_int(0x00000002 if UseWinningParents else 0))
         return self.__class__(RecordID) if RecordID else None
 
     @property
@@ -10710,7 +10764,7 @@ class ObBaseRecord(object):
         retValue = _CGetField(self._RecordID, 4, 0, 0, 0, 0, 0, 0, 0)
         return IUNICODE(_unicode(retValue)) if retValue else None
     def set_eid(self, nValue):
-        nValue = 0 if nValue is None or not len(nValue) else _encode(nValue)
+        nValue = None if nValue is None or not len(nValue) else _encode(nValue)
         _CGetField.restype = POINTER(c_ulong)
         _CSetIDFields(self._RecordID, _CGetField(self._RecordID, 2, 0, 0, 0, 0, 0, 0, 0).contents.value, nValue)
     eid = property(get_eid, set_eid)
@@ -10791,7 +10845,7 @@ class ObACHRRecord(ObBaseRecord):
     __slots__ = []
     @property
     def _ParentID(self):
-        _CGetField.restype = c_ulong
+        _CGetField.restype = c_record_p
         return _CGetField(self._RecordID, 24, 0, 0, 0, 0, 0, 0, 0)
 
     _Type = 'ACHR'
@@ -10831,7 +10885,7 @@ class ObACRERecord(ObBaseRecord):
     __slots__ = []
     @property
     def _ParentID(self):
-        _CGetField.restype = c_ulong
+        _CGetField.restype = c_record_p
         return _CGetField(self._RecordID, 23, 0, 0, 0, 0, 0, 0, 0)
 
     _Type = 'ACRE'
@@ -10868,7 +10922,7 @@ class ObREFRRecord(ObBaseRecord):
     __slots__ = []
     @property
     def _ParentID(self):
-        _CGetField.restype = c_ulong
+        _CGetField.restype = c_record_p
         return _CGetField(self._RecordID, 50, 0, 0, 0, 0, 0, 0, 0)
 
     _Type = 'REFR'
@@ -10970,7 +11024,7 @@ class ObINFORecord(ObBaseRecord):
     __slots__ = []
     @property
     def _ParentID(self):
-        _CGetField.restype = c_ulong
+        _CGetField.restype = c_record_p
         return _CGetField(self._RecordID, 23, 0, 0, 0, 0, 0, 0, 0)
 
     _Type = 'INFO'
@@ -11054,7 +11108,7 @@ class ObLANDRecord(ObBaseRecord):
     __slots__ = []
     @property
     def _ParentID(self):
-        _CGetField.restype = c_ulong
+        _CGetField.restype = c_record_p
         return _CGetField(self._RecordID, 15, 0, 0, 0, 0, 0, 0, 0)
 
     _Type = 'LAND'
@@ -11233,7 +11287,7 @@ class ObPGRDRecord(ObBaseRecord):
     __slots__ = []
     @property
     def _ParentID(self):
-        _CGetField.restype = c_ulong
+        _CGetField.restype = c_record_p
         return _CGetField(self._RecordID, 11, 0, 0, 0, 0, 0, 0, 0)
 
     _Type = 'PGRD'
@@ -11288,7 +11342,7 @@ class ObROADRecord(ObBaseRecord):
     __slots__ = []
     @property
     def _ParentID(self):
-        _CGetField.restype = c_ulong
+        _CGetField.restype = c_record_p
         return _CGetField(self._RecordID, 7, 0, 0, 0, 0, 0, 0, 0)
 
     _Type = 'ROAD'
@@ -11527,7 +11581,7 @@ class ObCELLRecord(ObBaseRecord):
     _Type = 'CELL'
     @property
     def _ParentID(self):
-        _CGetField.restype = c_ulong
+        _CGetField.restype = c_record_p
         return _CGetField(self._RecordID, 40, 0, 0, 0, 0, 0, 0, 0)
 
     @property
@@ -14198,7 +14252,7 @@ class ObModFile(object):
 
     def LookupRecord(self, RecordIdentifier):
         if not RecordIdentifier: return None
-        formID, editorID = (0, _encode(RecordIdentifier)) if isinstance(RecordIdentifier, basestring) else (RecordIdentifier.GetShortFormID(self),0)
+        formID, editorID = (0, _encode(RecordIdentifier)) if isinstance(RecordIdentifier, basestring) else (RecordIdentifier.GetShortFormID(self),None)
         if not (formID or editorID): return None
         RecordID = _CGetRecordID(self._ModID, formID, editorID)
         if RecordID:
@@ -14215,7 +14269,7 @@ class ObModFile(object):
         numRecords = _CGetModNumTypes(self._ModID)
         if(numRecords > 0):
             cRecords = ((c_char * 4) * numRecords)()
-            _CGetModTypes(self._ModID, byref(cRecords))
+            _CGetModTypes(self._ModID, cRecords)
             return [cRecord.value for cRecord in cRecords if cRecord]
         return []
 
@@ -14227,7 +14281,7 @@ class ObModFile(object):
         if(numFormIDs > 0):
             cFormIDs = (c_ulong * numFormIDs)()
             _CGetModOrphansFormIDs(self._ModID, byref(cFormIDs))
-            RecordID = _CGetRecordID(self._ModID, 0, 0)
+            RecordID = _CGetRecordID(self._ModID, 0, None)
             return [FormID(_CGetLongIDName(RecordID, cFormID, 0), cFormID) for cFormID in cFormIDs if cFormID]
         return []
 
@@ -14247,8 +14301,8 @@ class ObModFile(object):
     def GetRecordsIdenticalToMaster(self):
         numRecords = _CGetNumIdenticalToMasterRecords(self._ModID)
         if(numRecords > 0):
-            cRecords = (c_ulong * numRecords)()
-            _CGetIdenticalToMasterRecords(self._ModID, byref(cRecords))
+            cRecords = (c_record_p * numRecords)()
+            _CGetIdenticalToMasterRecords(self._ModID, cRecords)
             _CGetFieldAttribute.restype = (c_char * 4)
             values = [type_record[_CGetFieldAttribute(x, 0, 0, 0, 0, 0, 0, 0, 0).value](x) for x in cRecords]
             _CGetFieldAttribute.restype = c_ulong
@@ -14262,14 +14316,14 @@ class ObModFile(object):
         _CUnloadMod(self._ModID)
 
     def save(self, CloseCollection=True, CleanMasters=True, DestinationName=None):
-        return _CSaveMod(self._ModID, c_ulong(0 | (0x00000001 if CleanMasters else 0) | (0x00000002 if CloseCollection else 0)), _encode(DestinationName) if DestinationName else DestinationName)
+        return _CSaveMod(self._ModID, c_int(0 | (0x00000001 if CleanMasters else 0) | (0x00000002 if CloseCollection else 0)), _encode(DestinationName) if DestinationName else DestinationName)
 
     @property
     def TES4(self):
-        return ObTES4Record(_CGetRecordID(self._ModID, 0, 0))
+        return ObTES4Record(_CGetRecordID(self._ModID, 0, None))
 
     def create_GMST(self, EditorID=0, formID=FormID(None, None)):
-        RecordID = _CCreateRecord(self._ModID, cast("GMST", POINTER(c_ulong)).contents.value, formID.GetShortFormID(self), _encode(EditorID) if EditorID else EditorID, 0)
+        RecordID = _CCreateRecord(self._ModID, cast("GMST", POINTER(c_ulong)).contents.value, formID.GetShortFormID(self), _encode(EditorID) if EditorID else EditorID, None, 0)
         return ObGMSTRecord(RecordID) if RecordID else None
     GMST = CBashRECORDARRAY(ObGMSTRecord, 'GMST')
 
@@ -14658,7 +14712,7 @@ class FnvModFile(object):
         if(numFormIDs > 0):
             cFormIDs = (c_ulong * numFormIDs)()
             _CGetModOrphansFormIDs(self._ModID, byref(cFormIDs))
-            RecordID = _CGetRecordID(self._ModID, 0, 0)
+            RecordID = _CGetRecordID(self._ModID, 0, None)
             return [FormID(_CGetLongIDName(RecordID, cFormID, 0), cFormID) for cFormID in cFormIDs if cFormID]
         return []
 
@@ -14678,8 +14732,8 @@ class FnvModFile(object):
     def GetRecordsIdenticalToMaster(self):
         numRecords = _CGetNumIdenticalToMasterRecords(self._ModID)
         if(numRecords > 0):
-            cRecords = (c_ulong * numRecords)()
-            _CGetIdenticalToMasterRecords(self._ModID, byref(cRecords))
+            cRecords = (c_record_p * numRecords)()
+            _CGetIdenticalToMasterRecords(self._ModID, cRecords)
             _CGetFieldAttribute.restype = (c_char * 4)
             values = [fnv_type_record[_CGetFieldAttribute(x, 0, 0, 0, 0, 0, 0, 0, 0).value](x) for x in cRecords]
             _CGetFieldAttribute.restype = c_ulong
@@ -14697,7 +14751,7 @@ class FnvModFile(object):
 
     @property
     def TES4(self):
-        return FnvTES4Record(_CGetRecordID(self._ModID, 0, 0))
+        return FnvTES4Record(_CGetRecordID(self._ModID, 0, None))
 
     def create_GMST(self, EditorID=0, formID=FormID(None, None)):
         RecordID = _CCreateRecord(self._ModID, cast("GMST", POINTER(c_ulong)).contents.value, formID.GetShortFormID(self), _encode(EditorID) if EditorID else EditorID, 0)
@@ -15430,14 +15484,14 @@ class ObCollection(object):
 
         _NumModsIDs = _CGetLoadOrderNumMods(self._CollectionID)
         if _NumModsIDs > 0:
-            cModIDs = (c_ulong * _NumModsIDs)()
-            _CGetLoadOrderModIDs(self._CollectionID, byref(cModIDs))
+            cModIDs = (c_mod_p * _NumModsIDs)()
+            _CGetLoadOrderModIDs(self._CollectionID, cModIDs)
             self.LoadOrderMods = [self._ModType(ModID) for ModID in cModIDs]
 
         _NumModsIDs = _CGetAllNumMods(self._CollectionID)
         if _NumModsIDs > 0:
-            cModIDs = (c_ulong * _NumModsIDs)()
-            _CGetAllModIDs(self._CollectionID, byref(cModIDs))
+            cModIDs = (c_mod_p * _NumModsIDs)()
+            _CGetAllModIDs(self._CollectionID, cModIDs)
             self.AllMods = [self._ModType(ModID) for ModID in cModIDs]
 
     def LookupRecords(self, RecordIdentifier, GetExtendedConflicts=False):
@@ -15456,7 +15510,7 @@ class ObCollection(object):
         return sum([mod.UpdateReferences(Old_NewFormIDs) for mod in self.LoadOrderMods])
 
     def ClearReferenceLog(self):
-        return _CGetRecordUpdatedReferences(self._CollectionID, 0)
+        return _CGetRecordUpdatedReferences(self._CollectionID, None)
 
     def Debug_DumpModFiles(self):
         col = [_(u"Collection (%08X) contains the following modfiles:") % (self._CollectionID,)]
