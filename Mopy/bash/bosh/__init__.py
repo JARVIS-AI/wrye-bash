@@ -595,10 +595,10 @@ class ModInfo(FileInfo):
     #--Header Editing ---------------------------------------------------------
     def _read_tes4_record(self, ins):
         tes4_rec_header = ins.unpackRecHeader()
-        if tes4_rec_header.recType != bush.game_mod.records.MreTes4.classType:
+        if tes4_rec_header.recType != bush.game.esp.plugin_header_sig:
             raise ModError(self.name, u'Expected %s, but got %s' % (
-                bush.game_mod.records.MreTes4.classType,
-                tes4_rec_header.recType))
+                unicode(bush.game.esp.plugin_header_sig, encoding=u'ascii'),
+                unicode(tes4_rec_header.recType, encoding=u'ascii')))
         return tes4_rec_header
 
     def readHeader(self):
@@ -606,7 +606,7 @@ class ModInfo(FileInfo):
         with ModReader(self.name,self.getPath().open('rb')) as ins:
             try:
                 tes4_rec_header = self._read_tes4_record(ins)
-                self.header = bush.game_mod.records.MreTes4(tes4_rec_header,
+                self.header = bush.game.plugin_header_class(tes4_rec_header,
                                                             ins, True)
             except struct.error as rex:
                 raise ModError(self.name,u'Struct.error: %s' % rex)
