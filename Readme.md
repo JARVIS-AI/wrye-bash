@@ -55,32 +55,22 @@ you need:
 **NB**: the 64-bit version is **required**. 32-bit operating systems are no
 longer supported.
 
-**Note:** Currently, you will have to manually download three wheels from the
-unofficial [Python Extension Packages for Windows](https://www.lfd.uci.edu/~gohlke/pythonlibs/)
-page, since there is no official, automatically downloadable build for these.
-Please head there, Ctrl+F for these three and download them:
-```
-py2exe‑0.6.10a1‑cp27‑none‑win_amd64.whl
-wxPython_common‑3.0.2.0‑py2‑none‑any.whl
-wxPython‑3.0.2.0‑cp27‑none‑win_amd64.whl
-```
-
-Once you have all that, install the required packages by running:
+Once you have those, install the required packages by running:
 
 ```bash
-path/to/python.exe -m pip install -r requirements.txt
-path/to/python.exe -m pip install /path/to/downloads/py2exe‑0.6.10a1‑cp27‑none‑win_amd64.whl
-path/to/python.exe -m pip install /path/to/downloads/wxPython_common‑3.0.2.0‑py2‑none‑any.whl
-path/to/python.exe -m pip install /path/to/downloads/wxPython‑3.0.2.0‑cp27‑none‑win_amd64.whl
+path/to/python.exe -m pip install pipenv
+path/to/python.exe -m pipenv sync --dev
 ```
+
+**Note**: Powershell seems to fail when running pipenv sync.
+If you have problems with it, try Git Bash instead.
 
 Refer to the readmes for [detailed instructions][12]. In short:
 
 1. Install one of the supported games (Oblivion, Skyrim, Fallout).
-2. Install Python and plugins above.
-3. Extract the downloaded Wrye Bash archive into your game folder.
-4. Run Wrye Bash by double-clicking "Wrye Bash Launcher.pyw" in the new Mopy
- folder.
+2. Extract the downloaded Wrye Bash archive (or clone it via git).
+3. Install Python and plugins above.
+4. Run Wrye Bash with `path/to/python.exe -m pipenv run bash`.
 
 #### WINE
 
@@ -98,7 +88,7 @@ def setUAC(button_,uac=True):
 ...
 ```
 
-3. Run Bash as `wine python /path/to/Mopy/Wrye Bash Launcher.pyw`
+3. Run Bash as `wine python -m pipenv run bash`
 
 For details see our [wiki article][15].
 Wine issue: [#240][16]
