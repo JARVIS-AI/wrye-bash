@@ -195,8 +195,14 @@ class Installer_Fomod(OneItemLink, _InstallerLink):
         ui_refresh = [False, False]
         installer.extras_dict['fomod_active'] = True
         installer.extras_dict['fomod_files_dict'] = ret.install_files
+        idetails = self.iPanel.detailsPanel
+        # FIXME(inf) And even more FOMOD hacks - deselect all subpackages, then
+        #  call refresh, otherwise the result in the GUI will be confusing
+        for index in xrange(len(installer.subNames)):
+            idetails.gSubList.Check(index, False)
+            installer.subActives[index] = False
         try:
-            installer.refreshDataSizeCrc(True)
+            idetails.refreshCurrent(installer)
             if ret.install:
                 with balt.Progress(_(u'Installing...'), u'\n'+u' '*60) as progress:
                     self.idata.bain_install(self.selected, ui_refresh, progress)
@@ -275,15 +281,15 @@ class Installer_Wizard(OneItemLink, _InstallerLink):
     def Execute(self):
         with balt.BusyCursor():
             installer = self._selected_info
-            subs = []
+            # FIXME(inf) More FOMOD hacks - need to clear the fomod first,
+            #  otherwise installer.espms will not be populated by the refresh
+            installer.extras_dict[u'fomod_active'] = False
             idetails = self.iPanel.detailsPanel
             idetails.refreshCurrent(installer)
-            for index in xrange(idetails.gSubList.GetCount()):
-                subs.append(idetails.gSubList.GetString(index))
             default, pageSize, pos = self._get_size_and_pos()
             try:
                 wizard = InstallerWizard(self.window, self._selected_info,
-                                         self.bAuto, subs, pageSize, pos)
+                                         self.bAuto, pageSize, pos)
             except CancelError:
                 return
             balt.ensureDisplayed(wizard)
@@ -294,7 +300,12 @@ class Installer_Wizard(OneItemLink, _InstallerLink):
             return
         #Check the sub-packages that were selected by the wizard
         installer.resetAllEspmNames()
-        for index in xrange(idetails.gSubList.GetCount()):
+        # FIXME(inf) This is a really ugly workaround for the empty subpackage.
+        #  We need a better way to do this, i.e. radio buttons in the GUI
+        # Uncheck the fomod (empty string) subpackage, check every selected one
+        idetails.gSubList.Check(0, False)
+        installer.subActives[0] = False
+        for index in xrange(len(installer.subNames[1:])):
             select = installer.subNames[index + 1] in ret.select_sub_packages
             idetails.gSubList.Check(index, select)
             installer.subActives[index + 1] = select

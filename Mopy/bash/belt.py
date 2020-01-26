@@ -85,7 +85,7 @@ class InstallerWizard(wiz.Wizard):
     """Class used by Wrye Bash, creates a wx Wizard that dynamically creates
     pages based on a script."""
 
-    def __init__(self, parentWindow, installer, bAuto, subs, pageSize, pos):
+    def __init__(self, parentWindow, installer, bAuto, pageSize, pos):
         wiz.Wizard.__init__(self, parentWindow, title=_(u'Installer Wizard'),
                             pos=pos, style=wx.DEFAULT_DIALOG_STYLE |
                                            wx.RESIZE_BORDER | wx.MAXIMIZE_BOX)
@@ -101,7 +101,7 @@ class InstallerWizard(wiz.Wizard):
         self.finishing = False
         #parser that will spit out the pages
         self.wizard_file = installer.wizard_file()
-        self.parser = WryeParser(self, installer, subs, bAuto)
+        self.parser = WryeParser(self, installer, bAuto)
         #Intercept the changing event so we can implement 'blockChange'
         set_event_hook(self, Events.WIZARD_PAGE_CHANGING, self.OnChange)
         self.ret = WizardReturn()
@@ -352,17 +352,13 @@ class PageFinish(PageInstaller):
     def __init__(self, parent, subsList, plugin_list, plugin_renames, bAuto,
                  notes, iniedits):
         PageInstaller.__init__(self, parent)
-        subs = subsList.keys()
-        subs.sort(lambda l,r: bolt.cmp_(l, r))
-        subs = [x.replace(u'&',u'&&') for x in subs]
-        plugins = plugin_list.keys()
-        plugins.sort(lambda l,r: bolt.cmp_(l, r))
+        subs = sorted(s.replace(u'&', u'&&') for s in subsList)
+        plugins = sorted(p.replace(u'&', u'&&') for p in plugin_list)
         #--make the list that will be displayed
         displayed_plugins = []
         for x in plugins:
             displayed_plugins.append(x + (u' -> ' + plugin_renames[x]
                                           if x in plugin_renames else u''))
-        displayed_plugins = [x.replace(u'&',u'&&') for x in displayed_plugins]
         parent.parser.choiceIdex += 1
         textTitle = Label(self, _(u'The installer script has finished, and '
                                   u'will apply the following settings:'))
@@ -371,7 +367,6 @@ class PageFinish(PageInstaller):
         self.listSubs = balt.listBox(self, choices=subs, kind='checklist',
                                      onCheck=self.OnSelectSubs)
         for index,key in enumerate(subs):
-            key = key.replace(u'&&',u'&')
             if subsList[key]:
                 self.listSubs.Check(index, True)
                 self.parent.ret.select_sub_packages.append(key)
@@ -672,7 +667,7 @@ class WryeParser(ScriptParser.Parser):
             outLines = outLines[:lastBlank]
         return outLines
 
-    def __init__(self, parent, installer, subs, bAuto, codebox=False):
+    def __init__(self, parent, installer, bAuto, codebox=False):
         ScriptParser.Parser.__init__(self)
         if not codebox:
             self.parent = parent
@@ -686,14 +681,15 @@ class WryeParser(ScriptParser.Parser):
             self.page = None
             self.choices = []
             self.choiceIdex = -1
-            self.sublist = bolt.LowerDict()
-            self.plugin_list = bolt.LowerDict()
-            for k, v in installer.espmMap.iteritems():
-                for j in v:
-                    if j not in self.plugin_list:
-                        self.plugin_list[j] = False
-                if k == u'': continue
-                self.sublist[k] = False
+            # FIXME(inf) Yet more FOMOD hacks - the 'if s' part, specifically.
+            #  After deactivating the fomod, we're still left with a subpackage
+            #  with an empty string, so skip that. The other improvements (i.e.
+            #  the dict comprehensions) can stay.
+            self.sublist = bolt.LowerDict({
+                s: False for s in installer.subNames if s})
+            self.plugin_list = bolt.LowerDict({
+                p: False for sub_plugins in installer.espmMap.itervalues()
+                for p in sub_plugins})
         #--Constants
         self.SetConstant(u'SubPackages',u'SubPackages')
         #--Operators
