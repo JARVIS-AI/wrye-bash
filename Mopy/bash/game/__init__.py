@@ -26,6 +26,7 @@ state and methods. game.GameInfo#init classmethod is used to import rest of
 active game package as needed (currently the record and constants modules)
 and to set some brec.RecordHeader/MreRecord class variables."""
 import importlib
+from collections import defaultdict
 
 from .. import brec
 
@@ -236,6 +237,10 @@ class GameInfo(object):
         # Maps vanilla plugin names to the BSA that contain their localization
         # strings
         vanilla_string_bsas = {}
+        # Maps BSA names to the date to which they should be redated. Fallback
+        # will be used for BSAs which are not explicitly listed. Format is
+        # ISO 8601 (year-month-day)
+        redate_dict = defaultdict(lambda: u'2006-01-01')
 
     class Psc(object):
         """Information about script sources (only Papyrus right now) for this
