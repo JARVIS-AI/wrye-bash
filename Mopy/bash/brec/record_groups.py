@@ -745,13 +745,14 @@ class MobDials(MobBase):
 class MobCell(MobBase):
     """Represents cell block structure -- including the cell and all
     subrecords."""
-    __slots__ = ['cell','persistent','distant','temp', 'land','pgrd']
+    __slots__ = [u'cell', u'persistent_refs', u'distant_refs', u'temp_refs',
+                 u'land', u'pgrd']
 
     def __init__(self, header, loadFactory, cell, ins=None, do_unpack=False):
         self.cell = cell
-        self.persistent = []
-        self.distant = []
-        self.temp = []
+        self.persistent_refs = []
+        self.distant_refs = []
+        self.temp_refs = []
         self.land = None
         self.pgrd = None
         MobBase.__init__(self, header, loadFactory, ins, do_unpack)
@@ -759,13 +760,12 @@ class MobCell(MobBase):
     def load_rec_group(self, ins, endPos):
         """Loads data from input stream. Called by load()."""
         cellType_class = self.loadFactory.getCellTypeClass()
-        persistent,temp,distant = self.persistent,self.temp,self.distant
         insAtEnd = ins.atEnd
         insRecHeader = ins.unpackRecHeader
         cellGet = cellType_class.get
-        persistentAppend = persistent.append
-        tempAppend = temp.append
-        distantAppend = distant.append
+        persistentAppend = self.persistent_refs.append
+        tempAppend = self.temp_refs.append
+        distantAppend = self.distant_refs.append
         insSeek = ins.seek
         subgroupLoaded = [False, False, False]
         while not insAtEnd(endPos,'Cell Block'):
@@ -817,14 +817,14 @@ class MobCell(MobBase):
         """Returns size of all persistent children, including the persistent
         children group."""
         hsize = RecordHeader.rec_header_size
-        size = sum(hsize + x.getSize() for x in self.persistent)
+        size = sum(hsize + x.getSize() for x in self.persistent_refs)
         return size + hsize * bool(size)
 
     def getTempSize(self):
         """Returns size of all temporary children, including the temporary
         children group."""
         hsize = RecordHeader.rec_header_size
-        size = sum(hsize + x.getSize() for x in self.temp)
+        size = sum(hsize + x.getSize() for x in self.temp_refs)
         if self.pgrd: size += hsize + self.pgrd.getSize()
         if self.land: size += hsize + self.land.getSize()
         return size + hsize * bool(size)
@@ -833,19 +833,19 @@ class MobCell(MobBase):
         """Returns size of all distant children, including the distant
         children group."""
         hsize = RecordHeader.rec_header_size
-        size = sum(hsize + x.getSize() for x in self.distant)
+        size = sum(hsize + x.getSize() for x in self.distant_refs)
         return size + hsize * bool(size)
 
     def getNumRecords(self,includeGroups=True):
         """Returns number of records, including self and all children."""
         count = 1 # CELL record, always present
-        if self.persistent:
-            count += len(self.persistent) + includeGroups
-        if self.temp or self.pgrd or self.land:
-            count += len(self.temp) + includeGroups
+        if self.persistent_refs:
+            count += len(self.persistent_refs) + includeGroups
+        if self.temp_refs or self.pgrd or self.land:
+            count += len(self.temp_refs) + includeGroups
             count += bool(self.pgrd) + bool(self.land)
-        if self.distant:
-            count += len(self.distant) + includeGroups
+        if self.distant_refs:
+            count += len(self.distant_refs) + includeGroups
         if count != 1:
             # CELL GRUP only exists if the CELL has at least one child
             count += includeGroups
@@ -874,21 +874,21 @@ class MobCell(MobBase):
         childrenSize = self.getChildrenSize()
         if not childrenSize: return
         self._write_group_header(out, childrenSize, 6)
-        if self.persistent:
+        if self.persistent_refs:
             self._write_group_header(out, self.getPersistentSize(), 8)
-            for record in self.persistent:
+            for record in self.persistent_refs:
                 record.dump(out)
-        if self.temp or self.pgrd or self.land:
+        if self.temp_refs or self.pgrd or self.land:
             self._write_group_header(out, self.getTempSize(), 9)
             if self.pgrd:
                 self.pgrd.dump(out)
             if self.land:
                 self.land.dump(out)
-            for record in self.temp:
+            for record in self.temp_refs:
                 record.dump(out)
-        if self.distant:
+        if self.distant_refs:
             self._write_group_header(out, self.getDistantSize(), 10)
-            for record in self.distant:
+            for record in self.distant_refs:
                 record.dump(out)
 
     def _write_group_header(self, out, group_size, group_type):
@@ -901,11 +901,11 @@ class MobCell(MobBase):
         toLong should be True if converting to long format or False if
         converting to short format."""
         self.cell.convertFids(mapper,toLong)
-        for record in self.temp:
+        for record in self.temp_refs:
             record.convertFids(mapper,toLong)
-        for record in self.persistent:
+        for record in self.persistent_refs:
             record.convertFids(mapper,toLong)
-        for record in self.distant:
+        for record in self.distant_refs:
             record.convertFids(mapper,toLong)
         if self.land:
             self.land.convertFids(mapper,toLong)
@@ -914,9 +914,9 @@ class MobCell(MobBase):
 
     def get_all_signatures(self):
         cell_sigs = {self.cell.recType}
-        cell_sigs.update(r.recType for r in self.temp)
-        cell_sigs.update(r.recType for r in self.persistent)
-        cell_sigs.update(r.recType for r in self.distant)
+        cell_sigs.update(r.recType for r in self.temp_refs)
+        cell_sigs.update(r.recType for r in self.persistent_refs)
+        cell_sigs.update(r.recType for r in self.distant_refs)
         if self.land: cell_sigs.add(self.land.recType)
         if self.pgrd: cell_sigs.add(self.pgrd.recType)
         return cell_sigs
@@ -924,7 +924,8 @@ class MobCell(MobBase):
     def updateMasters(self, masterset_add):
         """Updates set of master names according to masters actually used."""
         self.cell.updateMasters(masterset_add)
-        for record in chain(self.persistent, self.distant, self.temp):
+        for record in chain(self.persistent_refs, self.distant_refs,
+                self.temp_refs):
             record.updateMasters(masterset_add)
         if self.land:
             self.land.updateMasters(masterset_add)
@@ -932,7 +933,8 @@ class MobCell(MobBase):
             self.pgrd.updateMasters(masterset_add)
 
     def updateRecords(self, srcBlock, mapper, mergeIds, __attrget=attrgetter(
-        u'cell', u'pgrd', u'land', u'persistent', u'temp', u'distant')):
+        u'cell', u'pgrd', u'land', u'persistent_refs', u'temp_refs',
+        u'distant_refs')):
         """Updates any records in 'self' that exist in 'srcBlock'."""
         mergeDiscard = mergeIds.discard
         selfSetter = self.__setattr__
@@ -948,7 +950,8 @@ class MobCell(MobBase):
                     setattr(self, attr, record)
                     mergeDiscard(record.fid)
         for attr, (self_rec_list, src_rec_list) in zip(
-                (u'persistent', u'temp', u'distant'), self_src_attrs[3:]):
+                (u'persistent_refs', u'temp_refs', u'distant_refs'),
+                self_src_attrs[3:]):
             fids = {record.fid: i for i, record in enumerate(self_rec_list)}
             for record in src_rec_list:
                 if not record.flags1.ignored and mapper(record.fid) in fids:
@@ -957,7 +960,8 @@ class MobCell(MobBase):
 
     def iter_records(self):
         single_recs = [x for x in (self.cell, self.pgrd, self.land) if x]
-        return chain(single_recs, self.persistent, self.distant, self.temp)
+        return chain(single_recs, self.persistent_refs, self.distant_refs,
+            self.temp_refs)
 
     def keepRecords(self, p_keep_ids):
         """Keeps records with fid in set p_keep_ids. Discards the rest."""
@@ -965,11 +969,13 @@ class MobCell(MobBase):
             self.pgrd = None
         if self.land and self.land.fid not in p_keep_ids:
             self.land = None
-        self.temp       = [x for x in self.temp if x.fid in p_keep_ids]
-        self.persistent = [x for x in self.persistent if x.fid in p_keep_ids]
-        self.distant    = [x for x in self.distant if x.fid in p_keep_ids]
-        if self.pgrd or self.land or self.persistent or self.temp or \
-                self.distant:
+        self.temp_refs = [x for x in self.temp_refs if x.fid in p_keep_ids]
+        self.persistent_refs = [x for x in self.persistent_refs
+                                if x.fid in p_keep_ids]
+        self.distant_refs = [x for x in self.distant_refs
+                             if x.fid in p_keep_ids]
+        if (self.pgrd or self.land or self.persistent_refs or self.temp_refs or
+                self.distant_refs):
             p_keep_ids.add(self.cell.fid)
         self.setChanged()
 
@@ -1001,7 +1007,7 @@ class MobCell(MobBase):
                 # ourselves and mark it as merged
                 mergeIdsAdd(src_rec.fid)
                 setattr(self, single_attr, src_rec.getTypeCopy())
-        for list_attr in (u'temp', u'persistent', u'distant'):
+        for list_attr in (u'temp_refs', u'persistent_refs', u'distant_refs'):
             filtered_list = []
             filtered_append = filtered_list.append
             # Build a mapping from fids in the current list to the index at
@@ -1038,7 +1044,8 @@ class MobCell(MobBase):
     def __repr__(self):
         return (u'<CELL (%r): %u persistent record(s), %u distant record(s), '
                 u'%u temporary record(s), %s, %s>') % (
-            self.cell, len(self.persistent), len(self.distant), len(self.temp),
+            self.cell, len(self.persistent_refs), len(self.distant_refs),
+            len(self.temp_refs),
             u'LAND: %r' % self.land if self.land else u'no LAND',
             u'PGRD: %r' % self.pgrd if self.pgrd else u'no PGRD')
 
