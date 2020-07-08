@@ -3198,7 +3198,9 @@ class InstallersPanel(BashTab):
         if inis_changed:
             if BashFrame.iniList is not None:
                 BashFrame.iniList.RefreshUI(focus_list=False)
-        bosh.bsaInfos.refresh() # TODO(ut) : add bsas_changed param! (or rather move this inside BAIN)
+        # TODO(ut) : add bsas_changed param! (or rather move this inside BAIN)
+        bosh.bsaInfos.refresh()
+        Link.Frame.warn_corrupted(warn_bsas=True)
 
 #------------------------------------------------------------------------------
 class ScreensList(balt.UIList):
