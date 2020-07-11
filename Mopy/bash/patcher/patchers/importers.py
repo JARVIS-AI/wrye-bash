@@ -286,11 +286,11 @@ class CellImporter(ImportPatcher):
             if not cellBlock.cell.flags1.ignored:
                 fid = cellBlock.cell.fid
                 for attr in attrs:
-                    tempCellData[fid][attr] = cellBlock.cell.__getattribute__(
-                        attr)
+                    tempCellData[fid][attr] = (cellBlock.cell.__getattribute__(
+                        attr))
                 for flg_ in flgs_:
                     tempCellData[fid + ('flags',)][
-                        flg_] = cellBlock.cell.flags.__getattr__(flg_)
+                        flg_] = (cellBlock.cell.flags.__getattr__(flg_))
         def checkMasterCellBlockData(cellBlock):
             """
             Add attribute values from record(s) in master file(s).
@@ -310,7 +310,7 @@ class CellImporter(ImportPatcher):
                     master_flag = cellBlock.cell.flags.__getattr__(flg_)
                     if tempCellData[rec_fid + ('flags',)][flg_] != master_flag:
                         cellData[rec_fid + ('flags',)][flg_] = \
-                            tempCellData[rec_fid + ('flags',)][flg_]
+                            (tempCellData[rec_fid + ('flags',)][flg_])
         loadFactory = LoadFactory(False,MreRecord.type_class['CELL'],
                                         MreRecord.type_class['WRLD'])
         progress.setFull(len(self.srcs))
@@ -334,7 +334,7 @@ class CellImporter(ImportPatcher):
             tags = bashTags & set(self.recAttrs)
             if not tags: continue
             attrs = set(chain.from_iterable(
-                self.recAttrs[bashKey] for bashKey in tags))
+                (self.recAttrs[bashKey] for bashKey in tags)))
             flgs_ = tuple(self.recFlags[bashKey] for bashKey in tags if
                           self.recFlags[bashKey] != u'')
             if 'CELL' in srcFile.tops:
@@ -400,7 +400,7 @@ class CellImporter(ImportPatcher):
 
     def buildPatch(self,log,progress): # buildPatch0
         """Adds merged lists to patchfile."""
-        def handlePatchCellBlock(patchCellBlock):
+        def has_been_modified(patch_cell_block):
             """
             This function checks if an attribute or flag in CellData has
             a value which is different to the corresponding value in the
@@ -412,23 +412,26 @@ class CellImporter(ImportPatcher):
             Modified cell Blocks are kept, the other are discarded.
             """
             modified=False
-            patch_cell_fid = patchCellBlock.cell.fid
-            for attr,value in cellData[patch_cell_fid].iteritems():
-                if attr == 'regions':
-                    if set(value).difference(set(patchCellBlock.cell.__getattribute__(attr))):
-                        patchCellBlock.cell.__setattr__(attr, value)
+            patch_cell_fid = patch_cell_block.cell.fid
+            src_values = cellData[patch_cell_fid].viewitems()
+            src_flags = cellData[patch_cell_fid + ('flags',)].viewitems()
+            for attribute, src_value in src_values:
+                patch_value = patch_cell_block.cell.__getattribute__(attribute)
+                if attribute == 'regions':
+                    if set(src_value).difference(set(patch_value)):
+                        patch_cell_block.cell.__setattr__(attribute, src_value)
                         modified = True
                 else:
-                    if patchCellBlock.cell.__getattribute__(attr) != value:
-                        patchCellBlock.cell.__setattr__(attr, value)
+                    if patch_value != src_value:
+                        patch_cell_block.cell.__setattr__(attribute, src_value)
                         modified=True
-            for flag, value in cellData[
-                patch_cell_fid + ('flags',)].iteritems():
-                if patchCellBlock.cell.flags.__getattr__(flag) != value:
-                    patchCellBlock.cell.flags.__setattr__(flag, value)
+            for flag, src_value in src_flags:
+                patch_value = patch_cell_block.cell.flags.__getattr__(flag)
+                if patch_value != src_value:
+                    patch_cell_block.cell.flags.__setattr__(flag, src_value)
                     modified=True
             if modified:
-                patchCellBlock.cell.setChanged()
+                patch_cell_block.cell.setChanged()
                 keep(patch_cell_fid)
             return modified
         if not self.isActive: return
@@ -436,18 +439,19 @@ class CellImporter(ImportPatcher):
         cellData, count = self.cellData, Counter()
         for cellBlock in self.patchFile.CELL.cellBlocks:
             cell_fid = cellBlock.cell.fid
-            if cell_fid in cellData and handlePatchCellBlock(cellBlock):
+            if cell_fid in cellData and has_been_modified(cellBlock):
                 count[cell_fid[0]] += 1
         for worldBlock in self.patchFile.WRLD.worldBlocks:
             keepWorld = False
             for cellBlock in worldBlock.cellBlocks:
                 cell_fid = cellBlock.cell.fid
-                if cell_fid in cellData and handlePatchCellBlock(cellBlock):
-                    count[cell_fid[0]] += 1
-                    keepWorld = True
+                if cell_fid in cellData:
+                    if has_been_modified(cellBlock):
+                        count[cell_fid[0]] += 1
+                        keepWorld = True
             if worldBlock.worldCellBlock:
                 if worldBlock.worldCellBlock.cell.fid in cellData:
-                    if handlePatchCellBlock(worldBlock.worldCellBlock):
+                    if has_been_modified(worldBlock.worldCellBlock):
                         count[worldBlock.worldCellBlock.cell.fid[0]] += 1
                         keepWorld = True
             # if worldBlock.world.fid in cellData['Maps']:
